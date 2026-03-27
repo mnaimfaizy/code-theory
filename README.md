@@ -26,25 +26,28 @@ This repository includes shared AI customization files for multiple tools.
 
 - `.github/copilot-instructions.md`: repository-wide GitHub Copilot instructions
 - `.github/skills/frontend-design/`: project skill for GitHub Copilot and VS Code skill discovery
+- `.github/skills/drizzle-database/`: project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.github/skills/ingestion-generation/`: project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.github/skills/quiz-workflow/`: project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.github/skills/shadcn/`: project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.github/skills/tailwind-design-system/`: project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.github/skills/web-design-guidelines/`: project skill for UI review and guideline-based frontend audits
 - `.claude/skills/frontend-design/`: mirrored project skill for Claude-compatible tools
+- `.claude/skills/drizzle-database/`: mirrored project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.claude/skills/ingestion-generation/`: mirrored project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.claude/skills/quiz-workflow/`: mirrored project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.claude/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.claude/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.claude/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 - `.agents/skills/frontend-design/`: mirrored project skill for Agent Skills-compatible tools and editors
+- `.agents/skills/drizzle-database/`: mirrored project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.agents/skills/ingestion-generation/`: mirrored project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.agents/skills/quiz-workflow/`: mirrored project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.agents/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.agents/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.agents/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 
-The `frontend-design`, `ingestion-generation`, `quiz-workflow`, `shadcn`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
+The `drizzle-database`, `frontend-design`, `ingestion-generation`, `quiz-workflow`, `shadcn`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
 
 ## Skill Sync Note
 
@@ -53,6 +56,9 @@ When editing mirrored skills, keep the corresponding directories synchronized:
 - `.github/skills/frontend-design/`
 - `.claude/skills/frontend-design/`
 - `.agents/skills/frontend-design/`
+- `.github/skills/drizzle-database/`
+- `.claude/skills/drizzle-database/`
+- `.agents/skills/drizzle-database/`
 - `.github/skills/ingestion-generation/`
 - `.claude/skills/ingestion-generation/`
 - `.agents/skills/ingestion-generation/`
