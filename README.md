@@ -26,18 +26,24 @@ This repository includes shared AI customization files for multiple tools.
 
 - `.github/copilot-instructions.md`: repository-wide GitHub Copilot instructions
 - `.github/skills/frontend-design/`: project skill for GitHub Copilot and VS Code skill discovery
+- `.github/skills/web-design-guidelines/`: project skill for UI review and guideline-based frontend audits
 - `.claude/skills/frontend-design/`: mirrored project skill for Claude-compatible tools
+- `.claude/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 - `.agents/skills/frontend-design/`: mirrored project skill for Agent Skills-compatible tools and editors
+- `.agents/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 
-The `frontend-design` skill is intentionally mirrored across all three skill directories so different AI tools can discover the same workflow.
+The `frontend-design` and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
 
 ## Skill Sync Note
 
-When editing the `frontend-design` skill, keep these directories synchronized:
+When editing mirrored skills, keep the corresponding directories synchronized:
 
 - `.github/skills/frontend-design/`
 - `.claude/skills/frontend-design/`
 - `.agents/skills/frontend-design/`
+- `.github/skills/web-design-guidelines/`
+- `.claude/skills/web-design-guidelines/`
+- `.agents/skills/web-design-guidelines/`
 
 If you change `SKILL.md`, also update any referenced files under each skill's `references/` directory so all agents load the same guidance.
 
