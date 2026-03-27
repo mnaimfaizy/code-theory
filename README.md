@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Theory
+
+Code Theory is a certification quiz platform built with Next.js App Router, React 19, TypeScript, Drizzle ORM, NextAuth credentials auth, Tailwind CSS v4, and shadcn/ui.
 
 ## Getting Started
 
@@ -16,9 +18,28 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For repository-specific setup and conventions, see `docs/DEVELOPMENT.md`, `docs/ARCHITECTURE.md`, and `.github/copilot-instructions.md`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## AI Customizations
+
+This repository includes shared AI customization files for multiple tools.
+
+- `.github/copilot-instructions.md`: repository-wide GitHub Copilot instructions
+- `.github/skills/frontend-design/`: project skill for GitHub Copilot and VS Code skill discovery
+- `.claude/skills/frontend-design/`: mirrored project skill for Claude-compatible tools
+- `.agents/skills/frontend-design/`: mirrored project skill for Agent Skills-compatible tools and editors
+
+The `frontend-design` skill is intentionally mirrored across all three skill directories so different AI tools can discover the same workflow.
+
+## Skill Sync Note
+
+When editing the `frontend-design` skill, keep these directories synchronized:
+
+- `.github/skills/frontend-design/`
+- `.claude/skills/frontend-design/`
+- `.agents/skills/frontend-design/`
+
+If you change `SKILL.md`, also update any referenced files under each skill's `references/` directory so all agents load the same guidance.
 
 ## Learn More
 
