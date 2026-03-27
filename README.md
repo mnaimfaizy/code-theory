@@ -26,16 +26,19 @@ This repository includes shared AI customization files for multiple tools.
 
 - `.github/copilot-instructions.md`: repository-wide GitHub Copilot instructions
 - `.github/skills/frontend-design/`: project skill for GitHub Copilot and VS Code skill discovery
+- `.github/skills/shadcn/`: project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.github/skills/tailwind-design-system/`: project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.github/skills/web-design-guidelines/`: project skill for UI review and guideline-based frontend audits
 - `.claude/skills/frontend-design/`: mirrored project skill for Claude-compatible tools
+- `.claude/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.claude/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.claude/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 - `.agents/skills/frontend-design/`: mirrored project skill for Agent Skills-compatible tools and editors
+- `.agents/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.agents/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.agents/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 
-The `frontend-design`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
+The `frontend-design`, `shadcn`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
 
 ## Skill Sync Note
 
@@ -44,6 +47,9 @@ When editing mirrored skills, keep the corresponding directories synchronized:
 - `.github/skills/frontend-design/`
 - `.claude/skills/frontend-design/`
 - `.agents/skills/frontend-design/`
+- `.github/skills/shadcn/`
+- `.claude/skills/shadcn/`
+- `.agents/skills/shadcn/`
 - `.github/skills/tailwind-design-system/`
 - `.claude/skills/tailwind-design-system/`
 - `.agents/skills/tailwind-design-system/`
