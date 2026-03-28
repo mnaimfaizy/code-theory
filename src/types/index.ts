@@ -3,6 +3,7 @@ export interface QuizConfig {
   mode: "fixed" | "random";
   timed: boolean;
   questionCount?: number; // defaults to all approved questions
+  timeLimitMinutes?: number;
 }
 
 export interface QuizQuestion {

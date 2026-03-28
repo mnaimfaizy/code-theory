@@ -4,7 +4,7 @@ import {
 } from "@/server/services/certification-service";
 import { db } from "@/db";
 import { attempts } from "@/db/schema";
-import { eq, desc, count } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { CertificationDetailClient } from "./detail-client";
 
@@ -46,6 +46,8 @@ export default async function CertificationDetailPage({ params }: Props) {
         id: a.id,
         mode: a.mode as "fixed" | "random",
         timed: a.timed,
+        questionCount: a.questionCount,
+        timeLimitSeconds: a.timeLimitSeconds,
         score: a.score,
         passed: a.passed,
         startedAt: a.startedAt,

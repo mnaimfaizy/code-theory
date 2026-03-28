@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { buildQuizStartHref } from "@/lib/quiz-options";
 import { cn } from "@/lib/utils";
 import type { QuizResult } from "@/types";
 
@@ -103,7 +104,15 @@ export function ResultsClient({ result }: Props) {
         className="flex flex-col sm:flex-row gap-3 justify-center mb-8"
       >
         <Link
-          href={`/quiz/start?cert=${attempt.certificationId}&mode=${attempt.mode}&timed=${attempt.timed}`}
+          href={buildQuizStartHref({
+            certificationId: attempt.certificationId,
+            mode: attempt.mode,
+            timed: attempt.timed,
+            questionCount: attempt.questionCount,
+            timeLimitMinutes: attempt.timeLimitSeconds
+              ? Math.round(attempt.timeLimitSeconds / 60)
+              : undefined,
+          })}
         >
           <Button variant="outline" className="w-full sm:w-auto gap-2">
             <RotateCcw className="h-4 w-4" />

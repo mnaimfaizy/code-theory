@@ -5,7 +5,7 @@
 ### 1. Browse & Take a Quiz
 
 ```
-Home (certification cards) → Select certification → Choose mode (timed / untimed, fixed / random)
+Home (certification cards) → Select certification → Choose mode, presets or custom question count, and time window
 → Start quiz → Answer questions → Submit → View results → Review answers → Retry or return home
 ```
 
@@ -42,12 +42,14 @@ Run dedup scan (GUI or terminal) → System flags exact & near-duplicate groups
 
 ## Quiz Modes
 
-| Mode        | Description                             |
-| ----------- | --------------------------------------- |
-| **Timed**   | Countdown timer; auto-submits on expiry |
-| **Untimed** | No time pressure; submit when ready     |
-| **Fixed**   | Questions in their stored order         |
-| **Random**  | Questions shuffled each attempt         |
+| Mode        | Description                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| **Timed**   | Countdown timer with selectable durations starting at 10 minutes; auto-submits on expiry |
+| **Untimed** | No time pressure; submit when ready                                                      |
+| **Fixed**   | Questions in their stored order                                                          |
+| **Random**  | Questions shuffled each attempt                                                          |
+
+The quiz setup screen remembers the last-used practice settings per certification on the current device.
 
 ## Question Lifecycle
 

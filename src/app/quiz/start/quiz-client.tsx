@@ -13,7 +13,6 @@ import {
   Clock,
   CheckCircle,
   Flag,
-  AlertTriangle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { QuizAttempt, QuizQuestion } from "@/types";

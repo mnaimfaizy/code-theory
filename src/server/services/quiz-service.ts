@@ -8,6 +8,11 @@ import {
 } from "@/db/schema";
 import { eq, and, sql, count } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
+import {
+  getDefaultQuizDurationMinutes,
+  sanitizeQuizDurationMinutes,
+  sanitizeQuizQuestionCount,
+} from "@/lib/quiz-options";
 import type {
   QuizConfig,
   QuizQuestion,
@@ -45,8 +50,17 @@ export async function getQuizQuestions(
     selected = shuffleArray([...rows]);
   }
 
-  if (config.questionCount && config.questionCount < selected.length) {
-    selected = selected.slice(0, config.questionCount);
+  const questionCount = sanitizeQuizQuestionCount(
+    config.questionCount,
+    selected.length,
+  );
+
+  if (questionCount) {
+    selected = selected.slice(0, questionCount);
+  }
+
+  if (selected.length === 0) {
+    return [];
   }
 
   // Fetch options for each question
@@ -99,8 +113,15 @@ export async function createAttempt(
 
   if (!cert) throw new Error("Certification not found");
 
-  const timeLimitSeconds =
-    config.timed && cert.timeLimitMinutes ? cert.timeLimitMinutes * 60 : null;
+  const configuredTimeLimitMinutes = config.timed
+    ? (sanitizeQuizDurationMinutes(config.timeLimitMinutes) ??
+      sanitizeQuizDurationMinutes(cert.timeLimitMinutes) ??
+      getDefaultQuizDurationMinutes(cert.timeLimitMinutes))
+    : null;
+
+  const timeLimitSeconds = configuredTimeLimitMinutes
+    ? configuredTimeLimitMinutes * 60
+    : null;
 
   const id = uuid();
   const now = new Date().toISOString();
