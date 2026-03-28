@@ -17,6 +17,14 @@ Create certification → Add questions manually  OR  Import from documentation
 → Run deduplication → Resolve flagged duplicates
 ```
 
+AI-assisted imports can also follow a supervisor-reviewed artifact flow:
+
+```
+Provide URL / document → Generate temp JSON artifact with references and explanations
+→ Human supervisor approves artifact → Import artifact into target certification
+→ Questions publish directly when the approved artifact requests direct publish
+```
+
 ### 3. Import Documentation
 
 ```

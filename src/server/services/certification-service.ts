@@ -18,7 +18,7 @@ export async function createCertification(data: {
   icon?: string;
   timeLimitMinutes?: number;
   passingScore?: number;
-  createdBy: string;
+  createdBy?: string;
 }) {
   const id = uuid();
   const now = new Date().toISOString();
@@ -31,7 +31,7 @@ export async function createCertification(data: {
     icon: data.icon ?? null,
     timeLimitMinutes: data.timeLimitMinutes ?? null,
     passingScore: data.passingScore ?? 70,
-    createdBy: data.createdBy,
+    createdBy: data.createdBy ?? null,
     createdAt: now,
     updatedAt: now,
   });
@@ -77,6 +77,19 @@ export async function getCertificationBySlug(slug: string) {
     .select()
     .from(certifications)
     .where(eq(certifications.slug, slug))
+    .limit(1);
+
+  return cert ?? null;
+}
+
+/**
+ * Get a certification by id.
+ */
+export async function getCertificationById(id: string) {
+  const [cert] = await db
+    .select()
+    .from(certifications)
+    .where(eq(certifications.id, id))
     .limit(1);
 
   return cert ?? null;

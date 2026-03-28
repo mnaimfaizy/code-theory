@@ -42,4 +42,6 @@ yarn-error.log*
 
 # local sqlite data
 /data/
+/tmp/
+/temp/
 next-env.d.ts
