@@ -29,6 +29,32 @@ npm run dev                   # http://localhost:3000
 | `npm run db:studio`   | Open Drizzle Studio             |
 | `npm run db:seed`     | Seed demo data                  |
 | `npm run db:generate` | Generate migration files        |
+| `npm run db:export`   | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
+| `npm run db:apply-sql`| Apply root `sql/` files to a PostgreSQL database |
+
+### PostgreSQL SQL Exports
+
+Generate PostgreSQL-compatible SQL files from the local SQLite database into the root `sql/` directory:
+
+```bash
+npm run db:export
+npm run db:export -- all
+npm run db:export -- users certifications
+```
+
+The exporter removes existing `sql/*.sql` files before writing the new output so the directory always reflects the latest export request.
+
+### Applying SQL To PostgreSQL
+
+After generating the SQL files, point `DATABASE_URL` at a PostgreSQL database and apply them in foreign-key-safe order:
+
+```bash
+npm run db:apply-sql
+npm run db:apply-sql -- all
+npm run db:apply-sql -- users certifications
+```
+
+The apply step reads the root `sql/` directory and executes one table file at a time against PostgreSQL.
 
 ## Project Structure
 

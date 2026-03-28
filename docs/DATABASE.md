@@ -85,3 +85,27 @@ attempt_answers
 - Timestamps use ISO 8601 text in SQLite, `timestamp` type in PostgreSQL.
 - Boolean columns use integer (0/1) in SQLite, native boolean in PostgreSQL.
 - Drizzle handles these differences transparently via its driver abstraction.
+
+## Exporting PostgreSQL SQL Files
+
+Use the SQL export script to generate PostgreSQL-compatible table files from the local SQLite database into the root `sql/` directory:
+
+```bash
+npm run db:export
+npm run db:export -- all
+npm run db:export -- users question_sources questions
+```
+
+Each run deletes previously generated `sql/*.sql` files first, then writes one `.sql` file per requested table.
+
+## Applying Generated SQL To PostgreSQL
+
+Once the SQL files exist, set `DATABASE_URL` to a PostgreSQL connection string and apply them in order:
+
+```bash
+npm run db:apply-sql
+npm run db:apply-sql -- all
+npm run db:apply-sql -- users certifications
+```
+
+The apply script expects the generated files to exist under the root `sql/` directory and executes each requested table file sequentially against PostgreSQL.

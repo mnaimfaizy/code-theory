@@ -11,6 +11,8 @@
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio",
     "db:seed": "npx tsx src/db/seed.ts",
+    "db:export": "npx tsx scripts/export-to-pg.ts",
+    "db:apply-sql": "npx tsx scripts/apply-pg-sql.ts",
     "questions:import-approved": "npx tsx scripts/import-approved-questions.ts"
   },
   "dependencies": {
