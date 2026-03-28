@@ -1,5 +1,5 @@
 -- Table: question_sources
--- Generated: 2026-03-28T06:35:32.109Z
+-- Generated: 2026-03-28T06:55:26.991Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "question_sources" CASCADE;

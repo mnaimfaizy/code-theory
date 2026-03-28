@@ -17,20 +17,47 @@ npm run db:seed               # seed demo data
 npm run dev                   # http://localhost:3000
 ```
 
+## Optional Local PostgreSQL Stack
+
+If you want to test the generated PostgreSQL SQL files locally, start the included Docker Compose stack:
+
+```bash
+docker compose up -d
+```
+
+Services:
+
+- PostgreSQL: `localhost:5432`
+- pgAdmin: `http://localhost:5050`
+
+Default local credentials:
+
+```env
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory
+PGADMIN_DEFAULT_EMAIL=admin@codetheory.dev
+PGADMIN_DEFAULT_PASSWORD=code_theory_admin
+```
+
+To stop the stack:
+
+```bash
+docker compose down
+```
+
 ## Scripts
 
-| Command               | Description                     |
-| --------------------- | ------------------------------- |
-| `npm run dev`         | Start dev server with Turbopack |
-| `npm run build`       | Production build                |
-| `npm run start`       | Start production server         |
-| `npm run lint`        | Run ESLint                      |
-| `npm run db:push`     | Push schema to database         |
-| `npm run db:studio`   | Open Drizzle Studio             |
-| `npm run db:seed`     | Seed demo data                  |
-| `npm run db:generate` | Generate migration files        |
-| `npm run db:export`   | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
-| `npm run db:apply-sql`| Apply root `sql/` files to a PostgreSQL database |
+| Command                | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| `npm run dev`          | Start dev server with Turbopack                             |
+| `npm run build`        | Production build                                            |
+| `npm run start`        | Start production server                                     |
+| `npm run lint`         | Run ESLint                                                  |
+| `npm run db:push`      | Push schema to database                                     |
+| `npm run db:studio`    | Open Drizzle Studio                                         |
+| `npm run db:seed`      | Seed demo data                                              |
+| `npm run db:generate`  | Generate migration files                                    |
+| `npm run db:export`    | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
+| `npm run db:apply-sql` | Apply root `sql/` files to a PostgreSQL database            |
 
 ### PostgreSQL SQL Exports
 
@@ -55,6 +82,12 @@ npm run db:apply-sql -- users certifications
 ```
 
 The apply step reads the root `sql/` directory and executes one table file at a time against PostgreSQL.
+
+With the Docker Compose stack running, you can test the generated SQL files locally with:
+
+```bash
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:apply-sql
+```
 
 ## Project Structure
 

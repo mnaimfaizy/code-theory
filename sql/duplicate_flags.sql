@@ -1,5 +1,5 @@
 -- Table: duplicate_flags
--- Generated: 2026-03-28T06:35:32.126Z
+-- Generated: 2026-03-28T06:55:27.016Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "duplicate_flags" CASCADE;

@@ -109,3 +109,33 @@ npm run db:apply-sql -- users certifications
 ```
 
 The apply script expects the generated files to exist under the root `sql/` directory and executes each requested table file sequentially against PostgreSQL.
+
+## Local PostgreSQL Test Stack
+
+The repository includes a root `docker-compose.yml` for local PostgreSQL and pgAdmin so you can test the generated SQL files without installing PostgreSQL directly on your machine.
+
+Start the stack:
+
+```bash
+docker compose up -d
+```
+
+Local connection details:
+
+```env
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory
+```
+
+pgAdmin is available at `http://localhost:5050` with:
+
+```text
+Email: admin@codetheory.dev
+Password: code_theory_admin
+```
+
+Once the stack is running, you can export from SQLite and apply into PostgreSQL with:
+
+```bash
+npm run db:export
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:apply-sql
+```
