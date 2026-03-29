@@ -35,6 +35,7 @@ Content is split into chunks of ~1,000–2,000 tokens with overlap to preserve c
 - Provider-agnostic: targets any OpenAI-compatible API (Ollama, LM Studio, etc.).
 - Requests structured JSON output: question text, 4 options, correct answer index, explanation, difficulty, confidence.
 - Each generated question links back to its source and chunk for provenance.
+- Stored URL source references are normalized before persistence. Single-link refs are stored as a bare URL, and bundled refs are reduced to one URL per line until the schema supports structured multi-reference data.
 - All generated questions are created with `status = 'draft'`.
 
 ## AI-Supervised Approved Import

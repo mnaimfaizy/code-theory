@@ -3,10 +3,11 @@ import {
   certifications,
   questions,
   questionOptions,
+  questionSources,
   attempts,
   attemptAnswers,
 } from "@/db/schema";
-import { eq, and, sql, count } from "drizzle-orm";
+import { eq, and, sql, count, inArray } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import {
   getDefaultQuizDurationMinutes,
@@ -247,19 +248,45 @@ export async function completeAttempt(attemptId: string): Promise<QuizResult> {
     .where(eq(attempts.id, attemptId));
 
   // Build detailed answer results
+  const answeredQuestionIds = answers.map((answer) => answer.questionId);
+
+  const questionRows = answeredQuestionIds.length
+    ? await db
+        .select({
+          id: questions.id,
+          text: questions.text,
+          explanation: questions.explanation,
+          sourceType: questionSources.sourceType,
+          sourceRef: questionSources.sourceRef,
+        })
+        .from(questions)
+        .leftJoin(questionSources, eq(questions.sourceId, questionSources.id))
+        .where(inArray(questions.id, answeredQuestionIds))
+    : [];
+
+  const questionMap = new Map(
+    questionRows.map((question) => [question.id, question]),
+  );
+
+  const allOptions = answeredQuestionIds.length
+    ? await db
+        .select()
+        .from(questionOptions)
+        .where(inArray(questionOptions.questionId, answeredQuestionIds))
+        .orderBy(questionOptions.orderIndex)
+    : [];
+
+  const optionsByQuestion = new Map<string, typeof allOptions>();
+  for (const option of allOptions) {
+    const existing = optionsByQuestion.get(option.questionId) ?? [];
+    existing.push(option);
+    optionsByQuestion.set(option.questionId, existing);
+  }
+
   const answerResults: QuizAnswerResult[] = [];
   for (const answer of answers) {
-    const [question] = await db
-      .select()
-      .from(questions)
-      .where(eq(questions.id, answer.questionId))
-      .limit(1);
-
-    const opts = await db
-      .select()
-      .from(questionOptions)
-      .where(eq(questionOptions.questionId, answer.questionId))
-      .orderBy(questionOptions.orderIndex);
+    const question = questionMap.get(answer.questionId);
+    const opts = optionsByQuestion.get(answer.questionId) ?? [];
 
     const correctOpt = opts.find((o) => o.isCorrect);
 
@@ -267,6 +294,13 @@ export async function completeAttempt(attemptId: string): Promise<QuizResult> {
       questionId: answer.questionId,
       questionText: question?.text ?? "",
       explanation: question?.explanation ?? null,
+      source:
+        question?.sourceType && question.sourceRef
+          ? {
+              type: question.sourceType,
+              ref: question.sourceRef,
+            }
+          : null,
       selectedOptionId: answer.selectedOptionId,
       correctOptionId: correctOpt?.id ?? "",
       isCorrect: answer.isCorrect ?? false,

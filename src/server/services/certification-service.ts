@@ -7,6 +7,7 @@ import {
 } from "@/db/schema";
 import { eq, and, count } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
+import { normalizeStoredSourceRef } from "@/lib/source-ref";
 
 /**
  * Create a new certification.
@@ -209,7 +210,7 @@ export async function registerSource(data: {
     id,
     certificationId: data.certificationId,
     sourceType: data.sourceType,
-    sourceRef: data.sourceRef,
+    sourceRef: normalizeStoredSourceRef(data.sourceType, data.sourceRef),
     rawContent: data.rawContent ?? null,
     chunkCount: data.chunkCount ?? 0,
     createdAt: new Date().toISOString(),

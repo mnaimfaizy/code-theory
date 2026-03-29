@@ -46,10 +46,16 @@ export interface QuizAnswerResult {
   questionId: string;
   questionText: string;
   explanation: string | null;
+  source: QuizAnswerSource | null;
   selectedOptionId: string | null;
   correctOptionId: string;
   isCorrect: boolean;
   options: QuizOption[];
+}
+
+export interface QuizAnswerSource {
+  type: "url" | "file";
+  ref: string;
 }
 
 export interface CertificationCard {

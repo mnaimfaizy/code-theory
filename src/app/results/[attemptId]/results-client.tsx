@@ -11,6 +11,8 @@ import {
   CheckCircle,
   RotateCcw,
   Home,
+  FileText,
+  Link as LinkIcon,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
@@ -18,11 +20,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { buildQuizStartHref } from "@/lib/quiz-options";
 import { cn } from "@/lib/utils";
-import type { QuizResult } from "@/types";
+import type { QuizAnswerSource, QuizResult } from "@/types";
 
 interface Props {
   result: QuizResult;
 }
+
+type ParsedSource = {
+  label: string | null;
+  urls: string[];
+};
 
 export function ResultsClient({ result }: Props) {
   const [showReview, setShowReview] = useState(false);
@@ -148,79 +155,201 @@ export function ResultsClient({ result }: Props) {
 
         {showReview && (
           <div className="space-y-4">
-            {answers.map((answer, i) => (
-              <Card
-                key={answer.questionId}
-                className={cn(
-                  "border-l-4",
-                  answer.isCorrect ? "border-l-green-500" : "border-l-red-500",
-                )}
-              >
-                <CardContent className="pt-5">
-                  <div className="flex items-start gap-3 mb-4">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-bold">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <p className="font-medium">{answer.questionText}</p>
-                      <div className="mt-1">
-                        {answer.isCorrect ? (
-                          <Badge
-                            variant="outline"
-                            className="gap-1 text-green-600 border-green-200"
-                          >
-                            <CheckCircle className="h-3 w-3" />
-                            Correct
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant="outline"
-                            className="gap-1 text-red-600 border-red-200"
-                          >
-                            <XCircle className="h-3 w-3" />
-                            Incorrect
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+            {answers.map((answer, i) =>
+              (() => {
+                const parsedSource = parseSource(answer.source);
 
-                  <div className="space-y-1.5 ml-10">
-                    {answer.options.map((opt) => {
-                      const isCorrectOpt = opt.id === answer.correctOptionId;
-                      const isSelected = opt.id === answer.selectedOptionId;
-
-                      return (
-                        <div
-                          key={opt.id}
-                          className={cn(
-                            "rounded-lg px-3 py-2 text-sm",
-                            isCorrectOpt &&
-                              "bg-green-50 text-green-800 font-medium dark:bg-green-900/20 dark:text-green-300",
-                            isSelected &&
-                              !isCorrectOpt &&
-                              "bg-red-50 text-red-800 line-through dark:bg-red-900/20 dark:text-red-300",
-                          )}
-                        >
-                          {isCorrectOpt && "✓ "}
-                          {isSelected && !isCorrectOpt && "✗ "}
-                          {opt.text}
+                return (
+                  <Card
+                    key={answer.questionId}
+                    className={cn(
+                      "border-l-4",
+                      answer.isCorrect
+                        ? "border-l-green-500"
+                        : "border-l-red-500",
+                    )}
+                  >
+                    <CardContent className="pt-5">
+                      <div className="flex items-start gap-3 mb-4">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-bold">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <p className="font-medium">{answer.questionText}</p>
+                          <div className="mt-1">
+                            {answer.isCorrect ? (
+                              <Badge
+                                variant="outline"
+                                className="gap-1 text-green-600 border-green-200"
+                              >
+                                <CheckCircle className="h-3 w-3" />
+                                Correct
+                              </Badge>
+                            ) : (
+                              <Badge
+                                variant="outline"
+                                className="gap-1 text-red-600 border-red-200"
+                              >
+                                <XCircle className="h-3 w-3" />
+                                Incorrect
+                              </Badge>
+                            )}
+                          </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
 
-                  {answer.explanation && (
-                    <div className="mt-3 ml-10 rounded-lg bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
-                      <strong>Explanation:</strong> {answer.explanation}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                      <div className="space-y-1.5 ml-10">
+                        {answer.options.map((opt) => {
+                          const isCorrectOpt =
+                            opt.id === answer.correctOptionId;
+                          const isSelected = opt.id === answer.selectedOptionId;
+
+                          return (
+                            <div
+                              key={opt.id}
+                              className={cn(
+                                "rounded-lg px-3 py-2 text-sm",
+                                isCorrectOpt &&
+                                  "bg-green-50 text-green-800 font-medium dark:bg-green-900/20 dark:text-green-300",
+                                isSelected &&
+                                  !isCorrectOpt &&
+                                  "bg-red-50 text-red-800 line-through dark:bg-red-900/20 dark:text-red-300",
+                              )}
+                            >
+                              {isCorrectOpt && "✓ "}
+                              {isSelected && !isCorrectOpt && "✗ "}
+                              {opt.text}
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {answer.explanation && (
+                        <div className="mt-3 ml-10 rounded-lg bg-muted/50 px-3 py-3 text-sm text-muted-foreground">
+                          <div className="font-semibold text-foreground">
+                            Detailed explanation
+                          </div>
+                          <p className="mt-1 whitespace-pre-line leading-6">
+                            {answer.explanation}
+                          </p>
+
+                          {answer.source && (
+                            <div className="mt-3 border-t border-border/60 pt-3">
+                              <div className="flex items-center gap-2 font-semibold text-foreground">
+                                {answer.source.type === "url" ? (
+                                  <LinkIcon className="h-4 w-4" />
+                                ) : (
+                                  <FileText className="h-4 w-4" />
+                                )}
+                                Source
+                              </div>
+                              {answer.source.type === "url" ? (
+                                <div className="mt-1 space-y-1">
+                                  {parsedSource.label && (
+                                    <p className="text-foreground/80">
+                                      {parsedSource.label}
+                                    </p>
+                                  )}
+                                  {parsedSource.urls.length > 0 ? (
+                                    parsedSource.urls.map((url) => (
+                                      <a
+                                        key={url}
+                                        href={url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="block break-all text-primary underline-offset-4 hover:underline"
+                                      >
+                                        {url}
+                                      </a>
+                                    ))
+                                  ) : (
+                                    <p className="break-all">
+                                      {answer.source.ref}
+                                    </p>
+                                  )}
+                                </div>
+                              ) : (
+                                <p className="mt-1 break-all">
+                                  {answer.source.ref}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {!answer.explanation && answer.source && (
+                        <div className="mt-3 ml-10 rounded-lg bg-muted/50 px-3 py-3 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2 font-semibold text-foreground">
+                            {answer.source.type === "url" ? (
+                              <LinkIcon className="h-4 w-4" />
+                            ) : (
+                              <FileText className="h-4 w-4" />
+                            )}
+                            Source
+                          </div>
+                          {answer.source.type === "url" ? (
+                            <div className="mt-1 space-y-1">
+                              {parsedSource.label && (
+                                <p className="text-foreground/80">
+                                  {parsedSource.label}
+                                </p>
+                              )}
+                              {parsedSource.urls.length > 0 ? (
+                                parsedSource.urls.map((url) => (
+                                  <a
+                                    key={url}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="block break-all text-primary underline-offset-4 hover:underline"
+                                  >
+                                    {url}
+                                  </a>
+                                ))
+                              ) : (
+                                <p className="break-all">{answer.source.ref}</p>
+                              )}
+                            </div>
+                          ) : (
+                            <p className="mt-1 break-all">
+                              {answer.source.ref}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                );
+              })(),
+            )}
           </div>
         )}
       </motion.div>
     </div>
   );
+}
+
+function parseSource(source: QuizAnswerSource | null): ParsedSource {
+  if (!source || source.type !== "url") {
+    return { label: null, urls: [] };
+  }
+
+  const raw = source.ref.trim();
+  if (!raw) {
+    return { label: null, urls: [] };
+  }
+
+  const urls = Array.from(new Set(raw.match(/https?:\/\/[^\s|]+/g) ?? []));
+  const firstUrl = urls[0];
+
+  if (!firstUrl) {
+    return { label: raw, urls: [] };
+  }
+
+  const firstUrlIndex = raw.indexOf(firstUrl);
+  const rawLabel = firstUrlIndex > 0 ? raw.slice(0, firstUrlIndex).trim() : "";
+  const label = rawLabel.replace(/[|\s]+$/g, "").trim() || null;
+
+  return { label, urls };
 }

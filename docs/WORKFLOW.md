@@ -6,7 +6,8 @@
 
 ```
 Home (certification cards) → Select certification → Choose mode, presets or custom question count, and time window
-→ Start quiz → Answer questions → Submit → View results → Review answers → Retry or return home
+→ Start quiz → Answer questions → Submit → View results → Review answers with detailed explanations and source references when available
+→ Retry or return home
 ```
 
 ### 2. Manage Content (Admin)
