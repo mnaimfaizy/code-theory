@@ -34,9 +34,26 @@ Content is split into chunks of ~1,000–2,000 tokens with overlap to preserve c
 
 - Provider-agnostic: targets any OpenAI-compatible API (Ollama, LM Studio, etc.).
 - Requests structured JSON output: question text, 4 options, correct answer index, explanation, difficulty, confidence.
+- Generated text fields may contain markdown. When source material includes code, commands, config, or SQL, prefer fenced code blocks with language tags.
+- Explanations should include a short worked example when that makes the reasoning easier to verify.
 - Each generated question links back to its source and chunk for provenance.
 - Stored URL source references are normalized before persistence. Single-link refs are stored as a bare URL, and bundled refs are reduced to one URL per line until the schema supports structured multi-reference data.
 - All generated questions are created with `status = 'draft'`.
+
+### Rich Question Example
+
+The current schema stores rich question content directly in the existing text fields. A generated or approved artifact can therefore include markdown like this:
+
+````json
+{
+  "text": "What does this TypeScript code log?\n\n```ts\nconst values = [10, 20, 30];\nconsole.log(values.at(-1));\n```",
+  "options": ["`10`", "`20`", "`30`", "`undefined`"],
+  "correctIndex": 2,
+  "explanation": "`Array.prototype.at(-1)` reads from the end of the array, so it returns the last element.\n\nExample:\n\n```ts\n['a', 'b', 'c'].at(-2) // 'b'\n```"
+}
+````
+
+Keep the markdown limited to elements the UI supports well: paragraphs, short lists, inline code, and fenced code blocks.
 
 ## AI-Supervised Approved Import
 

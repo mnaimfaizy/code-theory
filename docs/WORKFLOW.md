@@ -60,3 +60,5 @@ Draft → (Review) → Approved → Active in pool
 ```
 
 All generated questions begin as **Draft** and require manual approval before appearing in quizzes.
+
+Question content may include markdown for richer presentation. When a question depends on code, commands, config, JSON, or SQL, store that snippet directly in the question or explanation with fenced code blocks so the quiz UI can render it like an editor surface.

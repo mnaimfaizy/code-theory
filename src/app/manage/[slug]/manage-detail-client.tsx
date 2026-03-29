@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { RichContent } from "@/components/common/rich-content";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -87,7 +88,7 @@ export function ManageDetailClient({
   questions: initialQuestions,
 }: Props) {
   const router = useRouter();
-  const [questions, setQuestions] = useState(initialQuestions);
+  const questions = initialQuestions;
   const [addOpen, setAddOpen] = useState(false);
   const [ingestOpen, setIngestOpen] = useState(false);
   const [ingesting, setIngesting] = useState(false);
@@ -96,7 +97,6 @@ export function ManageDetailClient({
   // Add question form state
   const [qText, setQText] = useState("");
   const [qExplanation, setQExplanation] = useState("");
-  const [qDifficulty, setQDifficulty] = useState("medium");
   const [qOptions, setQOptions] = useState([
     { text: "", isCorrect: true },
     { text: "", isCorrect: false },
@@ -121,7 +121,7 @@ export function ManageDetailClient({
         certificationId: certification.id,
         text: qText,
         explanation: qExplanation || null,
-        difficulty: qDifficulty,
+        difficulty: "medium",
         options: qOptions,
       }),
     });
@@ -252,20 +252,26 @@ export function ManageDetailClient({
                 <div className="space-y-4 pt-2">
                   <div>
                     <Label>Question Text</Label>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                      Markdown is supported, including fenced code blocks and
+                      short example sections.
+                    </p>
                     <Textarea
                       value={qText}
                       onChange={(e) => setQText(e.target.value)}
-                      placeholder="What is...?"
-                      className="mt-1"
+                      placeholder={
+                        "Explain what this code prints:\n```ts\nconst items = [1, 2, 3];\nconsole.log(items.at(-1));\n```"
+                      }
+                      className="mt-1 min-h-28"
                     />
                   </div>
 
                   {qOptions.map((opt, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <span className="font-mono text-sm w-6">
+                    <div key={idx} className="flex items-start gap-2">
+                      <span className="mt-3 font-mono text-sm w-6">
                         {String.fromCharCode(65 + idx)}.
                       </span>
-                      <Input
+                      <Textarea
                         value={opt.text}
                         onChange={(e) => {
                           const updated = [...qOptions];
@@ -275,13 +281,13 @@ export function ManageDetailClient({
                           };
                           setQOptions(updated);
                         }}
-                        placeholder={`Option ${String.fromCharCode(65 + idx)}`}
-                        className="flex-1"
+                        placeholder={`Option ${String.fromCharCode(65 + idx)}${idx === 0 ? "\n\nExample:\n```ts\nitems.at(-1)\n```" : ""}`}
+                        className="min-h-20 flex-1"
                       />
                       <Button
                         variant={opt.isCorrect ? "default" : "outline"}
                         size="sm"
-                        className="shrink-0 text-xs"
+                        className="mt-2 shrink-0 text-xs"
                         onClick={() => {
                           setQOptions(
                             qOptions.map((o, i) => ({
@@ -298,11 +304,17 @@ export function ManageDetailClient({
 
                   <div>
                     <Label>Explanation (optional)</Label>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                      Use this for the reasoning and a small worked example when
+                      that helps the learner.
+                    </p>
                     <Textarea
                       value={qExplanation}
                       onChange={(e) => setQExplanation(e.target.value)}
-                      placeholder="Why is this the correct answer?"
-                      className="mt-1"
+                      placeholder={
+                        "State why the correct answer is right, then add an Example section if useful.\n\nExample:\n`Array.prototype.at(-1)` returns the last item."
+                      }
+                      className="mt-1 min-h-28"
                     />
                   </div>
 
@@ -343,7 +355,13 @@ export function ManageDetailClient({
                 <Card>
                   <CardContent className="pt-4">
                     <div className="flex items-start justify-between gap-3 mb-2">
-                      <h3 className="font-medium text-sm">{q.text}</h3>
+                      <div className="min-w-0 flex-1">
+                        <RichContent
+                          content={q.text}
+                          compact
+                          className="font-medium text-sm [&_p]:my-0"
+                        />
+                      </div>
                       <Badge
                         variant={s.variant}
                         className="gap-1 shrink-0 text-xs"
@@ -352,11 +370,11 @@ export function ManageDetailClient({
                         {s.label}
                       </Badge>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-2">
                       {q.options
                         .sort((a, b) => a.orderIndex - b.orderIndex)
                         .map((opt, idx) => (
-                          <span
+                          <div
                             key={opt.id}
                             className={`text-xs px-2 py-1 rounded ${
                               opt.isCorrect
@@ -364,10 +382,25 @@ export function ManageDetailClient({
                                 : "bg-muted text-muted-foreground"
                             }`}
                           >
-                            {String.fromCharCode(65 + idx)}. {opt.text}
-                          </span>
+                            <span className="mb-1 block font-mono text-[11px] uppercase tracking-[0.2em] opacity-70">
+                              {String.fromCharCode(65 + idx)}
+                            </span>
+                            <RichContent
+                              content={opt.text}
+                              compact
+                              className="[&_p]:my-0"
+                            />
+                          </div>
                         ))}
                     </div>
+                    {q.explanation && (
+                      <div className="mt-3 rounded-xl bg-muted/50 px-3 py-3 text-sm">
+                        <div className="mb-1 font-semibold text-foreground">
+                          Explanation
+                        </div>
+                        <RichContent content={q.explanation} compact />
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>

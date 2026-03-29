@@ -86,6 +86,13 @@ attempt_answers
 - Boolean columns use integer (0/1) in SQLite, native boolean in PostgreSQL.
 - Drizzle handles these differences transparently via its driver abstraction.
 
+## Rich Question Content
+
+- Question text, explanations, and option text are stored in existing text columns and may contain markdown.
+- The UI renders paragraphs, inline code, short lists, and fenced code blocks from those fields.
+- Because rich question content is presentation-focused rather than relational data, the current schema does not need extra tables or JSON columns for code snippets and examples.
+- If future requirements need structured per-question citations or reusable example fragments, extend the schema deliberately rather than duplicating markdown content into separate fields.
+
 ## Exporting PostgreSQL SQL Files
 
 Use the SQL export script to generate PostgreSQL-compatible table files from the local SQLite database into the root `sql/` directory:

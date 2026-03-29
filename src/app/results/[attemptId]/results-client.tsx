@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { RichContent } from "@/components/common/rich-content";
 import {
   Trophy,
   XCircle,
@@ -174,8 +175,12 @@ export function ResultsClient({ result }: Props) {
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-bold">
                           {i + 1}
                         </span>
-                        <div>
-                          <p className="font-medium">{answer.questionText}</p>
+                        <div className="min-w-0 flex-1">
+                          <RichContent
+                            content={answer.questionText}
+                            compact
+                            className="font-medium [&_p]:my-0"
+                          />
                           <div className="mt-1">
                             {answer.isCorrect ? (
                               <Badge
@@ -216,9 +221,18 @@ export function ResultsClient({ result }: Props) {
                                   "bg-red-50 text-red-800 line-through dark:bg-red-900/20 dark:text-red-300",
                               )}
                             >
-                              {isCorrectOpt && "✓ "}
-                              {isSelected && !isCorrectOpt && "✗ "}
-                              {opt.text}
+                              {(isCorrectOpt || isSelected) && (
+                                <div className="mb-1 text-[11px] font-semibold uppercase tracking-[0.22em] opacity-80">
+                                  {isCorrectOpt
+                                    ? "Correct answer"
+                                    : "Your answer"}
+                                </div>
+                              )}
+                              <RichContent
+                                content={opt.text}
+                                compact
+                                className="[&_p]:my-0"
+                              />
                             </div>
                           );
                         })}
@@ -229,9 +243,10 @@ export function ResultsClient({ result }: Props) {
                           <div className="font-semibold text-foreground">
                             Detailed explanation
                           </div>
-                          <p className="mt-1 whitespace-pre-line leading-6">
-                            {answer.explanation}
-                          </p>
+                          <RichContent
+                            content={answer.explanation}
+                            className="mt-2"
+                          />
 
                           {answer.source && (
                             <div className="mt-3 border-t border-border/60 pt-3">

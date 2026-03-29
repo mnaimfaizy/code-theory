@@ -29,6 +29,10 @@ RULES:
 - Provide exactly 4 options for each question.
 - Only ONE option should be correct.
 - Include a clear explanation for the correct answer.
+- When the source includes code, commands, config, JSON, SQL, or shell examples, preserve that context with fenced markdown code blocks and a language tag.
+- Add a short example in the explanation when it clarifies why the correct answer is right.
+- Return markdown-friendly content only: paragraphs, short lists, inline code, and fenced code blocks.
+- Do not prefix options with A, B, C, or D. Return raw option text only.
 - Assign difficulty: easy, medium, or hard.
 - Assign a confidence score 0-100 for question quality.
 
@@ -88,7 +92,7 @@ Respond ONLY with valid JSON matching this structure:
   return rawQuestions.map((q: Record<string, unknown>) => ({
     question: String(q.question ?? ""),
     options: Array.isArray(q.options)
-      ? q.options.map(String)
+      ? q.options.map((option) => normalizeOptionText(String(option)))
       : ["", "", "", ""],
     correctIndex: Number(q.correctIndex ?? 0),
     explanation: String(q.explanation ?? ""),
@@ -100,6 +104,10 @@ Respond ONLY with valid JSON matching this structure:
 function validateDifficulty(val: unknown): "easy" | "medium" | "hard" {
   if (val === "easy" || val === "medium" || val === "hard") return val;
   return "medium";
+}
+
+function normalizeOptionText(value: string) {
+  return value.replace(/^\s*[A-D][\).:-]\s+/, "").trim();
 }
 
 /**

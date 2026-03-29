@@ -23,7 +23,10 @@ Workflow requirements:
    - certification metadata when known
    - one explanation per question for the correct answer
    - a detailed reference for each question with locator and excerpt when possible
-   - approval metadata initialized for human review
+
+- markdown-ready text when code, commands, config, SQL, or JSON are important to the question
+- approval metadata initialized for human review
+
 6. Do not publish anything to the database in this phase.
 7. End by asking the human supervisor to review and approve the JSON artifact.
 
@@ -33,5 +36,39 @@ Artifact rules:
 - Set `approval.approved` to `false` until a human explicitly approves the artifact.
 - Use `question.approved` for per-question approvals when the reviewer only accepts part of the artifact.
 - Preserve references in the artifact even though the current database only stores the higher-level `sourceId`.
+- Use fenced markdown code blocks with language tags when code is part of the prompt or explanation.
+- Keep options as raw option text only. Do not prefix them with `A`, `B`, `C`, or `D` because the UI supplies those labels.
+- When helpful, include an `Example:` section inside the explanation.
+
+Example compatible question object:
+
+````json
+{
+  "text": "What does this shell command do?\n\n```bash\ngit switch -c feature/quiz-ui\n```",
+  "questionType": "multiple-choice",
+  "difficulty": "easy",
+  "explanation": "It creates and switches to a new branch named `feature/quiz-ui`.\n\nExample:\n\n```bash\ngit switch -c hotfix/login\n```",
+  "options": [
+    {
+      "text": "Creates and switches to a new branch named `feature/quiz-ui`.",
+      "isCorrect": true
+    },
+    {
+      "text": "Deletes the branch named `feature/quiz-ui`.",
+      "isCorrect": false
+    },
+    {
+      "text": "Switches to an existing remote branch only.",
+      "isCorrect": false
+    },
+    { "text": "Stages files before committing.", "isCorrect": false }
+  ],
+  "reference": {
+    "sourceRef": "https://git-scm.com/docs/git-switch",
+    "locator": "git-switch SYNOPSIS",
+    "excerpt": "git switch -c <new-branch>"
+  }
+}
+````
 
 Use the `question-import-workflow` skill when it is available.

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { RichContent } from "@/components/common/rich-content";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, ClipboardCheck, Inbox } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface QuestionOption {
@@ -38,7 +38,6 @@ interface Props {
 }
 
 export function ReviewClient({ certifications, initialDrafts }: Props) {
-  const router = useRouter();
   const [drafts, setDrafts] = useState(initialDrafts);
   const [processing, setProcessing] = useState<string | null>(null);
 
@@ -101,7 +100,11 @@ export function ReviewClient({ certifications, initialDrafts }: Props) {
                       <Badge variant="outline" className="text-xs mb-2">
                         {certMap.get(draft.certificationId) ?? "Unknown"}
                       </Badge>
-                      <h3 className="font-semibold">{draft.text}</h3>
+                      <RichContent
+                        content={draft.text}
+                        compact
+                        className="font-semibold [&_p]:my-0"
+                      />
                     </div>
                     <Badge
                       variant="secondary"
@@ -128,15 +131,28 @@ export function ReviewClient({ certifications, initialDrafts }: Props) {
                           <span className="font-mono mr-2">
                             {String.fromCharCode(65 + idx)}.
                           </span>
-                          {opt.text}
-                          {opt.isCorrect && " ✓"}
+                          <div className="inline-block align-top">
+                            <RichContent
+                              content={opt.text}
+                              compact
+                              className="[&_p]:my-0"
+                            />
+                            {opt.isCorrect && (
+                              <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-green-700 dark:text-green-300">
+                                Correct answer
+                              </div>
+                            )}
+                          </div>
                         </div>
                       ))}
                   </div>
 
                   {draft.explanation && (
                     <div className="rounded-lg bg-muted/50 px-3 py-2 text-sm text-muted-foreground mb-4">
-                      <strong>Explanation:</strong> {draft.explanation}
+                      <div className="mb-1 font-semibold text-foreground">
+                        Explanation
+                      </div>
+                      <RichContent content={draft.explanation} compact />
                     </div>
                   )}
 
