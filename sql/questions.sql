@@ -1,5 +1,5 @@
 -- Table: questions
--- Generated: 2026-03-30T05:32:06.490Z
+-- Generated: 2026-03-30T22:56:02.871Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "questions" CASCADE;
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS "questions" (
 );
 
 
--- Data: 236 row(s)
+-- Data: 431 row(s)
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('69d1d3bf-5137-4911-a830-ff9723f5caf6', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is JSX in React?', 'JSX is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files. It gets compiled to React.createElement() calls.', 'easy', 'approved', NULL, 0, '2026-03-27T07:37:11.046Z', '2026-03-27T07:37:11.046Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8b730d13-fbba-4558-9a91-d6bd2a38a4cc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What hook would you use to manage local component state?', 'useState is the React hook for adding state variables to functional components. It returns a state value and a setter function.', 'easy', 'approved', NULL, 1, '2026-03-27T07:37:11.048Z', '2026-03-27T07:37:11.048Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e8dbbb4-0fce-4f16-b4c5-b9feb3b6ebbc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is the virtual DOM in React?', 'The virtual DOM is a lightweight JavaScript representation of the actual DOM. React uses it to batch and optimise updates, only applying the minimum changes needed to the real DOM.', 'easy', 'approved', NULL, 2, '2026-03-27T07:37:11.049Z', '2026-03-27T07:37:11.049Z');
@@ -1643,3 +1643,974 @@ Example:
   onFilterTextChange={setFilterText}
 />
 ```', 'medium', 'approved', 'f25927b0-db55-41bb-aa2f-5b2099e0aced', 235, '2026-03-29T22:47:24.018Z', '2026-03-29T22:47:24.018Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e3f1697f-5917-4431-b8d1-36fa22cc95cb', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'JavaScript is described as the third layer of standard web technologies. Which of the following correctly identifies all three layers?', 'The three standard layers of web technology are HTML (structure/content), CSS (styling), and JavaScript (dynamic behavior). JavaScript builds on top of HTML and CSS to add interactivity.', 'easy', 'approved', 'cefcdb9d-7218-4ddd-8072-79d37cbafda1', 0, '2026-03-30T05:49:33.591Z', '2026-03-30T05:49:33.591Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d49f0c2d-4731-4342-89c7-a31566bdd896', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which technique do most modern JavaScript engines use to improve performance?', 'Modern JavaScript interpreters use just-in-time (JIT) compiling to improve performance. The source code gets compiled into a faster binary format while the script is being used, so it can run as quickly as possible. Despite this, JavaScript is still considered an interpreted language because compilation happens at run time rather than ahead of time.', 'easy', 'approved', 'cefcdb9d-7218-4ddd-8072-79d37cbafda1', 1, '2026-03-30T05:49:33.593Z', '2026-03-30T21:28:04.137Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('296a243d-f5ba-4412-a17d-0e3543e61c6b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A page loads `app.js` with `<script type="module" src="app.js"></script>`. What does `type="module"` tell the browser to do with that file?', '`type="module"` tells the browser to treat the file as an ES module. That enables module features such as `import` and `export`, gives the module its own scope, and defers execution by default so the script runs after HTML parsing instead of immediately.
+
+Example:
+
+```js
+import { init } from "./ui.js";
+
+init();
+```
+
+That import works because the browser is loading the file as a module.', 'medium', 'approved', 'cefcdb9d-7218-4ddd-8072-79d37cbafda1', 2, '2026-03-30T05:49:33.594Z', '2026-03-30T21:28:04.145Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9449553c-ca37-4d15-a1ec-df7aa19d146b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Why is using inline JavaScript handlers like `onclick="createParagraph()"` considered bad practice?', 'Inline JavaScript handlers pollute HTML with JavaScript and are inefficient because you must add the `onclick` attribute to every element you want the script to apply to. Using `addEventListener` is the recommended approach.', 'easy', 'approved', 'cefcdb9d-7218-4ddd-8072-79d37cbafda1', 3, '2026-03-30T05:49:33.595Z', '2026-03-30T05:49:33.595Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5f1196d0-4023-46ed-af8f-49c9cad02275', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In browser security terms, what does it mean that each browser tab has its own "execution environment"?', 'Each browser tab runs code in its own separate execution environment. This means code in one tab generally cannot directly access or affect code in another tab or website. This isolation is a security measure to prevent malicious scripts from stealing data from other sites.', 'medium', 'approved', 'cefcdb9d-7218-4ddd-8072-79d37cbafda1', 4, '2026-03-30T05:49:33.596Z', '2026-03-30T05:49:33.596Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8c72bfbf-6515-4a2e-9b7d-a5e5ddb543b3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which JavaScript engine is used in Chrome, Opera, and Edge?', 'V8 is the JavaScript engine used in Chrome, Opera, and Edge. SpiderMonkey is used in Firefox, and other engines like Chakra (IE) and JavaScriptCore (Safari) power different browsers.', 'easy', 'approved', 'f63a18e3-f97f-4675-9b5c-32cb5d2668a1', 5, '2026-03-30T05:49:46.653Z', '2026-03-30T05:49:46.653Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d89e4dd7-d1bc-4db0-a50d-aa7a3857b1a2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What was JavaScript originally called before it was renamed?', 'JavaScript was initially called "LiveScript". It was renamed to JavaScript because Java was very popular at the time, and positioning it as a "younger brother" of Java was seen as beneficial. Despite the name, JavaScript has no real relation to Java today.', 'easy', 'approved', 'f63a18e3-f97f-4675-9b5c-32cb5d2668a1', 6, '2026-03-30T05:49:46.655Z', '2026-03-30T05:49:46.655Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('79c90e7c-a862-49d1-893e-5457aa3d90b3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following is something that in-browser JavaScript **cannot** do?', 'In-browser JavaScript cannot read or write arbitrary files on the hard disk, copy them, or execute programs. It has no direct access to OS functions. This limitation protects the user''s safety. JavaScript can add HTML, react to user actions, send network requests, and use local storage.', 'medium', 'approved', 'f63a18e3-f97f-4675-9b5c-32cb5d2668a1', 7, '2026-03-30T05:49:46.656Z', '2026-03-30T05:49:46.656Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('974610d3-06a6-4c52-be0d-f1f70415792e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the name of JavaScript''s own language specification?', 'JavaScript''s language specification is called ECMAScript. As JavaScript evolved, it became a fully independent language with its own specification, and it now has no relation to Java.', 'easy', 'approved', 'f63a18e3-f97f-4675-9b5c-32cb5d2668a1', 8, '2026-03-30T05:49:46.657Z', '2026-03-30T05:49:46.657Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0ce15032-1160-4b40-a051-016d5c42864d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is TypeScript''s primary purpose in relation to JavaScript?', 'TypeScript is concentrated on adding "strict data typing" to JavaScript to simplify the development and support of complex systems. It is transpiled (converted) to JavaScript before running in the browser. TypeScript is developed by Microsoft.', 'medium', 'approved', 'f63a18e3-f97f-4675-9b5c-32cb5d2668a1', 9, '2026-03-30T05:49:46.658Z', '2026-03-30T05:49:46.658Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3797a31e-75a3-4879-8daa-e099319e7c8a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which HTML tag is used to insert JavaScript code into a web page?', 'The `<script>` tag is used to add JavaScript code to an HTML page. JavaScript programs can be inserted almost anywhere into an HTML document using this tag, and the code is automatically executed when the browser processes it.', 'easy', 'approved', 'b41d7e00-00de-4c87-98f2-a420b55ebbba', 10, '2026-03-30T05:49:59.786Z', '2026-03-30T05:49:59.786Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('091cf9f8-77ea-4958-a545-9fe6e46511a1', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What happens when a `<script>` tag has both a `src` attribute and code inside it?', 'A single `<script>` tag cannot have both the `src` attribute and code inside. If `src` is set, the inline script content is ignored. To use both, you must split them into two separate `<script>` tags.', 'medium', 'approved', 'b41d7e00-00de-4c87-98f2-a420b55ebbba', 11, '2026-03-30T05:49:59.788Z', '2026-03-30T05:49:59.788Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9363089f-e8cd-4aec-82c9-40af7eb9bf35', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the main benefit of placing JavaScript in a separate external file instead of inline in the HTML?', 'When JavaScript is in a separate file, the browser can download it and store it in its cache. Other pages that reference the same script will take it from the cache instead of downloading it again. This reduces network traffic and makes pages load faster. The HTML also becomes easier to read.', 'easy', 'approved', 'b41d7e00-00de-4c87-98f2-a420b55ebbba', 12, '2026-03-30T05:49:59.789Z', '2026-03-30T05:49:59.789Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0d4afa01-4650-4c05-9bbb-579a87727bb1', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which attribute on the `<script>` tag is used to link an external JavaScript file?', 'The `src` attribute is used to specify the path to an external JavaScript file, for example `<script src="/path/to/script.js"></script>`. The path can be absolute, relative, or a full URL.', 'easy', 'approved', 'b41d7e00-00de-4c87-98f2-a420b55ebbba', 13, '2026-03-30T05:49:59.792Z', '2026-03-30T05:49:59.792Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('49b36568-0e73-4863-8dce-cbcf48d6928d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In modern HTML, the `type` and `language` attributes on the `<script>` tag are:', 'The old HTML4 standard required `type="text/javascript"` and supported a `language` attribute, but neither is required in modern HTML. The `type` attribute has been repurposed in modern HTML for JavaScript modules (`type="module"`), and the `language` attribute is no longer meaningful since JavaScript is the default scripting language.', 'medium', 'approved', 'b41d7e00-00de-4c87-98f2-a420b55ebbba', 14, '2026-03-30T05:49:59.817Z', '2026-03-30T05:49:59.817Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3c0ca079-c9c7-4307-ae36-8e57dde5ddd9', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does JavaScript do when it encounters a line break between two statements without a semicolon?', 'JavaScript interprets a line break as an "implicit" semicolon in most cases. This is called automatic semicolon insertion (ASI). However, ASI does not always apply — for example, when a line ends with an incomplete expression like `+`, or before square brackets `[...]`.', 'medium', 'approved', '78d25399-8a74-46fc-866b-69448a040db1', 15, '2026-03-30T05:50:06.486Z', '2026-03-30T05:50:06.486Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1b7a60c6-6f49-47a9-943c-76a7fd3cc0f0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+alert(3 +
+1
++ 2);
+```', 'JavaScript does not insert a semicolon after `3 +` because the line ends with a plus sign, making it an incomplete expression. The engine treats all three lines as a single statement: `alert(3 + 1 + 2)`, which outputs `6`.', 'medium', 'approved', '78d25399-8a74-46fc-866b-69448a040db1', 16, '2026-03-30T05:50:06.488Z', '2026-03-30T05:50:06.488Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1a927b54-3dfd-4b70-85f4-c84203446a51', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following is the correct syntax for a multi-line JavaScript comment?', 'Multi-line comments in JavaScript start with `/*` and end with `*/`. Single-line comments use `//`. Nested multi-line comments (`/* ... /* ... */ ... */`) are not supported and will produce an error.', 'easy', 'approved', '78d25399-8a74-46fc-866b-69448a040db1', 17, '2026-03-30T05:50:06.489Z', '2026-03-30T05:50:06.489Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fd6c31b1-0190-4405-947e-275359b9c784', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Are nested multi-line comments (`/* ... /* ... */ ... */`) allowed in JavaScript?', 'Nested multi-line comments are not supported in JavaScript. Placing `/* ... */` inside another `/* ... */` will cause a syntax error. The engine sees the first `*/` as the end of the outer comment.', 'easy', 'approved', '78d25399-8a74-46fc-866b-69448a040db1', 18, '2026-03-30T05:50:06.491Z', '2026-03-30T05:50:06.491Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('53e7c29e-5a6f-4c5c-9fbb-361e92206b94', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Why is it recommended to always use semicolons between JavaScript statements, even though they can often be omitted?', 'While JavaScript''s automatic semicolon insertion handles many cases, there are situations where it fails to insert a semicolon where one is needed — for example, before `[...]`. These errors are hard to find and fix, so it is safer to always use explicit semicolons, especially for beginners.', 'medium', 'approved', '78d25399-8a74-46fc-866b-69448a040db1', 19, '2026-03-30T05:50:06.492Z', '2026-03-30T05:50:06.492Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d3fbe3a0-bf1b-4ba3-8203-9c1ef48d2b4b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the difference between `let` and `const` when declaring variables in JavaScript?', 'Variables declared with `let` can be reassigned to a new value, while constants declared with `const` cannot have their value changed once set. However, a `const` that references an object or DOM element can still have its internal properties modified — only the binding itself is immutable.', 'easy', 'approved', '95e54fc6-bf8c-4df0-8109-fa73fe940d62', 20, '2026-03-30T05:50:13.541Z', '2026-03-30T05:50:13.541Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('597c14e2-a1bd-4d14-bae1-5a103a64e31e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `Math.floor(Math.random() * 100) + 1` produce?', '`Math.random()` generates a decimal between 0 (inclusive) and 1 (exclusive). Multiplying by 100 gives a range of 0–99.999..., `Math.floor()` rounds down to the nearest integer (0–99), and adding 1 shifts the range to 1–100.', 'medium', 'approved', '95e54fc6-bf8c-4df0-8109-fa73fe940d62', 21, '2026-03-30T05:50:13.542Z', '2026-03-30T05:50:13.542Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1de0b070-6ac3-47fe-a3fe-3a4ffe2cdaf0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `addEventListener("click", checkGuess)` do?', '`addEventListener` attaches an event listener to an element. It takes two arguments: the event type as a string (e.g., `"click"`) and the function to run when the event occurs (e.g., `checkGuess`). Note that the function is passed without parentheses — including parentheses would call it immediately instead of registering it as a handler.', 'easy', 'approved', '95e54fc6-bf8c-4df0-8109-fa73fe940d62', 22, '2026-03-30T05:50:13.543Z', '2026-03-30T05:50:13.543Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a65fb29a-d136-44d3-8ce3-8e3dc6252eba', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In the number guessing game, what does the following code do?
+
+```js
+const fruits = ["apples", "bananas", "cherries"];
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+```', 'The `for...of` loop iterates over each item in the `fruits` array. On each iteration, the current item is stored in the `fruit` variable, and `console.log(fruit)` prints it. The output is `"apples"`, `"bananas"`, `"cherries"` — each on a separate line.', 'easy', 'approved', '95e54fc6-bf8c-4df0-8109-fa73fe940d62', 23, '2026-03-30T05:50:13.544Z', '2026-03-30T05:50:13.544Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('22d573cd-6e13-4262-9e97-e6bfbec72b7f', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `Number(guessField.value)` do in the guessing game''s `checkGuess()` function?', 'The `Number()` constructor converts the text value from the input field (which is always a string) into a numeric type. This ensures the value can be correctly compared against the random number using strict equality (`===`) and numeric comparisons (`<`, `>`).', 'medium', 'approved', '95e54fc6-bf8c-4df0-8109-fa73fe940d62', 24, '2026-03-30T05:50:13.545Z', '2026-03-30T05:50:13.545Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('82e66cf6-2ed8-496f-b86d-3f39e6436868', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What are the two main types of errors you will encounter when writing JavaScript programs?', 'The article identifies syntax errors (spelling mistakes that prevent the program from running) and logic errors (the code runs but produces incorrect results) as the two main error types in JavaScript.', 'easy', 'approved', '94c87e62-63f5-4fd5-9fcd-4a90c55a8523', 25, '2026-03-30T06:50:09.845Z', '2026-03-30T06:50:09.845Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cf13045f-b641-48a1-8ce1-050acdd493cf', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does a syntax error typically cause in a JavaScript program?', 'Syntax errors prevent the program from running at all, or cause it to stop working part way through. Error messages are usually provided to help diagnose them.', 'easy', 'approved', '94c87e62-63f5-4fd5-9fcd-4a90c55a8523', 26, '2026-03-30T06:50:09.847Z', '2026-03-30T06:50:09.847Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e10952c7-23ff-432b-b214-b6e79ffb7895', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which browser feature is most useful for identifying syntax errors in JavaScript?', 'The JavaScript developer console gives you error messages whenever a syntax error exists inside the JavaScript being fed into the browser''s engine, making it the primary tool for identifying such errors.', 'easy', 'approved', '94c87e62-63f5-4fd5-9fcd-4a90c55a8523', 27, '2026-03-30T06:50:09.884Z', '2026-03-30T06:50:09.884Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3dfe7a6d-2d6c-4bf2-80d6-0defc7d4c4d8', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the purpose of inserting `console.log(variable)` into your code while debugging?', 'console.log() prints the current value of a variable to the console at that point in execution, allowing you to inspect its value and verify whether the code is behaving as expected.', 'easy', 'approved', '94c87e62-63f5-4fd5-9fcd-4a90c55a8523', 28, '2026-03-30T06:50:09.887Z', '2026-03-30T06:50:09.887Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3f641d98-a35f-45b9-9690-d454e07161a4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'The code `document.querySelector(''lowOrHi'')` returns `null` instead of the expected paragraph element. What is the most likely cause?', 'The querySelector() method requires a CSS selector. To select an element by class name, the selector must start with a dot (e.g., ''.lowOrHi''). Without the dot, the browser looks for a non-existent HTML tag named ''lowOrHi'' and returns null.', 'medium', 'approved', '94c87e62-63f5-4fd5-9fcd-4a90c55a8523', 29, '2026-03-30T06:50:09.891Z', '2026-03-30T06:50:09.891Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('302af841-fb2b-4319-ad99-d37bf287cf68', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `console.log()` method return in JavaScript?', 'console.log() always returns undefined. It is called solely for its side effect of printing output to the console, not for a return value.', 'easy', 'approved', '0189959f-585a-4a50-8e4c-59cc57edcece', 30, '2026-03-30T06:50:17.296Z', '2026-03-30T06:50:17.296Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9adc2d19-af5b-41d3-b40a-c3fe175469f6', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following is a primary use case of `console.log()`?', 'console.log() is primarily used for debugging code, inspecting variables, tracking the flow of execution, and logging errors or warnings. Compiling JavaScript is not something console.log() does.', 'easy', 'approved', '0189959f-585a-4a50-8e4c-59cc57edcece', 31, '2026-03-30T06:50:17.300Z', '2026-03-30T06:50:17.300Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('251dac7f-08f8-4b2c-b828-d6289c46bee7', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When you call `console.log(user)` where `user` is a JavaScript object, how does the browser console typically display it?', 'Modern browser consoles display logged objects in an expandable format that lets you explore the object''s key-value pairs interactively, rather than converting it to a string automatically.', 'easy', 'approved', '0189959f-585a-4a50-8e4c-59cc57edcece', 32, '2026-03-30T06:50:17.301Z', '2026-03-30T06:50:17.301Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e8bb599-b93f-4fab-8837-7f006a982299', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given the code `let fruits = ["Apple", "Banana", "Cherry"]; console.log(fruits);`, what will the console display?', 'Arrays logged with console.log() are displayed as a list of their values with index positions, e.g. [''Apple'', ''Banana'', ''Cherry'']. They are not converted to a comma-separated string, nor do they cause an error.', 'easy', 'approved', '0189959f-585a-4a50-8e4c-59cc57edcece', 33, '2026-03-30T06:50:17.305Z', '2026-03-30T06:50:17.305Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('70e637b7-911a-4757-ba5d-9bf8a71470d5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What types of values can be passed as arguments to `console.log()`?', 'console.log() accepts any valid JavaScript expression as its argument — including strings, numbers, booleans, objects, arrays, and expressions. It is not limited to primitive values.', 'easy', 'approved', '0189959f-585a-4a50-8e4c-59cc57edcece', 34, '2026-03-30T06:50:17.307Z', '2026-03-30T06:50:17.307Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dfcf9698-83d2-4d10-81dd-4739bc69500c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What keyboard shortcut opens the developer tools in most browsers on Windows?', 'F12 is the standard shortcut to open developer tools in most browsers on Windows, including Chrome, Firefox, and Edge.', 'easy', 'approved', '8f12764a-2a17-4fb4-a9d8-6edd0c452796', 35, '2026-03-30T06:50:28.178Z', '2026-03-30T06:50:28.178Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('16269b57-9939-466b-8307-db1074f8daec', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which keyboard shortcut opens the Chrome developer console on macOS?', 'On macOS, Chrome''s developer console is opened with Cmd+Opt+J. Cmd+Opt+C is the shortcut for Safari (after enabling the Develop menu).', 'easy', 'approved', '8f12764a-2a17-4fb4-a9d8-6edd0c452796', 36, '2026-03-30T06:50:28.180Z', '2026-03-30T06:50:28.180Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('882df5c0-fcc3-4aa4-9d67-c62a3f39550f', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How do you enter multiple lines of JavaScript code in the browser console without executing each line immediately?', 'Pressing Shift+Enter inserts a new line in the console without executing the current code. Pressing Enter alone executes the code immediately.', 'easy', 'approved', '8f12764a-2a17-4fb4-a9d8-6edd0c452796', 37, '2026-03-30T06:50:28.182Z', '2026-03-30T06:50:28.182Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a01ce785-ea81-4e9d-b648-60d871bb50c4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What must you do before you can use the developer console in Safari?', 'Safari hides its Develop menu by default. You must first go to Settings > Advanced and enable the ''Develop menu''. After that, Cmd+Opt+C toggles the console.', 'medium', 'approved', '8f12764a-2a17-4fb4-a9d8-6edd0c452796', 38, '2026-03-30T06:50:28.186Z', '2026-03-30T06:50:28.186Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e7821da2-d6b4-43e6-a2aa-43c66270b94e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which two browsers are most commonly preferred by developers because of their superior developer tools?', 'According to the article, most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers are generally playing catch-up to these two.', 'easy', 'approved', '8f12764a-2a17-4fb4-a9d8-6edd0c452796', 39, '2026-03-30T06:50:28.187Z', '2026-03-30T06:50:28.187Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('852b7300-ad4e-4e2e-b399-8ce6df1e2c31', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What value does a declared but uninitialized `let` variable hold?
+
+```js
+let myName;
+console.log(myName);
+```', 'When a variable is declared with `let` but not assigned a value, it holds `undefined`. This is different from a variable that doesn''t exist at all, which would throw a `ReferenceError`.', 'easy', 'approved', '9c4ae515-ddc9-4431-91ef-618335dfb8f5', 40, '2026-03-30T07:36:11.127Z', '2026-03-30T07:36:11.127Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('85efabc3-1b28-4f56-ab9e-30cf169880be', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following is a key advantage of `let` over `var`?', '`let` prevents a variable from being declared more than once in the same scope. With `var` you can redeclare the same variable name without an error, which leads to confusing bugs. `let` was introduced in modern JavaScript specifically to address this and other issues with `var`.', 'easy', 'approved', '9c4ae515-ddc9-4431-91ef-618335dfb8f5', 41, '2026-03-30T07:36:11.129Z', '2026-03-30T07:36:11.129Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6d9fa3c6-582c-4ec6-95d6-6e37b1a8c409', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following is the recommended naming convention for multi-word JavaScript variable names?', 'The JavaScript convention is lower camelCase — the first word is entirely lowercase and each subsequent word starts with a capital letter, e.g. `myVariableName`. This is the style used throughout MDN''s JavaScript guides.', 'easy', 'approved', '9c4ae515-ddc9-4431-91ef-618335dfb8f5', 42, '2026-03-30T07:36:11.131Z', '2026-03-30T07:36:11.131Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a9f15c9f-31f2-4bb7-bcf6-9948ddc9e6c3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the key difference between `let` and `const` when declaring a variable?', '`const` requires an initial value at declaration and cannot be reassigned afterwards. `let` can be declared without a value and can be reassigned at any time. Note that `const` does NOT make objects fully immutable — their properties can still be changed.', 'easy', 'approved', '9c4ae515-ddc9-4431-91ef-618335dfb8f5', 43, '2026-03-30T07:36:11.132Z', '2026-03-30T07:36:11.132Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e9c4a3cd-a9d4-4d7c-bdf3-c6332dc2eb9d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'JavaScript is described as a "dynamically typed" language. What does that mean?
+
+```js
+let myNumber = ''500'';
+typeof myNumber; // ?
+myNumber = 500;
+typeof myNumber; // ?
+```', 'Dynamic typing means variables are not bound to a specific data type. The same variable can hold a string at one moment and a number at another. The `typeof` operator reveals the current type — in the example, `''string''` first and then `''number''` after reassignment.', 'medium', 'approved', '9c4ae515-ddc9-4431-91ef-618335dfb8f5', 44, '2026-03-30T07:36:11.133Z', '2026-03-30T07:36:11.133Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('62f08300-054b-4329-82ee-8f1895e770f0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following variable names is **invalid** in JavaScript?', 'Variable names in JavaScript cannot start with a digit. `1a` begins with the digit `1`, making it a syntax error. Names like `userName`, `test123`, `$`, and `_` are all valid because they start with a letter or an allowed symbol (`$` or `_`).', 'easy', 'approved', '82e69969-b676-4661-a98f-b0846a94cf45', 45, '2026-03-30T07:36:19.493Z', '2026-03-30T07:36:19.493Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('50666bb7-006a-42c5-989a-acc600365b28', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What happens when you declare the same variable twice using `let`?
+
+```js
+let message = "This";
+let message = "That";
+```', 'Declaring a variable twice with `let` results in a `SyntaxError: ''message'' has already been declared`. Unlike `var`, `let` does not allow redeclaration of the same variable in the same scope.', 'easy', 'approved', '82e69969-b676-4661-a98f-b0846a94cf45', 46, '2026-03-30T07:36:19.498Z', '2026-03-30T07:36:19.498Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('20b1987b-eed1-45c6-9651-802a74082310', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When should you use UPPERCASE names for a `const` constant, according to javascript.info conventions?', 'Uppercase constant names (e.g. `COLOR_RED = "#F00"`) are used as aliases for hard-coded values that are known **before** the program runs. Constants that are computed at runtime (even if they never change afterwards) are named normally in camelCase, like `pageLoadTime`.', 'medium', 'approved', '82e69969-b676-4661-a98f-b0846a94cf45', 47, '2026-03-30T07:36:19.501Z', '2026-03-30T07:36:19.501Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bc9312a4-f2cf-40bd-8656-81eae435ac09', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the recommended style for declaring variables in modern JavaScript according to javascript.info?', '`let` is the modern variable declaration keyword and is recommended for variables whose value may change. `const` should be used when the value will not be reassigned. `var` is considered old-school and is no longer recommended for new code.', 'easy', 'approved', '82e69969-b676-4661-a98f-b0846a94cf45', 48, '2026-03-30T07:36:19.503Z', '2026-03-30T07:36:19.503Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c0285939-b027-4c11-b661-54664f7bc15b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following best describes what happens when you assign a value without declaring a variable first, in **non-strict mode**?
+
+```js
+// no "use strict"
+num = 5;
+alert(num); // ?
+```', 'In non-strict mode, assigning a value to an undeclared name automatically creates a global variable. This is considered bad practice and causes an error in strict mode (`''use strict''` directive). Always declare variables explicitly with `let`, `const`, or `var`.', 'medium', 'approved', '82e69969-b676-4661-a98f-b0846a94cf45', 49, '2026-03-30T07:36:19.508Z', '2026-03-30T07:36:19.508Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1fb56310-8444-4f5d-bbc0-cee2acb7c81c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `typeof null` return in JavaScript?', '`typeof null` returns `"object"`. This is a well-known bug in JavaScript that has been preserved for backwards compatibility since the early days of the language. `null` is NOT actually an object — it is a standalone primitive type that represents an intentionally empty value.', 'medium', 'approved', '5c301db9-e490-497a-bc78-3305af4dc505', 50, '2026-03-30T07:36:32.868Z', '2026-03-30T07:36:32.868Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ad52edf2-5da5-49cd-97e8-7d416e5b6bf4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How many primitive data types does JavaScript have?', 'JavaScript has **7 primitive types**: `number`, `bigint`, `string`, `boolean`, `null`, `undefined`, and `symbol`. There is also one non-primitive type: `object`. Arrays and functions are subtypes of `object`.', 'easy', 'approved', '5c301db9-e490-497a-bc78-3305af4dc505', 51, '2026-03-30T07:36:32.873Z', '2026-03-30T07:36:32.873Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('18a805bf-6aab-4f2f-a9a0-7f367ae923cb', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of the following expression?
+
+```js
+alert(NaN + 1);
+```', '`NaN` (Not a Number) is "sticky" — any arithmetic operation involving `NaN` returns `NaN`. The only exception is `NaN ** 0`, which returns `1`. Because `NaN + 1` involves `NaN`, the result is `NaN`.', 'easy', 'approved', '5c301db9-e490-497a-bc78-3305af4dc505', 52, '2026-03-30T07:36:32.875Z', '2026-03-30T07:36:32.875Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c3884d79-a8dd-49e9-82e5-87812b5882bd', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How do you create a `BigInt` value in JavaScript?', 'A `BigInt` is created by appending `n` to the end of an integer literal, e.g. `1234567890123456789012345678901234567890n`. BigInt allows representation of integers beyond the safe range of the regular `number` type (`±(2^53 - 1)`).', 'easy', 'approved', '5c301db9-e490-497a-bc78-3305af4dc505', 53, '2026-03-30T07:36:32.878Z', '2026-03-30T07:36:32.878Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('52602054-4b11-43e8-800d-f3ec2bc977e3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the difference between `null` and `undefined` in JavaScript?', '`undefined` is the automatic default value of a declared but unassigned variable. `null` is an intentional assignment that represents "empty" or "no value". While both represent the absence of a value, `null` is used to explicitly set a variable to have no value, whereas `undefined` usually means the programmer hasn''t assigned one yet.', 'medium', 'approved', '5c301db9-e490-497a-bc78-3305af4dc505', 54, '2026-03-30T07:36:32.881Z', '2026-03-30T07:36:32.881Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f1d0d465-750d-4003-a784-3649831dfefe', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following correctly embeds a variable inside a string in JavaScript?
+
+```js
+const name = "Alice";
+```', 'Template literals (backtick strings) support embedding variables and expressions using `${...}` syntax. This is called string interpolation. Regular single or double quoted strings do not support `${}` — the characters are treated as literal text.', 'easy', 'approved', 'ee2d76da-8c9b-4a98-a3cd-2f9ac688ec6c', 55, '2026-03-30T07:37:00.298Z', '2026-03-30T07:37:00.298Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b6bbbadd-9cdf-4543-b616-dec58e6b39ae', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+const coolBandName = "Front ";
+const number = 242;
+console.log(coolBandName + number);
+```', 'When you use the `+` operator with a string and a number, JavaScript automatically converts the number to a string and concatenates them. The result is the string `"Front 242"`. This is called type coercion.', 'easy', 'approved', 'ee2d76da-8c9b-4a98-a3cd-2f9ac688ec6c', 56, '2026-03-30T07:37:00.302Z', '2026-03-30T07:37:00.302Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2cf95e90-728a-4d1c-acb1-bdd7ac6765ca', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How do you write a multiline string using a template literal?', 'Template literals respect actual line breaks in the source code. You can simply press Enter inside a backtick string and the newline becomes part of the string. With regular strings (single or double quotes) you must use the `\n` escape sequence to represent a newline.', 'easy', 'approved', 'ee2d76da-8c9b-4a98-a3cd-2f9ac688ec6c', 57, '2026-03-30T07:37:00.304Z', '2026-03-30T07:37:00.304Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('af53fb0f-fc02-4557-ae95-2e6c948a692a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which method converts a numeric string to an actual number in JavaScript?
+
+```js
+const myString = "123";
+// How do you convert it to a number?
+```', 'The `Number()` function converts its argument to a number type. For a numeric string like `"123"`, it returns the number `123`. The `String()` function does the opposite — converting a value to a string.', 'easy', 'approved', 'ee2d76da-8c9b-4a98-a3cd-2f9ac688ec6c', 58, '2026-03-30T07:37:00.305Z', '2026-03-30T07:37:00.305Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('08a660d3-da59-424f-aa89-ae44b55afe11', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What happens if you use mismatched quote characters to declare a string?
+
+```js
+const badQuotes = ''This is not allowed!";
+```', 'You must use the **same** type of quote character for the opening and closing of a string. Mixing single and double quotes causes a syntax error because JavaScript cannot determine where the string ends.', 'easy', 'approved', 'ee2d76da-8c9b-4a98-a3cd-2f9ac688ec6c', 59, '2026-03-30T07:37:00.308Z', '2026-03-30T07:37:00.308Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cc3d1667-3d4b-4c64-ae14-706ce87d56c3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following code return?
+
+```js
+"mozilla".slice(1, 4);
+```', '`slice(start, end)` extracts characters from `start` up to (but **not including**) `end`. Index `1` is `''o''` and index `4` is `''l''`. So the extracted substring is `"ozi"` — the characters at indices 1, 2, and 3.', 'easy', 'approved', 'a2e8764d-af86-432e-b7df-2e9a5a4f2b0a', 60, '2026-03-30T07:37:07.543Z', '2026-03-30T07:37:07.543Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('11c6cd5f-0b2a-4526-aee8-920bc523fad5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `indexOf()` return when the substring is **not** found in the string?
+
+```js
+"mozilla".indexOf("x");
+```', '`indexOf()` returns `-1` when the specified substring is not found anywhere in the string. This is a common pattern used to check for the absence of a substring: `if (str.indexOf(''x'') === -1) { /* not found */ }`.', 'easy', 'approved', 'a2e8764d-af86-432e-b7df-2e9a5a4f2b0a', 61, '2026-03-30T07:37:07.547Z', '2026-03-30T07:37:07.547Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e6f0df27-a207-4a64-8f99-a83dcb7c1125', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+const browserType = "mozilla";
+const updated = browserType.replace("moz", "van");
+console.log(updated);
+console.log(browserType);
+```', '`replace()` returns a **new string** with the replacement applied — it does not modify the original string. So `updated` is `"vanilla"` and `browserType` remains `"mozilla"`. This is a key property of string methods in JavaScript: strings are immutable.', 'medium', 'approved', 'a2e8764d-af86-432e-b7df-2e9a5a4f2b0a', 62, '2026-03-30T07:37:07.550Z', '2026-03-30T07:37:07.550Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('016d8fe4-2f8e-450b-8991-2fa6b8f9bef0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How do you access the **last** character of a string using its `length` property?', 'Because string indices are zero-based, the last character is at position `length - 1`. For `"mozilla"` (length 7), the last character `''a''` is at index `6`. The expression `str[str.length - 1]` is the standard pattern to get the last character.', 'easy', 'approved', 'a2e8764d-af86-432e-b7df-2e9a5a4f2b0a', 63, '2026-03-30T07:37:07.553Z', '2026-03-30T07:37:07.553Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9e5b5488-e9cf-49af-af63-fbd6a3400161', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which method replaces **all** occurrences of a substring in a string?
+
+```js
+let quote = "To be or not to be";
+quote = quote.???("be", "code");
+// Expected: "To code or not to code"
+```', '`replaceAll()` replaces every occurrence of the target substring. `replace()` only replaces the **first** occurrence. To replace all occurrences with `replace()` you would need to use a global regular expression (`/be/g`), but `replaceAll()` is simpler and more readable.', 'easy', 'approved', 'a2e8764d-af86-432e-b7df-2e9a5a4f2b0a', 64, '2026-03-30T07:37:07.555Z', '2026-03-30T07:37:07.555Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f1b64859-f33d-492c-b4f3-85a90e12a552', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given the following code, what are the two `typeof` results?
+
+```js
+let myNumber = "500";
+console.log(typeof myNumber); // first
+myNumber = 500;
+console.log(typeof myNumber); // second
+```', 'JavaScript is dynamically typed, so the same variable can change type. Initially `myNumber` holds the string `"500"`, so `typeof` returns `"string"`. After reassignment to the number `500`, `typeof` returns `"number"`. This is a classic demonstration of dynamic typing and why `typeof` is useful for checking the current type of a value.', 'medium', 'approved', 'a1a6bda0-5f31-493c-bf5b-9bf9a2aaa2e6', 65, '2026-03-30T07:37:15.589Z', '2026-03-30T07:37:15.589Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0cc0a598-d542-427a-8e58-35c9bee32d25', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code, and why?
+
+```js
+const bird = { species: "Kestrel" };
+bird.species = "Striated Caracara";
+console.log(bird.species);
+```', '`const` prevents the **variable binding** from being reassigned — you cannot do `bird = someOtherObject`. However, `const` does NOT make the object''s contents immutable. You can freely add, update, or remove properties on a `const` object. So `bird.species` is successfully changed and logs `"Striated Caracara"`.', 'medium', 'approved', 'a1a6bda0-5f31-493c-bf5b-9bf9a2aaa2e6', 66, '2026-03-30T07:37:15.593Z', '2026-03-30T07:37:15.593Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e9dfa5c1-2d99-421d-93d4-2fb64a30affa', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following expression evaluate to, and which concept explains it?
+
+```js
+typeof null
+```', '`typeof null` returns `"object"` — a well-known historical bug in JavaScript kept for backwards compatibility. `null` is actually its own standalone primitive type, not an object. This trips up many developers who expect `"null"`. It is important to know this quirk when type-checking values.', 'medium', 'approved', 'a1a6bda0-5f31-493c-bf5b-9bf9a2aaa2e6', 67, '2026-03-30T07:37:15.597Z', '2026-03-30T07:37:15.597Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('34bac682-ee63-4827-aa89-a134eef1d8a3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Consider the following code. What is logged, and what string method concept does it illustrate?
+
+```js
+const tagline = "MDN - Resources for developers, by developers";
+console.log(tagline.indexOf("developers"));
+```', '`indexOf()` returns the index of the **first** occurrence of the substring. Counting from 0 (including spaces and punctuation), `"developers"` first appears at index `20`. The method is case-sensitive and returns `-1` if not found. There is a second occurrence of `"developers"` at index `35`, but `indexOf()` only returns the first.', 'medium', 'approved', 'a1a6bda0-5f31-493c-bf5b-9bf9a2aaa2e6', 68, '2026-03-30T07:37:15.599Z', '2026-03-30T07:37:15.599Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4abe0ffe-8a53-46b2-97b9-f50243758a78', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the value of `result` after this code runs, and which two concepts are combined here?
+
+```js
+const score = 9;
+const highestScore = 10;
+const result = `Score: ${(score / highestScore) * 100}%`;
+```', 'This combines **template literals** (backtick strings with `${}` interpolation) and **dynamic typing / numeric expression evaluation**. The expression `(score / highestScore) * 100` evaluates to `90` (a number), which is automatically converted to a string when embedded in the template literal. The result is `"Score: 90%"`.', 'medium', 'approved', 'a1a6bda0-5f31-493c-bf5b-9bf9a2aaa2e6', 69, '2026-03-30T07:37:15.600Z', '2026-03-30T07:37:15.600Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7212d9f0-0e0c-496b-86df-70772fe0ece4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which JavaScript data type is used to represent **both** integers and floating-point numbers?', 'JavaScript has a single numeric type called `Number` that handles both integers (e.g., `5`) and floats (e.g., `6.667`). You can confirm this with `typeof`: both `typeof 5` and `typeof 6.667` return `"number"`.
+
+Example:
+```js
+const myInt = 5;
+const myFloat = 6.667;
+typeof myInt;   // "number"
+typeof myFloat; // "number"
+```', 'easy', 'approved', 'babc2d55-c9b2-4fc8-9ac9-9a57df79f32b', 70, '2026-03-30T09:00:38.417Z', '2026-03-30T09:00:38.417Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ce066b08-e6f5-41ac-956f-44768cd6cd1f', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of the following expression?
+
+```js
+5 + 10 * 3;
+```', 'Multiplication has higher precedence than addition, so `10 * 3` is evaluated first, giving `30`. Then `5 + 30 = 35`.
+
+This follows standard mathematical operator precedence: multiply and divide before add and subtract.', 'easy', 'approved', 'babc2d55-c9b2-4fc8-9ac9-9a57df79f32b', 71, '2026-03-30T09:00:38.420Z', '2026-03-30T09:00:38.420Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1885c71e-004b-4373-8be7-f16552f763fd', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of this code?
+
+```js
+let myNumber = "74";
+myNumber += 3;
+console.log(myNumber);
+```', '`myNumber` is declared as a **string** `"74"`. Using `+=` with a string on the left causes JavaScript to concatenate rather than add numerically, so the result is `"743"` not `77`.
+
+To get numeric addition, convert first:
+```js
+myNumber = Number(myNumber) + 3; // 77
+```', 'medium', 'approved', 'babc2d55-c9b2-4fc8-9ac9-9a57df79f32b', 72, '2026-03-30T09:00:38.422Z', '2026-03-30T09:00:38.422Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('48e4710c-062e-4958-9782-0b92403f236e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `%` operator return in JavaScript?
+
+```js
+console.log(8 % 3);
+```', 'The `%` operator is the **remainder** (or modulo) operator. It returns what is left over after integer division. `8 ÷ 3 = 2` remainder `2`, so `8 % 3` equals `2`.', 'easy', 'approved', 'babc2d55-c9b2-4fc8-9ac9-9a57df79f32b', 73, '2026-03-30T09:00:38.423Z', '2026-03-30T09:00:38.423Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d61db22a-337b-4c58-98a2-3180309ec558', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A variable `num1` has the value `4`. After running `num1++`, what value does `num1` hold?', 'The postfix increment operator `++` increments the variable by 1 **after** returning its current value. So after `num1++`, `num1` becomes `5`.
+
+Example:
+```js
+let num1 = 4;
+num1++;
+console.log(num1); // 5
+```', 'easy', 'approved', 'babc2d55-c9b2-4fc8-9ac9-9a57df79f32b', 74, '2026-03-30T09:00:38.424Z', '2026-03-30T09:00:38.424Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('321aacfe-c1ec-4ede-b08e-43107f249a41', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+alert( ''1'' + 2 + 2 );
+```', 'Operators are evaluated left-to-right. The first operand `''1''` is a string, so `''1'' + 2` triggers **string concatenation**, yielding `"12"`. Then `"12" + 2` concatenates again, producing `"122"`.
+
+This illustrates that once a string appears on the left, subsequent `+` operations treat the right operands as strings.', 'medium', 'approved', '82e0e381-ddf2-4885-9955-93ea3b3ae132', 75, '2026-03-30T09:00:48.401Z', '2026-03-30T09:00:48.401Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b54f204f-dad4-4e4c-b1d5-4d780ce09d2f', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the difference between the **prefix** (`++counter`) and **postfix** (`counter++`) forms of the increment operator when used in an expression?', 'The **prefix** form `++counter` increments the variable **first** and returns the **new** value. The **postfix** form `counter++` increments the variable but returns the **old** value (before the increment).
+
+Example:
+```js
+let counter = 1;
+let a = ++counter; // a = 2 (new value returned)
+let b = counter++; // b = 2 (old value returned), counter is now 3
+```', 'medium', 'approved', '82e0e381-ddf2-4885-9955-93ea3b3ae132', 76, '2026-03-30T09:00:48.403Z', '2026-03-30T09:00:48.403Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('52bfdc3e-58bc-4fa7-8dae-f7d75586ef5e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the unary `+` operator do when applied to a non-numeric value?
+
+```js
+alert( +true );
+alert( +"" );
+```', 'The unary `+` operator converts its operand to a number, behaving exactly like `Number(...)`: `+true` becomes `1` and `+""` becomes `0`.
+
+This is shorter than calling `Number()` explicitly and is commonly used to convert HTML form field values (which are strings) to numbers.', 'medium', 'approved', '82e0e381-ddf2-4885-9955-93ea3b3ae132', 77, '2026-03-30T09:00:48.404Z', '2026-03-30T09:00:48.404Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5366bf63-a463-4cf1-bb6c-9f6903638c97', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the value of `n` after this code runs?
+
+```js
+let n = 2;
+n *= 3 + 5;
+```', 'Compound assignment operators like `*=` have the same precedence as `=` (very low), so **the right-hand side is evaluated first**. `3 + 5 = 8`, then `n *= 8` means `n = 2 * 8 = 16`.
+
+This is equivalent to `n = n * (3 + 5)`.', 'medium', 'approved', '82e0e381-ddf2-4885-9955-93ea3b3ae132', 78, '2026-03-30T09:00:48.407Z', '2026-03-30T09:00:48.407Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('05436d5e-14c4-4c25-a80b-00a059b809e0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In the expression `a = b = c = 2 + 2`, what value do `a`, `b`, and `c` all end up holding?', 'Chained assignments evaluate **right to left**. First `2 + 2 = 4` is computed, then assigned to `c`, then `b`, then `a`. All three variables end up with the value `4`.
+
+Example:
+```js
+let a, b, c;
+a = b = c = 2 + 2;
+alert(a); // 4
+alert(b); // 4
+alert(c); // 4
+```', 'easy', 'approved', '82e0e381-ddf2-4885-9955-93ea3b3ae132', 79, '2026-03-30T09:00:48.408Z', '2026-03-30T09:00:48.408Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cea18f33-00ca-4e2b-8c5d-2787f7d1c405', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of this comparison?
+
+```js
+alert( ''Glow'' > ''Glee'' );
+```', 'JavaScript compares strings **character-by-character** using Unicode order (lexicographic). Comparing `''Glow''` vs `''Glee''`: `G === G`, `l === l`, then `o > e` — so `''Glow''` is greater and the result is `true`.', 'easy', 'approved', '269f8b43-a150-45a5-8577-4990790b3f04', 80, '2026-03-30T09:00:55.665Z', '2026-03-30T09:00:55.665Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1e761f64-9576-4af9-b198-9649e1ed96e4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of the following strict equality check?
+
+```js
+alert( 0 === false );
+```', 'The **strict equality** operator `===` checks both value **and** type without any conversion. `0` is a `number` and `false` is a `boolean` — different types — so the result is `false`.
+
+This contrasts with `==`, where `0 == false` is `true` because `false` gets converted to `0`.', 'easy', 'approved', '269f8b43-a150-45a5-8577-4990790b3f04', 81, '2026-03-30T09:00:55.667Z', '2026-03-30T09:00:55.667Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9fea2c2c-507a-4d9e-8f9c-a242aae216bd', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `null == undefined` evaluate to in JavaScript?', '`null` and `undefined` are a ''sweet couple'' — they equal each other under loose equality `==`, but **do not equal any other value**.
+
+```js
+alert( null == undefined );  // true
+alert( null === undefined ); // false (different types)
+alert( null == 0 );          // false
+```', 'medium', 'approved', '269f8b43-a150-45a5-8577-4990790b3f04', 82, '2026-03-30T09:00:55.668Z', '2026-03-30T09:00:55.668Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4af74e09-0208-421d-9ecf-5f93673af60a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of `null >= 0` in JavaScript?', 'Relational comparisons (`>`, `<`, `>=`, `<=`) convert `null` to the number `0`. So `null >= 0` becomes `0 >= 0`, which is `true`.
+
+However, `null > 0` and `null == 0` are both `false` — a seemingly inconsistent but defined behavior. The equality check `==` does **not** perform numeric conversion for `null`.', 'hard', 'approved', '269f8b43-a150-45a5-8577-4990790b3f04', 83, '2026-03-30T09:00:55.669Z', '2026-03-30T09:00:55.669Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dce46d1b-a61f-48b2-85ef-69834db19b72', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of `''2'' > ''12''` in JavaScript?', 'Both operands are **strings**, so JavaScript uses lexicographic (character-by-character) comparison — **not** numeric comparison. `''2''` starts with `''2''` and `''12''` starts with `''1''`. Since `''2'' > ''1''` in Unicode order, `''2'' > ''12''` is `true`.
+
+If they were numbers, `2 > 12` would be `false`. This is a common gotcha when comparing strings that look like numbers.', 'medium', 'approved', '269f8b43-a150-45a5-8577-4990790b3f04', 84, '2026-03-30T09:00:55.670Z', '2026-03-30T09:00:55.670Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7a72d877-d9ca-47ad-80ba-457c5e8d63c6', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+let a = "3";
+let b = 2;
+console.log(a - b === 1);
+```', 'The subtraction operator `-` **only** works with numbers and automatically converts both operands. `"3" - 2` yields the number `1`. Then `1 === 1` uses strict equality, which checks both value and type — both are `number 1` — so the result is `true`.
+
+This differs from `+` where `"3" + 2` would give `"32"` (string concatenation). All operators except `+` force numeric conversion.', 'medium', 'approved', 'd1e529b8-6558-47a0-a242-60c9df8d5010', 85, '2026-03-30T09:01:03.370Z', '2026-03-30T09:01:03.370Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e7f39f9e-1db4-4b3d-a6c4-ad468900fa32', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the value of `x` after this code runs?
+
+```js
+let x = 5;
+console.log(x++);
+console.log(x);
+```', 'The first `console.log(x++)` uses the **postfix** form, which returns the **current** value (`5`) and **then** increments `x` to `6`. The second `console.log(x)` prints the updated value `6`.
+
+So the two lines print `5` then `6`. Postfix increment returns the old value; the variable is updated after the expression is evaluated.', 'medium', 'approved', 'd1e529b8-6558-47a0-a242-60c9df8d5010', 86, '2026-03-30T09:01:03.376Z', '2026-03-30T09:01:03.376Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3070360f-141b-489c-b705-c130508a59d2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following expression evaluate to?
+
+```js
+console.log( 2 + 2 + ''1'' );
+```', 'Operators evaluate **left to right**. `2 + 2` is evaluated first (both numbers), giving `4`. Then `4 + ''1''` triggers string concatenation because `''1''` is a string, producing `"41"`.
+
+This is the opposite of `''1'' + 2 + 2`, which would give `"122"`. The key insight: left-to-right evaluation means operand types seen so far determine whether `+` does arithmetic or concatenation.', 'medium', 'approved', 'd1e529b8-6558-47a0-a242-60c9df8d5010', 87, '2026-03-30T09:01:03.381Z', '2026-03-30T09:01:03.381Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5162f36c-87f0-4d70-aab4-bd58143b7d85', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of the following comparison?
+
+```js
+console.log( false == ''0'' );
+```', 'Loose equality `==` converts both operands to numbers when the types differ. `false` becomes `0`, and `''0''` becomes `0`. Since `0 == 0` is `true`, the expression returns `true`.
+
+This is a classic JavaScript type-coercion gotcha. Using strict equality `===` avoids it: `false === ''0''` would be `false` because the types differ.', 'hard', 'approved', 'd1e529b8-6558-47a0-a242-60c9df8d5010', 88, '2026-03-30T09:01:03.388Z', '2026-03-30T09:01:03.388Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f5e569b8-da80-4e34-a9fb-362e61dc0d68', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the value of `result` after this code runs?
+
+```js
+let x = 10;
+let result = ++x * 2 === 22;
+console.log(result);
+```', '`++x` is the **prefix** form, so `x` is incremented to `11` **before** the multiplication. `11 * 2 = 22`. Then `22 === 22` uses strict equality: both are `number 22`, so the result is `true`.
+
+If postfix `x++` were used instead, the expression would be `10 * 2 === 22`, which is `20 === 22 = false`. This question combines prefix/postfix knowledge (operators), operator precedence (math), and strict equality (comparisons).', 'hard', 'approved', 'd1e529b8-6558-47a0-a242-60c9df8d5010', 89, '2026-03-30T09:01:03.392Z', '2026-03-30T09:01:03.392Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bdb7e8e5-d03b-4395-ab63-4d4ac70c592d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the correct term for a function that lives inside a JavaScript object?', 'Functions defined as properties of an object are called **methods**. The non-function properties (like `name` and `age`) are called **properties**. Both together are referred to as the object''s *members*.', 'easy', 'approved', 'eb54dac6-69e1-4beb-80cf-28c3de5a9547', 90, '2026-03-30T09:50:37.366Z', '2026-03-30T09:50:37.366Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8438a35d-6a21-4cde-9abe-a23aed76645e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given the following object, which expression correctly accesses `Bob`?
+
+```js
+const person = {
+  name: ["Bob", "Smith"],
+  age: 32
+};
+```', '`person.name` returns the array `["Bob", "Smith"]`, and index `[0]` gives the first element `"Bob"`. Dot notation accesses the `name` property, then bracket notation `[0]` indexes into the array.', 'easy', 'approved', 'eb54dac6-69e1-4beb-80cf-28c3de5a9547', 91, '2026-03-30T09:50:37.387Z', '2026-03-30T09:50:37.387Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a22db58b-a78a-4886-a620-0a5772d84a94', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When must you use bracket notation instead of dot notation to access an object property?', 'Dot notation only accepts a **literal** identifier as the property name. If the property name is stored in a variable (computed at runtime), bracket notation must be used: `obj[variableName]`. Dot notation like `obj.variableName` would look for a property literally named `"variableName"`.', 'medium', 'approved', 'eb54dac6-69e1-4beb-80cf-28c3de5a9547', 92, '2026-03-30T09:50:37.399Z', '2026-03-30T09:50:37.399Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f102a9fc-85b2-43cc-8bd9-47f9851becf3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `this` keyword refer to inside an object method?', 'Inside an object method, `this` refers to the **object the method was called on**. This allows the same method definition to be shared and still correctly reference that specific object''s data.', 'easy', 'approved', 'eb54dac6-69e1-4beb-80cf-28c3de5a9547', 93, '2026-03-30T09:50:37.408Z', '2026-03-30T09:50:37.408Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('aa9d7031-2ec0-486e-a8ea-c189939180aa', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What happens when you call a constructor function with the `new` keyword?', 'When `new` is used with a constructor, JavaScript: (1) creates a new empty object, (2) binds `this` to that new object inside the constructor, (3) runs the constructor code, and (4) returns the new object automatically.', 'medium', 'approved', 'eb54dac6-69e1-4beb-80cf-28c3de5a9547', 94, '2026-03-30T09:50:37.417Z', '2026-03-30T09:50:37.417Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('05b14841-febb-4754-98cb-2cbb1fd967e3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following code print?
+
+```js
+const shopping = ["bread", "milk", "cheese", "hummus", "noodles"];
+console.log(shopping.length);
+```', 'The `length` property returns the number of items in the array. The array contains 5 items, so `shopping.length` is `5`.', 'easy', 'approved', '5bfee50a-d8e0-47e5-a0c9-35618a0fc57a', 95, '2026-03-30T09:50:50.336Z', '2026-03-30T09:50:50.336Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('118b9f5d-b49d-4ed4-b694-cc8335ba9489', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which method adds one or more items to the **end** of an array and returns the new length?', '`push()` appends items to the end of an array and returns the new array length. `unshift()` adds to the beginning. `pop()` removes from the end. `shift()` removes from the beginning.', 'easy', 'approved', '5bfee50a-d8e0-47e5-a0c9-35618a0fc57a', 96, '2026-03-30T09:50:50.338Z', '2026-03-30T09:50:50.338Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28340637-1177-492f-83a2-2f67203d082b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is returned by `birds.indexOf(''Rabbit'')` given the following?
+
+```js
+const birds = ["Parrot", "Falcon", "Owl"];
+```', '`indexOf()` returns the index of the item if found, or `-1` if the item is not in the array. Since `''Rabbit''` is not in the `birds` array, it returns `-1`.', 'easy', 'approved', '5bfee50a-d8e0-47e5-a0c9-35618a0fc57a', 97, '2026-03-30T09:50:50.340Z', '2026-03-30T09:50:50.340Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d9059d4d-2045-4964-ae4e-eb587e226086', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `map()` return when called on an array?', '`map()` calls the provided function once for each item in the original array and collects the return values into a **new array**. The original array is not modified.', 'medium', 'approved', '5bfee50a-d8e0-47e5-a0c9-35618a0fc57a', 98, '2026-03-30T09:50:50.342Z', '2026-03-30T09:50:50.342Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f49dc072-ee32-4ba2-8c4f-f55a4ddf3ae2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which method converts a string like `"Manchester,London,Liverpool"` into an array by splitting on a comma?', '`split('','')` is a **string** method that divides the string at each comma and returns an array of substrings. `join()` does the reverse — it combines array items into a string.', 'easy', 'approved', '5bfee50a-d8e0-47e5-a0c9-35618a0fc57a', 99, '2026-03-30T09:50:50.343Z', '2026-03-30T09:50:50.343Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f2eae00d-ba2f-4178-93b2-c1463ac8591d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following correctly creates an empty object using **object literal** syntax?', 'The object literal syntax uses curly braces `{}`. `new Object()` also creates an empty object but is the "object constructor" syntax and rarely used. The other options are not valid object creation expressions.', 'easy', 'approved', '4fddc5c6-9d0f-4b38-9ecd-8124aad940de', 100, '2026-03-30T09:51:00.443Z', '2026-03-30T09:51:00.443Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('54580f05-1934-4a0e-b25a-c4b6611cfd5a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which operator is used to **remove** a property from an object?', 'The `delete` operator removes a property from an object: `delete user.age`. It removes both the key and its value. Setting the property to `undefined` or `null` does not remove it.', 'easy', 'approved', '4fddc5c6-9d0f-4b38-9ecd-8124aad940de', 101, '2026-03-30T09:51:00.447Z', '2026-03-30T09:51:00.447Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('36b26d0b-e80d-4df0-afb0-d795b31ce626', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `"in"` operator do when used with an object?', 'The `in` operator checks whether a **property with the given key exists** in an object, returning `true` or `false`. Unlike comparing with `undefined`, it correctly handles cases where a property exists but its value is explicitly set to `undefined`.', 'medium', 'approved', '4fddc5c6-9d0f-4b38-9ecd-8124aad940de', 102, '2026-03-30T09:51:00.450Z', '2026-03-30T09:51:00.450Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('149ef757-da83-4ca4-99d8-048e71f00da6', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following loop?
+
+```js
+let user = { name: "John", age: 30, isAdmin: true };
+for (let key in user) {
+  alert(key);
+}
+```', 'The `for...in` loop iterates over all **enumerable property keys** of an object. It will output each key name as a string: `"name"`, `"age"`, `"isAdmin"` — in creation order (since they are non-integer keys).', 'easy', 'approved', '4fddc5c6-9d0f-4b38-9ecd-8124aad940de', 103, '2026-03-30T09:51:00.452Z', '2026-03-30T09:51:00.452Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d7fb25a7-c6fb-44c3-b5ec-68bbaa8b8cdb', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given `function makeUser(name, age) { return { name, age }; }`, what does `{ name, age }` demonstrate?', 'This is **property value shorthand**. When a variable name matches the desired property key, you can write just the variable name once instead of `name: name`. It is syntactic sugar that makes code more concise.', 'medium', 'approved', '4fddc5c6-9d0f-4b38-9ecd-8124aad940de', 104, '2026-03-30T09:51:00.454Z', '2026-03-30T09:51:00.454Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('60ae0f06-4a6f-4e9d-b107-63e46940125a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following code output?
+
+```js
+let user = { name: ''John'' };
+let admin = user;
+admin.name = ''Pete'';
+alert(user.name);
+```', 'Objects are stored and copied **by reference**. When `admin = user` is executed, both variables point to the **same** object in memory. Modifying `admin.name` also changes `user.name` because they reference the same object. The output is `''Pete''`.', 'easy', 'approved', '55f88fe3-f3a6-4a8b-afdd-7753fa453ff5', 105, '2026-03-30T09:51:11.645Z', '2026-03-30T09:51:11.645Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7737bcb5-49ed-4ce0-8af0-327854db11f3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of comparing two independently created empty objects with `==`?
+
+```js
+let a = {};
+let b = {};
+alert(a == b);
+```', 'The `==` operator for objects compares **references**, not structure. `a` and `b` are two separate objects in memory, so they hold different references. Even though they look alike, `a == b` is `false`.', 'medium', 'approved', '55f88fe3-f3a6-4a8b-afdd-7753fa453ff5', 106, '2026-03-30T09:51:11.649Z', '2026-03-30T09:51:11.649Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('49f7d169-5c8f-468a-bee7-129add30d2a5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `Object.assign({}, user)` produce?', '`Object.assign(dest, ...sources)` copies all enumerable own properties from source objects into `dest`. Passing an empty object `{}` as the destination returns a **shallow clone** of `user` — a new independent object with copies of all top-level properties.', 'easy', 'approved', '55f88fe3-f3a6-4a8b-afdd-7753fa453ff5', 107, '2026-03-30T09:51:11.651Z', '2026-03-30T09:51:11.651Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6aae6e4d-64bb-471e-8a8a-3b5784b0a6e3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which modern built-in function performs a **deep clone** of an object, including nested objects?', '`structuredClone(object)` creates a full deep copy of the object, recursively cloning nested objects. `Object.assign` only does a shallow copy. `JSON.parse(JSON.stringify(...))` is a common workaround but `structuredClone` is the modern standard.', 'medium', 'approved', '55f88fe3-f3a6-4a8b-afdd-7753fa453ff5', 108, '2026-03-30T09:51:11.653Z', '2026-03-30T09:51:11.653Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('23c00c7f-99ec-4702-9c07-016beb324c2d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A `const` object is declared as follows. What happens when line `(*)` runs?
+
+```js
+const user = { name: "John" };
+user.name = "Pete"; // (*)
+```', '`const` prevents reassigning the *variable binding* (`user = ...`), but the object itself is mutable. Properties of a `const` object can be freely changed. Line `(*)` succeeds and `user.name` becomes `"Pete"`.', 'medium', 'approved', '55f88fe3-f3a6-4a8b-afdd-7753fa453ff5', 109, '2026-03-30T09:51:11.655Z', '2026-03-30T09:51:11.655Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d2897cde-d88d-47e8-8866-533dd91051b9', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `fruits.at(-1)` return for this array?
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+```', '`arr.at(i)` with a negative index steps back from the end of the array. `at(-1)` returns the **last** element, which is `"Plum"`. It is equivalent to `fruits[fruits.length - 1]`.', 'easy', 'approved', '45d12dc0-fdf6-4b6a-a53c-b9b9ef192b87', 110, '2026-03-30T09:51:22.455Z', '2026-03-30T09:51:22.455Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5fa28a1f-2dfd-4ef8-a9df-d5a596c86c79', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Why is `push/pop` generally faster than `shift/unshift` on a large array?', '`push/pop` operate on the **end** of the array. No elements need to be moved or re-indexed. `shift/unshift` operate on the **beginning**, requiring every remaining element to be renumbered and shifted in memory, which is an O(n) operation.', 'medium', 'approved', '45d12dc0-fdf6-4b6a-a53c-b9b9ef192b87', 111, '2026-03-30T09:51:22.457Z', '2026-03-30T09:51:22.457Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('765625cb-7de9-4f9b-af17-f9640e7a1d6b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which loop form is recommended when iterating over array **values** in modern JavaScript?', '`for...of` is the modern, idiomatic way to iterate over array values. `for...in` should **not** be used on arrays because it iterates over all enumerable properties (including non-numeric ones if added) and is optimised for generic objects, making it 10-100x slower.', 'easy', 'approved', '45d12dc0-fdf6-4b6a-a53c-b9b9ef192b87', 112, '2026-03-30T09:51:22.459Z', '2026-03-30T09:51:22.459Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f8ffb2ae-3013-49ce-b3d4-67a20e8e2d35', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of `arr.length = 0` on an array with existing items?', 'The `length` property is writable. **Decreasing** it truncates the array — elements beyond the new length are removed irreversibly. Setting it to `0` empties the array. The process is irreversible: restoring `length` to its original value does not bring the items back.', 'medium', 'approved', '45d12dc0-fdf6-4b6a-a53c-b9b9ef192b87', 113, '2026-03-30T09:51:22.460Z', '2026-03-30T09:51:22.460Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('15482b8d-8e1b-43ff-adcc-e305c67a4284', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `new Array(2)` create?', 'When `new Array` is called with a **single numeric argument**, it creates an array with that `length` but **no elements**. `arr[0]` is `undefined`. This is a common gotcha — `[2]` creates an array with the single element `2`, while `new Array(2)` creates an empty array of length 2.', 'medium', 'approved', '45d12dc0-fdf6-4b6a-a53c-b9b9ef192b87', 114, '2026-03-30T09:51:22.462Z', '2026-03-30T09:51:22.462Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7d9b50c0-4820-4a71-a2ba-507ef6444ffc', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following code produce?
+
+```js
+let arr = ["I", "study", "JavaScript"];
+arr.splice(1, 1);
+alert(arr);
+```', '`splice(start, deleteCount)` modifies the array **in place**. Starting at index `1`, it removes `1` element (`"study"`). The remaining elements stay. The array becomes `["I", "JavaScript"]`.', 'easy', 'approved', '29b62c10-bb65-4c17-b470-19415ead6386', 115, '2026-03-30T09:51:33.254Z', '2026-03-30T09:51:33.254Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b534d893-e9e0-4a70-a964-a1fc2811f85d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `arr.find(fn)` return when **no element** satisfies the condition?', '`find()` iterates and returns the **first** element for which the callback returns `true`. If no element matches, it returns `undefined` — not `null`, `-1`, or `false`.', 'easy', 'approved', '29b62c10-bb65-4c17-b470-19415ead6386', 116, '2026-03-30T09:51:33.257Z', '2026-03-30T09:51:33.257Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('67d50840-0b95-48fe-9649-8262e4d72181', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which statement about `arr.filter(fn)` is correct?', '`filter()` returns a **new array** of all elements for which the callback returns `true`. If nothing matches, it returns an empty array. It does not modify the original array.', 'easy', 'approved', '29b62c10-bb65-4c17-b470-19415ead6386', 117, '2026-03-30T09:51:33.259Z', '2026-03-30T09:51:33.259Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3b673ca0-4521-4177-a291-7f1acc171049', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'How can you reliably check whether a value is an array in JavaScript?', '`Array.isArray(value)` is the reliable way to check for arrays. `typeof []` returns `"object"` — the same as for plain objects — so it cannot distinguish between them. `instanceof Array` can fail across different iframes.', 'medium', 'approved', '29b62c10-bb65-4c17-b470-19415ead6386', 118, '2026-03-30T09:51:33.260Z', '2026-03-30T09:51:33.260Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f9b6e8ec-0574-4e60-8b99-86c4caaa562b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `arr.reduce(fn, initial)` ultimately return?', '`reduce()` calls `fn` for each element, passing the result (accumulator) from the previous call along. After the last element, it returns the **final accumulated value** — a single value (e.g. a sum, a product, or any computed result).', 'medium', 'approved', '29b62c10-bb65-4c17-b470-19415ead6386', 119, '2026-03-30T09:51:33.262Z', '2026-03-30T09:51:33.262Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3892c886-9aaa-4c87-9ec6-23aa6cdfb7bf', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the output of the following code?
+
+```js
+const a = [1, 2, 3];
+const b = a;
+b.push(4);
+console.log(a.length);
+```', 'Just like objects, arrays are stored **by reference**. `b = a` copies the reference, not the array itself. Both `a` and `b` point to the same array. After `b.push(4)`, the array has four elements, so `a.length` is `4`.
+
+This is the same "copy by reference" behaviour described in the object-copy article — arrays are a special kind of object.', 'medium', 'approved', '0cec46f7-191c-4534-9c48-1993ba26cf3b', 120, '2026-03-30T09:51:44.732Z', '2026-03-30T09:51:44.732Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('caed7812-fbf5-4514-b883-5f44b006d399', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'You have an array of user objects. Which expression correctly produces an array of all user names?
+
+```js
+const users = [
+  { name: "Alice", age: 25 },
+  { name: "Bob",   age: 30 },
+];
+```', '`map()` transforms each element using a callback and returns a **new array** of results. Using dot notation inside `map`, `user.name` accesses the `name` property of each object — combining knowledge of object property access with array transformation methods.', 'medium', 'approved', '0cec46f7-191c-4534-9c48-1993ba26cf3b', 121, '2026-03-30T09:51:44.734Z', '2026-03-30T09:51:44.734Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('18c7f133-372f-4625-bf01-39b98823521b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'An object and an array each contain similar data. Which statement is **true** about how `typeof` treats them?', '`typeof` returns `"object"` for **both** plain objects `{}` and arrays `[]`. Arrays are a special kind of object in JavaScript — they are not a separate type. To distinguish an array from a plain object, use `Array.isArray(value)`.', 'medium', 'approved', '0cec46f7-191c-4534-9c48-1993ba26cf3b', 122, '2026-03-30T09:51:44.736Z', '2026-03-30T09:51:44.736Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('594b99b0-a136-44c3-87cb-b9ed66801d4c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following snippet print, and why?
+
+```js
+const person = { name: "Ana" };
+const clone = Object.assign({}, person);
+clone.name = "Bia";
+console.log(person.name);
+```', '`Object.assign({}, person)` creates a **shallow clone** — a new independent object with copies of all top-level properties. Changing `clone.name` (a primitive string) does **not** affect `person.name`. The output is `"Ana"`.
+
+If `name` had been a nested object instead of a string, both would share the same reference.', 'medium', 'approved', '0cec46f7-191c-4534-9c48-1993ba26cf3b', 123, '2026-03-30T09:51:44.738Z', '2026-03-30T09:51:44.738Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('68bd5aed-11f3-48b6-b4ac-5230490a4ce9', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Consider this code. What is stored inside `result`?
+
+```js
+const products = [
+  { name: "pen",   price: 1 },
+  { name: "book",  price: 12 },
+  { name: "ruler", price: 3 },
+];
+const result = products
+  .filter(p => p.price > 2)
+  .map(p => p.name);
+```', '`filter` first keeps only products with `price > 2`: `book` (12) and `ruler` (3). `map` then extracts the `.name` property from each. The final result is `["book", "ruler"]`.
+
+This combines object property access (dot notation) with two array transformation methods chained together.', 'medium', 'approved', '0cec46f7-191c-4534-9c48-1993ba26cf3b', 124, '2026-03-30T09:51:44.740Z', '2026-03-30T09:51:44.740Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('872fab6e-8281-4d21-911f-576fa925b25e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What value will `childAllowance` have after this code runs when `shoppingDone` is `false`?
+
+```js
+let shoppingDone = false;
+let childAllowance;
+
+if (shoppingDone === true) {
+  childAllowance = 10;
+} else {
+  childAllowance = 5;
+}
+```', 'Because `shoppingDone` is `false`, the `if` condition evaluates to `false` and the `else` block executes, assigning `5` to `childAllowance`.', 'easy', 'approved', '939db0b0-ef18-46f0-bbeb-bb702370a04f', 125, '2026-03-30T10:37:33.688Z', '2026-03-30T10:37:33.688Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3f0ff531-2092-4e80-a286-bc0bc84755b9', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following correctly describes the ternary operator syntax in JavaScript?', 'The ternary operator takes the form `condition ? valueIfTrue : valueIfFalse`. It evaluates the condition and returns one of two values depending on whether it is truthy or falsy.
+
+Example:
+```js
+const greeting = isBirthday
+  ? ''Happy birthday!''
+  : ''Good morning!'';
+```', 'easy', 'approved', '939db0b0-ef18-46f0-bbeb-bb702370a04f', 126, '2026-03-30T10:37:33.690Z', '2026-03-30T10:37:33.690Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d4cc735d-abab-43d5-b8e4-c5372c1d4c4c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In a `switch` statement, what is the role of the `break` keyword at the end of each `case` block?', 'The `break` statement exits the `switch` block immediately after the matched case finishes executing. Without it, execution would ''fall through'' and continue running the code in the next `case` block.', 'easy', 'approved', '939db0b0-ef18-46f0-bbeb-bb702370a04f', 127, '2026-03-30T10:37:33.692Z', '2026-03-30T10:37:33.692Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('90a6eeaa-c19c-4574-b5cb-6019b0b61fc7', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following values evaluates to `false` when used as a condition in a JavaScript `if` statement?', 'In JavaScript, `0` is a falsy value — it converts to `false` when used in a boolean context. By contrast, `"false"` (a non-empty string), `[]` (an empty array), and `{}` (an empty object) are all truthy.', 'medium', 'approved', '939db0b0-ef18-46f0-bbeb-bb702370a04f', 128, '2026-03-30T10:37:33.694Z', '2026-03-30T10:37:33.694Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('726b7321-05fd-49d8-9fd4-b85f7ccf396b', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'According to the MDN guide on conditionals, when is a `switch` statement preferred over `if...else if` chains?', 'A `switch` statement is best suited for cases where you have a single expression compared against many discrete exact values. For complex conditions involving ranges, logical operators, or non-equality tests, `if...else if` is more appropriate.', 'medium', 'approved', '939db0b0-ef18-46f0-bbeb-bb702370a04f', 129, '2026-03-30T10:37:33.696Z', '2026-03-30T10:37:33.696Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e7b7b6e-7197-4f0c-b6aa-0a10c1044a44', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What will the following code display?
+
+```js
+if ("0") {
+  alert("Hello");
+}
+```', '`"0"` is a non-empty string, so it is a truthy value in JavaScript. Even though it looks like zero, only the number `0` (empty string `""`, `null`, `undefined`, and `NaN`) are falsy. Therefore the `if` block executes and `"Hello"` is displayed.', 'medium', 'approved', '13a5bf67-0b45-47bb-85c1-dfd644098712', 130, '2026-03-30T10:37:47.425Z', '2026-03-30T10:37:47.425Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5a4ad6c0-95bb-410e-9e37-77fe528cde53', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When the `if (…)` statement evaluates its condition, what type does JavaScript first convert the expression to?', 'JavaScript converts the condition expression to a boolean before evaluating it. Any truthy value becomes `true` and any falsy value (`0`, `""`, `null`, `undefined`, `NaN`) becomes `false`.', 'easy', 'approved', '13a5bf67-0b45-47bb-85c1-dfd644098712', 131, '2026-03-30T10:37:47.428Z', '2026-03-30T10:37:47.428Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('db9dad85-5673-4d0c-80a8-020084ef9676', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following correctly uses the ternary operator to assign a value based on a condition?', 'The ternary operator syntax is `condition ? valueIfTrue : valueIfFalse`. The condition is placed first, followed by `?`, then the value if truthy, `:`, and the value if falsy.
+
+Example:
+```js
+let result = (a + b < 4) ? ''Below'' : ''Over'';
+```', 'easy', 'approved', '13a5bf67-0b45-47bb-85c1-dfd644098712', 132, '2026-03-30T10:37:47.430Z', '2026-03-30T10:37:47.430Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d57270be-620c-4f73-9f4b-94c51cc5fb65', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In a chained ternary expression like the one below, which condition is evaluated first?
+
+```js
+let message = (age < 3) ? ''Hi, baby!'' :
+  (age < 18) ? ''Hello!'' :
+  (age < 100) ? ''Greetings!'' :
+  ''What an unusual age!'';
+```', 'Evaluation proceeds from left to right. The first condition `age < 3` is checked first. If it is truthy, `''Hi, baby!''` is returned immediately and no further conditions are evaluated. Only if it is falsy does it cascade to the next condition.', 'medium', 'approved', '13a5bf67-0b45-47bb-85c1-dfd644098712', 133, '2026-03-30T10:37:47.433Z', '2026-03-30T10:37:47.433Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('700a5750-7588-4f54-8099-e68399e3eb23', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'According to javascript.info, what is the intended and recommended use of the ternary `?` operator?', 'The ternary operator is designed to return one value or another depending on a condition. It should not be used as a general replacement for `if` statements to execute code branches — that''s what `if` is for. Misusing `?` for side effects reduces readability.', 'medium', 'approved', '13a5bf67-0b45-47bb-85c1-dfd644098712', 134, '2026-03-30T10:37:47.435Z', '2026-03-30T10:37:47.435Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8f412901-e29b-4526-b766-9b50de6de955', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following expression evaluate to?
+
+```js
+alert(null || 2 || undefined);
+```', 'The `||` operator returns the first truthy value it encounters. `null` is falsy, so it moves on. `2` is truthy, so it is returned immediately. `undefined` is never evaluated.
+
+Example:
+```js
+alert(null || 1);       // 1
+alert(null || 0 || 1); // 1 (the first truthy value)
+```', 'medium', 'approved', 'ef6dd64b-f848-43df-885f-be422006b545', 135, '2026-03-30T10:37:57.879Z', '2026-03-30T10:37:57.879Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('edc6fac3-983b-47ea-b410-32f93f6a79c5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `alert(1 && null && 2)` output?', 'The `&&` operator returns the first falsy value it finds. `1` is truthy so evaluation continues. `null` is falsy so it is returned immediately and `2` is never evaluated.
+
+Example:
+```js
+alert(null && 5); // null
+alert(0 && "no matter what"); // 0
+```', 'medium', 'approved', 'ef6dd64b-f848-43df-885f-be422006b545', 136, '2026-03-30T10:37:57.883Z', '2026-03-30T10:37:57.883Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f3d8a9ed-996e-49d0-bdbe-b1d95357d227', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the correct precedence order from highest to lowest among `!` (NOT), `&&` (AND), and `||` (OR)?', 'The NOT `!` operator has the highest precedence of all logical operators, so it executes first. `&&` has higher precedence than `||`. This means `a && b || c && d` is interpreted as `(a && b) || (c && d)`.
+
+Precedence (high to low): `!` → `&&` → `||`', 'medium', 'approved', 'ef6dd64b-f848-43df-885f-be422006b545', 137, '2026-03-30T10:37:57.885Z', '2026-03-30T10:37:57.885Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c1f54364-989e-4689-b464-bd459f39f2ca', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given the following variables, what does the expression evaluate to?
+
+```js
+let firstName = "";
+let lastName = "";
+let nickName = "SuperCoder";
+
+alert(firstName || lastName || nickName || "Anonymous");
+```', '`||` returns the first truthy value. Both `firstName` and `lastName` are empty strings (falsy), so evaluation continues. `nickName` is `"SuperCoder"` which is truthy, so it is returned immediately. `"Anonymous"` is never evaluated.', 'easy', 'approved', 'ef6dd64b-f848-43df-885f-be422006b545', 138, '2026-03-30T10:37:57.887Z', '2026-03-30T10:37:57.887Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('38f38501-ddf2-4985-80f7-cee9f9865c32', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is ''short-circuit evaluation'' in the context of the `||` operator?', 'Short-circuit evaluation means `||` stops processing as soon as it finds the first truthy value and returns it immediately — without evaluating the remaining operands. This is significant when operands have side effects (like function calls).
+
+Example:
+```js
+true || alert("not printed");  // alert never runs
+false || alert("printed");     // alert runs
+```', 'medium', 'approved', 'ef6dd64b-f848-43df-885f-be422006b545', 139, '2026-03-30T10:37:57.890Z', '2026-03-30T10:37:57.890Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4a202d7e-0cb1-47f7-8c98-01d656070e97', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What are the three parts separated by semicolons inside the parentheses of a standard `for` loop?
+
+```js
+for (___; ___; ___) {
+  // code
+}
+```', 'The standard `for` loop has three parts: (1) an **initializer** — a variable set before the loop starts; (2) a **condition** — checked before each iteration and when falsy the loop stops; (3) a **final-expression** — runs after each iteration, typically incrementing the counter.
+
+Example:
+```js
+for (let i = 1; i < 10; i++) {
+  // i starts at 1, runs while i < 10, increments i each time
+}
+```', 'easy', 'approved', 'f9aac88d-80b3-4f8b-8743-7f6859c2ed1e', 140, '2026-03-30T10:38:08.789Z', '2026-03-30T10:38:08.789Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fda63339-d924-43a4-9d35-21c328ce9438', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `break` statement do when used inside a loop?', 'The `break` statement immediately exits the entire loop, and code execution continues with whatever comes after the loop. It does not merely skip a single iteration — it terminates the loop entirely.
+
+Example:
+```js
+for (const contact of contacts) {
+  if (contact === searchName) {
+    // found it!
+    break; // exit the loop now
+  }
+}
+```', 'easy', 'approved', 'f9aac88d-80b3-4f8b-8743-7f6859c2ed1e', 141, '2026-03-30T10:38:08.793Z', '2026-03-30T10:38:08.793Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8a90384d-be51-46c3-bdb1-b9f6fdfcad7e', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When is `for...of` generally preferred over an index-based `for` loop for iterating through an array?', '`for...of` is simpler and less error-prone when you just want to process each item and don''t need to track the current index. An index-based `for` loop is better when you need to know the position of each item (e.g., to treat the last element differently).', 'medium', 'approved', 'f9aac88d-80b3-4f8b-8743-7f6859c2ed1e', 142, '2026-03-30T10:38:08.795Z', '2026-03-30T10:38:08.795Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f5610039-0900-4011-8df6-3a5e140ac9e0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the key behavioral difference between a `while` loop and a `do...while` loop?', 'In a `while` loop the condition is checked **before** each execution of the body, so the body may never run if the condition starts as false. In a `do...while` loop the body executes **first**, then the condition is checked — guaranteeing at least one execution.', 'medium', 'approved', 'f9aac88d-80b3-4f8b-8743-7f6859c2ed1e', 143, '2026-03-30T10:38:08.797Z', '2026-03-30T10:38:08.797Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('47ab7b3c-9e76-4302-a4e3-88f756055cf4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `continue` statement do inside a `for` loop?', 'The `continue` statement skips the remaining code in the **current** iteration and jumps to the next iteration (evaluating the loop condition first). Unlike `break`, it does not exit the loop entirely.
+
+Example:
+```js
+for (let i = 1; i <= num; i++) {
+  if (Math.floor(Math.sqrt(i)) !== Math.sqrt(i)) {
+    continue; // skip non-perfect-squares
+  }
+  console.log(i);
+}
+```', 'easy', 'approved', 'f9aac88d-80b3-4f8b-8743-7f6859c2ed1e', 144, '2026-03-30T10:38:08.799Z', '2026-03-30T10:38:08.799Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('82ba9265-61a7-4f60-9769-357e3d47dc3a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What will this `while` loop alert, and in what order?
+
+```js
+let i = 3;
+while (i) {
+  alert(i--);
+}
+```', 'The postfix `i--` returns the current value of `i` **before** decrementing it. So the loop alerts `3`, then `2`, then `1`. When `i` reaches `0`, the condition `while (i)` is falsy (0 is falsy) and the loop stops. `0` itself is never alerted because the postfix operator decrements after the value is passed to `alert`.
+
+Order: 3 → 2 → 1.', 'medium', 'approved', '0e3ec32e-b41b-43c5-a092-ed5518b49a13', 145, '2026-03-30T10:38:19.258Z', '2026-03-30T10:38:19.258Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d2ce83de-61d8-48c0-9a06-3aa2334ccba5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'In the `for` loop syntax `for (begin; condition; step)`, when does the `begin` part execute?', 'The `begin` part (the initializer) executes **exactly once** when the loop first starts. It does not repeat with each iteration. After that, only the `condition` and `step` are repeated.
+
+```js
+for (let i = 0; i < 3; i++) {
+  // begin (let i = 0) runs once
+  // condition (i < 3) checked before each iteration
+  // step (i++) runs after each iteration
+}
+```', 'easy', 'approved', '0e3ec32e-b41b-43c5-a092-ed5518b49a13', 146, '2026-03-30T10:38:19.262Z', '2026-03-30T10:38:19.262Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('21dfe6d1-f1c2-4014-becb-103c59b8b780', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'According to javascript.info, when should you use the `do...while` loop form instead of `while`?', 'The `do...while` form should only be used when you want the loop body to execute **at least once** regardless of the condition. This is because `do...while` checks the condition after the body runs. In most other cases, the regular `while(…) {}` form is preferred.', 'medium', 'approved', '0e3ec32e-b41b-43c5-a092-ed5518b49a13', 147, '2026-03-30T10:38:19.265Z', '2026-03-30T10:38:19.265Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7e12844e-1e7a-4a00-a6df-04904a1f69ba', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the `continue` directive do inside a `for` loop?', '`continue` is a ''lighter version'' of `break`. Instead of stopping the entire loop, it stops the **current iteration** and forces the loop to immediately start the next one (if the condition still allows it).
+
+Example:
+```js
+for (let i = 0; i < 10; i++) {
+  if (i % 2 == 0) continue; // skip even numbers
+  alert(i); // only alerts odd: 1, 3, 5, 7, 9
+}
+```', 'easy', 'approved', '0e3ec32e-b41b-43c5-a092-ed5518b49a13', 148, '2026-03-30T10:38:19.268Z', '2026-03-30T10:38:19.268Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2715959f-5959-4118-9ffe-dbcf0db89b57', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is a loop **label** used for in JavaScript?', 'Loop labels allow `break` or `continue` to target an **outer loop** from within a nested loop. Without a label, `break` only exits the innermost loop it is placed in.
+
+Example:
+```js
+outer: for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    if (!input) break outer; // exits both loops
+  }
+}
+alert(''Done!'');
+```', 'hard', 'approved', '0e3ec32e-b41b-43c5-a092-ed5518b49a13', 149, '2026-03-30T10:38:19.272Z', '2026-03-30T10:38:19.272Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c3e4cda4-2ae9-46a5-b583-1cc0535d47aa', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What type of equality check does a `switch` statement use when matching its expression against `case` values?', 'A `switch` statement uses **strict equality** (`===`) for all case comparisons. This means both the value and the type must match. A string `"3"` will not match a numeric `case 3:`.
+
+Example:
+```js
+let arg = prompt("Enter a value?"); // user types 3 → arg is "3"
+switch (arg) {
+  case 3:
+    alert(''Never executes!''); // "3" !== 3
+    break;
+  default:
+    alert(''An unknown value''); // this runs
+}
+```', 'medium', 'approved', '9019a065-82c6-4492-8619-be0663b76fc0', 150, '2026-03-30T10:39:27.776Z', '2026-03-30T10:39:27.776Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2c1afcff-4284-4368-96f3-c97612a9cbd3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What happens in a `switch` statement when a matched `case` block has **no** `break` statement?', 'Without a `break`, execution **falls through** to the next `case` and continues running code there — regardless of whether it matches — until either a `break` is encountered or the `switch` ends.
+
+Example:
+```js
+let a = 4;
+switch (a) {
+  case 4:
+    alert(''Exactly!''); // runs
+  case 5:
+    alert(''Too big'');  // also runs (fall-through!)
+  default:
+    alert("I don''t know"); // also runs
+}
+```', 'medium', 'approved', '9019a065-82c6-4492-8619-be0663b76fc0', 151, '2026-03-30T10:39:27.778Z', '2026-03-30T10:39:27.778Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('211d29c8-5a26-4ffd-8b68-68a0d4d1a76a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What will the following `switch` statement output?
+
+```js
+let a = 2 + 2;
+
+switch (a) {
+  case 3:
+    alert(''Too small'');
+    break;
+  case 4:
+    alert(''Exactly!'');
+    break;
+  case 5:
+    alert(''Too big'');
+    break;
+  default:
+    alert("I don''t know such values");
+}
+```', '`a = 2 + 2 = 4`. The `switch` checks each case with strict equality. `case 3` does not match. `case 4` matches (4 === 4), so `''Exactly!''` is alerted, then `break` exits the switch.', 'easy', 'approved', '9019a065-82c6-4492-8619-be0663b76fc0', 152, '2026-03-30T10:39:27.779Z', '2026-03-30T10:39:27.779Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e8ea267a-70a5-4867-9e9b-bfa6253a945a', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When a user types `3` into `prompt("Enter a value?")`, which `case` matches in this switch?
+
+```js
+let arg = prompt("Enter a value?");
+switch (arg) {
+  case ''0'':
+  case ''1'':
+    alert(''One or zero'');
+    break;
+  case ''2'':
+    alert(''Two'');
+    break;
+  case 3:
+    alert(''Never executes!'');
+    break;
+  default:
+    alert(''An unknown value'');
+}
+```', '`prompt()` always returns a **string**. When the user types `3`, `arg` becomes `"3"` (string). The `switch` uses strict equality, so `"3" !== 3` (number) — `case 3` is not matched. No other case matches either, so the `default` block runs.
+
+This is a common gotcha: always match the type of `prompt()` output (string) in your cases.', 'hard', 'approved', '9019a065-82c6-4492-8619-be0663b76fc0', 153, '2026-03-30T10:39:27.781Z', '2026-03-30T10:39:27.781Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0efec93d-b768-47ea-b9c0-b28ab54103b0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which syntax correctly groups `case 3` and `case 5` together so they both run the same code block?', 'To group cases, you place them consecutively with no code between them and no `break`. The fall-through behavior means execution enters at the first matching case and continues until a `break`.
+
+```js
+case 3: // grouped
+case 5:
+  alert(''Three or five!'');
+  break;
+```
+
+This works because with no `break` after `case 3`, execution falls through to `case 5`''s code.', 'medium', 'approved', '9019a065-82c6-4492-8619-be0663b76fc0', 154, '2026-03-30T10:39:27.783Z', '2026-03-30T10:39:27.783Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('15639996-d17e-4be4-a7ab-8a8f1ec592da', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does `alert(i)` output after this loop finishes?
+
+```js
+let i = 5;
+while (i) {
+  i--;
+}
+alert(i);
+```', 'The `while (i)` condition is truthy as long as `i` is non-zero. `i` starts at `5` and is decremented each iteration: 5 → 4 → 3 → 2 → 1 → 0. When `i` reaches `0`, the condition `while (0)` is falsy (0 is a falsy value) so the loop exits. `alert(i)` then displays `0`.
+
+This tests the knowledge that non-zero numbers are truthy and `0` is falsy — a key concept from both the ''while'' loop topic and the ''boolean conversion'' topic in conditionals.', 'medium', 'approved', 'ec97280e-1b4f-410a-96fe-75e230594765', 155, '2026-03-30T10:39:37.963Z', '2026-03-30T10:39:37.963Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('764acdac-ff0d-4296-a068-91d0c3bb30c6', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What output is produced by each iteration of this loop?
+
+```js
+for (let i = 0; i <= 2; i++) {
+  switch (i) {
+    case "0":
+      alert("string zero");
+      break;
+    case 0:
+      alert("number zero");
+      break;
+    default:
+      alert("other: " + i);
+  }
+}
+```', '`switch` uses strict equality (`===`). The loop variable `i` is always a **number** (0, 1, 2). For `i = 0`: `case "0"` (string) does NOT match `0` (number); `case 0` (number) DOES match, alerting `"number zero"`. For `i = 1` and `i = 2`: neither case matches, so `default` runs, alerting `"other: 1"` and `"other: 2"` respectively.
+
+This is a classic trap: `case "0" !== case 0` because type matters in `switch`.', 'hard', 'approved', 'ec97280e-1b4f-410a-96fe-75e230594765', 156, '2026-03-30T10:39:37.965Z', '2026-03-30T10:39:37.965Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0a6d2b5c-92c2-4187-8432-e62dc41af0a5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the value of `result` after this expression?
+
+```js
+let result = null || 0 || undefined || "hello" || "world";
+```', 'The `||` operator returns the **first truthy value** it encounters. `null` is falsy, `0` is falsy, `undefined` is falsy — evaluation continues past all of these. `"hello"` is a non-empty string, which is truthy, so `"hello"` is returned immediately. `"world"` is never evaluated.
+
+This combines knowledge of falsy values (null, 0, undefined) and the short-circuit behaviour of `||`.', 'medium', 'approved', 'ec97280e-1b4f-410a-96fe-75e230594765', 157, '2026-03-30T10:39:37.968Z', '2026-03-30T10:39:37.968Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4538abb0-ab78-4102-a401-9c1512b4a463', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A developer writes this code intending to check if `x` equals `5`, `7`, or `10`:
+
+```js
+if (x === 5 || 7 || 10) {
+  // run my code
+}
+```
+
+What is the actual behaviour of this condition?', 'The condition `x === 5 || 7 || 10` is evaluated as `(x === 5) || 7 || 10`. Because `7` is a non-zero number (truthy), `7 || 10` is always `7` (truthy). So the entire condition is **always truthy** — the block runs regardless of `x`.
+
+The correct way to write this is:
+```js
+if (x === 5 || x === 7 || x === 10)
+```
+
+This is a very common mistake when using `||` in conditions, covered in MDN''s conditionals article.', 'hard', 'approved', 'ec97280e-1b4f-410a-96fe-75e230594765', 158, '2026-03-30T10:39:37.970Z', '2026-03-30T10:39:37.970Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c1e3089f-a522-4ef6-ba22-e76dcfa8e66d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What will `alert(found)` print, and why?
+
+```js
+let found = false;
+for (let i = 0; i < 5; i++) {
+  if (i === 3 && !found) {
+    found = true;
+    break;
+  }
+}
+alert(found);
+```', 'The loop iterates `i = 0, 1, 2, 3, ...`. When `i === 3`, the condition `i === 3 && !found` is evaluated: `3 === 3` is `true`, and `!found` is `!false = true`. So `true && true = true`. `found` is set to `true` and `break` exits the loop. `alert(found)` then displays `true`.
+
+This combines `&&` logical operator, the `break` statement, and the `!` NOT operator — all key control flow concepts.', 'medium', 'approved', 'ec97280e-1b4f-410a-96fe-75e230594765', 159, '2026-03-30T10:39:37.971Z', '2026-03-30T10:39:37.971Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('229246fb-b7e7-46a6-aa56-bbbeecd33a34', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What term describes a function that is part of an object?', 'Functions that belong to objects are called **methods**. Regular standalone functions are simply called functions. The distinction matters when discussing `this` binding and object-oriented patterns.', 'easy', 'approved', '99ba9101-f829-40af-9271-836b525f45e5', 160, '2026-03-30T19:29:07.849Z', '2026-03-30T19:29:07.849Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('398ccb60-635e-41dd-9e50-6b6ab586abae', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which form of function creation is **hoisted**, allowing you to call the function before its definition appears in the source code?', 'A **function declaration** (e.g., `function myFunc() {}`) is hoisted to the top of its scope, so it can be called anywhere in that scope — even before the line where it is written. A function expression is not hoisted.', 'easy', 'approved', '99ba9101-f829-40af-9271-836b525f45e5', 161, '2026-03-30T19:29:07.869Z', '2026-03-30T19:29:07.869Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1452c735-8d24-44c8-8c6d-977ebb6c4786', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the default separator used by `Array.prototype.join()` when no argument is provided?', '`join()` separates array elements with a comma (`,`) when called without arguments. Passing a string argument, such as `'' ''`, uses that string as the separator instead.
+
+Example:
+```js
+[''I'', ''love'', ''JS''].join();  // ''I,love,JS''
+[''I'', ''love'', ''JS''].join('' ''); // ''I love JS''
+```', 'easy', 'approved', '99ba9101-f829-40af-9271-836b525f45e5', 162, '2026-03-30T19:29:07.876Z', '2026-03-30T19:29:07.876Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c59204d6-d427-4132-91af-4eff92d42a5d', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which syntax correctly defines a default parameter value for the `name` parameter?', 'Default parameter values are specified with `=` directly in the parameter list: `function greet(name = ''Chris'') {}`. When the caller omits the argument, `name` receives the default value `''Chris''`.', 'easy', 'approved', '99ba9101-f829-40af-9271-836b525f45e5', 163, '2026-03-30T19:29:07.886Z', '2026-03-30T19:29:07.886Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('571a29a4-be29-4798-94dd-91f3482edd75', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Variables declared with `let` or `const` inside a function are accessible:', 'Variables declared with `let` or `const` inside a function are **scoped to that function**. They cannot be accessed from outside the function, which prevents naming conflicts and keeps code organized. This is called function scope (or block scope for `let`/`const`).', 'medium', 'approved', '99ba9101-f829-40af-9271-836b525f45e5', 164, '2026-03-30T19:29:07.892Z', '2026-03-30T19:29:07.892Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a5482402-2d82-4555-bc21-d6b26ba1c45c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What keyword begins a function definition in JavaScript?', 'The `function` keyword is what tells JavaScript you are defining a function. It is followed by the function name, parentheses for parameters, and curly braces containing the function body.', 'easy', 'approved', '5fb5345c-079f-4643-ad65-c391288eb0cf', 165, '2026-03-30T19:29:28.767Z', '2026-03-30T19:29:28.767Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6df83701-318f-4f00-9cef-aeb8f04fe6f8', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which DOM method creates a new HTML element dynamically?', '`document.createElement(tagName)` creates a new element node of the specified type. The new element is detached from the document until explicitly appended using methods like `appendChild()`.', 'easy', 'approved', '5fb5345c-079f-4643-ad65-c391288eb0cf', 166, '2026-03-30T19:29:28.774Z', '2026-03-30T19:29:28.774Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bf4e1319-77d9-44d5-a1b8-ceb6bb90a9e3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When passing a function as an event listener callback, why should you write `btn.addEventListener(''click'', displayMessage)` instead of `btn.addEventListener(''click'', displayMessage())`?', 'When you include `()` after a function name in an event listener, JavaScript **immediately calls** that function during registration rather than waiting for the event. Without `()`, you pass a **reference** to the function so it only runs when the event fires.
+
+Example:
+```js
+// Correct — runs on click:
+btn.addEventListener(''click'', displayMessage);
+
+// Wrong — runs immediately at registration:
+btn.addEventListener(''click'', displayMessage());
+```', 'medium', 'approved', '5fb5345c-079f-4643-ad65-c391288eb0cf', 167, '2026-03-30T19:29:28.780Z', '2026-03-30T19:29:28.780Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ca0b7ac0-900d-4aaa-bda7-dece39bbe049', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which method is used to attach a child element inside another element in the DOM?', '`Node.appendChild(child)` inserts a node as the last child of a parent node. The element must first exist in memory (created via `createElement`) before it can be appended.', 'easy', 'approved', '5fb5345c-079f-4643-ad65-c391288eb0cf', 168, '2026-03-30T19:29:28.784Z', '2026-03-30T19:29:28.784Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('322be5aa-7147-432d-b246-5387d2419cd2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When you want to pass arguments to a named function used as an event handler, what pattern should you use?', 'Wrap the function call inside an **anonymous (or arrow) function** so it is not invoked immediately. The anonymous function acts as a closure that delays execution until the event fires.
+
+```js
+btn.addEventListener(''click'', () => displayMessage(''Hello!'', ''chat''));
+```', 'medium', 'approved', '5fb5345c-079f-4643-ad65-c391288eb0cf', 169, '2026-03-30T19:29:28.787Z', '2026-03-30T19:29:28.787Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('00f61f50-1494-42fd-a24c-361979772985', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What keyword is used inside a function to send a value back to the calling code?', 'The `return` keyword exits a function and optionally passes a value back to wherever the function was called. Without `return`, a function implicitly returns `undefined`.', 'easy', 'approved', '1dff3cae-5194-4b91-bf6d-c78dded14433', 170, '2026-03-30T19:29:45.026Z', '2026-03-30T19:29:45.026Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('31634b64-c842-4dbb-becf-94b265dd1df5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does a function return when it has no `return` statement?', 'A function that lacks a `return` statement (or has a bare `return;`) implicitly returns `undefined`. This is important to remember when storing function results in variables.', 'easy', 'approved', '1dff3cae-5194-4b91-bf6d-c78dded14433', 171, '2026-03-30T19:29:45.034Z', '2026-03-30T19:29:45.034Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cf906f57-1285-45cf-b3fe-279ee53124da', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Given the following code, what value is stored in `result`?
+
+```js
+function squared(num) {
+  return num * num;
+}
+const result = squared(4);
+```', '`squared(4)` returns `4 * 4 = 16`. The `return` statement evaluates the expression and sends the result back to the call site, where it is stored in `result`.', 'easy', 'approved', '1dff3cae-5194-4b91-bf6d-c78dded14433', 172, '2026-03-30T19:29:45.039Z', '2026-03-30T19:29:45.039Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0bff41f3-35b0-42dd-8446-d54e87753c27', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When are return values most useful in a function?', 'Return values shine when a function is an **intermediate calculation step** — it computes a value that the calling code then uses for further operations. Functions that only produce side-effects (like displaying a message box) typically do not need to return a value.', 'medium', 'approved', '1dff3cae-5194-4b91-bf6d-c78dded14433', 173, '2026-03-30T19:29:45.041Z', '2026-03-30T19:29:45.041Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d83d600d-253c-4c96-94f4-062d210070bd', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the following `factorial` function return when called with `0`?
+
+```js
+function factorial(num) {
+  if (num < 0) return undefined;
+  if (num === 0) return 1;
+  let x = num - 1;
+  while (x > 1) { num *= x; x--; }
+  return num;
+}
+```', 'The function has an explicit early-return: `if (num === 0) return 1;`. By mathematical definition, 0! = 1, so the function correctly returns `1` for an input of `0`.', 'medium', 'approved', '1dff3cae-5194-4b91-bf6d-c78dded14433', 174, '2026-03-30T19:29:45.048Z', '2026-03-30T19:29:45.048Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2f28877c-40c0-449e-ba7a-5ed07034e829', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the difference between a **parameter** and an **argument** in JavaScript functions?', 'A **parameter** is the variable listed in the function declaration; an **argument** is the actual value passed when calling the function.
+
+Example:
+```js
+function greet(name) {}  // ''name'' is a parameter
+greet(''Alice'');           // ''Alice'' is an argument
+```', 'easy', 'approved', 'ca57063e-f7fa-48cb-87b0-1bad1d7e581f', 175, '2026-03-30T19:30:06.127Z', '2026-03-30T19:30:06.127Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5ae3fd05-2a22-471b-87bb-328917a8c9d0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does a function return if no `return` statement is present or a bare `return;` is used?', 'A function with no `return` statement (or only `return;`) returns `undefined`. This is consistent with JavaScript''s design: every function call is an expression, and its value is `undefined` when nothing is explicitly returned.', 'easy', 'approved', 'ca57063e-f7fa-48cb-87b0-1bad1d7e581f', 176, '2026-03-30T19:30:06.133Z', '2026-03-30T19:30:06.133Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f3290519-53d4-4976-bd3b-18230f93344f', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A function reads (but does not redeclare) a variable from its outer scope. What happens to that outer variable if the function modifies it?', 'When a function modifies an **outer variable** (one declared outside the function and not shadowed by a local variable with the same name), the change is visible in the outer scope as well.
+
+```js
+let name = ''John'';
+function change() { name = ''Bob''; }
+change();
+console.log(name); // ''Bob''
+```', 'medium', 'approved', 'ca57063e-f7fa-48cb-87b0-1bad1d7e581f', 177, '2026-03-30T19:30:06.138Z', '2026-03-30T19:30:06.138Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3afc292f-108c-4d1f-86d5-9572db9194ac', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which common function-naming prefix convention signals that a function **returns a boolean** result after performing a check?', 'By convention, function names starting with `"check…"` indicate they verify something and return a boolean (true/false). Other common prefixes: `"get…"` returns a value, `"create…"` creates something, `"show…"` displays something.', 'easy', 'approved', 'ca57063e-f7fa-48cb-87b0-1bad1d7e581f', 178, '2026-03-30T19:30:06.144Z', '2026-03-30T19:30:06.144Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('032fcf1e-bd83-4cb1-8d82-bac4fe938560', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What value does a local variable declared inside a function hold **outside** that function?', 'Local variables are **not accessible outside** the function they are declared in. Attempting to read a local variable from the global scope results in a `ReferenceError`.', 'easy', 'approved', 'ca57063e-f7fa-48cb-87b0-1bad1d7e581f', 179, '2026-03-30T19:30:06.147Z', '2026-03-30T19:30:06.147Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cbef5985-64f9-4f5d-a7e9-710a9b3d85df', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is a **function expression** in JavaScript?', 'A function expression is a function created **as part of an expression** (e.g., assigned to a variable). It differs from a function declaration, which is a standalone statement.
+
+```js
+// Function Expression
+let sayHi = function() { alert(''Hello''); };
+```', 'easy', 'approved', '7ec07b19-3487-41a3-a5e0-213c6c12bdc5', 180, '2026-03-30T19:30:25.403Z', '2026-03-30T19:30:25.403Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('38e38551-0e9b-434c-ac31-5226bff8a366', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Can a **Function Declaration** be called before it appears in the source code?', 'Yes — Function Declarations are **hoisted**. Before any code runs, JavaScript processes all Function Declarations and makes them available throughout their scope. Function Expressions do not enjoy this behaviour.', 'easy', 'approved', '7ec07b19-3487-41a3-a5e0-213c6c12bdc5', 181, '2026-03-30T19:30:25.410Z', '2026-03-30T19:30:25.410Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a542d5ad-b864-432c-8623-8a8da9551dd2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is a **callback function**?', 'A callback function is a function **passed as an argument** to another function, intended to be called at a later point — for example when an event occurs or an asynchronous operation finishes.
+
+```js
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
+}
+ask(''Agree?'', function() { alert(''Yes!''); }, function() { alert(''No!''); });
+```', 'easy', 'approved', '7ec07b19-3487-41a3-a5e0-213c6c12bdc5', 182, '2026-03-30T19:30:25.414Z', '2026-03-30T19:30:25.414Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d0005625-0547-4884-b1f0-040873a91ab0', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Why does a Function Expression have a semicolon at the end, while a Function Declaration typically does not?
+
+```js
+// A
+function sayHi() { /* … */ }
+
+// B
+let sayHi = function() { /* … */ };
+```', 'In example **B**, the semicolon belongs to the **assignment statement** (`let sayHi = …;`), not to the function syntax itself. Any assignment statement should end with `;`. Example **A** is a standalone function declaration which is not a statement that requires a trailing semicolon.', 'medium', 'approved', '7ec07b19-3487-41a3-a5e0-213c6c12bdc5', 183, '2026-03-30T19:30:25.419Z', '2026-03-30T19:30:25.419Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7f6c6117-fec3-49d6-9ffe-7fe8916a8dba', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A Function Declaration is inside an `if` block. In strict mode, what is its visibility **outside** that block?', 'In **strict mode**, a Function Declaration inside a code block (`{}`) is **limited to that block**. It is not visible outside. To make a function conditionally available outside a block, use a Function Expression assigned to a variable declared outside the block.
+
+```js
+let welcome;
+if (age < 18) {
+  welcome = function() { alert(''Hello!''); };
+} else {
+  welcome = function() { alert(''Greetings!''); };
+}
+welcome(); // works
+```', 'medium', 'approved', '7ec07b19-3487-41a3-a5e0-213c6c12bdc5', 184, '2026-03-30T19:30:25.422Z', '2026-03-30T19:30:25.422Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('41c1d4c0-5dcf-47f1-b7ca-bb8cc10a6029', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which of the following correctly rewrites this function as an arrow function?
+
+```js
+let double = function(n) { return n * 2; };
+```', '`n => n * 2` is the concise arrow function form. When there is exactly **one parameter**, parentheses can be omitted. When the body is a **single expression**, curly braces and `return` can also be omitted — the expression is implicitly returned.', 'easy', 'approved', '5bbb6524-5939-40f5-a21b-01199d5a3ca5', 185, '2026-03-30T19:30:44.332Z', '2026-03-30T19:30:44.332Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3b5865fc-2950-4916-b5ce-bfa381395cb3', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'An arrow function with **no parameters** must be written with:', 'Even when there are no parameters, arrow functions require an **empty pair of parentheses** before the `=>`.
+
+```js
+let sayHi = () => alert(''Hello!'');
+```', 'easy', 'approved', '5bbb6524-5939-40f5-a21b-01199d5a3ca5', 186, '2026-03-30T19:30:44.336Z', '2026-03-30T19:30:44.336Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('02b34395-dbb6-4e78-aac5-ad8c4db2ff20', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'When does a multiline arrow function need an explicit `return` statement?', 'When the arrow function body is wrapped in **curly braces** (`{}`), an explicit `return` is required — just like a regular function. Without curly braces (single-expression form), the expression is implicitly returned.', 'easy', 'approved', '5bbb6524-5939-40f5-a21b-01199d5a3ca5', 187, '2026-03-30T19:30:44.339Z', '2026-03-30T19:30:44.339Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('83c6252d-1f7b-486a-bffc-a7bfba9d4420', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is the result of calling `sum(1, 2)` with the arrow function below?
+
+```js
+let sum = (a, b) => {
+  let result = a + b;
+  return result;
+};
+```', 'The function explicitly returns `a + b = 1 + 2 = 3`. Because the body uses curly braces, `return` is mandatory — and it is present here, so the function correctly returns `3`.', 'easy', 'approved', '5bbb6524-5939-40f5-a21b-01199d5a3ca5', 188, '2026-03-30T19:30:44.341Z', '2026-03-30T19:30:44.341Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f20b60f9-fa57-4b3b-bde8-809e70758f00', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Arrow functions are described as coming in two flavors. Which of the following correctly describes **both** flavors?', 'Arrow functions have two forms:
+1. **Without curly braces** — `(...args) => expression`: the expression is evaluated and implicitly returned.
+2. **With curly braces** — `(...args) => { body }`: multiple statements are allowed, but `return` must be explicit.', 'medium', 'approved', '5bbb6524-5939-40f5-a21b-01199d5a3ca5', 189, '2026-03-30T19:30:44.342Z', '2026-03-30T19:30:44.342Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bfedcef7-1774-4ea3-91d6-205ead36eca2', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Consider the following code. What does it log?
+
+```js
+let value = greet();
+console.log(value);
+
+function greet() {
+  console.log(''Hi!'');
+}
+```', 'Two things happen:
+1. `greet()` IS callable before its definition because it is a **function declaration** (hoisted).
+2. `greet()` has no `return` statement, so it returns `undefined`.
+
+Output:
+```
+Hi!
+undefined
+```
+
+This question combines **hoisting** (from function-expressions) with **implicit return values** (from function-basics and return-values).', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 190, '2026-03-30T19:31:06.597Z', '2026-03-30T19:31:06.597Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7423e26f-3cde-4384-8b99-3a6f8bc6e51c', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What does the arrow function below return when called as `process(5)`?
+
+```js
+const process = n => { n * 2; };
+```', 'The arrow function uses **curly braces** but has no `return` statement. In the curly-brace form, a value is only returned with an explicit `return`. Without it the function returns `undefined`.
+
+To fix it:
+```js
+const process = n => n * 2;      // implicit return (no braces)
+const process = n => { return n * 2; }; // explicit return (braces)
+```', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 191, '2026-03-30T19:31:06.605Z', '2026-03-30T19:31:06.605Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4f1b6357-64d6-4489-9fbf-5c557ec652d5', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'A developer writes this event listener. The message box appears **immediately** when the page loads, not when the button is clicked. What is the cause?
+
+```js
+btn.addEventListener(''click'', displayMessage(''Error!'', ''warning''));
+```', 'Adding `()` after `displayMessage` **invokes** the function immediately during `addEventListener` registration. The return value (likely `undefined`) is then registered as the ''callback'', so nothing happens on click.
+
+Correct form:
+```js
+btn.addEventListener(''click'', () => displayMessage(''Error!'', ''warning''));
+```
+
+This question combines the **function invocation operator** (from MDN Build your own function) with **passing functions as values** (from javascript.info function-expressions).', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 192, '2026-03-30T19:31:06.608Z', '2026-03-30T19:31:06.608Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1ed6d01e-fc9a-453f-b0ee-f09ccf0da527', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'What is logged by the following code?
+
+```js
+let x = 10;
+
+function outer() {
+  let x = 20;
+  function inner() {
+    console.log(x);
+  }
+  inner();
+}
+outer();
+```', '`inner()` reads `x`. It has no local `x`, so it looks up the scope chain and finds `x = 20` inside `outer` — the **closest enclosing scope**. The global `x = 10` is shadowed by `outer`''s local `x`.
+
+This question blends **function scope and closures** (MDN Functions) with **local vs outer variables** (javascript.info function-basics).', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 193, '2026-03-30T19:31:06.612Z', '2026-03-30T19:31:06.612Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1e63b5d0-cc32-4280-b8e2-766753bed6f4', '7001f806-ee7e-41d6-bd31-7ee6c9b80096', 'Which version of `checkAge` is **functionally equivalent** to the original?
+
+```js
+// Original
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm(''Did parents allow you?'');
+  }
+}
+```', 'Because `return true;` exits the function immediately, the `else` branch is only reached when `age <= 18`. The `else` keyword is therefore **redundant** — dropping it produces identical behaviour.
+
+```js
+function checkAge(age) {
+  if (age > 18) return true;
+  return confirm(''Did parents allow you?'');
+}
+```
+
+This tests understanding of **early returns** (return-values) and the subtle difference between branching and sequential execution (function-basics).', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 194, '2026-03-30T19:31:06.616Z', '2026-03-30T19:31:06.616Z');

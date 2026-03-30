@@ -1,5 +1,5 @@
 -- Table: attempt_answers
--- Generated: 2026-03-30T05:32:06.529Z
+-- Generated: 2026-03-30T22:56:02.917Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "attempt_answers" CASCADE;
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "attempt_answers" (
 );
 
 
--- Data: 20 row(s)
+-- Data: 30 row(s)
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('8c2c4a30-c1de-4bb2-92d2-b4d8a35785aa', '0a030907-8bcd-4091-a891-f71eb2627e77', '4a77019e-661e-40a4-9be0-cf63b4f9719e', 'f8f9cd71-90bf-449a-8d15-197c2252b788', TRUE, '2026-03-27T08:50:34.157Z');
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('8586183b-b956-49b1-b8ba-38bc5473920e', '0a030907-8bcd-4091-a891-f71eb2627e77', '8b730d13-fbba-4558-9a91-d6bd2a38a4cc', 'eb6840b4-6a11-40da-b91f-61d1d2ba7eb9', TRUE, '2026-03-27T08:50:44.760Z');
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('3cdb9ca2-03fa-44bc-86aa-dd592b24fcc1', '0a030907-8bcd-4091-a891-f71eb2627e77', '4e8dbbb4-0fce-4f16-b4c5-b9feb3b6ebbc', 'b79656bc-3f2a-4b0c-8602-74c8af4e4ba1', TRUE, '2026-03-27T08:51:05.190Z');
@@ -38,3 +38,13 @@ INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_opti
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('fcaf47f7-16a7-4010-b45f-4650a7053b4a', 'd09a4db1-3de1-456e-9640-8b8fdd1d1ea0', '528bf0bc-d65f-42bf-b13d-93682b21768e', '63034c24-834a-45fb-b702-ed515542b706', FALSE, '2026-03-29T07:08:17.230Z');
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('9b52bd85-cc1e-401d-81e5-2f14f64b151c', 'd09a4db1-3de1-456e-9640-8b8fdd1d1ea0', '405d865f-defd-481e-8de3-57a0f28545d4', '5ad48284-04f7-4893-820e-c4af4de0e7df', FALSE, '2026-03-29T07:08:43.521Z');
 INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('c79f3409-22b7-4a38-9dc7-ad8df3c3605d', 'd09a4db1-3de1-456e-9640-8b8fdd1d1ea0', '1b0c221e-834a-469c-97b6-b1982da430ed', '5437eff1-8bee-4105-af27-7757c4e5c2b3', FALSE, '2026-03-29T07:08:47.445Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('be2610f4-0295-452c-ad47-7571d3a3c3a3', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', 'fd6c31b1-0190-4405-947e-275359b9c784', '13c4ca66-6baa-43ea-8c0d-a6e7b3466c86', TRUE, '2026-03-30T05:55:22.781Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('73a900e5-5e7f-49f9-9145-ce3af63ba4f1', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '597c14e2-a1bd-4d14-bae1-5a103a64e31e', '58ca6d15-b477-430a-9490-009f44cc5d83', FALSE, '2026-03-30T05:55:50.177Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('19a767d2-2ac4-4203-bdb4-bf16abb8a87a', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', 'd89e4dd7-d1bc-4db0-a50d-aa7a3857b1a2', '9c3339d5-deff-4c27-be39-29e4047bfe22', FALSE, '2026-03-30T05:56:09.167Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('85c8cca5-b38f-4b4a-b0e6-798d063499d9', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '5f1196d0-4023-46ed-af8f-49c9cad02275', '625769e6-eba9-47cf-a819-bfd5515c70ca', FALSE, '2026-03-30T05:57:01.982Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('f3201aaa-e4f2-42bd-8860-1f7254b28d89', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', 'a65fb29a-d136-44d3-8ce3-8e3dc6252eba', 'e36dfbc3-4f0e-4466-bbde-c144b2cd715b', TRUE, '2026-03-30T05:57:34.518Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('481c13a7-afb0-413d-b8ca-901f6f59dd50', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', 'd49f0c2d-4731-4342-89c7-a31566bdd896', 'dbe5fac1-45fb-483b-a253-279d11110dba', FALSE, '2026-03-30T05:57:56.929Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('086819c4-86a5-4d73-b876-86f669e49eab', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '53e7c29e-5a6f-4c5c-9fbb-361e92206b94', '4b3d4811-0c31-40af-aab4-e765fa9c4b3d', TRUE, '2026-03-30T05:59:00.800Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('03c48ecb-6627-43bc-83f7-4b4122ad7673', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '3c0ca079-c9c7-4307-ae36-8e57dde5ddd9', '598e7745-8b7b-48d2-b597-22920fc6805f', TRUE, '2026-03-30T05:59:20.671Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('ca17461c-9619-4a21-8325-47cab99a460a', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '0ce15032-1160-4b40-a051-016d5c42864d', '8f498676-1887-453f-8ce4-a6262f0db883', TRUE, '2026-03-30T05:59:31.831Z');
+INSERT INTO "attempt_answers" ("id", "attempt_id", "question_id", "selected_option_id", "is_correct", "answered_at") VALUES ('ba39bafb-a267-48b5-acd4-7e75beda28ed', 'dd364be2-e3f5-420a-ac72-4e1b7936fe4a', '296a243d-f5ba-4412-a17d-0e3543e61c6b', '274f1bb9-2f68-4aa1-9232-8d4cc37062a3', TRUE, '2026-03-30T06:00:13.365Z');
