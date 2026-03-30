@@ -27,10 +27,14 @@ This repository includes shared AI customization files for multiple tools.
 - `.github/copilot-instructions.md`: repository-wide GitHub Copilot instructions
 - `.github/agents/question-intake.agent.md`: GitHub Copilot custom agent for source reading, question drafting, and temp JSON artifact creation
 - `.github/agents/question-publisher.agent.md`: GitHub Copilot custom agent for approved artifact import, certification resolution, and temp cleanup
+- `.github/agents/question-review-retriever.agent.md`: GitHub Copilot custom agent for exporting existing certification questions and answers into temp review artifacts
+- `.github/agents/question-reviewer.agent.md`: GitHub Copilot custom agent for reviewing exported certification question artifacts in batches and pruning unchanged entries
+- `.github/agents/question-review-applier.agent.md`: GitHub Copilot custom agent for validating reviewed artifacts, applying proposed changes, and optionally removing the temp file
 - `.github/skills/frontend-design/`: project skill for GitHub Copilot and VS Code skill discovery
 - `.github/skills/drizzle-database/`: project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.github/skills/ingestion-generation/`: project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.github/skills/question-import-workflow/`: project skill for supervisor-reviewed JSON question import and direct publish workflows
+- `.github/skills/question-review-workflow/`: project skill for retrieving, reviewing, pruning, and applying existing certification question updates through temp artifacts
 - `.github/skills/quiz-workflow/`: project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.github/skills/shadcn/`: project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.github/skills/tailwind-design-system/`: project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
@@ -39,6 +43,7 @@ This repository includes shared AI customization files for multiple tools.
 - `.claude/skills/drizzle-database/`: mirrored project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.claude/skills/ingestion-generation/`: mirrored project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.claude/skills/question-import-workflow/`: mirrored project skill for supervisor-reviewed JSON question import and direct publish workflows
+- `.claude/skills/question-review-workflow/`: mirrored project skill for retrieving, reviewing, pruning, and applying existing certification question updates through temp artifacts
 - `.claude/skills/quiz-workflow/`: mirrored project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.claude/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.claude/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
@@ -47,12 +52,13 @@ This repository includes shared AI customization files for multiple tools.
 - `.agents/skills/drizzle-database/`: mirrored project skill for Drizzle schema, relations, queries, and SQLite/PostgreSQL portability work
 - `.agents/skills/ingestion-generation/`: mirrored project skill for source import, LLM generation, provenance, and review-gated draft persistence
 - `.agents/skills/question-import-workflow/`: mirrored project skill for supervisor-reviewed JSON question import and direct publish workflows
+- `.agents/skills/question-review-workflow/`: mirrored project skill for retrieving, reviewing, pruning, and applying existing certification question updates through temp artifacts
 - `.agents/skills/quiz-workflow/`: mirrored project skill for quiz rules, review flow, approval gating, results, and deduplication behavior
 - `.agents/skills/shadcn/`: mirrored project skill for safe shadcn/ui component reuse, composition, and conservative CLI-driven updates
 - `.agents/skills/tailwind-design-system/`: mirrored project skill for Tailwind v4 tokens, component variants, and CSS-first design-system work
 - `.agents/skills/web-design-guidelines/`: mirrored project skill for UI review and guideline-based frontend audits
 
-The `drizzle-database`, `frontend-design`, `ingestion-generation`, `question-import-workflow`, `quiz-workflow`, `shadcn`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
+The `drizzle-database`, `frontend-design`, `ingestion-generation`, `question-import-workflow`, `question-review-workflow`, `quiz-workflow`, `shadcn`, `tailwind-design-system`, and `web-design-guidelines` skills are intentionally mirrored across all three skill directories so different AI tools can discover the same workflows.
 
 ## Using The Question Import Agents
 
@@ -224,9 +230,75 @@ npm run questions:import-approved -- --file tmp/advanced-react-hooks-questions.j
 
 After a successful import, the script deletes the temp JSON artifact automatically.
 
+## Using The Question Review Agents
+
+This repository also includes a two-agent workflow for reviewing and improving existing certification questions already stored in the database.
+
+This repository also includes a three-agent workflow for reviewing and improving existing certification questions already stored in the database.
+
+### What Each Agent Does
+
+- `Question Review Retriever`: exports all questions and answers for one certification into a temp JSON artifact with preserved ids and batch metadata
+- `Question Reviewer`: reviews them in batches instead of trying to rewrite a large certification in one pass, then removes unchanged questions so the file shrinks to only actionable updates
+- `Question Review Applier`: validates the reviewed artifact, applies its proposed changes to the database, and optionally removes the temp file after success
+
+The agents are defined in:
+
+- `.github/agents/question-review-retriever.agent.md`
+- `.github/agents/question-reviewer.agent.md`
+- `.github/agents/question-review-applier.agent.md`
+
+The shared workflow rules live in:
+
+- `.github/skills/question-review-workflow/`
+
+Under the hood, the workflow uses two CLI commands:
+
+```bash
+npm run questions:export-review -- --cert-slug react-fundamentals
+npm run questions:apply-review -- --file tmp/react-fundamentals-question-review-20260331-120000.json
+```
+
+### Recommended Flow
+
+1. Select the `Question Review Retriever` agent in Copilot Chat.
+2. Give it the certification slug or id and, if needed, a preferred batch size or status filter.
+3. Let it export the review artifact into `tmp/` or `temp/`.
+4. Hand off to `Question Reviewer`.
+5. Let it review one batch at a time and prune unchanged questions from the JSON file.
+6. Review the remaining proposed changes.
+7. Hand off to `Question Review Applier` when you are satisfied.
+8. Let it apply the artifact back to the database and optionally remove the temp file.
+
+### Export Example
+
+```bash
+npm run questions:export-review -- --cert-slug react-fundamentals --batch-size 20
+```
+
+Optional flags:
+
+- `--cert-id <id>`
+- `--status <draft,approved,rejected>`
+- `--out temp/<artifact>.json`
+
+### Apply Example
+
+```bash
+npm run questions:apply-review -- --file tmp/react-fundamentals-question-review-20260331-120000.json
+```
+
+Optional flags:
+
+- `--remove-file`
+
+### Review Artifact Note
+
+When rewriting options, preserve the same `optionId` values and option count. The current apply workflow updates existing option rows in place; it does not add or remove answer rows.
+
 ### Current Limitation
 
-The approval artifact stores detailed references for each question, but the current database schema only persists `sourceId` plus the question explanation. If you want those detailed citations to appear later in the review UI, quiz UI, or results UI, that requires an additional schema and UI change.
+The temp review and import artifacts can store detailed references for each question, but the current database schema only persists `sourceId` plus the question explanation. If you want those detailed citations to appear later in the review UI, quiz UI, or results UI, that requires an additional schema and UI change.
 
 ## Skill Sync Note
 
@@ -242,8 +314,11 @@ When editing mirrored skills, keep the corresponding directories synchronized:
 - `.claude/skills/ingestion-generation/`
 - `.agents/skills/ingestion-generation/`
 - `.github/skills/question-import-workflow/`
+- `.github/skills/question-review-workflow/`
 - `.claude/skills/question-import-workflow/`
+- `.claude/skills/question-review-workflow/`
 - `.agents/skills/question-import-workflow/`
+- `.agents/skills/question-review-workflow/`
 - `.github/skills/quiz-workflow/`
 - `.claude/skills/quiz-workflow/`
 - `.agents/skills/quiz-workflow/`

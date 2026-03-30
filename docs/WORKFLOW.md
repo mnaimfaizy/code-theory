@@ -26,6 +26,15 @@ Provide URL / document → Generate temp JSON artifact with references and expla
 → Questions publish directly when the approved artifact requests direct publish
 ```
 
+Existing question banks can also follow a temp review artifact flow:
+
+```
+Select certification → Export existing questions and answers to tmp/ or temp/
+→ Review in batches → Remove unchanged questions from the artifact
+→ Keep only proposed rewrites with preserved question and option ids
+→ Apply the reviewed artifact back to the database
+```
+
 ### 3. Import Documentation
 
 ```
