@@ -35,7 +35,43 @@ The preferred workflow is:
 
 Do not collapse approval and publish into one hidden step.
 
-### 3. Preserve references in the artifact
+### 3. Artifact schema (must match exactly)
+
+The artifact is validated by the Zod schema in `src/server/services/question-import-service.ts`. Non-conforming artifacts will be rejected. Key requirements:
+
+#### `source` object (required)
+
+```json
+"source": {
+  "type": "url",           // REQUIRED — "url" or "file"
+  "ref": "https://...",    // REQUIRED — the URL or file path
+  "title": "Page title",  // optional
+  "coverageNotes": "..."  // optional
+}
+```
+
+**Do NOT** use keys like `url`, `fetchedAt`, `link`, or `path` — the only accepted keys are `type`, `ref`, `title`, `coverageNotes`.
+
+#### `approval` object (required)
+
+```json
+"approval": {
+  "approved": false,                     // REQUIRED — false during intake, true when approved
+  "supervisor": "Pending human review",  // REQUIRED — non-empty string
+  "approvedAt": "",                      // REQUIRED — non-empty string (placeholder ok during intake)
+  "publishDirectly": true                // optional, defaults to true
+}
+```
+
+#### Per-question `approved` field (critical behavior)
+
+The import service resolves each question's approval as: **`question.approved ?? artifact.approval.approved`**.
+
+- If a question has `"approved": false`, it is **skipped** even when the artifact-level `approval.approved` is `true`.
+- **During intake**: omit the `approved` field on individual questions entirely. All questions inherit the artifact-level flag.
+- **During review**: a reviewer may set `"approved": false` on specific questions to reject them. Unrejected questions should omit the field or set it to `true`.
+
+### 4. Preserve references in the artifact
 
 Each generated question should include:
 
@@ -46,15 +82,15 @@ Each generated question should include:
 
 The current database preserves `sourceId` and explanations, but not detailed per-question citation fields. Keep detailed references in the temp artifact unless the schema is explicitly extended.
 
-### 4. Require approval before publish
+### 5. Require approval before publish
 
 Questions should not be imported until the JSON artifact shows explicit supervisor approval.
 
 - use `approval.approved` for whole-artifact approval
-- use `question.approved` for per-question approval when needed
+- use `question.approved` only when a reviewer explicitly rejects specific questions
 - if the approved artifact requests direct publish, store imported questions as `approved`
 
-### 5. Resolve certification explicitly
+### 6. Resolve certification explicitly
 
 If the target certification is missing, ask whether to:
 
@@ -63,7 +99,7 @@ If the target certification is missing, ask whether to:
 
 If creating a new certification, do that first and then import the approved questions.
 
-### 6. Use the supported import path
+### 7. Use the supported import path
 
 Prefer the dedicated import script over ad hoc database manipulation:
 
@@ -72,3 +108,5 @@ npm run questions:import-approved -- --file tmp/<artifact>.json
 ```
 
 Add `--cert-id`, `--cert-slug`, or `--create-cert` when the artifact does not already identify the target certification cleanly.
+
+The script automatically deletes the temp artifact file on successful import.

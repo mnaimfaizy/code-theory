@@ -34,10 +34,8 @@ Use a JSON artifact similar to this:
 ```json
 {
   "certification": {
-    "slug": "react-fundamentals",
-    "title": "React Fundamentals",
-    "description": "Core React concepts and day-to-day usage.",
-    "createIfMissing": false
+    "id": "7001f806-ee7e-41d6-bd31-7ee6c9b80096",
+    "title": "JavaScript Junior Developer"
   },
   "source": {
     "type": "url",
@@ -58,7 +56,6 @@ Use a JSON artifact similar to this:
       "questionType": "multiple-choice",
       "difficulty": "medium",
       "explanation": "Keys help React match list items across renders so it can preserve state and apply updates efficiently.",
-      "approved": false,
       "reference": {
         "sourceRef": "https://react.dev/learn/rendering-lists",
         "locator": "Rendering Lists",
@@ -78,6 +75,14 @@ Use a JSON artifact similar to this:
 }
 ```
 
+### Critical schema notes
+
+1. **`source` must use `type` + `ref`** — not `url`, `link`, `path`, or `fetchedAt`. The Zod schema in `question-import-service.ts` only accepts `{ type: "url" | "file", ref: string }`.
+
+2. **Do NOT set `"approved": false` on individual questions during intake.** The import service resolves each question's approval as `question.approved ?? artifact.approval.approved`. Setting `false` on a question overrides the artifact-level `true` and causes the question to be skipped. Omit the `approved` field on questions entirely — the artifact-level `approval.approved` governs all questions by default. Only use per-question `approved: false` when a reviewer explicitly rejects a specific question.
+
+3. **`approval.supervisor` and `approval.approvedAt` must be non-empty strings** — use placeholder values during intake (e.g., `"Pending human review"` and `""`).
+
 ## Import command
 
 ```bash
@@ -90,6 +95,8 @@ Optional flags:
 - `--cert-slug <slug>`
 - `--create-cert`
 - `--created-by <userId>`
+
+The script automatically deletes the temp artifact file on successful import.
 
 ## Known limitation
 
