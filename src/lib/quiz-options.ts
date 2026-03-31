@@ -15,8 +15,12 @@ function getUniqueSorted(values: number[]) {
 export function sanitizeQuizQuestionCount(
   value: number | null | undefined,
   totalQuestions?: number,
-) {
-  if (!Number.isInteger(value) || value < MIN_QUIZ_QUESTION_COUNT) {
+): number | undefined {
+  if (
+    typeof value !== "number" ||
+    !Number.isInteger(value) ||
+    value < MIN_QUIZ_QUESTION_COUNT
+  ) {
     return undefined;
   }
 
@@ -46,8 +50,10 @@ export function getQuizQuestionCountOptions(totalQuestions: number) {
   ]);
 }
 
-export function sanitizeQuizDurationMinutes(value: number | null | undefined) {
-  if (!Number.isInteger(value)) {
+export function sanitizeQuizDurationMinutes(
+  value: number | null | undefined,
+): number | undefined {
+  if (typeof value !== "number" || !Number.isInteger(value)) {
     return undefined;
   }
 

@@ -12,14 +12,14 @@ A local-first certification quiz application for personal study and exam prepara
 | [DATABASE.md](DATABASE.md)           | Schema design, SQLite/PostgreSQL portability, migrations     |
 | [INGESTION.md](INGESTION.md)         | URL/file import, chunking, provenance, local LLM integration |
 | [DEDUPLICATION.md](DEDUPLICATION.md) | Duplicate detection rules, thresholds, review behaviour      |
-| [DEPLOYMENT.md](DEPLOYMENT.md)       | Local-first operation and optional production deployment     |
+| [DEPLOYMENT.md](DEPLOYMENT.md)       | cPanel Node.js deployment, FTP workflow, and SQL migration   |
 
 ## Quick Start
 
 ```bash
 npm install
 cp .env.example .env.local
-npm run db:push        # create SQLite database
+npm run db:push        # create local database (SQLite by default)
 npm run db:seed        # seed demo data
 npm run dev            # start dev server on http://localhost:3000
 ```

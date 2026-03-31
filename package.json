@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:cpanel": "npm run build && npm run deploy:prepare-cpanel",
     "start": "next start",
     "lint": "eslint",
     "db:push": "drizzle-kit push",
@@ -14,6 +15,8 @@
     "db:normalize-sources": "npx tsx scripts/normalize-source-refs.ts",
     "db:export": "npx tsx scripts/export-to-pg.ts",
     "db:apply-sql": "npx tsx scripts/apply-pg-sql.ts",
+    "db:migrate-sql": "npx tsx scripts/apply-pg-sql.ts",
+    "deploy:prepare-cpanel": "npx tsx scripts/prepare-cpanel-deploy.ts",
     "questions:import-approved": "npx tsx scripts/import-approved-questions.ts",
     "questions:export-review": "npx tsx scripts/export-certification-review.ts",
     "questions:validate-review": "npx tsx scripts/validate-question-review.ts",

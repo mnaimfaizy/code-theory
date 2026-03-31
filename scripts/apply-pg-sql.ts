@@ -9,6 +9,7 @@
  *
  * npm shorthand:
  *   npm run db:apply-sql                    # all tables
+ *   npm run db:migrate-sql                  # all tables
  *   npm run db:apply-sql -- all             # all tables
  *   npm run db:apply-sql -- users           # specific table(s)
  */
@@ -16,6 +17,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { Client } from "pg";
+import { fileURLToPath } from "url";
 
 const SQL_DIR = path.join(process.cwd(), "sql");
 const ALL_TABLE_TOKENS = new Set(["all", "--all"]);
@@ -31,6 +33,8 @@ const ALL_TABLES = [
 ] as const;
 
 type TableName = (typeof ALL_TABLES)[number];
+
+const GUARDED_TABLES = new Set<TableName>(["users"]);
 
 function resolveTablesToApply(args: string[]): TableName[] {
   if (args.length === 0 || args.some((arg) => ALL_TABLE_TOKENS.has(arg))) {
@@ -80,6 +84,26 @@ function readTableSql(tableName: TableName): string {
   return fs.readFileSync(filePath, "utf-8");
 }
 
+export function applyTableGuards(tableName: TableName, sql: string): string {
+  if (!GUARDED_TABLES.has(tableName)) {
+    return sql;
+  }
+
+  return sql
+    .replace(/^DROP TABLE IF EXISTS "users" CASCADE;\s*$/gim, "")
+    .replace(
+      /^TRUNCATE TABLE "users"(?:\s+RESTART IDENTITY)?(?:\s+CASCADE)?;\s*$/gim,
+      "",
+    )
+    .replace(/^DELETE FROM "users".*;\s*$/gim, "")
+    .replace(
+      /^INSERT INTO "users" \((.+)\) VALUES \((.+)\);$/gim,
+      'INSERT INTO "users" ($1) VALUES ($2) ON CONFLICT DO NOTHING;',
+    )
+    .trim()
+    .concat("\n");
+}
+
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const tablesToApply = resolveTablesToApply(args);
@@ -96,9 +120,32 @@ async function main(): Promise<void> {
 
   try {
     for (const tableName of tablesToApply) {
-      const sql = readTableSql(tableName);
-      await client.query(sql);
-      console.log(`  Applied: sql/${tableName}.sql`);
+      const sql = applyTableGuards(tableName, readTableSql(tableName));
+
+      if (!sql.trim()) {
+        console.log(
+          `  Skipped: sql/${tableName}.sql (no executable statements)`,
+        );
+        continue;
+      }
+
+      await client.query("BEGIN");
+
+      try {
+        await client.query(sql);
+        await client.query("COMMIT");
+      } catch (error) {
+        await client.query("ROLLBACK");
+        throw error;
+      }
+
+      if (GUARDED_TABLES.has(tableName)) {
+        console.log(
+          `  Applied with guard: sql/${tableName}.sql (existing users preserved)`,
+        );
+      } else {
+        console.log(`  Applied: sql/${tableName}.sql`);
+      }
     }
 
     console.log(
@@ -109,4 +156,8 @@ async function main(): Promise<void> {
   }
 }
 
-void main();
+const currentFilePath = fileURLToPath(import.meta.url);
+
+if (process.argv[1] && path.resolve(process.argv[1]) === currentFilePath) {
+  void main();
+}

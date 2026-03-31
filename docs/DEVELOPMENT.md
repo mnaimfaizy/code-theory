@@ -12,14 +12,14 @@
 git clone <repo-url> && cd code-theory
 npm install
 cp .env.example .env.local   # edit as needed
-npm run db:push               # create SQLite database
+npm run db:push               # create local database (SQLite by default)
 npm run db:seed               # seed demo data
 npm run dev                   # http://localhost:3000
 ```
 
 ## Optional Local PostgreSQL Stack
 
-If you want to test the generated PostgreSQL SQL files locally, start the included Docker Compose stack:
+If you want to run the app or test the generated SQL files against PostgreSQL locally, start the included Docker Compose stack:
 
 ```bash
 docker compose up -d
@@ -44,12 +44,21 @@ To stop the stack:
 docker compose down
 ```
 
+To run the app locally against PostgreSQL instead of SQLite:
+
+```bash
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:push
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:seed
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run dev
+```
+
 ## Scripts
 
 | Command                              | Description                                                 |
 | ------------------------------------ | ----------------------------------------------------------- |
 | `npm run dev`                        | Start dev server with Turbopack                             |
 | `npm run build`                      | Production build                                            |
+| `npm run build:cpanel`               | Build and prepare the FTP bundle for cPanel                 |
 | `npm run start`                      | Start production server                                     |
 | `npm run lint`                       | Run ESLint                                                  |
 | `npm run db:push`                    | Push schema to database                                     |
@@ -58,11 +67,20 @@ docker compose down
 | `npm run db:generate`                | Generate migration files                                    |
 | `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
 | `npm run db:apply-sql`               | Apply root `sql/` files to a PostgreSQL database            |
+| `npm run db:migrate-sql`             | Alias for `db:apply-sql` with guarded `users` handling      |
+| `npm run deploy:prepare-cpanel`      | Assemble `.deploy/cpanel/` from the standalone build        |
 | `npm run questions:export-review`    | Export an existing certification to a temp review artifact  |
 | `npm run questions:validate-review`  | Validate a review artifact before apply                     |
 | `npm run questions:reconcile-review` | Refresh a stale review artifact onto a fresh export         |
 | `npm run questions:apply-review`     | Apply reviewed question updates from a temp artifact        |
 | `npm run questions:import-approved`  | Import a human-approved generated question artifact         |
+
+`DATABASE_URL` selects the active database target for the app and Drizzle commands:
+
+- omit it, or use a `file:` path, to use SQLite
+- use a `postgres://` or `postgresql://` URL to use PostgreSQL
+
+The `db:export` script remains SQLite-sourced and writes PostgreSQL-compatible SQL files into the root `sql/` directory.
 
 ### PostgreSQL SQL Exports
 
@@ -81,18 +99,46 @@ The exporter removes existing `sql/*.sql` files before writing the new output so
 After generating the SQL files, point `DATABASE_URL` at a PostgreSQL database and apply them in foreign-key-safe order:
 
 ```bash
-npm run db:apply-sql
-npm run db:apply-sql -- all
-npm run db:apply-sql -- users certifications
+npm run db:migrate-sql
+npm run db:migrate-sql -- all
+npm run db:migrate-sql -- users certifications
 ```
 
 The apply step reads the root `sql/` directory and executes one table file at a time against PostgreSQL.
+When the `users` table is included, the migration strips destructive `DROP`, `TRUNCATE`, and `DELETE` statements and rewrites inserts to `ON CONFLICT DO NOTHING` so existing users are preserved.
 
 With the Docker Compose stack running, you can test the generated SQL files locally with:
 
 ```bash
-DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:apply-sql
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:migrate-sql
 ```
+
+### cPanel FTP Bundle
+
+Prepare the standalone deployment bundle that is intended for cPanel shared hosting:
+
+```bash
+npm run build:cpanel
+```
+
+This writes a ready-to-upload bundle into `.deploy/cpanel/` with:
+
+- the Next.js standalone server output
+- copied `.next/static` assets
+- copied `public/` assets
+- an `app.js` Passenger-friendly startup file
+- `tmp/restart.txt` so a fresh upload can trigger an app restart
+
+The GitHub Actions workflow uses a build-time placeholder SQLite `DATABASE_URL` so `next build` can complete without a live production database. The deployed cPanel application itself should still use a PostgreSQL `DATABASE_URL` configured in cPanel.
+
+### GitHub Actions
+
+The repository ships two workflows under `.github/workflows/`:
+
+- `ci.yml` prepares dependencies once, saves a cache for `node_modules` and `~/.npm`, runs lint and test jobs in parallel, and runs `npm run build` only after `prepare`, `lint`, and `test` finish.
+- `deploy-cpanel.yml` builds the standalone cPanel bundle and deploys it over FTPS.
+
+There is currently no dedicated `test` script in `package.json`, so the CI workflow reports that tests are skipped until one is added.
 
 ### Question Review Artifacts
 
