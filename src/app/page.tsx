@@ -2,10 +2,13 @@ import { getAllCertifications } from "@/server/services/certification-service";
 import { db } from "@/db";
 import { attempts } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
+import { connection } from "next/server";
 import type { CertificationCard } from "@/types";
 import { HomeClient } from "./home-client";
 
 export default async function HomePage() {
+  await connection();
+
   let certs: CertificationCard[] = [];
 
   try {
