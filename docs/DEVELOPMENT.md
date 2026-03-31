@@ -66,8 +66,8 @@ DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm r
 | `npm run db:seed`                    | Seed demo data                                              |
 | `npm run db:generate`                | Generate migration files                                    |
 | `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
-| `npm run db:apply-sql`               | Apply root `sql/` files to a PostgreSQL database            |
-| `npm run db:migrate-sql`             | Alias for `db:apply-sql` with guarded `users` handling      |
+| `npm run db:apply-sql`               | Apply root `sql/` files to PostgreSQL with a runtime-safe Node runner |
+| `npm run db:migrate-sql`             | Alias for `db:apply-sql`; works after `npm install --omit=dev` |
 | `npm run db:apply-sqlite-sql`        | Apply root `sql/` files back into a SQLite database         |
 | `npm run db:migrate-sqlite`          | Alias for `db:apply-sqlite-sql`                             |
 | `npm run deploy:prepare-cpanel`      | Assemble `.deploy/cpanel/` from the standalone build        |
@@ -108,6 +108,7 @@ npm run db:migrate-sql -- users certifications
 
 The apply step reads the root `sql/` directory and executes one table file at a time against PostgreSQL.
 When the `users` table is included, the migration strips destructive `DROP`, `TRUNCATE`, and `DELETE` statements and rewrites inserts to `ON CONFLICT DO NOTHING` so existing users are preserved.
+The PostgreSQL runner now uses plain Node.js instead of `tsx`, so it can also run inside cPanel after `npm install --omit=dev`.
 
 With the Docker Compose stack running, you can test the generated SQL files locally with:
 
@@ -141,10 +142,14 @@ This writes a ready-to-upload bundle into `.deploy/cpanel/` with:
 - the Next.js standalone server output
 - copied `.next/static` assets
 - copied `public/` assets
+- copied `sql/` files for PostgreSQL imports
+- copied `scripts/apply-pg-sql.mjs` so `npm run db:migrate-sql` works on the server
+- `package.json` and `package-lock.json` for runtime dependency installation
 - an `app.js` Passenger-friendly startup file
 - `tmp/restart.txt` so a fresh upload can trigger an app restart
 
 The GitHub Actions workflow uses a build-time placeholder SQLite `DATABASE_URL` so `next build` can complete without a live production database. The deployed cPanel application itself should still use a PostgreSQL `DATABASE_URL` configured in cPanel.
+If the server still needs schema or data import after upload, run `npm run db:migrate-sql` from the deployed application root instead of `npm run db:push`.
 
 ### GitHub Actions
 

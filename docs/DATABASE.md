@@ -132,6 +132,7 @@ npm run db:migrate-sql -- users certifications
 
 The migration script expects the generated files to exist under the root `sql/` directory and executes each requested table file sequentially against PostgreSQL.
 Each table runs inside its own transaction.
+The PostgreSQL apply path now uses `node scripts/apply-pg-sql.mjs`, so it still works in runtime-only environments that install production dependencies with `npm install --omit=dev`.
 
 ### `users` table guard
 
@@ -143,6 +144,17 @@ When `users.sql` is applied, the migration adds a protection layer before execut
 - each `INSERT INTO "users" ...;` becomes `INSERT INTO "users" ... ON CONFLICT DO NOTHING;`
 
 That means the script can create the `users` table if it does not exist yet, but it will not wipe or overwrite users that already exist in the target PostgreSQL database.
+
+### Production and cPanel note
+
+`npm run db:push` remains useful on development or admin machines that install dev dependencies, but it is not suitable for runtime-only cPanel installs because `drizzle-kit` is a dev dependency.
+For deployed cPanel environments, ship the root `sql/` directory and run:
+
+```bash
+npm run db:migrate-sql
+```
+
+The deploy bundle includes both `sql/` and `scripts/apply-pg-sql.mjs` so that command is available after `npm install --omit=dev`.
 
 ## Applying Generated SQL To SQLite
 

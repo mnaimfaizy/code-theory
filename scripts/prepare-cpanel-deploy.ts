@@ -13,6 +13,12 @@ const STANDALONE_NEXT_NODE_MODULES_DIR = path.join(
   "node_modules",
 );
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public");
+const ROOT_SQL_DIR = path.join(PROJECT_ROOT, "sql");
+const POSTGRES_SQL_APPLY_SCRIPT_PATH = path.join(
+  PROJECT_ROOT,
+  "scripts",
+  "apply-pg-sql.mjs",
+);
 const DEPLOY_DIR = path.join(PROJECT_ROOT, ".deploy", "cpanel");
 const ROOT_PACKAGE_JSON_PATH = path.join(PROJECT_ROOT, "package.json");
 const ROOT_PACKAGE_LOCK_PATH = path.join(PROJECT_ROOT, "package-lock.json");
@@ -79,6 +85,7 @@ function copyFileIfExists(sourcePath: string, targetPath: string): void {
     return;
   }
 
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.copyFileSync(sourcePath, targetPath);
 }
 
@@ -153,6 +160,8 @@ function writeCpanelReadmeFile(): void {
     "- server.js",
     "- .next/",
     "- public/",
+    "- sql/",
+    "- scripts/apply-pg-sql.mjs",
     "- package.json",
     "- package-lock.json",
     "- tmp/restart.txt",
@@ -174,8 +183,14 @@ function writeCpanelReadmeFile(): void {
     "npm install --omit=dev",
     "```",
     "",
-    "5. Set or verify the required environment variables in cPanel.",
-    "6. Restart the Node.js application from cPanel.",
+    "5. If PostgreSQL schema or data import is required from the bundled sql/ files, run:",
+    "",
+    "```bash",
+    "npm run db:migrate-sql",
+    "```",
+    "",
+    "6. Set or verify the required environment variables in cPanel.",
+    "7. Restart the Node.js application from cPanel.",
     "",
     "## Required Environment Variables",
     "",
@@ -207,7 +222,9 @@ function writeCpanelReadmeFile(): void {
     "",
     "- Production is expected to use PostgreSQL.",
     "- Do not point DATABASE_URL at SQLite in cPanel production.",
-    "- If schema setup is still required, run db:push from a machine that can reach the PostgreSQL server.",
+    "- The bundled sql/ directory and scripts/apply-pg-sql.mjs runner work after npm install --omit=dev.",
+    "- Use npm run db:migrate-sql in the deployed app root when you need to apply the bundled SQL files.",
+    "- Do not use npm run db:push in runtime-only cPanel installs because drizzle-kit is a dev dependency.",
     "",
     "## Common Failure Modes",
     "",
@@ -246,6 +263,11 @@ function main(): void {
   copyDirectory(STATIC_DIR, path.join(deployNextDir, "static"));
   writeStandaloneModuleWrappers();
   copyDirectory(PUBLIC_DIR, path.join(DEPLOY_DIR, "public"));
+  copyDirectory(ROOT_SQL_DIR, path.join(DEPLOY_DIR, "sql"));
+  copyFileIfExists(
+    POSTGRES_SQL_APPLY_SCRIPT_PATH,
+    path.join(DEPLOY_DIR, "scripts", "apply-pg-sql.mjs"),
+  );
   copyFileIfExists(
     ROOT_PACKAGE_JSON_PATH,
     path.join(DEPLOY_DIR, "package.json"),
@@ -265,6 +287,7 @@ function main(): void {
   console.log(
     "  node_modules: top-level excluded; .next/node_modules wrappers kept",
   );
+  console.log("  Database import: sql/, scripts/apply-pg-sql.mjs");
   console.log("  Package manifests: package.json, package-lock.json");
   console.log("  Ops handoff: CPANEL_README.md");
   console.log("  Startup file: app.js");

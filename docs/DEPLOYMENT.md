@@ -62,11 +62,21 @@ If you do not use local LLM-backed ingestion in production, you can omit the `LL
 
 ### Fresh Schema Setup
 
-From any machine that can reach the PostgreSQL server, initialize the schema with:
+From any machine that can reach the PostgreSQL server and has the full development toolchain installed, you can initialize the schema with:
 
 ```bash
 DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:push
 ```
+
+For cPanel or any runtime-only deployment where dependencies are installed with `npm ci --omit=dev`, do not use `db:push`.
+That command depends on `drizzle-kit`, which is intentionally a development dependency.
+Instead, upload the bundled `sql/` directory and apply it with the production-safe runner after installing runtime dependencies:
+
+```bash
+DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:migrate-sql
+```
+
+That path works from the deployed app root because the cPanel bundle now ships `sql/` plus `scripts/apply-pg-sql.mjs`.
 
 If you want demo content in that PostgreSQL database, you can then run:
 
@@ -98,13 +108,16 @@ This produces `.deploy/cpanel/` with:
 - the Next.js standalone server output
 - the required `.next/static` assets copied into place
 - the `public/` directory copied into place
+- the root `sql/` directory for PostgreSQL imports in production
+- `scripts/apply-pg-sql.mjs` as a runtime-safe PostgreSQL SQL importer
 - `package.json` and `package-lock.json` for server-side dependency installation
 - `CPANEL_README.md` with the server-side runbook for the Ops team
 - `app.js` as the Passenger entrypoint
 - `tmp/restart.txt` as a restart trigger file
 
-The deploy bundle intentionally excludes `node_modules/`.
+The deploy bundle intentionally excludes the top-level `node_modules/`.
 After upload, install production dependencies on the server in the application root with `npm ci --omit=dev` or `npm install --omit=dev` before restarting the app.
+If PostgreSQL schema or data import is still required at that point, run `npm run db:migrate-sql` from the deployed app root.
 
 Upload the contents of `.deploy/cpanel/` to the cPanel application root, not to the repo root and not to a public document root unless that directory is also the Node.js application root.
 
@@ -115,9 +128,10 @@ Use this flow for the first deployment or whenever you want a fully manual relea
 1. Build the bundle locally with `npm run build:cpanel`.
 2. Open your FTP client and enable hidden files, because the bundle contains a `.next/` directory.
 3. Upload the contents of `.deploy/cpanel/` into the cPanel application root.
-4. Verify that `app.js`, `server.js`, `.next/`, `public/`, `package.json`, and `tmp/restart.txt` exist in the application root after upload.
+4. Verify that `app.js`, `server.js`, `.next/`, `public/`, `sql/`, `scripts/apply-pg-sql.mjs`, `package.json`, and `tmp/restart.txt` exist in the application root after upload.
 5. Install runtime dependencies in the application root with `npm ci --omit=dev` or `npm install --omit=dev`.
-6. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
+6. If PostgreSQL schema or data import is required from the bundled SQL files, run `npm run db:migrate-sql` in the application root.
+7. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
 
 If the file upload finishes but the site still serves the old version, use the cPanel restart button explicitly and inspect the application log directory that cPanel exposes for the Node.js app.
 
@@ -149,6 +163,7 @@ Operational notes:
 - The workflow defaults to `ftps` on port `21`. If your host only provides plain FTP or uses another port, update the workflow to match the host.
 - The deploy bundle excludes the top-level `node_modules`, but it still keeps `.next/node_modules` because Next standalone output may reference hashed external wrapper modules from there at runtime.
 - In this repository, those `.next/node_modules/*` entries are materialized into portable wrapper modules during bundle preparation so they survive ZIP/artifact/FTP transport even when the original standalone output used symlinks.
+- The deploy bundle also includes `sql/` and `scripts/apply-pg-sql.mjs` so the server can run `npm run db:migrate-sql` after `npm install --omit=dev`.
 - After upload, install runtime dependencies on the server with `npm ci --omit=dev` or `npm install --omit=dev`.
 - The workflow uses a build-time placeholder SQLite `DATABASE_URL` only so `next build` can complete without access to the live production database. The deployed cPanel application must still use the PostgreSQL `DATABASE_URL` configured in cPanel.
 - Keep the workflow Node.js major version aligned with the version selected in cPanel.

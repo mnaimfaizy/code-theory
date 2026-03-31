@@ -1,11 +1,11 @@
-#!/usr/bin/env npx tsx
+#!/usr/bin/env node
 /**
  * Apply generated PostgreSQL-compatible SQL files to a PostgreSQL database.
  *
  * Usage:
- *   npx tsx scripts/apply-pg-sql.ts                         # apply all tables
- *   npx tsx scripts/apply-pg-sql.ts all                     # apply all tables
- *   npx tsx scripts/apply-pg-sql.ts users certifications    # apply selected tables
+ *   node scripts/apply-pg-sql.mjs                         # apply all tables
+ *   node scripts/apply-pg-sql.mjs all                     # apply all tables
+ *   node scripts/apply-pg-sql.mjs users certifications    # apply selected tables
  *
  * npm shorthand:
  *   npm run db:apply-sql                    # all tables
@@ -14,10 +14,12 @@
  *   npm run db:apply-sql -- users           # specific table(s)
  */
 
-import * as fs from "fs";
-import * as path from "path";
-import { Client } from "pg";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import pg from "pg";
+
+const { Client } = pg;
 
 const SQL_DIR = path.join(process.cwd(), "sql");
 const ALL_TABLE_TOKENS = new Set(["all", "--all"]);
@@ -30,61 +32,65 @@ const ALL_TABLES = [
   "attempts",
   "attempt_answers",
   "duplicate_flags",
-] as const;
+];
 
-type TableName = (typeof ALL_TABLES)[number];
+const GUARDED_TABLES = new Set(["users"]);
 
-const GUARDED_TABLES = new Set<TableName>(["users"]);
+function exitWithError(...messages) {
+  for (const message of messages) {
+    console.error(message);
+  }
 
-function resolveTablesToApply(args: string[]): TableName[] {
+  process.exit(1);
+}
+
+function resolveTablesToApply(args) {
   if (args.length === 0 || args.some((arg) => ALL_TABLE_TOKENS.has(arg))) {
     return [...ALL_TABLES];
   }
 
-  const invalid = args.filter(
-    (tableName) => !(ALL_TABLES as readonly string[]).includes(tableName),
-  );
+  const invalid = args.filter((tableName) => !ALL_TABLES.includes(tableName));
 
   if (invalid.length > 0) {
-    console.error(`Unknown table(s): ${invalid.join(", ")}`);
-    console.error(`Valid tables: ${ALL_TABLES.join(", ")}`);
-    process.exit(1);
+    exitWithError(
+      `Unknown table(s): ${invalid.join(", ")}`,
+      `Valid tables: ${ALL_TABLES.join(", ")}`,
+    );
   }
 
   return ALL_TABLES.filter((tableName) => args.includes(tableName));
 }
 
-function resolvePostgresUrl(): string {
+function resolvePostgresUrl() {
   const databaseUrl = process.env.DATABASE_URL;
 
   if (!databaseUrl) {
-    console.error("DATABASE_URL is required to apply SQL files to PostgreSQL.");
-    process.exit(1);
+    exitWithError("DATABASE_URL is required to apply SQL files to PostgreSQL.");
   }
 
   if (!/^postgres(ql)?:\/\//i.test(databaseUrl)) {
-    console.error(
+    exitWithError(
       "DATABASE_URL must point to a PostgreSQL database before running db:apply-sql.",
     );
-    process.exit(1);
   }
 
   return databaseUrl;
 }
 
-function readTableSql(tableName: TableName): string {
+function readTableSql(tableName) {
   const filePath = path.join(SQL_DIR, `${tableName}.sql`);
 
   if (!fs.existsSync(filePath)) {
-    console.error(`Missing SQL file: sql/${tableName}.sql`);
-    console.error("Run `npm run db:export` first to generate the SQL files.");
-    process.exit(1);
+    exitWithError(
+      `Missing SQL file: sql/${tableName}.sql`,
+      "Run `npm run db:export` first to generate the SQL files.",
+    );
   }
 
   return fs.readFileSync(filePath, "utf-8");
 }
 
-export function applyTableGuards(tableName: TableName, sql: string): string {
+export function applyTableGuards(tableName, sql) {
   if (!GUARDED_TABLES.has(tableName)) {
     return sql;
   }
@@ -104,15 +110,16 @@ export function applyTableGuards(tableName: TableName, sql: string): string {
     .concat("\n");
 }
 
-async function main(): Promise<void> {
+async function main() {
   const args = process.argv.slice(2);
   const tablesToApply = resolveTablesToApply(args);
   const connectionString = resolvePostgresUrl();
 
   if (!fs.existsSync(SQL_DIR)) {
-    console.error("The sql/ directory does not exist.");
-    console.error("Run `npm run db:export` first to generate the SQL files.");
-    process.exit(1);
+    exitWithError(
+      "The sql/ directory does not exist.",
+      "Run `npm run db:export` first to generate the SQL files.",
+    );
   }
 
   const client = new Client({ connectionString });
