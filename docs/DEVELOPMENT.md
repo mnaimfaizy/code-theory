@@ -68,6 +68,8 @@ DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm r
 | `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
 | `npm run db:apply-sql`               | Apply root `sql/` files to a PostgreSQL database            |
 | `npm run db:migrate-sql`             | Alias for `db:apply-sql` with guarded `users` handling      |
+| `npm run db:apply-sqlite-sql`        | Apply root `sql/` files back into a SQLite database         |
+| `npm run db:migrate-sqlite`          | Alias for `db:apply-sqlite-sql`                             |
 | `npm run deploy:prepare-cpanel`      | Assemble `.deploy/cpanel/` from the standalone build        |
 | `npm run questions:export-review`    | Export an existing certification to a temp review artifact  |
 | `npm run questions:validate-review`  | Validate a review artifact before apply                     |
@@ -112,6 +114,19 @@ With the Docker Compose stack running, you can test the generated SQL files loca
 ```bash
 DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:migrate-sql
 ```
+
+### Applying SQL Back To SQLite
+
+If you want to recreate a SQLite database from the generated `sql/` files, point `DATABASE_URL` at a SQLite file path and run:
+
+```bash
+npm run db:migrate-sqlite
+DATABASE_URL=file:./data/ npm run db:migrate-sqlite
+DATABASE_URL=file:./data/custom-import.db npm run db:migrate-sqlite -- users certifications
+```
+
+The importer uses the same root `sql/` directory, strips PostgreSQL-only `DROP TABLE ... CASCADE` syntax, temporarily disables foreign keys while tables are recreated, and validates referential integrity with `PRAGMA foreign_key_check` before commit.
+If you do not provide a file name, it defaults to `code-theory.db`; for example, `DATABASE_URL=file:./data/` resolves to `data/code-theory.db`.
 
 ### cPanel FTP Bundle
 

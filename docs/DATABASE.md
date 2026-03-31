@@ -115,6 +115,11 @@ npm run db:export -- users question_sources questions
 
 Each run deletes previously generated `sql/*.sql` files first, then writes one `.sql` file per requested table.
 
+Even though the files are generated in a PostgreSQL-friendly format, the repository now ships apply scripts for both targets:
+
+- `npm run db:migrate-sql` applies the files into PostgreSQL
+- `npm run db:migrate-sqlite` applies the same files back into SQLite
+
 ## Applying Generated SQL To PostgreSQL
 
 Once the SQL files exist, set `DATABASE_URL` to a PostgreSQL connection string and apply them in order:
@@ -138,6 +143,29 @@ When `users.sql` is applied, the migration adds a protection layer before execut
 - each `INSERT INTO "users" ...;` becomes `INSERT INTO "users" ... ON CONFLICT DO NOTHING;`
 
 That means the script can create the `users` table if it does not exist yet, but it will not wipe or overwrite users that already exist in the target PostgreSQL database.
+
+## Applying Generated SQL To SQLite
+
+If you want to rebuild or clone a SQLite database from the generated `sql/` files, point `DATABASE_URL` at a SQLite file path and apply them with:
+
+```bash
+npm run db:migrate-sqlite
+DATABASE_URL=file:./data/ npm run db:migrate-sqlite
+DATABASE_URL=file:./data/custom-import.db npm run db:migrate-sqlite -- users certifications
+```
+
+The SQLite apply script expects the same root `sql/` directory used by the PostgreSQL workflow.
+Because those files contain PostgreSQL-style `DROP TABLE ... CASCADE` statements, the script normalizes that syntax for SQLite before execution.
+
+Implementation details:
+
+- foreign keys are temporarily disabled during import so referenced parent tables can be dropped and recreated safely
+- each requested table file is executed inside one surrounding SQLite transaction
+- the script runs `PRAGMA foreign_key_check` before commit and aborts on integrity violations
+- when no file name is provided, the target database name defaults to `code-theory.db`
+- omitting `DATABASE_URL` uses `data/code-theory.db`
+- setting `DATABASE_URL=file:./some-directory/` also resolves to `some-directory/code-theory.db`
+- setting `DATABASE_URL` to a full file path such as `file:./data/custom-import.db` uses that explicit file name instead
 
 ## Local PostgreSQL Test Stack
 
