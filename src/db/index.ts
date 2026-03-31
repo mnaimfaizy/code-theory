@@ -7,6 +7,16 @@ import { isPostgresDatabaseUrl, resolveSqliteDbPath } from "./runtime";
 
 type DB = BetterSQLite3Database<AppSchema>;
 const require = createRequire(import.meta.url);
+const SQLITE_BUSY_TIMEOUT_MS = 30000;
+
+function isSqliteBusyError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    error.code === "SQLITE_BUSY"
+  );
+}
 
 function createSqliteDb(): DB {
   const resolvedPath = resolveSqliteDbPath();
@@ -21,8 +31,22 @@ function createSqliteDb(): DB {
     require("drizzle-orm/better-sqlite3") as typeof import("drizzle-orm/better-sqlite3");
   const schema = require("./schema-sqlite") as typeof import("./schema-sqlite");
 
-  const sqlite = new Database(resolvedPath);
-  sqlite.pragma("journal_mode = WAL");
+  const sqlite = new Database(resolvedPath, {
+    timeout: SQLITE_BUSY_TIMEOUT_MS,
+  });
+
+  sqlite.pragma(`busy_timeout = ${SQLITE_BUSY_TIMEOUT_MS}`);
+
+  try {
+    sqlite.pragma("journal_mode = WAL");
+  } catch (error) {
+    // Concurrent build workers can race when they all try to switch a fresh
+    // placeholder SQLite file into WAL mode at the same time.
+    if (!isSqliteBusyError(error)) {
+      throw error;
+    }
+  }
+
   sqlite.pragma("foreign_keys = ON");
 
   return drizzle(sqlite, { schema }) as DB;

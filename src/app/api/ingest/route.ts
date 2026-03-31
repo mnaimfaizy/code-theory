@@ -1,8 +1,4 @@
 import { NextResponse } from "next/server";
-import {
-  fetchUrlContent,
-  ingestContent,
-} from "@/server/services/ingestion-service";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -13,6 +9,9 @@ export async function POST(request: Request) {
   }
 
   try {
+    const { fetchUrlContent, ingestContent } =
+      await import("@/server/services/ingestion-service");
+
     const rawContent = await fetchUrlContent(url);
     const result = await ingestContent({
       certificationId,

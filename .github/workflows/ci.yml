@@ -183,5 +183,22 @@ jobs:
                     exit 1
                   fi
 
+            - name: Restore Next.js build cache
+              id: next-cache
+              uses: actions/cache/restore@v4
+              with:
+                  path: .next/cache
+                  key: ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json') }}-
+                      ${{ runner.os }}-node20-next-cache-
+
             - name: Run build
               run: npm run build
+
+            - name: Save Next.js build cache
+              if: steps.next-cache.outputs.cache-hit != 'true'
+              uses: actions/cache/save@v4
+              with:
+                  path: .next/cache
+                  key: ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
