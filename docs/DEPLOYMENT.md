@@ -132,7 +132,7 @@ What it does:
 - installs dependencies in the `prepare` job and saves them as a cache for the `build` job
 - restores and saves `.next/cache` in the `build` job so repeated deploy builds can reuse the Next.js build cache
 - runs `npm run lint` and `npm run build:cpanel` in the `build` job
-- uploads the generated bundle as a workflow artifact from the `build` job
+- uploads the generated bundle as a workflow artifact from the `build` job, including hidden files such as `.next/`
 - downloads that artifact and syncs `.deploy/cpanel/` to cPanel over FTPS in the `deploy` job using `SamKirkland/FTP-Deploy-Action`
 - excludes `node_modules/` from upload because dependencies are meant to be installed on the server after deployment
 
@@ -173,6 +173,7 @@ That makes the script safe for environments where user accounts already exist an
 
 - If the app crashes immediately after deployment, confirm the cPanel Node.js version matches the version used to build the bundle.
 - If the upload succeeds but the app does not refresh, restart it in cPanel and then verify that `tmp/restart.txt` changed on the server.
+- If the server reports `Could not find a production build in the './.next' directory`, verify that the deployed app root contains `.next/BUILD_ID` and `.next/server/`. In the GitHub Actions path, the build artifact must be uploaded with hidden files included so `.next/` is preserved between the `build` and `deploy` jobs.
 - If the app cannot connect to PostgreSQL, verify the `DATABASE_URL` host, port, credentials, SSL parameters, and network access from cPanel to the database server.
 - If manual FTP uploads appear incomplete, make sure your FTP client is configured to show and upload dot-directories such as `.next/`.
 - If Passenger logs a startup-file error, keep the configured startup file as `app.js` and upload the generated wrapper from `.deploy/cpanel/app.js`.
