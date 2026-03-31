@@ -108,11 +108,31 @@ Use a JSON artifact shaped like this:
 
 2. If you rewrite `proposed.options`, include the full option array with the same option ids and order. The current apply path updates existing option rows in place; it does not add or remove option records.
 
-3. Remove unchanged questions from the artifact once reviewed. The temp file is supposed to shrink to only the questions that require database updates.
+3. Never generate replacement option ids inside `proposed.options`. Copy the ids from `current.options` verbatim and keep the same option count and order.
 
-4. Keep `current` intact. The apply step compares the artifact's `current` snapshot with the live database and refuses to apply stale edits when the source question has changed.
+4. Remove unchanged questions from the artifact once reviewed. The temp file is supposed to shrink to only the questions that require database updates.
 
-5. Update `reviewProgress.reviewedCount`, `reviewProgress.remainingCount`, and `updatedAt` as the review advances so the artifact remains a useful checkpoint.
+5. Keep `current` intact. The apply step compares the artifact's `current` snapshot with the live database and refuses to apply stale edits when the source question has changed.
+
+6. The export artifact is a review snapshot, not a forever-current database view. If the database changes while review is in progress, export a fresh artifact and reconcile retained edits before applying.
+
+7. Update `reviewProgress.reviewedCount`, `reviewProgress.remainingCount`, and `updatedAt` as the review advances so the artifact remains a useful checkpoint.
+
+8. Prefer structured JSON rewrites or precise edits for large prune operations, then validate immediately. Manual deletion of large JSON spans is a common way to corrupt the artifact.
+
+9. Validate with the supported command after each batch and before apply:
+
+```bash
+npm run questions:validate-review -- --file tmp/<artifact>.json
+```
+
+10. If apply reports stale snapshots, run the supported reconcile command to export a fresh snapshot, drop already-live edits, carry forward still-pending `proposed` blocks, and flag materially changed questions for manual re-review:
+
+```bash
+npm run questions:reconcile-review -- --file tmp/<artifact>.json
+```
+
+11. The `sql/` directory is a full backup, but it is not the normal path for review/apply. Use it for investigation or recovery only.
 
 ## Commands
 

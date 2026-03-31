@@ -16,6 +16,8 @@
     "db:apply-sql": "npx tsx scripts/apply-pg-sql.ts",
     "questions:import-approved": "npx tsx scripts/import-approved-questions.ts",
     "questions:export-review": "npx tsx scripts/export-certification-review.ts",
+    "questions:validate-review": "npx tsx scripts/validate-question-review.ts",
+    "questions:reconcile-review": "npx tsx scripts/reconcile-question-review.ts",
     "questions:apply-review": "npx tsx scripts/apply-question-review.ts"
   },
   "dependencies": {

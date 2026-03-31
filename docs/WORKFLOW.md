@@ -32,6 +32,8 @@ Existing question banks can also follow a temp review artifact flow:
 Select certification → Export existing questions and answers to tmp/ or temp/
 → Review in batches → Remove unchanged questions from the artifact
 → Keep only proposed rewrites with preserved question and option ids
+→ Validate the artifact before apply
+→ Reconcile onto a fresh export if the live database changed during review
 → Apply the reviewed artifact back to the database
 ```
 

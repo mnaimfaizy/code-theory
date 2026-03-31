@@ -22,14 +22,22 @@ Mission:
    npm run questions:apply-review -- --file tmp/<artifact>.json
    ```
 
-3. Use `--remove-file` only when the user explicitly wants the temp file removed after a successful apply.
-4. Report the applied question count, skipped question count, and whether the artifact was retained or removed.
+3. If the apply step reports that `proposed.options` changed option ids, option count, or option order, stop and repair the artifact by copying the original `current.options` ids and ordering into `proposed.options` before retrying.
+4. If the apply step reports stale snapshots or out-of-date questions, do not stop at "re-export it" when you can continue safely in the same session. Instead:
+   - run `npm run questions:reconcile-review -- --file tmp/<artifact>.json`
+   - inspect whether the reconciled artifact still has unresolved manual-review entries
+   - retry apply against the reconciled artifact only when the remaining review count is `0`
+
+5. Use `--remove-file` only when the user explicitly wants the temp file removed after a successful apply.
+6. Report the applied question count, skipped question count, whether the artifact was retained or removed, and whether reconciliation against a fresh export was needed.
 
 ## Safety rules
 
 - Do not review or rewrite question content in this phase. That belongs to `Question Reviewer`.
 - Do not retrieve the full certification bank in this phase. That belongs to `Question Review Retriever`.
-- If the apply step reports drift or stale snapshots, stop and tell the user to re-export the review artifact instead of forcing the update.
 - Do not bypass the supported CLI path with ad hoc SQL or direct database edits.
+- Do not use `sql/` backups to bypass review-artifact concurrency checks. Use them only for investigation or recovery when the supported workflow is insufficient.
+- Prefer reconciling onto a fresh export over retrying a stale artifact repeatedly.
+- Prefer `questions:validate-review` before apply so stale snapshots and option-id errors are surfaced earlier.
 
 Use the `question-review-workflow` skill when it is available.

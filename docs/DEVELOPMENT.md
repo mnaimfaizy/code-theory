@@ -46,21 +46,23 @@ docker compose down
 
 ## Scripts
 
-| Command                             | Description                                                 |
-| ----------------------------------- | ----------------------------------------------------------- |
-| `npm run dev`                       | Start dev server with Turbopack                             |
-| `npm run build`                     | Production build                                            |
-| `npm run start`                     | Start production server                                     |
-| `npm run lint`                      | Run ESLint                                                  |
-| `npm run db:push`                   | Push schema to database                                     |
-| `npm run db:studio`                 | Open Drizzle Studio                                         |
-| `npm run db:seed`                   | Seed demo data                                              |
-| `npm run db:generate`               | Generate migration files                                    |
-| `npm run db:export`                 | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
-| `npm run db:apply-sql`              | Apply root `sql/` files to a PostgreSQL database            |
-| `npm run questions:export-review`   | Export an existing certification to a temp review artifact  |
-| `npm run questions:apply-review`    | Apply reviewed question updates from a temp artifact        |
-| `npm run questions:import-approved` | Import a human-approved generated question artifact         |
+| Command                              | Description                                                 |
+| ------------------------------------ | ----------------------------------------------------------- |
+| `npm run dev`                        | Start dev server with Turbopack                             |
+| `npm run build`                      | Production build                                            |
+| `npm run start`                      | Start production server                                     |
+| `npm run lint`                       | Run ESLint                                                  |
+| `npm run db:push`                    | Push schema to database                                     |
+| `npm run db:studio`                  | Open Drizzle Studio                                         |
+| `npm run db:seed`                    | Seed demo data                                              |
+| `npm run db:generate`                | Generate migration files                                    |
+| `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
+| `npm run db:apply-sql`               | Apply root `sql/` files to a PostgreSQL database            |
+| `npm run questions:export-review`    | Export an existing certification to a temp review artifact  |
+| `npm run questions:validate-review`  | Validate a review artifact before apply                     |
+| `npm run questions:reconcile-review` | Refresh a stale review artifact onto a fresh export         |
+| `npm run questions:apply-review`     | Apply reviewed question updates from a temp artifact        |
+| `npm run questions:import-approved`  | Import a human-approved generated question artifact         |
 
 ### PostgreSQL SQL Exports
 
@@ -106,11 +108,19 @@ The export includes question ids, option ids, current question content, and batc
 Apply an approved review artifact back to the database:
 
 ```bash
+npm run questions:validate-review -- --file tmp/react-fundamentals-question-review-20260331-120000.json
 npm run questions:apply-review -- --file tmp/react-fundamentals-question-review-20260331-120000.json
 npm run questions:apply-review -- --file temp/react-fundamentals-review.json --remove-file
 ```
 
-The apply step refuses to overwrite drifted questions. If the live database no longer matches the artifact's `current` snapshot, re-export before applying changes.
+If the artifact is stale, reconcile it onto a fresh export before retrying apply:
+
+```bash
+npm run questions:reconcile-review -- --file tmp/react-fundamentals-question-review-20260331-120000.json
+npm run questions:apply-review -- --file tmp/react-fundamentals-question-review-20260331-120000-reconciled.json
+```
+
+The apply step refuses to overwrite drifted questions, and the validation step catches option-id drift before you hit the apply command.
 
 ## Project Structure
 

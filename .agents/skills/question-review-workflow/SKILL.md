@@ -35,15 +35,17 @@ The preferred workflow is:
 
 Do not collapse retrieval, review, and apply into one opaque step when the temp artifact workflow is available.
 
-### 3. Use the export artifact as the source of truth
+### 3. Use the export artifact as the review working snapshot
 
 The review artifact is validated by the Zod schema in `src/server/services/question-review-artifact-service.ts`. Key rules:
 
 - top level fields must retain `workflow`, `artifactVersion`, `certification`, `exportedAt`, `updatedAt`, `filters`, `reviewProgress`, and `questions`
 - each review item must retain `questionId`, `orderIndex`, `batch`, and `current`
 - `current` is the concurrency guard used to detect drift before apply; do not remove or rewrite it casually
+- the export is a point-in-time snapshot for review, not a forever-current copy of the database
 - put edits under `proposed` only when a database update is actually needed
-- when rewriting options, preserve the original `optionId` values and the same option count; the apply path updates existing option rows in place rather than creating or deleting them
+- when rewriting options, preserve the original `optionId` values, option count, and exact order; the apply path updates existing option rows in place rather than creating or deleting them
+- never generate replacement option ids for `proposed.options`; copy the ids from `current.options` verbatim
 - keep exactly one correct option
 
 ### 4. Review in batches and prune aggressively
@@ -54,10 +56,19 @@ For large certifications, work one batch at a time.
 - improve stems, explanations, and distractors only where the current version is weak
 - remove questions from the artifact after reviewing them when they do not need changes
 - update `reviewProgress.reviewedCount`, `reviewProgress.remainingCount`, and `updatedAt` as the artifact evolves
+- prefer structured JSON rewrites or precise small edits when pruning many items, then validate immediately; large manual JSON surgery is easy to corrupt
 
 The final artifact should be much smaller than the initial export because it should contain only actionable updates.
 
-### 5. Match difficulty honestly
+### 5. Validate after each batch
+
+Use the supported validation command after each batch and before apply handoff.
+
+```bash
+npm run questions:validate-review -- --file tmp/<artifact>.json
+```
+
+### 6. Match difficulty honestly
 
 Review questions like an experienced university instructor and assessment author:
 
@@ -67,7 +78,18 @@ Review questions like an experienced university instructor and assessment author
 
 Keep questions engaging, but do not turn simple questions into trick questions.
 
-### 6. Use the supported commands
+### 7. Reconcile stale artifacts before apply
+
+The apply command correctly refuses stale artifacts. When that happens, do not force the old file through.
+
+- run `npm run questions:reconcile-review -- --file tmp/<artifact>.json`
+- inspect the reconciled artifact output and remaining review count
+- if the reconciled artifact still has unresolved manual-review entries, finish that review before applying
+- retry the apply command with the reconciled artifact once the remaining review count reaches `0`
+
+Use `sql/` backups only for diagnosis or disaster recovery, not as a shortcut around artifact concurrency checks.
+
+### 8. Use the supported commands
 
 Export:
 
@@ -89,9 +111,16 @@ Useful flags:
 - `--out temp/<artifact>.json`
 - `--remove-file`
 
+Additional workflow commands:
+
+```bash
+npm run questions:validate-review -- --file tmp/<artifact>.json
+npm run questions:reconcile-review -- --file tmp/<artifact>.json
+```
+
 The apply step refuses stale artifacts when the live database no longer matches the stored `current` snapshot.
 
-### 7. Prefer dedicated agents when available
+### 9. Prefer dedicated agents when available
 
 The most reliable customization shape in this repository is:
 

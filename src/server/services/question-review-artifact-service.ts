@@ -112,9 +112,39 @@ type ApplyCertificationQuestionReviewResult = {
   skippedCount: number;
 };
 
+export type InspectCertificationQuestionReviewArtifactResult = {
+  certificationId: string;
+  certificationSlug: string;
+  totalQuestionCount: number;
+  proposedQuestionCount: number;
+  actionableQuestionCount: number;
+  skippedQuestionCount: number;
+  noOpQuestionIds: string[];
+  incompatibleOptionQuestionIds: string[];
+  outOfDateQuestionIds: string[];
+  missingQuestionIds: string[];
+  readyToApply: boolean;
+};
+
+export type ReconcileCertificationQuestionReviewArtifactResult = {
+  certificationId: string;
+  certificationSlug: string;
+  reconciledArtifact: CertificationQuestionReviewArtifact;
+  carriedForwardQuestionIds: string[];
+  alreadyLiveQuestionIds: string[];
+  manualReviewQuestionIds: string[];
+  missingQuestionIds: string[];
+  repairedOptionIdQuestionIds: string[];
+};
+
+type QuestionReviewItem =
+  CertificationQuestionReviewArtifact["questions"][number];
+type QuestionReviewCurrent = QuestionReviewItem["current"];
+type QuestionReviewProposed = NonNullable<QuestionReviewItem["proposed"]>;
+
 type LiveQuestionSnapshot = {
   orderIndex: number;
-  current: CertificationQuestionReviewArtifact["questions"][number]["current"];
+  current: QuestionReviewCurrent;
 };
 
 export const allQuestionReviewStatuses = [...QUESTION_STATUSES];
@@ -250,31 +280,17 @@ export async function applyCertificationQuestionReviewArtifact(
     };
   }
 
-  const liveSnapshots = await loadLiveQuestionSnapshots(
-    certification.id,
-    reviewItems.map((item) => item.questionId),
-  );
+  const inspection = await inspectCertificationQuestionReviewArtifact(artifact);
 
-  const conflictedQuestionIds: string[] = [];
-
-  for (const item of reviewItems) {
-    const liveSnapshot = liveSnapshots.get(item.questionId);
-    if (!liveSnapshot) {
-      conflictedQuestionIds.push(item.questionId);
-      continue;
-    }
-
-    if (
-      liveSnapshot.orderIndex !== item.orderIndex ||
-      !snapshotsMatch(liveSnapshot.current, item.current)
-    ) {
-      conflictedQuestionIds.push(item.questionId);
-    }
+  if (inspection.outOfDateQuestionIds.length > 0) {
+    throw new Error(
+      `The review artifact is out of date for question(s): ${inspection.outOfDateQuestionIds.join(", ")}. Run the review reconciliation workflow or re-export the certification review artifact before applying changes.`,
+    );
   }
 
-  if (conflictedQuestionIds.length > 0) {
+  if (inspection.incompatibleOptionQuestionIds.length > 0) {
     throw new Error(
-      `The review artifact is out of date for question(s): ${conflictedQuestionIds.join(", ")}. Re-export the certification review artifact before applying changes.`,
+      `Reviewed question(s) ${inspection.incompatibleOptionQuestionIds.join(", ")} must preserve the existing option ids and count. Rewrite option text in place instead of adding, removing, or reordering options.`,
     );
   }
 
@@ -282,8 +298,6 @@ export async function applyCertificationQuestionReviewArtifact(
   let skippedCount = artifact.questions.length - reviewItems.length;
 
   for (const item of reviewItems) {
-    validateProposedOptionsCompatibility(item);
-
     const updates = buildQuestionEditPayload(item);
     if (!updates) {
       skippedCount++;
@@ -299,6 +313,186 @@ export async function applyCertificationQuestionReviewArtifact(
     certificationSlug: certification.slug,
     appliedCount,
     skippedCount,
+  };
+}
+
+export async function inspectCertificationQuestionReviewArtifact(
+  artifact: CertificationQuestionReviewArtifact,
+): Promise<InspectCertificationQuestionReviewArtifactResult> {
+  const certification = await resolveReviewCertification({
+    certificationId: artifact.certification.id,
+    certificationSlug: artifact.certification.slug,
+  });
+
+  const reviewItems = artifact.questions.filter(hasProposedChanges);
+  const noOpQuestionIds = reviewItems
+    .filter((item) => buildQuestionEditPayload(item) === null)
+    .map((item) => item.questionId);
+  const incompatibleOptionQuestionIds = reviewItems
+    .filter((item) => !proposedOptionsAreCompatible(item))
+    .map((item) => item.questionId);
+
+  const liveSnapshots = reviewItems.length
+    ? await loadLiveQuestionSnapshots(
+        certification.id,
+        reviewItems.map((item) => item.questionId),
+      )
+    : new Map<string, LiveQuestionSnapshot>();
+
+  const outOfDateQuestionIds: string[] = [];
+  const missingQuestionIds: string[] = [];
+
+  for (const item of reviewItems) {
+    const liveSnapshot = liveSnapshots.get(item.questionId);
+    if (!liveSnapshot) {
+      missingQuestionIds.push(item.questionId);
+      outOfDateQuestionIds.push(item.questionId);
+      continue;
+    }
+
+    if (
+      liveSnapshot.orderIndex !== item.orderIndex ||
+      !snapshotsMatch(liveSnapshot.current, item.current)
+    ) {
+      outOfDateQuestionIds.push(item.questionId);
+    }
+  }
+
+  const actionableQuestionCount = reviewItems.length - noOpQuestionIds.length;
+
+  return {
+    certificationId: certification.id,
+    certificationSlug: certification.slug,
+    totalQuestionCount: artifact.questions.length,
+    proposedQuestionCount: reviewItems.length,
+    actionableQuestionCount,
+    skippedQuestionCount: artifact.questions.length - actionableQuestionCount,
+    noOpQuestionIds,
+    incompatibleOptionQuestionIds,
+    outOfDateQuestionIds,
+    missingQuestionIds,
+    readyToApply:
+      incompatibleOptionQuestionIds.length === 0 &&
+      outOfDateQuestionIds.length === 0,
+  };
+}
+
+export async function reconcileCertificationQuestionReviewArtifact(
+  artifact: CertificationQuestionReviewArtifact,
+): Promise<ReconcileCertificationQuestionReviewArtifactResult> {
+  const freshArtifact = await exportCertificationQuestionReviewArtifact({
+    certificationId: artifact.certification.id,
+    certificationSlug: artifact.certification.slug,
+    statuses: artifact.filters.statuses,
+    batchSize: artifact.reviewProgress.batchSize,
+  });
+
+  const freshItemsByQuestionId = new Map(
+    freshArtifact.questions.map((item) => [item.questionId, item]),
+  );
+
+  const carriedForwardItems: QuestionReviewItem[] = [];
+  const unresolvedItems: QuestionReviewItem[] = [];
+  const carriedForwardQuestionIds: string[] = [];
+  const alreadyLiveQuestionIds: string[] = [];
+  const manualReviewQuestionIds: string[] = [];
+  const missingQuestionIds: string[] = [];
+  const repairedOptionIdQuestionIds: string[] = [];
+
+  for (const oldItem of artifact.questions) {
+    const freshItem = freshItemsByQuestionId.get(oldItem.questionId);
+    if (!freshItem) {
+      if (oldItem.proposed || oldItem.reviewNotes) {
+        missingQuestionIds.push(oldItem.questionId);
+      }
+      continue;
+    }
+
+    if (!oldItem.proposed) {
+      unresolvedItems.push({
+        ...freshItem,
+        changeSummary: oldItem.changeSummary,
+        reviewNotes: oldItem.reviewNotes,
+      });
+      continue;
+    }
+
+    const normalizedProposed = normalizeQuestionReviewProposal(oldItem);
+    if (normalizedProposed.incompatibleOptions) {
+      manualReviewQuestionIds.push(oldItem.questionId);
+      unresolvedItems.push({
+        ...freshItem,
+        changeSummary: oldItem.changeSummary,
+        reviewNotes: buildReconciliationReviewNote({
+          oldItem,
+          conflictingFields: ["options"],
+          alreadyLiveFields: [],
+          repairedOptionIds: false,
+          incompatibleOptions: true,
+        }),
+      });
+      continue;
+    }
+
+    if (normalizedProposed.repairedOptionIds) {
+      repairedOptionIdQuestionIds.push(oldItem.questionId);
+    }
+
+    const reconciliation = reconcileQuestionReviewProposal({
+      oldCurrent: oldItem.current,
+      freshCurrent: freshItem.current,
+      proposed: normalizedProposed.proposed,
+    });
+
+    if (reconciliation.kind === "already-live") {
+      alreadyLiveQuestionIds.push(oldItem.questionId);
+      continue;
+    }
+
+    if (reconciliation.kind === "carried-forward") {
+      carriedForwardQuestionIds.push(oldItem.questionId);
+      carriedForwardItems.push({
+        ...freshItem,
+        proposed: reconciliation.proposed,
+        changeSummary: oldItem.changeSummary,
+        reviewNotes: oldItem.reviewNotes,
+      });
+      continue;
+    }
+
+    manualReviewQuestionIds.push(oldItem.questionId);
+    unresolvedItems.push({
+      ...freshItem,
+      changeSummary: oldItem.changeSummary,
+      reviewNotes: buildReconciliationReviewNote({
+        oldItem,
+        conflictingFields: reconciliation.conflictingFields,
+        alreadyLiveFields: reconciliation.alreadyLiveFields,
+        repairedOptionIds: normalizedProposed.repairedOptionIds,
+        incompatibleOptions: false,
+      }),
+    });
+  }
+
+  freshArtifact.updatedAt = new Date().toISOString();
+  freshArtifact.questions = [...carriedForwardItems, ...unresolvedItems].sort(
+    (left, right) => left.orderIndex - right.orderIndex,
+  );
+  freshArtifact.reviewProgress.reviewedCount = Math.max(
+    0,
+    freshArtifact.reviewProgress.totalExported - unresolvedItems.length,
+  );
+  freshArtifact.reviewProgress.remainingCount = unresolvedItems.length;
+
+  return {
+    certificationId: freshArtifact.certification.id,
+    certificationSlug: freshArtifact.certification.slug,
+    reconciledArtifact: freshArtifact,
+    carriedForwardQuestionIds,
+    alreadyLiveQuestionIds,
+    manualReviewQuestionIds,
+    missingQuestionIds,
+    repairedOptionIdQuestionIds,
   };
 }
 
@@ -417,9 +611,7 @@ async function loadLiveQuestionSnapshots(
   return result;
 }
 
-function buildQuestionEditPayload(
-  item: CertificationQuestionReviewArtifact["questions"][number],
-) {
+function buildQuestionEditPayload(item: QuestionReviewItem) {
   if (!item.proposed) {
     return null;
   }
@@ -490,20 +682,16 @@ function normalizeQuestionDifficulty(difficulty: string | null) {
 }
 
 function hasProposedChanges(
-  item: CertificationQuestionReviewArtifact["questions"][number],
-): item is CertificationQuestionReviewArtifact["questions"][number] & {
-  proposed: NonNullable<
-    CertificationQuestionReviewArtifact["questions"][number]["proposed"]
-  >;
+  item: QuestionReviewItem,
+): item is QuestionReviewItem & {
+  proposed: QuestionReviewProposed;
 } {
   return item.proposed !== undefined;
 }
 
-function validateProposedOptionsCompatibility(
-  item: CertificationQuestionReviewArtifact["questions"][number],
-) {
+function proposedOptionsAreCompatible(item: QuestionReviewItem) {
   if (!item.proposed?.options) {
-    return;
+    return true;
   }
 
   const currentOptionIds = item.current.options.map(
@@ -513,21 +701,17 @@ function validateProposedOptionsCompatibility(
     (option) => option.optionId,
   );
 
-  if (
-    currentOptionIds.length !== proposedOptionIds.length ||
-    currentOptionIds.some(
-      (optionId, index) => optionId !== proposedOptionIds[index],
+  return (
+    currentOptionIds.length === proposedOptionIds.length &&
+    currentOptionIds.every(
+      (optionId, index) => optionId === proposedOptionIds[index],
     )
-  ) {
-    throw new Error(
-      `Reviewed question "${item.questionId}" must preserve the existing option ids and count. Rewrite option text in place instead of adding, removing, or reordering options.`,
-    );
-  }
+  );
 }
 
 function snapshotsMatch(
-  left: CertificationQuestionReviewArtifact["questions"][number]["current"],
-  right: CertificationQuestionReviewArtifact["questions"][number]["current"],
+  left: QuestionReviewCurrent,
+  right: QuestionReviewCurrent,
 ) {
   return (
     left.status === right.status &&
@@ -540,8 +724,8 @@ function snapshotsMatch(
 }
 
 function optionArraysMatch(
-  left: CertificationQuestionReviewArtifact["questions"][number]["current"]["options"],
-  right: CertificationQuestionReviewArtifact["questions"][number]["current"]["options"],
+  left: QuestionReviewCurrent["options"],
+  right: QuestionReviewCurrent["options"],
 ) {
   if (left.length !== right.length) {
     return false;
@@ -559,8 +743,8 @@ function optionArraysMatch(
 }
 
 function sourcesMatch(
-  left: CertificationQuestionReviewArtifact["questions"][number]["current"]["source"],
-  right: CertificationQuestionReviewArtifact["questions"][number]["current"]["source"],
+  left: QuestionReviewCurrent["source"],
+  right: QuestionReviewCurrent["source"],
 ) {
   if (left === null || right === null) {
     return left === right;
@@ -584,4 +768,167 @@ function validateSingleCorrectOption(
       message: "Each reviewed question must keep exactly one correct option.",
     });
   }
+}
+
+function normalizeQuestionReviewProposal(item: QuestionReviewItem) {
+  if (!item.proposed?.options) {
+    return {
+      proposed: item.proposed as QuestionReviewProposed,
+      repairedOptionIds: false,
+      incompatibleOptions: false,
+    };
+  }
+
+  if (item.proposed.options.length !== item.current.options.length) {
+    return {
+      proposed: item.proposed,
+      repairedOptionIds: false,
+      incompatibleOptions: true,
+    };
+  }
+
+  const reorderedOptions = item.proposed.options.some(
+    (option, index) =>
+      option.orderIndex !== item.current.options[index]?.orderIndex,
+  );
+
+  if (reorderedOptions) {
+    return {
+      proposed: item.proposed,
+      repairedOptionIds: false,
+      incompatibleOptions: true,
+    };
+  }
+
+  const normalizedOptions = item.proposed.options.map((option, index) => ({
+    ...option,
+    optionId: item.current.options[index].optionId,
+    orderIndex: item.current.options[index].orderIndex,
+  }));
+
+  return {
+    proposed: {
+      ...item.proposed,
+      options: normalizedOptions,
+    },
+    repairedOptionIds: item.proposed.options.some(
+      (option, index) => option.optionId !== normalizedOptions[index].optionId,
+    ),
+    incompatibleOptions: false,
+  };
+}
+
+function reconcileQuestionReviewProposal({
+  oldCurrent,
+  freshCurrent,
+  proposed,
+}: {
+  oldCurrent: QuestionReviewCurrent;
+  freshCurrent: QuestionReviewCurrent;
+  proposed: QuestionReviewProposed;
+}) {
+  const nextProposed: Partial<QuestionReviewProposed> = {};
+  const alreadyLiveFields: string[] = [];
+  const conflictingFields: string[] = [];
+
+  if (proposed.text !== undefined) {
+    if (freshCurrent.text === proposed.text) {
+      alreadyLiveFields.push("text");
+    } else if (freshCurrent.text === oldCurrent.text) {
+      nextProposed.text = proposed.text;
+    } else {
+      conflictingFields.push("text");
+    }
+  }
+
+  if (proposed.explanation !== undefined) {
+    if (freshCurrent.explanation === proposed.explanation) {
+      alreadyLiveFields.push("explanation");
+    } else if (freshCurrent.explanation === oldCurrent.explanation) {
+      nextProposed.explanation = proposed.explanation;
+    } else {
+      conflictingFields.push("explanation");
+    }
+  }
+
+  if (proposed.difficulty !== undefined) {
+    if (freshCurrent.difficulty === proposed.difficulty) {
+      alreadyLiveFields.push("difficulty");
+    } else if (freshCurrent.difficulty === oldCurrent.difficulty) {
+      nextProposed.difficulty = proposed.difficulty;
+    } else {
+      conflictingFields.push("difficulty");
+    }
+  }
+
+  if (proposed.options !== undefined) {
+    if (optionArraysMatch(freshCurrent.options, proposed.options)) {
+      alreadyLiveFields.push("options");
+    } else if (optionArraysMatch(freshCurrent.options, oldCurrent.options)) {
+      nextProposed.options = proposed.options;
+    } else {
+      conflictingFields.push("options");
+    }
+  }
+
+  if (conflictingFields.length > 0) {
+    return {
+      kind: "needs-review" as const,
+      conflictingFields,
+      alreadyLiveFields,
+    };
+  }
+
+  if (Object.keys(nextProposed).length === 0) {
+    return {
+      kind: "already-live" as const,
+    };
+  }
+
+  return {
+    kind: "carried-forward" as const,
+    proposed: nextProposed as QuestionReviewProposed,
+  };
+}
+
+function buildReconciliationReviewNote({
+  oldItem,
+  conflictingFields,
+  alreadyLiveFields,
+  repairedOptionIds,
+  incompatibleOptions,
+}: {
+  oldItem: QuestionReviewItem;
+  conflictingFields: string[];
+  alreadyLiveFields: string[];
+  repairedOptionIds: boolean;
+  incompatibleOptions: boolean;
+}) {
+  const notes = [
+    incompatibleOptions
+      ? "The previous proposal changed the option structure in a way that is not compatible with this workflow. Re-review the options in place before applying."
+      : `Fresh export diverged from the reviewed snapshot for field(s): ${conflictingFields.join(", ")}. Re-review this question before applying.`,
+  ];
+
+  if (alreadyLiveFields.length > 0) {
+    notes.push(
+      `These reviewed fields are already live in the database: ${alreadyLiveFields.join(", ")}.`,
+    );
+  }
+
+  if (repairedOptionIds) {
+    notes.push(
+      "The previous artifact regenerated option ids. Reconciliation normalized those ids only for comparison; inspect the live options before proposing another option edit.",
+    );
+  }
+
+  if (oldItem.changeSummary.length > 0) {
+    notes.push(`Previous review intent: ${oldItem.changeSummary.join(" ")}`);
+  }
+
+  if (oldItem.reviewNotes) {
+    notes.push(`Previous notes: ${oldItem.reviewNotes}`);
+  }
+
+  return notes.join("\n\n");
 }

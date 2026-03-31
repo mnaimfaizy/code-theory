@@ -50,5 +50,22 @@ function getFlagValue(args: string[], flag: string) {
 
 main().catch((error) => {
   console.error("Fatal:", error);
+
+  if (error instanceof Error) {
+    if (error.message.includes("out of date")) {
+      console.error(
+        "Hint: run `npm run questions:reconcile-review -- --file <artifact>` to generate a fresh artifact before retrying apply.",
+      );
+    }
+
+    if (
+      error.message.includes("must preserve the existing option ids and count")
+    ) {
+      console.error(
+        "Hint: run `npm run questions:validate-review -- --file <artifact>` to catch incompatible proposed options before retrying apply.",
+      );
+    }
+  }
+
   process.exit(1);
 });

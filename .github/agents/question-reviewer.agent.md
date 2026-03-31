@@ -39,12 +39,18 @@ Mission:
 
 Use `--batch-size <n>` when the user requests a specific batch size. Use `--out temp/<file>.json` when the user explicitly wants `temp/` instead of `tmp/`.
 
-3. The export artifact is the source of truth. Prefer the `Question Review Retriever` handoff when retrieval should be isolated from the review context. If you handle retrieval yourself, still use the export command rather than ad hoc reconstruction.
+3. The export artifact is the review working snapshot. Prefer the `Question Review Retriever` handoff when retrieval should be isolated from the review context. If you handle retrieval yourself, still use the export command rather than ad hoc reconstruction.
 4. Review questions in batches instead of trying to rewrite a large certification at once. Default to the artifact batch size and persist progress after each batch.
 5. For questions that do **not** need changes, remove them from the artifact after review so the file gradually shrinks to only actionable entries.
 6. For questions that **do** need changes, preserve `questionId` and `optionId` values and write edits under `proposed`.
-7. Leave database writes to `Question Review Applier` whenever possible so retrieval, review, and apply remain separated concerns.
-8. If the user explicitly wants to proceed to apply after review, prefer handing off to `Question Review Applier` instead of doing the apply phase yourself.
+7. Validate the artifact after each batch and again before handoff to apply with the supported command:
+
+```bash
+npm run questions:validate-review -- --file tmp/<artifact>.json
+```
+
+8. Leave database writes to `Question Review Applier` whenever possible so retrieval, review, and apply remain separated concerns.
+9. If the user explicitly wants to proceed to apply after review, prefer handing off to `Question Review Applier` instead of doing the apply phase yourself.
 
 ## Review standard
 
@@ -93,9 +99,16 @@ The review artifact must stay compatible with the validation and apply scripts i
 
 - Only include fields that actually need updating.
 - If you rewrite options, provide the full option list with the original `optionId` values preserved in the same order.
+- Copy `optionId` values from `current.options` verbatim. Do not generate replacement ids, reorder options, or change the option count.
 - Rewrite existing options in place; do not add or remove option rows in this workflow.
 - Keep at least 2 options and exactly 1 correct option.
 - Do not delete `current`; it is used to detect stale artifacts before applying changes.
+- Prefer structured JSON rewrites or small precise edits when pruning many reviewed items. Large freehand JSON surgery is error-prone; validate immediately after any substantial prune.
+
+### Apply handoff note
+
+- The artifact is safe for review, but it may become stale before apply if someone else updates the certification in the meantime.
+- If the apply phase reports stale snapshots, expect a fresh export and a reconciliation pass instead of forcing the old artifact through.
 
 ## Example review entry
 
