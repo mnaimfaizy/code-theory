@@ -1,5 +1,5 @@
 -- Table: certifications
--- Generated: 2026-03-30T22:56:02.856Z
+-- Generated: 2026-03-31T04:30:16.458Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "certifications" CASCADE;
