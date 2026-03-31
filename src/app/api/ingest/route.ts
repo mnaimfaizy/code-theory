@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { ingestContent } from "@/server/services/ingestion-service";
+import {
+  fetchUrlContent,
+  ingestContent,
+} from "@/server/services/ingestion-service";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -10,8 +13,15 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await ingestContent(certificationId, url);
-    return NextResponse.json({ generated: result.generated });
+    const rawContent = await fetchUrlContent(url);
+    const result = await ingestContent({
+      certificationId,
+      sourceType: "url",
+      sourceRef: url,
+      rawContent,
+    });
+
+    return NextResponse.json({ generated: result.questionsGenerated });
   } catch {
     return NextResponse.json({ error: "Ingestion failed" }, { status: 500 });
   }

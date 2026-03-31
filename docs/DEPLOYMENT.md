@@ -1,47 +1,170 @@
 # Deployment
 
-## Local-First (Default)
+## Supported Hosting Path
 
-This application is designed primarily for local personal use.
+This repository can be deployed to cPanel shared hosting when the host exposes the Node.js App or Application Manager feature.
+The deployment flow in this repo is built around three constraints:
 
-### Running Locally
+1. cPanel runs Node.js apps behind Passenger and expects an application root plus a startup file.
+2. FTP or FTPS is the transport for code updates.
+3. the deployed application should use PostgreSQL through `DATABASE_URL`.
 
-```bash
-npm install
-cp .env.example .env.local
-npm run db:push
-npm run db:seed
-npm run dev
+The supported deployment flow is therefore:
+
+```text
+next build (standalone) -> prepare .deploy/cpanel/ -> FTP sync to cPanel app root -> Passenger starts app.js -> restart via tmp/restart.txt
 ```
 
-The app runs at `http://localhost:3000` with SQLite — no external services required.
+## Prerequisites
 
-### Building for Local Production
+- cPanel hosting with Node.js App or Application Manager enabled
+- FTP or FTPS access to the same account
+- a reachable PostgreSQL database
+- a Node.js version in cPanel that matches the build environment major version
+- enough disk space for the standalone Next.js bundle and traced runtime dependencies
 
-```bash
-npm run build
-npm run start
+Important notes for this repository:
+
+- Passenger manages the HTTP port for the app. Do not hardcode a public port in the deployment flow.
+- Runtime secrets and `DATABASE_URL` belong in cPanel, not in GitHub Actions.
+- If your PostgreSQL provider requires SSL or other connection parameters, include them directly in `DATABASE_URL`.
+
+## One-Time cPanel Setup
+
+Create the application in cPanel before the first deploy.
+
+Recommended settings:
+
+- Node.js version: `20` if you keep the provided GitHub Actions workflow unchanged
+- Application mode: `production`
+- Application root: a directory under your cPanel home, for example `nodeapps/code-theory`
+- Application URL: your chosen domain or subpath
+- Startup file: `app.js`
+
+Use `app.js` as the startup file even though Next.js emits `server.js`. The deploy bundle creates an `app.js` wrapper so the setup remains compatible with cPanel's default Passenger expectations.
+
+## PostgreSQL Setup
+
+Create the PostgreSQL database and user through your host or managed PostgreSQL provider.
+Then set the cPanel application environment variables to point at that database:
+
+```env
+NODE_ENV=production
+AUTH_SECRET=replace-with-a-long-random-string
+AUTH_URL=https://your-domain.example
+DATABASE_URL=postgres://user:password@host:5432/code_theory
+LLM_BASE_URL=http://127.0.0.1:11434/v1
+LLM_MODEL=llama3
+LLM_API_KEY=ollama
 ```
 
-## Optional: PostgreSQL
+If you do not use local LLM-backed ingestion in production, you can omit the `LLM_*` variables.
 
-To switch from SQLite to PostgreSQL:
+### Fresh Schema Setup
 
-1. Install and start PostgreSQL locally or use a cloud instance.
-2. Set `DATABASE_URL` in `.env.local`:
-   ```env
-   DATABASE_URL=postgres://user:password@localhost:5432/code_theory
-   ```
-3. Run `npm run db:push` to create tables in PostgreSQL.
-4. Run `npm run db:seed` if you want demo data.
+From any machine that can reach the PostgreSQL server, initialize the schema with:
 
-## Optional: Hosting
+```bash
+DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:push
+```
 
-If you decide to host the app later:
+If you want demo content in that PostgreSQL database, you can then run:
 
-1. **Platform**: Vercel, Railway, or any Node.js host.
-2. **Database**: Use a managed PostgreSQL instance (Neon, Supabase, Railway).
-3. **Environment**: Set all `.env` variables in the hosting platform's settings.
-4. **Build**: The standard `npm run build` output works with any Node.js host.
+```bash
+DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:seed
+```
 
-No queues, object storage, or distributed infrastructure are needed for v1.
+### Migrating Existing SQLite Data
+
+If you already have local SQLite data that should be moved into PostgreSQL:
+
+```bash
+npm run db:export
+DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:migrate-sql
+```
+
+The `users` table is guarded during this import so existing PostgreSQL users are not dropped or overwritten.
+
+## Build Artifact For cPanel
+
+Run the cPanel build locally or in CI:
+
+```bash
+npm run build:cpanel
+```
+
+This produces `.deploy/cpanel/` with:
+
+- the Next.js standalone server output
+- the required `.next/static` assets copied into place
+- the `public/` directory copied into place
+- `app.js` as the Passenger entrypoint
+- `tmp/restart.txt` as a restart trigger file
+
+Upload the contents of `.deploy/cpanel/` to the cPanel application root, not to the repo root and not to a public document root unless that directory is also the Node.js application root.
+
+## Manual FTP Deployment
+
+Use this flow for the first deployment or whenever you want a fully manual release.
+
+1. Build the bundle locally with `npm run build:cpanel`.
+2. Open your FTP client and enable hidden files, because the bundle contains a `.next/` directory.
+3. Upload the contents of `.deploy/cpanel/` into the cPanel application root.
+4. Verify that `app.js`, `server.js`, `.next/`, `public/`, and `tmp/restart.txt` exist in the application root after upload.
+5. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
+
+If the file upload finishes but the site still serves the old version, use the cPanel restart button explicitly and inspect the application log directory that cPanel exposes for the Node.js app.
+
+## GitHub Actions FTP Deployment
+
+This repository now includes `.github/workflows/deploy-cpanel.yml`.
+
+What it does:
+
+- runs on pushes to `main`
+- also supports manual `workflow_dispatch`
+- installs dependencies and runs `npm run lint`
+- runs `npm run build:cpanel`
+- uploads the generated bundle as a workflow artifact
+- syncs `.deploy/cpanel/` to cPanel over FTPS using `SamKirkland/FTP-Deploy-Action`
+
+Add these repository secrets before enabling the workflow:
+
+- `CPANEL_FTP_SERVER`: FTP or FTPS hostname
+- `CPANEL_FTP_USERNAME`: FTP username
+- `CPANEL_FTP_PASSWORD`: FTP password
+- `CPANEL_FTP_SERVER_DIR`: remote application root as seen by FTP, with a trailing `/`
+
+Operational notes:
+
+- The workflow defaults to `ftps` on port `21`. If your host only provides plain FTP or uses another port, update the workflow to match the host.
+- The workflow intentionally does not exclude `node_modules` because Next.js standalone output needs the traced runtime subset it contains.
+- The workflow uses a build-time placeholder SQLite `DATABASE_URL` only so `next build` can complete without access to the live production database. The deployed cPanel application must still use the PostgreSQL `DATABASE_URL` configured in cPanel.
+- Keep the workflow Node.js major version aligned with the version selected in cPanel.
+
+The manual dispatch input `dry_run` lets you test the FTP sync plan without uploading files.
+
+## SQL Migration Utility
+
+If you are moving an existing local SQLite dataset into the PostgreSQL database that cPanel will use, generate and apply the SQL files with:
+
+```bash
+npm run db:export
+DATABASE_URL=postgres://user:password@host:5432/code_theory npm run db:migrate-sql
+```
+
+The `users` table is guarded during this migration:
+
+- existing users are never dropped
+- destructive `TRUNCATE` or `DELETE` statements are ignored
+- imported users use `ON CONFLICT DO NOTHING`
+
+That makes the script safe for environments where user accounts already exist and must survive subsequent migrations.
+
+## Troubleshooting
+
+- If the app crashes immediately after deployment, confirm the cPanel Node.js version matches the version used to build the bundle.
+- If the upload succeeds but the app does not refresh, restart it in cPanel and then verify that `tmp/restart.txt` changed on the server.
+- If the app cannot connect to PostgreSQL, verify the `DATABASE_URL` host, port, credentials, SSL parameters, and network access from cPanel to the database server.
+- If manual FTP uploads appear incomplete, make sure your FTP client is configured to show and upload dot-directories such as `.next/`.
+- If Passenger logs a startup-file error, keep the configured startup file as `app.js` and upload the generated wrapper from `.deploy/cpanel/app.js`.

@@ -26,7 +26,7 @@
 ## Key Principles
 
 1. **Shared services** — GUI routes and CLI scripts call the same service functions. No duplicated logic.
-2. **SQLite-first** — Development uses `better-sqlite3`. Schema is portable to PostgreSQL via a config switch.
+2. **Dual-dialect runtime** — Local development defaults to SQLite, while production or cPanel can run against PostgreSQL through the same service layer.
 3. **Provider-agnostic AI** — The LLM layer targets the OpenAI-compatible API format so any local runtime works.
 4. **Mobile-first responsive** — Breakpoints: mobile ≤640px, tablet 641–1024px, desktop ≥1025px.
 5. **Draft-by-default** — All auto-generated content requires manual approval before becoming active.
@@ -49,7 +49,10 @@ src/
 │   ├── quiz/             # Quiz-specific components
 │   └── common/           # Shared layout components
 ├── db/
-│   ├── schema.ts         # Drizzle schema definitions
+│   ├── schema.ts         # Runtime-selected Drizzle schema exports
+│   ├── schema-sqlite.ts  # SQLite schema definitions
+│   ├── schema-postgres.ts # PostgreSQL schema definitions
+│   ├── runtime.ts        # DATABASE_URL helpers
 │   ├── index.ts          # DB client singleton
 │   └── seed.ts           # Demo/seed data
 ├── server/

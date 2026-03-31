@@ -2,9 +2,19 @@
 
 ## Strategy
 
-- **Development**: SQLite via `better-sqlite3` — zero-config, single file at `./data/code-theory.db`.
-- **Production**: PostgreSQL — switch by setting `DATABASE_URL` to a `postgres://` connection string.
-- **ORM**: Drizzle ORM with a shared schema that works for both drivers.
+- **Local default**: SQLite via `better-sqlite3` when `DATABASE_URL` is omitted or points at a file path.
+- **Production or cPanel runtime**: PostgreSQL when `DATABASE_URL` is a `postgres://` or `postgresql://` connection string.
+- **ORM**: Drizzle ORM with runtime-selected schema exports in `src/db/schema.ts`, backed by dialect-specific definitions in `src/db/schema-sqlite.ts` and `src/db/schema-postgres.ts`.
+- **Migration tooling**: The repository still ships SQLite-to-PostgreSQL export and apply scripts under `sql/` for moving existing data into PostgreSQL.
+
+## Runtime Selection
+
+The application and Drizzle config choose the active database target from `DATABASE_URL`:
+
+- no `DATABASE_URL`, or a `file:` value, uses SQLite
+- a `postgres://` or `postgresql://` value uses PostgreSQL
+
+That means local development can stay SQLite-first, while deployed environments such as cPanel can run against PostgreSQL without a separate service layer.
 
 ## Core Entities
 
@@ -82,7 +92,7 @@ attempt_answers
 ## Portability Notes
 
 - All IDs are UUIDs stored as `text` — works identically in SQLite and PostgreSQL.
-- Timestamps use ISO 8601 text in SQLite, `timestamp` type in PostgreSQL.
+- Timestamps are stored as ISO 8601 text in both dialect-specific schema modules so service-layer shapes stay consistent across environments.
 - Boolean columns use integer (0/1) in SQLite, native boolean in PostgreSQL.
 - Drizzle handles these differences transparently via its driver abstraction.
 
@@ -110,16 +120,28 @@ Each run deletes previously generated `sql/*.sql` files first, then writes one `
 Once the SQL files exist, set `DATABASE_URL` to a PostgreSQL connection string and apply them in order:
 
 ```bash
-npm run db:apply-sql
-npm run db:apply-sql -- all
-npm run db:apply-sql -- users certifications
+npm run db:migrate-sql
+npm run db:migrate-sql -- all
+npm run db:migrate-sql -- users certifications
 ```
 
-The apply script expects the generated files to exist under the root `sql/` directory and executes each requested table file sequentially against PostgreSQL.
+The migration script expects the generated files to exist under the root `sql/` directory and executes each requested table file sequentially against PostgreSQL.
+Each table runs inside its own transaction.
+
+### `users` table guard
+
+When `users.sql` is applied, the migration adds a protection layer before executing the file:
+
+- `DROP TABLE IF EXISTS "users" CASCADE;` is removed
+- `TRUNCATE TABLE "users" ...;` is removed
+- `DELETE FROM "users" ...;` is removed
+- each `INSERT INTO "users" ...;` becomes `INSERT INTO "users" ... ON CONFLICT DO NOTHING;`
+
+That means the script can create the `users` table if it does not exist yet, but it will not wipe or overwrite users that already exist in the target PostgreSQL database.
 
 ## Local PostgreSQL Test Stack
 
-The repository includes a root `docker-compose.yml` for local PostgreSQL and pgAdmin so you can test the generated SQL files without installing PostgreSQL directly on your machine.
+The repository includes a root `docker-compose.yml` for local PostgreSQL and pgAdmin so you can run the app or test the generated SQL files without installing PostgreSQL directly on your machine.
 
 Start the stack:
 
@@ -144,5 +166,13 @@ Once the stack is running, you can export from SQLite and apply into PostgreSQL 
 
 ```bash
 npm run db:export
-DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:apply-sql
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:migrate-sql
+```
+
+You can also run the application directly against PostgreSQL:
+
+```bash
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:push
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run db:seed
+DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm run dev
 ```

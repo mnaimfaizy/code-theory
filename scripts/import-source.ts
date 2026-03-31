@@ -9,7 +9,10 @@
  */
 
 import { getCertificationBySlug } from "../src/server/services/certification-service";
-import { ingestContent } from "../src/server/services/ingestion-service";
+import {
+  fetchUrlContent,
+  ingestContent,
+} from "../src/server/services/ingestion-service";
 
 async function main() {
   const [slug, url] = process.argv.slice(2);
@@ -31,8 +34,15 @@ async function main() {
   console.log(`📝 Target certification: ${cert.title}`);
   console.log();
 
-  const result = await ingestContent(cert.id, url);
-  console.log(`✅ Generated ${result.generated} draft question(s).`);
+  const rawContent = await fetchUrlContent(url);
+  const result = await ingestContent({
+    certificationId: cert.id,
+    sourceType: "url",
+    sourceRef: url,
+    rawContent,
+  });
+
+  console.log(`✅ Generated ${result.questionsGenerated} draft question(s).`);
   console.log("   Run the review queue in the UI or approve via CLI.");
 }
 

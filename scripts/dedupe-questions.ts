@@ -32,7 +32,7 @@ async function main() {
 
   console.log(`🔍 Scanning "${cert.title}" for duplicate questions...`);
   const found = await scanForDuplicates(cert.id);
-  console.log(`   Found ${found} new potential duplicate(s).`);
+  console.log(`   Found ${found.flagged} new potential duplicate(s).`);
 
   const unresolved = await getUnresolvedDuplicates(cert.id);
   if (unresolved.length === 0) {
@@ -41,8 +41,8 @@ async function main() {
     console.log(`\n⚠️  ${unresolved.length} unresolved duplicate(s):\n`);
     for (const dup of unresolved) {
       console.log(`  [${dup.id}]`);
-      console.log(`    Q1: ${dup.questionId1}`);
-      console.log(`    Q2: ${dup.questionId2}`);
+      console.log(`    Q1: ${dup.questionId}`);
+      console.log(`    Q2: ${dup.duplicateOfId}`);
       console.log(`    Similarity: ${dup.similarity}%  Type: ${dup.matchType}`);
       console.log();
     }

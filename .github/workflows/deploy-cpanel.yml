@@ -1,0 +1,76 @@
+name: Deploy To cPanel
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            dry_run:
+                description: Only calculate FTP changes without uploading them
+                required: false
+                type: boolean
+                default: false
+
+concurrency:
+    group: cpanel-deploy
+    cancel-in-progress: true
+
+jobs:
+    deploy:
+        name: Build And FTP Deploy
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        env:
+            NEXT_TELEMETRY_DISABLED: "1"
+            AUTH_SECRET: ci-build-placeholder-secret
+            AUTH_URL: https://example.invalid
+            # Build-time placeholder only. Configure the real PostgreSQL DATABASE_URL in cPanel.
+            DATABASE_URL: file:./data/code-theory.db
+            LLM_BASE_URL: http://127.0.0.1:11434/v1
+            LLM_MODEL: disabled-in-ci
+            LLM_API_KEY: disabled-in-ci
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Lint
+              run: npm run lint
+
+            - name: Build cPanel bundle
+              run: npm run build:cpanel
+
+            - name: Upload deploy bundle artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cpanel-ftp-bundle
+                  path: ./.deploy/cpanel/
+                  if-no-files-found: error
+                  retention-days: 7
+
+            - name: Sync bundle to cPanel over FTP
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+              with:
+                  server: ${{ secrets.CPANEL_FTP_SERVER }}
+                  username: ${{ secrets.CPANEL_FTP_USERNAME }}
+                  password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+                  protocol: ftps
+                  port: 21
+                  local-dir: ./.deploy/cpanel/
+                  server-dir: ${{ secrets.CPANEL_FTP_SERVER_DIR }}
+                  dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+                  state-name: .ftp-deploy-sync-state.json
+                  exclude: |
+                      **/.git*
+                      **/.git*/**
