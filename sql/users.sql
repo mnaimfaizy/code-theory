@@ -1,5 +1,5 @@
 -- Table: users
--- Generated: 2026-03-30T22:56:02.851Z
+-- Generated: 2026-03-31T04:30:16.454Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "users" CASCADE;

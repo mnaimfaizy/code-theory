@@ -135,7 +135,7 @@ The GitHub Actions workflow uses a build-time placeholder SQLite `DATABASE_URL` 
 
 The repository ships two workflows under `.github/workflows/`:
 
-- `ci.yml` prepares dependencies once, saves a cache for `node_modules` and `~/.npm`, runs lint and test jobs in parallel, and runs `npm run build` only after `prepare`, `lint`, and `test` finish.
+- `ci.yml` prepares dependencies once, saves a cache for `node_modules` and `~/.npm`, restores and saves `.next/cache` for the build job, runs lint and test jobs in parallel, and runs `npm run build` only after `prepare`, `lint`, and `test` finish.
 - `deploy-cpanel.yml` builds the standalone cPanel bundle and deploys it over FTPS.
 
 There is currently no dedicated `test` script in `package.json`, so the CI workflow reports that tests are skipped until one is added.

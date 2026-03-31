@@ -1,5 +1,5 @@
 -- Table: attempt_answers
--- Generated: 2026-03-30T22:56:02.917Z
+-- Generated: 2026-03-31T04:30:16.493Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "attempt_answers" CASCADE;
