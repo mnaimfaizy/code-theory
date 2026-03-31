@@ -98,8 +98,12 @@ This produces `.deploy/cpanel/` with:
 - the Next.js standalone server output
 - the required `.next/static` assets copied into place
 - the `public/` directory copied into place
+- `package.json` and `package-lock.json` for server-side dependency installation
 - `app.js` as the Passenger entrypoint
 - `tmp/restart.txt` as a restart trigger file
+
+The deploy bundle intentionally excludes `node_modules/`.
+After upload, install production dependencies on the server in the application root with `npm ci --omit=dev` or `npm install --omit=dev` before restarting the app.
 
 Upload the contents of `.deploy/cpanel/` to the cPanel application root, not to the repo root and not to a public document root unless that directory is also the Node.js application root.
 
@@ -110,8 +114,9 @@ Use this flow for the first deployment or whenever you want a fully manual relea
 1. Build the bundle locally with `npm run build:cpanel`.
 2. Open your FTP client and enable hidden files, because the bundle contains a `.next/` directory.
 3. Upload the contents of `.deploy/cpanel/` into the cPanel application root.
-4. Verify that `app.js`, `server.js`, `.next/`, `public/`, and `tmp/restart.txt` exist in the application root after upload.
-5. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
+4. Verify that `app.js`, `server.js`, `.next/`, `public/`, `package.json`, and `tmp/restart.txt` exist in the application root after upload.
+5. Install runtime dependencies in the application root with `npm ci --omit=dev` or `npm install --omit=dev`.
+6. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
 
 If the file upload finishes but the site still serves the old version, use the cPanel restart button explicitly and inspect the application log directory that cPanel exposes for the Node.js app.
 
@@ -123,10 +128,13 @@ What it does:
 
 - runs on pushes to `main`
 - also supports manual `workflow_dispatch`
-- installs dependencies and runs `npm run lint`
-- runs `npm run build:cpanel`
-- uploads the generated bundle as a workflow artifact
-- syncs `.deploy/cpanel/` to cPanel over FTPS using `SamKirkland/FTP-Deploy-Action`
+- splits the pipeline into dependent `prepare`, `build`, and `deploy` jobs
+- installs dependencies in the `prepare` job and saves them as a cache for the `build` job
+- restores and saves `.next/cache` in the `build` job so repeated deploy builds can reuse the Next.js build cache
+- runs `npm run lint` and `npm run build:cpanel` in the `build` job
+- uploads the generated bundle as a workflow artifact from the `build` job
+- downloads that artifact and syncs `.deploy/cpanel/` to cPanel over FTPS in the `deploy` job using `SamKirkland/FTP-Deploy-Action`
+- excludes `node_modules/` from upload because dependencies are meant to be installed on the server after deployment
 
 Add these repository secrets before enabling the workflow:
 
@@ -138,7 +146,7 @@ Add these repository secrets before enabling the workflow:
 Operational notes:
 
 - The workflow defaults to `ftps` on port `21`. If your host only provides plain FTP or uses another port, update the workflow to match the host.
-- The workflow intentionally does not exclude `node_modules` because Next.js standalone output needs the traced runtime subset it contains.
+- The deploy bundle intentionally excludes `node_modules`; after upload, install runtime dependencies on the server with `npm ci --omit=dev` or `npm install --omit=dev`.
 - The workflow uses a build-time placeholder SQLite `DATABASE_URL` only so `next build` can complete without access to the live production database. The deployed cPanel application must still use the PostgreSQL `DATABASE_URL` configured in cPanel.
 - Keep the workflow Node.js major version aligned with the version selected in cPanel.
 

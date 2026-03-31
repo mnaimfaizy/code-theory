@@ -16,21 +16,22 @@ concurrency:
     group: cpanel-deploy
     cancel-in-progress: true
 
+env:
+    NEXT_TELEMETRY_DISABLED: "1"
+    AUTH_SECRET: ci-build-placeholder-secret
+    AUTH_URL: https://example.invalid
+    # Build-time placeholder only. Configure the real PostgreSQL DATABASE_URL in cPanel.
+    DATABASE_URL: file:./data/code-theory.db
+    LLM_BASE_URL: http://127.0.0.1:11434/v1
+    LLM_MODEL: disabled-in-ci
+    LLM_API_KEY: disabled-in-ci
+
 jobs:
-    deploy:
-        name: Build And FTP Deploy
+    prepare:
+        name: Prepare Dependencies
         runs-on: ubuntu-latest
         permissions:
             contents: read
-        env:
-            NEXT_TELEMETRY_DISABLED: "1"
-            AUTH_SECRET: ci-build-placeholder-secret
-            AUTH_URL: https://example.invalid
-            # Build-time placeholder only. Configure the real PostgreSQL DATABASE_URL in cPanel.
-            DATABASE_URL: file:./data/code-theory.db
-            LLM_BASE_URL: http://127.0.0.1:11434/v1
-            LLM_MODEL: disabled-in-ci
-            LLM_API_KEY: disabled-in-ci
 
         steps:
             - name: Checkout repository
@@ -40,16 +41,86 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: "20"
-                  cache: npm
+
+            - name: Restore dependency cache
+              id: dependency-cache
+              uses: actions/cache/restore@v4
+              with:
+                  path: |
+                      node_modules
+                      ~/.npm
+                  key: ${{ runner.os }}-node20-cpanel-deps-${{ hashFiles('package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node20-cpanel-deps-
 
             - name: Install dependencies
               run: npm ci
+
+            - name: Save dependency cache
+              if: steps.dependency-cache.outputs.cache-hit != 'true'
+              uses: actions/cache/save@v4
+              with:
+                  path: |
+                      node_modules
+                      ~/.npm
+                  key: ${{ runner.os }}-node20-cpanel-deps-${{ hashFiles('package-lock.json') }}
+
+    build:
+        name: Lint And Build Bundle
+        runs-on: ubuntu-latest
+        needs: prepare
+        permissions:
+            contents: read
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Restore dependency cache
+              uses: actions/cache/restore@v4
+              with:
+                  path: |
+                      node_modules
+                      ~/.npm
+                  key: ${{ runner.os }}-node20-cpanel-deps-${{ hashFiles('package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node20-cpanel-deps-
+
+            - name: Verify cached dependencies
+              shell: bash
+              run: |
+                  if [ ! -d node_modules ]; then
+                    echo "node_modules was not restored from cache." >&2
+                    exit 1
+                  fi
+
+            - name: Restore Next.js build cache
+              id: next-cache
+              uses: actions/cache/restore@v4
+              with:
+                  path: .next/cache
+                  key: ${{ runner.os }}-node20-cpanel-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node20-cpanel-next-cache-${{ hashFiles('package-lock.json') }}-
+                      ${{ runner.os }}-node20-cpanel-next-cache-
 
             - name: Lint
               run: npm run lint
 
             - name: Build cPanel bundle
               run: npm run build:cpanel
+
+            - name: Save Next.js build cache
+              if: steps.next-cache.outputs.cache-hit != 'true'
+              uses: actions/cache/save@v4
+              with:
+                  path: .next/cache
+                  key: ${{ runner.os }}-node20-cpanel-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
 
             - name: Upload deploy bundle artifact
               uses: actions/upload-artifact@v4
@@ -58,6 +129,20 @@ jobs:
                   path: ./.deploy/cpanel/
                   if-no-files-found: error
                   retention-days: 7
+
+    deploy:
+        name: Deploy To cPanel
+        runs-on: ubuntu-latest
+        needs: build
+        permissions:
+            contents: read
+
+        steps:
+            - name: Download deploy bundle artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: cpanel-ftp-bundle
+                  path: ./.deploy/cpanel/
 
             - name: Sync bundle to cPanel over FTP
               uses: SamKirkland/FTP-Deploy-Action@v4.3.6
@@ -74,3 +159,4 @@ jobs:
                   exclude: |
                       **/.git*
                       **/.git*/**
+                      **/node_modules/**
