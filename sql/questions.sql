@@ -1,5 +1,5 @@
 -- Table: questions
--- Generated: 2026-03-31T04:30:16.461Z
+-- Generated: 2026-04-01T07:58:19.276Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "questions" CASCADE;
@@ -15,12 +15,12 @@ CREATE TABLE IF NOT EXISTS "questions" (
   "order_index" INTEGER NOT NULL DEFAULT 0,
   "created_at" TEXT NOT NULL,
   "updated_at" TEXT NOT NULL,
-  FOREIGN KEY ("source_id") REFERENCES "question_sources" ("id"),
-  FOREIGN KEY ("certification_id") REFERENCES "certifications" ("id") ON DELETE CASCADE
+  FOREIGN KEY ("certification_id") REFERENCES "certifications" ("id") ON DELETE CASCADE,
+  FOREIGN KEY ("source_id") REFERENCES "question_sources" ("id")
 );
 
 
--- Data: 431 row(s)
+-- Data: 771 row(s)
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('69d1d3bf-5137-4911-a830-ff9723f5caf6', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is JSX in React?', 'JSX is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files. It gets compiled to React.createElement() calls.', 'easy', 'approved', NULL, 0, '2026-03-27T07:37:11.046Z', '2026-03-27T07:37:11.046Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8b730d13-fbba-4558-9a91-d6bd2a38a4cc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What hook would you use to manage local component state?', 'useState is the React hook for adding state variables to functional components. It returns a state value and a setter function.', 'easy', 'approved', NULL, 1, '2026-03-27T07:37:11.048Z', '2026-03-27T07:37:11.048Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e8dbbb4-0fce-4f16-b4c5-b9feb3b6ebbc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is the virtual DOM in React?', 'The virtual DOM is a lightweight JavaScript representation of the actual DOM. React uses it to batch and optimise updates, only applying the minimum changes needed to the real DOM.', 'easy', 'approved', NULL, 2, '2026-03-27T07:37:11.049Z', '2026-03-27T07:37:11.049Z');
@@ -2614,3 +2614,1390 @@ function checkAge(age) {
 ```
 
 The arrow-function version using `||` can also produce the same result, which made the original multiple-choice set ambiguous.', 'medium', 'approved', '1a8b8b5f-b34d-4d42-a754-98d8f1ee7818', 194, '2026-03-30T19:31:06.616Z', '2026-03-30T23:57:05.984Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a5e986b2-7573-41b9-8289-cbe5c93258fd', '9872b186-472e-4391-a150-7239315fc8b1', 'Which inheritance chain correctly describes `document.body` from the most specific built-in class to the more general ones shown on the page?', 'The chapter shows that `document.body` is an `HTMLBodyElement`, which inherits from `HTMLElement`, then `Element`, then `Node`, then `EventTarget`.', 'medium', 'approved', '5fbd2cd6-e6dd-4be2-bcbd-900e68273e6b', 0, '2026-03-31T23:04:29.759Z', '2026-03-31T23:04:29.759Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7dfc2b31-31c4-4140-b84a-279d3203e651', '9872b186-472e-4391-a150-7239315fc8b1', 'What numeric `nodeType` value identifies a text node?', 'The page lists the key `nodeType` values used most often: `1` for element nodes, `3` for text nodes, and `9` for the document object.', 'easy', 'approved', '5fbd2cd6-e6dd-4be2-bcbd-900e68273e6b', 1, '2026-03-31T23:04:29.774Z', '2026-03-31T23:04:29.774Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f9a0196c-70ab-49c1-abdf-66f09ce285bc', '9872b186-472e-4391-a150-7239315fc8b1', 'Why can `nodeName` be used on comments or the `document` object while `tagName` cannot?', '`tagName` exists only for element nodes. `nodeName` is defined for any `Node`, so it can describe non-element nodes such as comments and the document itself.', 'medium', 'approved', '5fbd2cd6-e6dd-4be2-bcbd-900e68273e6b', 2, '2026-03-31T23:04:29.778Z', '2026-03-31T23:04:29.778Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7a470a99-0b8a-4868-ad57-c3afc06e9be8', '9872b186-472e-4391-a150-7239315fc8b1', 'If you want the literal text `<b>Winnie-the-Pooh!</b>` to appear on the page rather than a bold HTML element, which property should you assign to?', '`textContent` inserts text safely and treats special characters literally. `innerHTML` would parse the string as markup and create real HTML elements.', 'easy', 'approved', '5fbd2cd6-e6dd-4be2-bcbd-900e68273e6b', 3, '2026-03-31T23:04:29.784Z', '2026-03-31T23:04:29.784Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8918d9e6-369e-41f5-963c-6317504b39e9', '9872b186-472e-4391-a150-7239315fc8b1', 'After code replaces an element using `elem.outerHTML = ...`, what is true about the original JavaScript variable that referenced that element?', 'Assigning to `outerHTML` replaces the element in the DOM, but it does not mutate the original JavaScript object. The old variable still points to the removed element, not the new markup that took its place.', 'medium', 'approved', '5fbd2cd6-e6dd-4be2-bcbd-900e68273e6b', 4, '2026-03-31T23:04:29.788Z', '2026-03-31T23:04:29.788Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e650b053-96fa-4239-829b-7e94f9f77587', '9872b186-472e-4391-a150-7239315fc8b1', 'In the page''s terminology, what is a JavaScript host environment?', 'A host environment is the platform where JavaScript runs, such as a browser or Node.js runtime. It provides platform-specific objects and functions in addition to the JavaScript language core.', 'easy', 'approved', 'd42e547f-82a5-4c2a-bf8e-d8b497221ff4', 5, '2026-03-31T23:04:35.377Z', '2026-03-31T23:04:35.377Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('46bd692e-602e-45cd-9d47-c75f64e075f5', '9872b186-472e-4391-a150-7239315fc8b1', 'What are the two roles of the global `window` object in a browser?', 'The article says `window` serves both as the global object for JavaScript code and as the browser window object that exposes browser-specific methods and properties.', 'easy', 'approved', 'd42e547f-82a5-4c2a-bf8e-d8b497221ff4', 6, '2026-03-31T23:04:35.380Z', '2026-03-31T23:04:35.380Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0344dd54-4f38-4f4b-92b0-d78bfcbc4645', '9872b186-472e-4391-a150-7239315fc8b1', 'Which browser object lets code read the current URL and redirect the browser to another page?', 'The page lists `location` under the BOM and shows `location.href` being read and then reassigned to redirect the browser.', 'easy', 'approved', 'd42e547f-82a5-4c2a-bf8e-d8b497221ff4', 7, '2026-03-31T23:04:35.383Z', '2026-03-31T23:04:35.383Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('871b766b-ab96-4d25-8869-1c58429cf3df', '9872b186-472e-4391-a150-7239315fc8b1', 'According to the page, which specification covers browser functions such as `alert`, `setTimeout`, and `location`?', 'The summary notes that the HTML specification covers the BOM in broad terms, including browser-specific functions like `setTimeout`, `alert`, and `location`.', 'medium', 'approved', 'd42e547f-82a5-4c2a-bf8e-d8b497221ff4', 8, '2026-03-31T23:04:35.387Z', '2026-03-31T23:04:35.387Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('43fc4bda-401f-4e1c-934c-ca506a4e4717', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best matches the relationship between the DOM and CSSOM on this page?', 'The DOM represents the document structure and content, while CSSOM represents stylesheets and style rules. The article also notes that in practice developers often add or remove CSS classes instead of directly editing CSS rules.', 'medium', 'approved', 'd42e547f-82a5-4c2a-bf8e-d8b497221ff4', 9, '2026-03-31T23:04:35.389Z', '2026-03-31T23:04:35.389Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a8b68439-2046-438c-bf22-a89af085609c', '9872b186-472e-4391-a150-7239315fc8b1', 'An element has a non-standard HTML attribute `something=''non-standard''`. Which API should you use to read it reliably?', 'Non-standard attributes do not automatically create DOM properties. The page shows that `getAttribute(''something'')` reads the exact attribute value from the HTML.', 'easy', 'approved', '785d44a5-6a6b-4da5-be6a-07e28f9d03ad', 10, '2026-03-31T23:04:41.056Z', '2026-03-31T23:04:41.056Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d227b733-a520-48c8-8c22-37ebed791ba7', '9872b186-472e-4391-a150-7239315fc8b1', 'For a checkbox written as `<input checked>`, which statement is correct about the attribute and property shown on the page?', 'The page uses the checkbox example to show that attributes and properties can differ in both type and representation. `getAttribute(''checked'')` yields an empty string, while `input.checked` is the boolean value `true`.', 'medium', 'approved', '785d44a5-6a6b-4da5-be6a-07e28f9d03ad', 11, '2026-03-31T23:04:41.062Z', '2026-03-31T23:04:41.062Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7c82d962-ffc3-4678-a077-4ac0458974f5', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `input.value` synchronization is correct according to the page?', '`input.value` is a key exception to the usual two-way synchronization expectation. Changing the `value` attribute updates the property, but changing the property does not rewrite the attribute in HTML.', 'medium', 'approved', '785d44a5-6a6b-4da5-be6a-07e28f9d03ad', 12, '2026-03-31T23:04:41.066Z', '2026-03-31T23:04:41.066Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dc9efbef-f858-4b74-bb3b-190a2561eeac', '9872b186-472e-4391-a150-7239315fc8b1', 'When you need the `href` exactly as written in HTML, which should you read?', 'The page shows that the DOM `href` property is normalized to a full absolute URL. `getAttribute(''href'')` returns the original attribute value as written in the markup.', 'easy', 'approved', '785d44a5-6a6b-4da5-be6a-07e28f9d03ad', 13, '2026-03-31T23:04:41.068Z', '2026-03-31T23:04:41.068Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7c7489d5-f5dc-43fa-aea3-74ea0dfb9697', '9872b186-472e-4391-a150-7239315fc8b1', 'Which JavaScript expression reads the value of a `data-order-state` attribute using the dedicated API shown on the page?', 'The page explains that `data-*` attributes are exposed through `dataset`, and multiword names become camel-cased. So `data-order-state` becomes `dataset.orderState`.', 'easy', 'approved', '785d44a5-6a6b-4da5-be6a-07e28f9d03ad', 14, '2026-03-31T23:04:41.073Z', '2026-03-31T23:04:41.073Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fd747a89-11af-4eb5-be03-fa90ff1e9419', '9872b186-472e-4391-a150-7239315fc8b1', 'You are checking whether a link is external and you need its `href` exactly as it appeared in the HTML, not the browser-resolved absolute URL. Which API is the safest choice?', 'This combines the searching and attributes material, but the key point comes from the attributes chapter: DOM properties like `href` can be normalized into full URLs, while `getAttribute(''href'')` returns the original value written in the markup.', 'medium', 'approved', 'df0dec2c-3da0-490c-9462-58919b5dc881', 15, '2026-03-31T23:04:46.926Z', '2026-03-31T23:04:46.926Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7b2ac525-e1c4-4d46-9526-b698b32f7d9c', '9872b186-472e-4391-a150-7239315fc8b1', 'A script in `<head>` tries to run `document.body.querySelectorAll(''div'')`. Why can this fail even though `window` already exists?', '`window` exists as the global browser object, but `document.body` can still be `null` if the browser has not parsed the `<body>` yet. DOM search methods cannot run on a missing node.', 'medium', 'approved', 'df0dec2c-3da0-490c-9462-58919b5dc881', 16, '2026-03-31T23:04:46.931Z', '2026-03-31T23:04:46.931Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('aad8f50a-8059-4ae2-89ff-2fec63189286', '9872b186-472e-4391-a150-7239315fc8b1', 'Code stores `const items = document.getElementsByTagName(''li'')`, and later appends a new `<li>` to the list. What happens to `items.length` without running another query?', 'This combines searching with DOM modification. `getElementsByTagName` returns a live collection, so when the DOM changes and a new matching element is appended, the collection updates automatically.', 'medium', 'approved', 'df0dec2c-3da0-490c-9462-58919b5dc881', 17, '2026-03-31T23:04:46.934Z', '2026-03-31T23:04:46.934Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('00a66b0a-9a8f-4f1f-b33d-4cf3f5464de1', '9872b186-472e-4391-a150-7239315fc8b1', 'What really happens when code runs `container.before(''<p>Hello</p>'')` with the modern insertion API?', 'The modifying-document chapter explains that the modern insertion methods accept strings, but they insert those strings as text, not HTML. To insert actual markup, you would need `insertAdjacentHTML` or a real DOM node created in code.', 'medium', 'approved', 'df0dec2c-3da0-490c-9462-58919b5dc881', 18, '2026-03-31T23:04:46.937Z', '2026-03-31T23:04:46.937Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('eaf74ea0-6659-4ae8-ab41-d83d5a62a00a', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is it a bug to replace an element with `outerHTML` and then keep using the old variable to call methods like `classList.add()`?', '`outerHTML` replaces the element in the DOM, but the old variable still points to the removed original node. Any later method calls affect that stale object reference, not the new element now in the document.', 'medium', 'approved', 'df0dec2c-3da0-490c-9462-58919b5dc881', 19, '2026-03-31T23:04:46.939Z', '2026-03-31T23:04:46.939Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('52ad2077-03d5-4fcf-b717-a36a7a6571a4', '9872b186-472e-4391-a150-7239315fc8b1', 'Why can `document.body` be `null` for a script that runs inside `<head>`?', 'A script can only access what the browser has already parsed. If it runs inside `<head>`, the browser may not have reached `<body>` yet, so `document.body` does not exist at that moment.', 'easy', 'approved', '41131eeb-3b42-43da-b9f9-3ce17d21946e', 20, '2026-03-31T23:04:54.298Z', '2026-03-31T23:04:54.298Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6e85c249-9d2d-4027-af62-b16fa7fdd0e2', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `childNodes` include that `children` does not?', '`childNodes` contains all child nodes, including text and comment nodes. `children` contains only element nodes.', 'easy', 'approved', '41131eeb-3b42-43da-b9f9-3ce17d21946e', 21, '2026-03-31T23:04:54.301Z', '2026-03-31T23:04:54.301Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bf636672-cd9f-41b2-860c-935580af0c12', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does `document.body.childNodes.filter(...)` not work directly?', '`childNodes` is an iterable DOM collection, but it is not a real array. That means array methods such as `filter` are unavailable until the collection is converted with `Array.from(...)`.', 'medium', 'approved', '41131eeb-3b42-43da-b9f9-3ce17d21946e', 22, '2026-03-31T23:04:54.303Z', '2026-03-31T23:04:54.303Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('30ffd786-7354-449a-9b42-9e265a895506', '9872b186-472e-4391-a150-7239315fc8b1', 'For `document.documentElement`, what is the difference between `parentNode` and `parentElement`?', 'The root `<html>` element has `document` as its parent node, but `document` is not an element. So `parentNode` returns `document`, while `parentElement` returns `null`.', 'medium', 'approved', '41131eeb-3b42-43da-b9f9-3ce17d21946e', 23, '2026-03-31T23:04:54.305Z', '2026-03-31T23:04:54.305Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e8f3253f-086b-4bf2-95ac-7c5377fcaed6', '9872b186-472e-4391-a150-7239315fc8b1', 'Which expression gets the second cell in the first row of a table using the table-specific navigation helpers shown on the page?', 'The chapter shows that tables expose `rows` and rows expose `cells`. The second cell in the first row is therefore `table.rows[0].cells[1]`.', 'easy', 'approved', '41131eeb-3b42-43da-b9f9-3ce17d21946e', 24, '2026-03-31T23:04:54.307Z', '2026-03-31T23:04:54.307Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9bb2f388-06de-4cc8-a588-a9101ffe545f', '9872b186-472e-4391-a150-7239315fc8b1', 'In a normal HTML document, what do spaces and newlines between tags usually become in the DOM?', 'The page stresses that spaces and newlines are valid characters, so they usually become `#text` nodes in the DOM unless one of the few top-level exclusions applies.', 'easy', 'approved', '8e1e7b02-2bb7-4d1d-9e78-4fe14cad1f16', 25, '2026-03-31T23:05:01.369Z', '2026-03-31T23:05:01.369Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c460c307-2b99-489b-b0ef-23a14a8cd1b0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which whitespace is specifically ignored for historical reasons when the browser builds the DOM?', 'The article lists two top-level exclusions and one of them is that spaces and newlines before `<head>` are ignored for historical reasons.', 'medium', 'approved', '8e1e7b02-2bb7-4d1d-9e78-4fe14cad1f16', 26, '2026-03-31T23:05:01.374Z', '2026-03-31T23:05:01.374Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1ebe02b9-d634-4e1d-a5c5-94f7be6fbf76', '9872b186-472e-4391-a150-7239315fc8b1', 'If a source HTML table omits a `<tbody>` element, what does the browser typically do in the DOM?', 'The page calls out tables as a special case: the browser inserts a `<tbody>` into the DOM even if it is not present in the source HTML.', 'easy', 'approved', '8e1e7b02-2bb7-4d1d-9e78-4fe14cad1f16', 27, '2026-03-31T23:05:01.378Z', '2026-03-31T23:05:01.378Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('074a0349-511b-4930-a3b4-8f0c7408096a', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens to an HTML comment such as `<!-- comment -->` when the DOM tree is created?', 'The page explains that everything in HTML becomes part of the DOM, even comments. They appear as `#comment` nodes.', 'easy', 'approved', '8e1e7b02-2bb7-4d1d-9e78-4fe14cad1f16', 28, '2026-03-31T23:05:01.380Z', '2026-03-31T23:05:01.380Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('420c7c15-5caa-4171-a1d0-5860c92c2d6f', '9872b186-472e-4391-a150-7239315fc8b1', 'What does the browser generally do when it encounters malformed HTML with missing closing tags while building the DOM?', 'The chapter explains that browsers auto-correct malformed HTML during DOM creation. They close tags and restore missing structure to form a usable DOM tree.', 'medium', 'approved', '8e1e7b02-2bb7-4d1d-9e78-4fe14cad1f16', 29, '2026-03-31T23:05:01.384Z', '2026-03-31T23:05:01.384Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('67219a81-23e4-48fc-b23e-c25cb7290320', '9872b186-472e-4391-a150-7239315fc8b1', 'Which browser object represents the actual page loaded into a tab and lets JavaScript read or change the document''s HTML and CSS?', 'The page distinguishes the main browser objects clearly: `window` represents the tab, `navigator` represents browser identity and state, and `document` represents the actual page loaded into the window. DOM manipulation happens through the `Document` object.', 'easy', 'approved', '934bd75e-b94b-4658-bff9-94af39fec8d8', 30, '2026-03-31T23:05:07.502Z', '2026-03-31T23:05:07.502Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cd5ceee9-3199-469e-bdb0-f996ad0cafe1', '9872b186-472e-4391-a150-7239315fc8b1', 'In the DOM tree example, `IMG` sits inside `SECTION`, which sits inside `BODY`. Which statement is correct about `IMG` relative to `BODY`?', 'The article defines a child as directly inside another node and a descendant as anywhere inside another node. Because `IMG` is two levels below `BODY`, it is a descendant of `BODY` but not its direct child.', 'easy', 'approved', '934bd75e-b94b-4658-bff9-94af39fec8d8', 31, '2026-03-31T23:05:07.507Z', '2026-03-31T23:05:07.507Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('47bc194f-2df8-4a11-8093-b160649fef26', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens when code calls `sect.appendChild(linkPara)` after `linkPara` already exists earlier in the same section?', '`appendChild()` moves the existing node reference to the new position. It does not create a duplicate. The page explicitly notes that copying would require `cloneNode()` instead.', 'medium', 'approved', '934bd75e-b94b-4658-bff9-94af39fec8d8', 32, '2026-03-31T23:05:07.509Z', '2026-03-31T23:05:07.509Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('39be0561-1a88-4c1b-bdf0-e5d7dac5c659', '9872b186-472e-4391-a150-7239315fc8b1', 'When setting an inline style through `HTMLElement.style`, which JavaScript property name corresponds to the CSS property `background-color`?', 'The article points out that style property names use lower camel case in JavaScript even when the CSS form is hyphenated. So `background-color` becomes `backgroundColor`.', 'easy', 'approved', '934bd75e-b94b-4658-bff9-94af39fec8d8', 33, '2026-03-31T23:05:07.510Z', '2026-03-31T23:05:07.510Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c69ed431-2791-4e84-a7e1-4a86a8379bf5', '9872b186-472e-4391-a150-7239315fc8b1', 'In the dynamic shopping list exercise, why does the handler call `preventDefault()` before adding a new item?', 'The input is inside a form, so pressing Enter would submit the form and refresh the page. `preventDefault()` stops that default behavior so the script can add the list item instead.', 'easy', 'approved', '934bd75e-b94b-4658-bff9-94af39fec8d8', 34, '2026-03-31T23:05:07.512Z', '2026-03-31T23:05:07.512Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ab998219-e801-40d3-83ac-36c0808b814d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which method creates a new element node such as a `<div>`?', 'The chapter introduces `document.createElement(tag)` as the standard way to create a new element node. `createTextNode` is for text nodes, not elements.', 'easy', 'approved', 'b577e2da-96ee-4a17-b0b7-bdca861fc8df', 35, '2026-03-31T23:05:13.195Z', '2026-03-31T23:05:13.195Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9e6ba53d-1bde-4bdf-bbcb-26a21f0d9f4f', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens when code runs `div.before(''<p>Hello</p>'')` using the modern insertion methods described on the page?', 'The modern insertion methods can accept strings, but strings are inserted as text nodes, not parsed as HTML. To insert actual HTML markup, the chapter recommends `insertAdjacentHTML`.', 'medium', 'approved', 'b577e2da-96ee-4a17-b0b7-bdca861fc8df', 36, '2026-03-31T23:05:13.202Z', '2026-03-31T23:05:13.202Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5da18688-a3a9-4b34-bb4b-5c7fbfc97232', '9872b186-472e-4391-a150-7239315fc8b1', 'Which call inserts HTML immediately before an existing element named `div`?', '`insertAdjacentHTML(where, html)` inserts markup relative to an existing element. The position code `beforebegin` means immediately before the element itself.', 'easy', 'approved', 'b577e2da-96ee-4a17-b0b7-bdca861fc8df', 37, '2026-03-31T23:05:13.206Z', '2026-03-31T23:05:13.206Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('83fe88e7-725a-42fc-978c-cbe1db2aaa8e', '9872b186-472e-4391-a150-7239315fc8b1', 'If you insert an existing node into a new place using methods like `after` or `append`, what happens to the node in its old place?', 'The article states that insertion methods automatically remove an existing node from its old place when moving it. No manual `remove()` call is needed first.', 'easy', 'approved', 'b577e2da-96ee-4a17-b0b7-bdca861fc8df', 38, '2026-03-31T23:05:13.209Z', '2026-03-31T23:05:13.209Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5bb89ede-98aa-46b2-ac57-e192315664d7', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is `document.write` rarely suitable after the page has already loaded?', 'The chapter notes that `document.write` only works safely during page loading. If it is called after loading, it wipes out the existing document content and replaces it.', 'medium', 'approved', 'b577e2da-96ee-4a17-b0b7-bdca861fc8df', 39, '2026-03-31T23:05:13.215Z', '2026-03-31T23:05:13.215Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fdc0e085-c4fd-43ef-9926-2086de76ebb2', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `getElementById` matches the page?', 'The chapter explicitly notes that `getElementById` is called on `document`, not on arbitrary elements. It searches the whole document for that unique id.', 'easy', 'approved', '77ba4a15-7578-45c7-bbc5-8b4a55fbdecf', 40, '2026-03-31T23:05:19.354Z', '2026-03-31T23:05:19.354Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('14ae547e-a7d6-4395-adf1-1c374e4a7328', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `elem.querySelector(css)` return?', '`querySelector` returns only the first matching element. The page compares it to `querySelectorAll(css)[0]`, but notes that `querySelector` is faster and shorter because it searches for only one.', 'easy', 'approved', '77ba4a15-7578-45c7-bbc5-8b4a55fbdecf', 41, '2026-03-31T23:05:19.357Z', '2026-03-31T23:05:19.357Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('22bbf6df-4e9a-4091-b27a-a880d92f0efc', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `elem.closest(css)` do?', '`closest` walks upward from the element through its ancestors and returns the nearest one that matches the selector. The element itself is checked first.', 'medium', 'approved', '77ba4a15-7578-45c7-bbc5-8b4a55fbdecf', 42, '2026-03-31T23:05:19.359Z', '2026-03-31T23:05:19.359Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5806c9cc-e7fb-49c4-825b-1b6be4263ceb', '9872b186-472e-4391-a150-7239315fc8b1', 'Which collection updates automatically when matching elements are added to the DOM after the collection has already been stored?', 'The page shows that `getElementsBy*` methods return live collections, while `querySelectorAll` returns a static collection that does not auto-update.', 'medium', 'approved', '77ba4a15-7578-45c7-bbc5-8b4a55fbdecf', 43, '2026-03-31T23:05:19.361Z', '2026-03-31T23:05:19.361Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('142fb398-df9d-4333-9652-18ec0a245283', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does the page recommend avoiding id-named global variables like using `elem` directly for `<div id=''elem''>`?', 'The page says that relying on element ids as globals can cause naming conflicts and makes code harder to understand when the HTML is not visible. In real code, `document.getElementById` is preferred.', 'medium', 'approved', '77ba4a15-7578-45c7-bbc5-8b4a55fbdecf', 44, '2026-03-31T23:05:19.363Z', '2026-03-31T23:05:19.363Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0eef86c2-1942-4acd-8f0a-5b18b4181110', '9872b186-472e-4391-a150-7239315fc8b1', 'Which API is the best fit when you want to add one CSS class without overwriting the element''s other classes?', '`classList` is designed for individual class operations such as `add`, `remove`, `toggle`, and `contains`. Assigning to `className` replaces the whole class string.', 'easy', 'approved', 'eb58358c-7a0d-4d83-8bbc-e8565dae16f3', 45, '2026-03-31T23:05:25.204Z', '2026-03-31T23:05:25.204Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e11e87ca-e3f1-4cab-8f36-d8d51bf16eea', '9872b186-472e-4391-a150-7239315fc8b1', 'Which JavaScript property corresponds to the CSS property `background-color` when using `elem.style`?', 'The page shows that CSS property names become camel-cased when accessed through `style`. Therefore `background-color` becomes `backgroundColor`.', 'easy', 'approved', 'eb58358c-7a0d-4d83-8bbc-e8565dae16f3', 46, '2026-03-31T23:05:25.208Z', '2026-03-31T23:05:25.208Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4b70b56f-454e-4f19-b64a-addf624d95c7', '9872b186-472e-4391-a150-7239315fc8b1', 'How can you remove an inline `display` style so that normal CSS rules apply again?', 'The chapter says not to delete style properties directly. Instead, assign an empty string such as `elem.style.display = ''''`, or use `removeProperty`, so the browser treats the property as unset.', 'medium', 'approved', 'eb58358c-7a0d-4d83-8bbc-e8565dae16f3', 47, '2026-03-31T23:05:25.211Z', '2026-03-31T23:05:25.211Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9ef68246-9cbe-42d8-946b-3aac1bd491a0', '9872b186-472e-4391-a150-7239315fc8b1', 'What usually happens if you set `document.body.style.margin = 20` without a CSS unit?', 'The page warns to include CSS units like `px`. Without a valid unit, the assignment is ignored and the property remains empty.', 'easy', 'approved', 'eb58358c-7a0d-4d83-8bbc-e8565dae16f3', 48, '2026-03-31T23:05:25.217Z', '2026-03-31T23:05:25.217Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7948d1c5-434e-4532-9a7f-b9dd31187fb0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which API should you use to read the final style values after CSS classes, inheritance, and the cascade have all been applied?', '`elem.style` only reflects inline styles from the `style` attribute. The page explains that `getComputedStyle(elem)` returns the resolved style values after the cascade and class-based styles are applied.', 'easy', 'approved', 'eb58358c-7a0d-4d83-8bbc-e8565dae16f3', 49, '2026-03-31T23:05:25.221Z', '2026-03-31T23:05:25.221Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('96181263-3750-43ec-be8b-78571ff23d26', '9872b186-472e-4391-a150-7239315fc8b1', 'In the MDN random-color example, what does the second argument to `btn.addEventListener("click", changeBackground)` represent?', 'The first argument names the event to watch, and the second argument is the handler function that runs when that event fires. In the example, `changeBackground` is the code that reacts to the click.', 'medium', 'draft', '785809ba-9c4a-48fd-9fc8-d409d1f50827', 50, '2026-04-01T00:17:25.535Z', '2026-04-01T00:17:25.535Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1820e8c5-f706-4cbf-a99e-1fab75d103f9', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does MDN recommend `addEventListener()` instead of assigning `element.onclick = ...` in more complex programs?', 'Handler properties such as `onclick` can be overwritten and only hold one listener for that event. `addEventListener()` scales better because it supports multiple listeners and cleaner removal when needed.', 'medium', 'draft', '785809ba-9c4a-48fd-9fc8-d409d1f50827', 51, '2026-04-01T00:17:25.551Z', '2026-04-01T00:17:25.551Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8925da20-912f-4e35-b6a4-ef78cf03114a', '9872b186-472e-4391-a150-7239315fc8b1', 'In MDN''s event object example, what does `e.target` refer to?', '`e.target` points to the element the event occurred on. In the example, that is the button that was clicked, so the handler changes the button color instead of the whole page.', 'medium', 'draft', '785809ba-9c4a-48fd-9fc8-d409d1f50827', 52, '2026-04-01T00:17:25.555Z', '2026-04-01T00:17:25.555Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('51ab675e-4ea9-48c7-b5e0-a1c216ea02ce', '9872b186-472e-4391-a150-7239315fc8b1', 'In the form validation example, why is `e.preventDefault()` called inside the `submit` handler?', 'Calling `preventDefault()` stops the browser from performing its normal form submission. That gives the page a chance to show a validation message instead of navigating away immediately.', 'medium', 'draft', '785809ba-9c4a-48fd-9fc8-d409d1f50827', 53, '2026-04-01T00:17:25.561Z', '2026-04-01T00:17:25.561Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2d784b33-9a34-4ff9-b62a-43e1ae06dbd0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which event registration style does MDN explicitly describe as bad practice on modern pages?', 'MDN warns against inline handler attributes like `onclick="..."` because they mix HTML with JavaScript, scale poorly, and are often blocked by stricter security setups.', 'medium', 'draft', '785809ba-9c4a-48fd-9fc8-d409d1f50827', 54, '2026-04-01T00:17:25.565Z', '2026-04-01T00:17:25.565Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('069eede3-5ff1-48e8-aee1-f3b8e7403591', '9872b186-472e-4391-a150-7239315fc8b1', 'A `button` sits inside a `div`, which sits inside `body`. If all three have click handlers in the default phase and the button is clicked, which order runs?', 'In the bubbling phase, the event runs on the clicked element first and then moves outward through its ancestors. That is why the button handler runs before the div handler, which runs before the body handler.', 'medium', 'draft', 'a7894614-8328-4a3e-be43-79315f449a8d', 55, '2026-04-01T00:17:33.848Z', '2026-04-01T00:17:33.848Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9d52193b-825e-4aa1-8b23-e487de5b2f80', '9872b186-472e-4391-a150-7239315fc8b1', 'In MDN''s video player example, why did clicking the video also hide the surrounding box before the fix?', 'The video is nested inside the box. Clicking it runs the video''s handler, then the click bubbles to the box and triggers the box handler too, which hides the box.', 'medium', 'draft', 'a7894614-8328-4a3e-be43-79315f449a8d', 56, '2026-04-01T00:17:33.854Z', '2026-04-01T00:17:33.854Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('33f34d2e-c82c-4611-828e-81a2e6ff6673', '9872b186-472e-4391-a150-7239315fc8b1', 'Which change switches an event listener into the capturing phase?', 'Capturing is enabled by passing the capture option when registering the listener. Without it, most listeners run in the default bubbling phase.', 'medium', 'draft', 'a7894614-8328-4a3e-be43-79315f449a8d', 57, '2026-04-01T00:17:33.857Z', '2026-04-01T00:17:33.857Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('914554ea-7dbb-4fe2-87bf-ff388dab5726', '9872b186-472e-4391-a150-7239315fc8b1', 'In the tile-coloring delegation example, which property identifies the specific tile the user clicked?', 'Delegation usually attaches one handler to a parent and inspects the original clicked element. `event.target` points to that innermost clicked tile, while `event.currentTarget` would be the container.', 'medium', 'draft', 'a7894614-8328-4a3e-be43-79315f449a8d', 58, '2026-04-01T00:17:33.860Z', '2026-04-01T00:17:33.860Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1d5e3e0d-6a2a-447d-bdf3-263707228c56', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement correctly compares `event.target` and `event.currentTarget` during bubbling?', '`event.target` stays tied to the original deepest element that started the event. `event.currentTarget` changes depending on which listener is currently running in the propagation chain.', 'medium', 'draft', 'a7894614-8328-4a3e-be43-79315f449a8d', 59, '2026-04-01T00:17:33.863Z', '2026-04-01T00:17:33.863Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0738e072-093d-411b-b6bc-3b761d469696', '9872b186-472e-4391-a150-7239315fc8b1', 'Which `addEventListener` option removes a listener automatically after it fires once?', 'The `once` option tells the browser to invoke the listener a single time and then remove it automatically. The other common options control capture or passive behavior, not one-time execution.', 'medium', 'draft', 'cddea692-85a2-4e47-9342-6ca59b90db2f', 60, '2026-04-01T00:17:41.691Z', '2026-04-01T00:17:41.691Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ce06e3ed-2f86-4033-9dca-44a0d1e8b8a7', '9872b186-472e-4391-a150-7239315fc8b1', 'During bubbling, which value keeps pointing to the original deepest element that started the event?', 'The event source does not change as the event travels upward. `event.target` stays fixed on the original element, while `event.currentTarget` changes at each handler level.', 'medium', 'draft', 'cddea692-85a2-4e47-9342-6ca59b90db2f', 61, '2026-04-01T00:17:41.699Z', '2026-04-01T00:17:41.699Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7129be74-e53b-43a8-a89c-98d5884b7b1a', '9872b186-472e-4391-a150-7239315fc8b1', 'What event-handling pattern puts one listener on a shared ancestor to manage many similar child elements?', 'That pattern is event delegation. It relies on bubbling so one container-level listener can inspect `event.target` and decide which child was interacted with.', 'medium', 'draft', 'cddea692-85a2-4e47-9342-6ca59b90db2f', 62, '2026-04-01T00:17:41.702Z', '2026-04-01T00:17:41.702Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7320a9ab-ae88-48ee-b87e-a02817f9b6c1', '9872b186-472e-4391-a150-7239315fc8b1', 'In the nested context menu example, why is checking `event.defaultPrevented` in an outer handler often better than calling `stopPropagation()` in the inner one?', 'Checking `defaultPrevented` lets outer handlers know the event was already handled without cutting off propagation completely. That preserves visibility for analytics or other higher-level behavior.', 'medium', 'draft', 'cddea692-85a2-4e47-9342-6ca59b90db2f', 63, '2026-04-01T00:17:41.704Z', '2026-04-01T00:17:41.704Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('daa339db-2864-46bc-b95c-f75ba85211f8', '9872b186-472e-4391-a150-7239315fc8b1', 'If you need to dispatch your own event with extra data such as `{ name: "John" }`, which API is intended for that?', '`CustomEvent` is designed for user-defined events and provides the `detail` field for passing extra payload data to listeners. That keeps custom data separate from built-in event properties.', 'medium', 'draft', 'cddea692-85a2-4e47-9342-6ca59b90db2f', 64, '2026-04-01T00:17:41.707Z', '2026-04-01T00:17:41.707Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2a27673a-4cec-4628-8af3-17452c5aa5bc', '9872b186-472e-4391-a150-7239315fc8b1', 'Which `event.button` value usually represents the secondary, right mouse button?', 'In standard mouse events, `event.button` uses numeric codes. The secondary or right button is represented by `2`, while the primary left button is `0`.', 'medium', 'draft', 'b30d9065-cabb-4bfa-8f09-6a651165f7fd', 65, '2026-04-01T00:17:49.519Z', '2026-04-01T00:17:49.519Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b4005870-4305-47a2-8b6f-626e9ccf5d93', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `mouseenter` and `mouseover` is correct?', '`mouseenter` is simpler because it does not bubble and ignores moves between an element and its descendants. `mouseover` does bubble and will fire again when moving into child elements.', 'medium', 'draft', 'b30d9065-cabb-4bfa-8f09-6a651165f7fd', 66, '2026-04-01T00:17:49.523Z', '2026-04-01T00:17:49.523Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5f9bbe97-1ce5-495e-8f25-c4980553549c', '9872b186-472e-4391-a150-7239315fc8b1', 'Which pointer-event property lets you distinguish one active finger or stylus contact from another during multi-touch interactions?', '`pointerId` uniquely identifies each active pointer contact. That makes it possible to track multiple fingers or pens separately during the same interaction.', 'medium', 'draft', 'b30d9065-cabb-4bfa-8f09-6a651165f7fd', 67, '2026-04-01T00:17:49.528Z', '2026-04-01T00:17:49.528Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('341cb421-4bb3-4aa3-9802-e6095c688838', '9872b186-472e-4391-a150-7239315fc8b1', 'For a hotkey that should keep working even if the user switches keyboard layout, which property is usually safer to check?', '`event.code` is tied to the physical key location, so it remains stable across layout changes. `event.key` follows the produced character, which may change when the user switches layouts.', 'medium', 'draft', 'b30d9065-cabb-4bfa-8f09-6a651165f7fd', 68, '2026-04-01T00:17:49.535Z', '2026-04-01T00:17:49.535Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3afdc6be-6855-4c97-bda5-9b20b3921d86', '9872b186-472e-4391-a150-7239315fc8b1', 'Why can''t `event.preventDefault()` inside an `onscroll` handler stop the scroll that just happened?', 'The `scroll` event fires after scrolling has already occurred, so canceling it there is too late. To prevent scrolling, you must stop the earlier cause of the scroll or use CSS such as `overflow` controls.', 'medium', 'draft', 'b30d9065-cabb-4bfa-8f09-6a651165f7fd', 69, '2026-04-01T00:17:49.583Z', '2026-04-01T00:17:49.583Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('afde7f56-ace4-4a05-9623-353d0e5e851f', '9872b186-472e-4391-a150-7239315fc8b1', 'A single click handler is attached to a container, and the user clicks a nested button inside it. Which statement is correct inside that handler?', 'In delegated event handling, the handler runs on the container, so `event.currentTarget` is the container. The original clicked element remains available as `event.target`, which is the nested button.', 'easy', 'draft', '46606c46-6c4d-418e-b387-c7df5e179c61', 70, '2026-04-01T00:17:56.798Z', '2026-04-01T00:17:56.798Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('337d693f-1478-401f-9656-781378095535', '9872b186-472e-4391-a150-7239315fc8b1', 'A backdrop click closes a video box, but clicking the video itself should only play the video. What is the most direct fix?', 'The problem is caused by bubbling from the video up to the backdrop container. Calling `stopPropagation()` inside the video''s click handler stops that upward travel, so the backdrop close logic does not run.', 'easy', 'draft', '46606c46-6c4d-418e-b387-c7df5e179c61', 71, '2026-04-01T00:17:56.801Z', '2026-04-01T00:17:56.801Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f40d87c6-ec1b-4f89-9d71-f080f4829d66', '9872b186-472e-4391-a150-7239315fc8b1', 'You are building a custom drag interaction that should work for mouse, touch, and pen, and should keep receiving move events even if the pointer leaves the thumb. Which approach best matches the source material?', 'Pointer events unify mouse, touch, and pen input. `setPointerCapture(event.pointerId)` keeps later pointer events retargeted to the dragged element until the pointer is released or canceled.', 'easy', 'draft', '46606c46-6c4d-418e-b387-c7df5e179c61', 72, '2026-04-01T00:17:56.804Z', '2026-04-01T00:17:56.804Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8ea20cc9-0f98-4d58-ab82-81efe91303ad', '9872b186-472e-4391-a150-7239315fc8b1', 'A nested button shows its own custom context menu. You want outer analytics or document-level handlers to still observe the event, but not open another context menu. Which approach is preferred?', 'Calling `preventDefault()` handles the browser action, and letting outer code check `event.defaultPrevented` avoids duplicate menu behavior without cutting off propagation entirely. That is cleaner than creating a dead zone with `stopPropagation()`.', 'easy', 'draft', '46606c46-6c4d-418e-b387-c7df5e179c61', 73, '2026-04-01T00:17:56.806Z', '2026-04-01T00:17:56.806Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0b410daf-cfbd-4b00-9df6-48e0ac732437', '9872b186-472e-4391-a150-7239315fc8b1', 'For an Undo shortcut that should keep working after keyboard layout changes and also support macOS, which check is safest?', '`event.code` stays tied to the physical key position even if the user changes keyboard layout, and cross-platform Undo shortcuts should accept either Ctrl or Meta so macOS users are covered.', 'easy', 'draft', '46606c46-6c4d-418e-b387-c7df5e179c61', 74, '2026-04-01T00:17:56.810Z', '2026-04-01T00:17:56.810Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a99c2788-03ef-4969-9e1b-0308f02c01a6', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best defines a callback function?', 'A callback is a function passed into another function as an argument and later invoked inside that outer function to help complete some routine or action.', 'easy', 'approved', '0532d932-8e5b-41ce-98c6-e1b76f0106fb', 75, '2026-04-01T00:41:21.707Z', '2026-04-01T00:41:21.707Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('49a3c580-57cc-41b3-8a97-84c7c0dfebd3', '9872b186-472e-4391-a150-7239315fc8b1', 'In a callback-based API, what is the caller responsible for?', 'MDN notes that the API provider, also called the caller, decides when to call the callback, what arguments to pass into it, and may also use its return value to guide behavior.', 'easy', 'approved', '0532d932-8e5b-41ce-98c6-e1b76f0106fb', 76, '2026-04-01T00:41:21.711Z', '2026-04-01T00:41:21.711Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d4386881-81dd-4687-86d9-dd2e19157c0f', '9872b186-472e-4391-a150-7239315fc8b1', 'Consider this code:
+
+```js
+let value = 1;
+
+doSomething(() => {
+  value = 2;
+});
+
+console.log(value);
+```
+
+If `doSomething` invokes its callback synchronously, what is logged?', 'If the callback runs synchronously, `value = 2` happens before `console.log(value)`, so the logged value is `2`.', 'medium', 'approved', '0532d932-8e5b-41ce-98c6-e1b76f0106fb', 77, '2026-04-01T00:41:21.717Z', '2026-04-01T00:41:21.717Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f88a8981-52db-4c8b-91b0-db2652663b75', '9872b186-472e-4391-a150-7239315fc8b1', 'Which pair below consists of asynchronous callback examples mentioned by MDN?', 'MDN lists `setTimeout()` and `Promise.prototype.then()` as asynchronous callback examples because their callbacks run later, after some asynchronous work or scheduling step.', 'easy', 'approved', '0532d932-8e5b-41ce-98c6-e1b76f0106fb', 78, '2026-04-01T00:41:21.722Z', '2026-04-01T00:41:21.722Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b5aa3d52-9bc6-4801-8f11-ff2ef34a65d5', '9872b186-472e-4391-a150-7239315fc8b1', 'What additional behavior may the caller expect from a callback besides simply running it?', 'The caller may inspect the return value of the callback and use that result to decide what to do next.', 'medium', 'approved', '0532d932-8e5b-41ce-98c6-e1b76f0106fb', 79, '2026-04-01T00:41:21.726Z', '2026-04-01T00:41:21.726Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0d41b749-7408-4dc3-829a-ea79ae399fdc', '9872b186-472e-4391-a150-7239315fc8b1', 'According to MDN, what is a closure?', 'A closure is not just the inner function by itself. It is the function together with the lexical environment it closed over when it was created.', 'easy', 'approved', 'ca2b863c-32c2-4fd8-9ea1-8b8873285356', 80, '2026-04-01T00:41:27.363Z', '2026-04-01T00:41:27.363Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9808ce8b-5ff3-4aaf-a834-37d61bd4b833', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this code still log `''Mozilla''` even after `makeFunc()` has finished running?
+
+```js
+function makeFunc() {
+  const name = ''Mozilla'';
+  function displayName() {
+    console.log(name);
+  }
+  return displayName;
+}
+
+const myFunc = makeFunc();
+myFunc();
+```', '`displayName` closes over the lexical environment where `name` exists. Returning the function does not break that reference.', 'medium', 'approved', 'ca2b863c-32c2-4fd8-9ea1-8b8873285356', 81, '2026-04-01T00:41:27.366Z', '2026-04-01T00:41:27.366Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9535e51f-33ef-402a-9af5-ece72002d381', '9872b186-472e-4391-a150-7239315fc8b1', 'Why do `add5(2)` and `add10(2)` return different results in the `makeAdder` example even though they come from the same function body?', 'Each returned function shares the same function body definition, but each one closes over a different lexical environment. One remembers `x = 5`; the other remembers `x = 10`.', 'medium', 'approved', 'ca2b863c-32c2-4fd8-9ea1-8b8873285356', 82, '2026-04-01T00:41:27.368Z', '2026-04-01T00:41:27.368Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('06c2a6b8-a971-4eec-ae59-c97cd59cbaf3', '9872b186-472e-4391-a150-7239315fc8b1', 'In MDN''s loop example that attaches `onfocus` handlers, why do all callbacks end up showing the help text for the last item when `var item` is used?', 'Because `var` is function-scoped, each callback closes over the same `item` variable. By the time the callbacks run, that shared variable refers to the last entry.', 'medium', 'approved', 'ca2b863c-32c2-4fd8-9ea1-8b8873285356', 83, '2026-04-01T00:41:27.372Z', '2026-04-01T00:41:27.372Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5c202775-86a1-4dc9-a9fb-867b5d322d86', '9872b186-472e-4391-a150-7239315fc8b1', 'Which change fixes the classic loop-closure problem without adding an extra factory function?', 'Using block-scoped bindings such as `let` or `const` gives each iteration its own binding, so each closure keeps the correct value.', 'easy', 'approved', 'ca2b863c-32c2-4fd8-9ea1-8b8873285356', 84, '2026-04-01T00:41:27.376Z', '2026-04-01T00:41:27.376Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('43511cc2-b8dd-4c3b-8b23-12282273bd76', '9872b186-472e-4391-a150-7239315fc8b1', 'What best explains why the second call returns `2` here?
+
+```js
+const handler = (function () {
+  let count = 0;
+  return function () {
+    count += 1;
+    return count;
+  };
+})();
+
+console.log(handler());
+console.log(handler());
+```', 'The outer function is an IIFE, so it runs once immediately. It returns an inner function that closes over `count`, which stays private but persists between calls.', 'medium', 'approved', '69fac5aa-4f75-4918-b713-79b7dbc6e0d2', 85, '2026-04-01T00:41:33.051Z', '2026-04-01T00:41:33.051Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cbb07fef-c9c0-4d3c-af3f-82c035d3ed4f', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement is true about this code?
+
+```js
+function run(task) {
+  return task(3);
+}
+
+function double(n) {
+  return n * 2;
+}
+
+console.log(run(double));
+```', '`double` is being passed as a value because functions are first-class. Since `run` accepts a function argument, `run` is a higher-order function, and `double` acts as a callback in that call.', 'easy', 'approved', '69fac5aa-4f75-4918-b713-79b7dbc6e0d2', 86, '2026-04-01T00:41:33.064Z', '2026-04-01T00:41:33.064Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fbf964d0-d211-42c7-887f-06df97f7c37d', '9872b186-472e-4391-a150-7239315fc8b1', 'What role does the arrow function play here?
+
+```js
+const numbers = [1, 2, 3];
+const doubled = numbers.map((n) => n * 2);
+```', '`map()` is a higher-order array method. The arrow function is the synchronous callback that `map()` invokes for each element, which is possible because functions are first-class values.', 'easy', 'approved', '69fac5aa-4f75-4918-b713-79b7dbc6e0d2', 87, '2026-04-01T00:41:33.070Z', '2026-04-01T00:41:33.070Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('06fac181-8574-4673-aca0-e1cb140a859f', '9872b186-472e-4391-a150-7239315fc8b1', 'What is logged by this code, and why?
+
+```js
+let value = 1;
+
+setTimeout(() => {
+  value = 2;
+}, 0);
+
+(() => {
+  console.log(value);
+})();
+```', 'The IIFE runs immediately, but the `setTimeout` callback is asynchronous and runs later. So the log happens before `value` changes to `2`.', 'medium', 'approved', '69fac5aa-4f75-4918-b713-79b7dbc6e0d2', 88, '2026-04-01T00:41:33.074Z', '2026-04-01T00:41:33.074Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('646e3bb0-35bd-4f8d-bec7-6f36b66c61e4', '9872b186-472e-4391-a150-7239315fc8b1', 'Which scenario is the best fit for an async IIFE?', 'An async IIFE is useful when you want to run several awaited statements immediately, keep temporary variables out of the global scope, and do it in a place that expects a single expression.', 'easy', 'approved', '69fac5aa-4f75-4918-b713-79b7dbc6e0d2', 89, '2026-04-01T00:41:33.078Z', '2026-04-01T00:41:33.078Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cc3c6a47-29ef-4d6e-b8cd-3154217d7cdb', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best matches MDN''s definition of a first-class function in JavaScript?', 'A first-class function is treated like any other value. That means it can be assigned to a variable, passed into another function, and returned from another function.', 'easy', 'approved', '829f5646-0bf6-465a-a953-7e59c5e95749', 90, '2026-04-01T00:41:38.741Z', '2026-04-01T00:41:38.741Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('768058b9-edb2-4939-b810-b2d915f45f42', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code demonstrate?
+
+```js
+const foo = () => {
+  console.log(''foobar'');
+};
+
+foo();
+```', 'The important part is that the function is stored in the variable `foo` and invoked through `foo()`. This shows that JavaScript functions can be handled like values.', 'easy', 'approved', '829f5646-0bf6-465a-a953-7e59c5e95749', 91, '2026-04-01T00:41:38.746Z', '2026-04-01T00:41:38.746Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('494d6ab0-68dd-4b62-9ba6-16de287c38ed', '9872b186-472e-4391-a150-7239315fc8b1', 'What role does `sayHello` play in this example?
+
+```js
+function sayHello() {
+  return ''Hello, '';
+}
+
+function greeting(helloMessage, name) {
+  console.log(helloMessage() + name);
+}
+
+greeting(sayHello, ''JavaScript!'');
+```', '`sayHello` is passed into `greeting` as a value and then called inside it. In this role, it is also a callback function.', 'easy', 'approved', '829f5646-0bf6-465a-a953-7e59c5e95749', 92, '2026-04-01T00:41:38.748Z', '2026-04-01T00:41:38.748Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fedeb8a2-db3a-465c-b8b2-16bef38d789c', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this function demonstrate?
+
+```js
+function sayHello() {
+  return () => {
+    console.log(''Hello!'');
+  };
+}
+```', 'The example shows that a function can be the return value of another function because functions are treated as values in JavaScript.', 'medium', 'approved', '829f5646-0bf6-465a-a953-7e59c5e95749', 93, '2026-04-01T00:41:38.751Z', '2026-04-01T00:41:38.751Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6e551c43-5b5b-4314-8f16-67bcfaca638a', '9872b186-472e-4391-a150-7239315fc8b1', 'According to MDN, which statement about naming a function assigned to a variable is true?', 'Naming a function can make stack traces and debugging clearer, but you still invoke it through the variable that holds it.', 'easy', 'approved', '829f5646-0bf6-465a-a953-7e59c5e95749', 94, '2026-04-01T00:41:38.754Z', '2026-04-01T00:41:38.754Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('229c1e35-0ff3-4ab5-8f90-561dd65633d9', '9872b186-472e-4391-a150-7239315fc8b1', 'Which option defines a higher-order function as described in the article?', 'The article defines a higher-order function as one that either accepts one or more functions as arguments or returns a function as its result.', 'easy', 'approved', '853bd4ff-b270-4154-bf2e-c20b228d5153', 95, '2026-04-01T00:41:44.184Z', '2026-04-01T00:41:44.184Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('994132ad-7765-42aa-aa2a-c2f246ef0ff7', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is a function like `calculate(radius, logic)` more reusable than writing separate functions for every circle calculation?', 'The repeated loop stays in one place while the changing behavior is passed in as `logic`. That makes the code more concise, modular, and easier to extend.', 'easy', 'approved', '853bd4ff-b270-4154-bf2e-c20b228d5153', 96, '2026-04-01T00:41:44.193Z', '2026-04-01T00:41:44.193Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('83efb722-6d50-4c1f-890d-093c4ff4bcf8', '9872b186-472e-4391-a150-7239315fc8b1', 'According to the article, which method is the best fit when you want to transform every element of an array into a new array without mutating the original array?', 'The article uses `map()` for transformations. It applies a callback to each element and returns a new array, leaving the original array unchanged.', 'easy', 'approved', '853bd4ff-b270-4154-bf2e-c20b228d5153', 97, '2026-04-01T00:41:44.197Z', '2026-04-01T00:41:44.197Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('30fa2439-08e3-4df2-982f-ad5c7abf9f45', '9872b186-472e-4391-a150-7239315fc8b1', 'If you want only the users whose age is greater than 30, which method from the article is intended for that job?', '`filter()` is used to select a subset of data that passes a condition. In the article, it returns only the users whose `age > 30`.', 'easy', 'approved', '853bd4ff-b270-4154-bf2e-c20b228d5153', 98, '2026-04-01T00:41:44.217Z', '2026-04-01T00:41:44.217Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('429aaf49-ad04-4c93-9010-f6c4f04807fe', '9872b186-472e-4391-a150-7239315fc8b1', 'In the article''s `reduce()` example for finding the maximum value, no explicit initial accumulator is passed. What becomes the starting accumulator value?', 'When `reduce()` is called without an explicit initial value, the first array element is used as the initial accumulator. In the example, that first value is `5`.', 'medium', 'approved', '853bd4ff-b270-4154-bf2e-c20b228d5153', 99, '2026-04-01T00:41:44.220Z', '2026-04-01T00:41:44.220Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e62575c3-4f87-4125-b1a0-c4b6f8681308', '9872b186-472e-4391-a150-7239315fc8b1', 'What is an IIFE in JavaScript?', 'IIFE stands for Immediately Invoked Function Expression. It is a function expression that runs as soon as it is defined.', 'easy', 'approved', 'e816a9d4-d737-41fb-a8c9-e3d7d0eff2d5', 100, '2026-04-01T00:41:50.166Z', '2026-04-01T00:41:50.166Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('142ab23b-deb7-41d0-900e-36a34cd63b1f', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is the function usually wrapped in parentheses in a standard IIFE like this?
+
+```js
+(function () {
+  // statements
+})();
+```', 'The parentheses help the parser treat the function as an expression instead of a function declaration, which lets it be invoked immediately.', 'easy', 'approved', 'e816a9d4-d737-41fb-a8c9-e3d7d0eff2d5', 101, '2026-04-01T00:41:50.170Z', '2026-04-01T00:41:50.170Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2ea40b49-5cc6-4357-9704-657a49446637', '9872b186-472e-4391-a150-7239315fc8b1', 'Which use case below matches MDN''s description of why developers use IIFEs?', 'MDN lists avoiding global namespace pollution as a common IIFE use case because the function creates its own local scope.', 'easy', 'approved', 'e816a9d4-d737-41fb-a8c9-e3d7d0eff2d5', 102, '2026-04-01T00:41:50.174Z', '2026-04-01T00:41:50.174Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cc303f09-4d5b-487d-86f3-6b6647e427a7', '9872b186-472e-4391-a150-7239315fc8b1', 'Why might a developer choose an async IIFE?', 'An async IIFE creates a fresh async context so `await` can be used even when the surrounding code is not already inside an async function.', 'easy', 'approved', 'e816a9d4-d737-41fb-a8c9-e3d7d0eff2d5', 103, '2026-04-01T00:41:50.177Z', '2026-04-01T00:41:50.177Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8057f7b8-13f8-412e-b803-e6ded3cba92c', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does MDN say an IIFE is more powerful than the comma operator in this context?', 'The comma operator can only chain expressions. An IIFE can execute many statements inside its own scope and use local variables and control flow before returning a value.', 'medium', 'approved', 'e816a9d4-d737-41fb-a8c9-e3d7d0eff2d5', 104, '2026-04-01T00:41:50.180Z', '2026-04-01T00:41:50.180Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('acf542bd-bdd7-4b9c-a067-fe6688f3304d', '9872b186-472e-4391-a150-7239315fc8b1', 'Why should a promise-returning operation inside a `.then()` handler usually be returned from that handler?', 'MDN warns that not returning a promise creates a floating promise. The chain loses track of that async work, so later handlers can run before the work is finished and they will not receive its fulfillment value.
+
+Example:
+
+```js
+doSomething()
+  .then((url) => fetch(url))
+  .then((response) => response.json());
+```', 'medium', 'approved', 'd6acf4d6-91b8-4ab5-b638-e3e25aa97800', 105, '2026-04-01T01:49:32.363Z', '2026-04-01T01:49:32.363Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('af518629-ccf4-4179-ae8a-f449ffabfaec', '9872b186-472e-4391-a150-7239315fc8b1', 'In a flat promise chain, what does `.catch(failureCallback)` represent?', 'The page states that `catch(failureCallback)` is shorthand for `then(null, failureCallback)`. In practice, a single `.catch()` at the end usually handles rejections and thrown exceptions from earlier steps in the chain.', 'easy', 'approved', 'd6acf4d6-91b8-4ab5-b638-e3e25aa97800', 106, '2026-04-01T01:49:32.366Z', '2026-04-01T01:49:32.366Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('46b6f81e-6c63-4f8a-b3cc-b3d8614fad34', '9872b186-472e-4391-a150-7239315fc8b1', 'Given this code, which failures are handled by the inner `.catch(() => {})`?
+
+```js
+doSomethingCritical()
+  .then((result) =>
+    doSomethingOptional(result)
+      .then((optionalResult) => doSomethingExtraNice(optionalResult))
+      .catch(() => {})
+  )
+  .then(() => moreCriticalStuff())
+  .catch((e) => console.error(e.message));
+```', 'MDN uses nesting to show catch scoping. The inner catch only handles failures from the optional branch inside its nested scope. A failure in `doSomethingCritical()` still skips to the outer catch.', 'hard', 'approved', 'd6acf4d6-91b8-4ab5-b638-e3e25aa97800', 107, '2026-04-01T01:49:32.369Z', '2026-04-01T01:49:32.369Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('84637761-5caa-439a-b4d4-c52b3527c1dd', '9872b186-472e-4391-a150-7239315fc8b1', 'Which promise composition tool should you choose when you need all concurrent operations to finish, even if one or more reject?', 'The composition section contrasts `Promise.all()` with `Promise.allSettled()`. `Promise.all()` rejects as soon as one promise rejects, while `Promise.allSettled()` waits until every operation has completed.', 'medium', 'approved', 'd6acf4d6-91b8-4ab5-b638-e3e25aa97800', 108, '2026-04-01T01:49:32.372Z', '2026-04-01T01:49:32.372Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ec992651-f33a-4125-9489-f5b90d43f7bc', '9872b186-472e-4391-a150-7239315fc8b1', 'What is logged by this code?
+
+```js
+Promise.resolve().then(() => console.log(2));
+console.log(1);
+```', 'Promise callbacks never run synchronously, even for an already-resolved promise. They are queued as microtasks, so the current synchronous work finishes first.
+
+Result:
+
+```text
+1
+2
+```', 'easy', 'approved', 'd6acf4d6-91b8-4ab5-b638-e3e25aa97800', 109, '2026-04-01T01:49:32.374Z', '2026-04-01T01:49:32.374Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8c1b796e-529f-4d2e-9321-5e7419e1a593', '9872b186-472e-4391-a150-7239315fc8b1', 'According to the `Promises, async/await` overview, which topic appears first in the section?', 'The overview starts with `Introduction: callbacks`, which frames the older async style before moving into promises and `async`/`await`.', 'easy', 'approved', '8c342cdc-0d50-4be6-a47f-77fed9899104', 110, '2026-04-01T01:49:39.104Z', '2026-04-01T01:49:39.104Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d37c349f-bb04-4a97-b1e9-414ea1c523f4', '9872b186-472e-4391-a150-7239315fc8b1', 'Which listed lesson title most directly suggests converting callback-based code into promise-based code?', '`Promisification` is the lesson title that explicitly points to wrapping or converting callback-style APIs so they can be used with promises.', 'easy', 'approved', '8c342cdc-0d50-4be6-a47f-77fed9899104', 111, '2026-04-01T01:49:39.107Z', '2026-04-01T01:49:39.107Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2bec7139-87fc-42f2-a630-ba6059093838', '9872b186-472e-4391-a150-7239315fc8b1', 'If you want to understand why promise handlers run after the current synchronous code, which lesson title from this overview is the best match?', 'The overview includes a dedicated `Microtasks` lesson. That topic is the one most directly tied to promise callback scheduling.', 'medium', 'approved', '8c342cdc-0d50-4be6-a47f-77fed9899104', 112, '2026-04-01T01:49:39.111Z', '2026-04-01T01:49:39.111Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9e46b637-6de3-48e7-9f88-219fecea9649', '9872b186-472e-4391-a150-7239315fc8b1', 'Which lesson title in the overview is the clearest place to look for helpers such as `Promise.all()` or `Promise.race()`?', 'The tutorial roadmap includes a lesson named `Promise API`, which is the most direct match for static promise helpers and related built-in methods.', 'medium', 'approved', '8c342cdc-0d50-4be6-a47f-77fed9899104', 113, '2026-04-01T01:49:39.113Z', '2026-04-01T01:49:39.113Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a7fded08-348b-43e6-ab33-0a1f2a2d3eb7', '9872b186-472e-4391-a150-7239315fc8b1', 'Which topic comes immediately before `Async/await` in the overview sequence?', 'The page orders the lessons as `... Promise API`, `Promisification`, `Microtasks`, and then `Async/await`. That places `Microtasks` directly before the final `Async/await` lesson.', 'easy', 'approved', '8c342cdc-0d50-4be6-a47f-77fed9899104', 114, '2026-04-01T01:49:39.115Z', '2026-04-01T01:49:39.115Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d271f245-0ade-4a41-a0d5-c0adff33b2c2', '9872b186-472e-4391-a150-7239315fc8b1', 'Why do data-driven sites often use JavaScript network requests instead of reloading the entire page for every update?', 'The MDN article explains that fetching only the data needed for one section makes updates faster and avoids redownloading unchanged page chrome such as headers or sidebars.', 'easy', 'approved', 'c236ee41-933e-4499-be41-f90e42739751', 115, '2026-04-01T01:49:46.495Z', '2026-04-01T01:49:46.495Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('806f0348-9ecb-486b-8e1f-344b23d623fe', '9872b186-472e-4391-a150-7239315fc8b1', 'In MDN''s Fetch examples, why is `response.ok` checked before reading the body?', 'The article''s pattern is to throw an error when the HTTP status is not successful. That moves the failure into the promise chain so the shared `.catch()` can handle it.', 'medium', 'approved', 'c236ee41-933e-4499-be41-f90e42739751', 116, '2026-04-01T01:49:46.498Z', '2026-04-01T01:49:46.498Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8ad68808-2784-47c4-bfae-80da75c9d93b', '9872b186-472e-4391-a150-7239315fc8b1', 'Which response method from the article should you call when the server returns JSON that you want as a JavaScript object?', 'The Can Store example fetches `products.json` and then returns `response.json()`, which resolves to the parsed JavaScript object.', 'easy', 'approved', 'c236ee41-933e-4499-be41-f90e42739751', 117, '2026-04-01T01:49:46.504Z', '2026-04-01T01:49:46.504Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e57ecd09-f7ff-445b-9eea-be470d6df423', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does MDN say the local Fetch examples should be run through a local web server instead of opening the HTML file directly from disk?', 'The page explicitly warns that modern browsers will not run these HTTP requests from a local file because of security restrictions. Serving the files avoids that problem.', 'medium', 'approved', 'c236ee41-933e-4499-be41-f90e42739751', 118, '2026-04-01T01:49:46.507Z', '2026-04-01T01:49:46.507Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28992570-e1ae-4452-b718-330274007ee6', '9872b186-472e-4391-a150-7239315fc8b1', 'Compared with the `XMLHttpRequest` example on the page, what is a key reason MDN recommends using Fetch when possible?', 'MDN notes that Fetch is simpler and has more features. In the example, Fetch keeps the work in a promise chain, while XHR needs `load` and `error` listeners plus surrounding `try...catch`.', 'medium', 'approved', 'c236ee41-933e-4499-be41-f90e42739751', 119, '2026-04-01T01:49:46.511Z', '2026-04-01T01:49:46.511Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f0d7b11d-2b59-456c-89f9-43939ae5849b', '9872b186-472e-4391-a150-7239315fc8b1', 'When does the promise returned by `fetch(url, options)` resolve?', 'The article describes Fetch as a two-stage process. First, the promise resolves with a `Response` object when the server responds with headers. Reading the body happens in a second async step such as `response.json()`.', 'medium', 'approved', '34ade2df-22a2-4603-b9e1-5628ae631b50', 120, '2026-04-01T01:49:55.947Z', '2026-04-01T01:49:55.947Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('08956886-056a-4801-99ea-a6a46cf1bf39', '9872b186-472e-4391-a150-7239315fc8b1', 'Which situation causes the `fetch` promise itself to reject, according to the article?', 'The page explicitly says abnormal HTTP statuses such as 404 or 500 do not reject the fetch promise. Rejection is for request-level failures such as network problems or an unreachable site.', 'medium', 'approved', '34ade2df-22a2-4603-b9e1-5628ae631b50', 121, '2026-04-01T01:49:55.953Z', '2026-04-01T01:49:55.953Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1140ec09-ae3d-4491-a1cc-e2d04a31dab2', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this sequence fail?
+
+```js
+const text = await response.text();
+const parsed = await response.json();
+```', 'The article states that the response body can be read only once. After `response.text()` consumes it, a second body-reading method such as `response.json()` has nothing left to parse.', 'hard', 'approved', '34ade2df-22a2-4603-b9e1-5628ae631b50', 122, '2026-04-01T01:49:55.957Z', '2026-04-01T01:49:55.957Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('252c6d8f-c6c4-45a9-880f-1bf192c868e7', '9872b186-472e-4391-a150-7239315fc8b1', 'When sending JSON with `fetch`, which header value does the article explicitly set for the request body?', 'The POST example stringifies the object and sets `Content-Type` to `application/json;charset=utf-8` so the server knows the body is JSON, rather than letting a plain string default to `text/plain`.', 'easy', 'approved', '34ade2df-22a2-4603-b9e1-5628ae631b50', 123, '2026-04-01T01:49:55.959Z', '2026-04-01T01:49:55.959Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dc3cf2ab-9f3b-4fa5-96cc-8d383df8ab9d', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is it usually unnecessary to set `Content-Type` manually when the Fetch request body is a `Blob`?', 'In the image-upload example, the `Blob` already carries a type such as `image/png`. Fetch uses that built-in type as the request `Content-Type`.', 'medium', 'approved', '34ade2df-22a2-4603-b9e1-5628ae631b50', 124, '2026-04-01T01:49:55.963Z', '2026-04-01T01:49:55.963Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0482eb8d-3ce4-4ac0-b664-609eb5df9f57', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about the global `JSON` object is correct?', 'MDN states that `JSON` is a namespace-style global object, not a constructor. Its methods such as `parse()` and `stringify()` are static, similar to `Math`.', 'easy', 'approved', 'c3c89d7e-f0cd-4531-b129-6e2574878dc0', 125, '2026-04-01T01:56:42.025Z', '2026-04-01T01:56:42.025Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0ef70739-5392-4ca6-96c9-29b4f71a741e', '9872b186-472e-4391-a150-7239315fc8b1', 'Which value is valid JSON according to the MDN reference?', 'Valid JSON requires double-quoted property names and string literals, no trailing commas, and only supported JSON data types. The other options violate those rules.', 'medium', 'approved', 'c3c89d7e-f0cd-4531-b129-6e2574878dc0', 126, '2026-04-01T01:56:42.034Z', '2026-04-01T01:56:42.034Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('33d831b1-9253-4bf1-beb3-89f225152faa', '9872b186-472e-4391-a150-7239315fc8b1', 'Which static method parses a JSON string and can optionally transform the resulting values during parsing?', '`JSON.parse()` converts a JSON string into a JavaScript value. MDN notes that it can optionally transform produced values and properties during parsing.', 'easy', 'approved', 'c3c89d7e-f0cd-4531-b129-6e2574878dc0', 127, '2026-04-01T01:56:42.039Z', '2026-04-01T01:56:42.039Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4d533817-a669-43d5-b009-31c111c6abe5', '9872b186-472e-4391-a150-7239315fc8b1', 'What problem are `JSON.rawJSON()` and the `JSON.parse()` reviver''s `context.source` parameter intended to help with?', 'MDN uses these APIs in its lossless number serialization examples. `JSON.rawJSON()` lets you emit precise JSON number text, and `context.source` lets a reviver reconstruct a high-precision value from the original source text before JavaScript number rounding becomes a permanent problem.', 'hard', 'approved', 'c3c89d7e-f0cd-4531-b129-6e2574878dc0', 128, '2026-04-01T01:56:42.044Z', '2026-04-01T01:56:42.044Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5ce7af96-e2e3-428b-ba7a-e028616617a4', '9872b186-472e-4391-a150-7239315fc8b1', 'Why can a `JSON.parse()` reviver not always recover a very large number from its `value` parameter alone?', 'MDN points out that by the time the reviver receives `value`, the JSON number has already been parsed as a JavaScript number, so rounding may already have happened. That is why `context.source` matters for exact recovery.', 'hard', 'approved', 'c3c89d7e-f0cd-4531-b129-6e2574878dc0', 129, '2026-04-01T01:56:42.051Z', '2026-04-01T01:56:42.051Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('492c37c2-4c40-41e1-8e77-4ede9f9fe3f9', '9872b186-472e-4391-a150-7239315fc8b1', 'After the superhero JSON has been parsed into `superHeroes`, which expression reads the third power of the second hero?', 'MDN walks through this exact access path: `members` is an array, the second hero is index `1`, and `powers` is another array where the third element is index `2`.', 'medium', 'approved', '6e031437-549f-4ef6-a4e8-de2b8503e78d', 130, '2026-04-01T01:56:49.120Z', '2026-04-01T01:56:49.120Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('34b8385a-abbe-472b-ba2c-cafd267f3d17', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about valid JSON values is true according to the article?', 'The article explains that JSON can be an object, an array, or even a single primitive such as `29`, `"Dan Jukes"`, or `true`.', 'medium', 'approved', '6e031437-549f-4ef6-a4e8-de2b8503e78d', 131, '2026-04-01T01:56:49.124Z', '2026-04-01T01:56:49.124Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('41e752df-6bc6-43c7-965b-700ee278e68f', '9872b186-472e-4391-a150-7239315fc8b1', 'Which syntax rule is required for valid JSON?', 'MDN''s syntax restrictions are strict: strings and property names must use double quotes, comments are not allowed, trailing commas are not allowed, and JSON cannot contain unsupported values such as `undefined`.', 'easy', 'approved', '6e031437-549f-4ef6-a4e8-de2b8503e78d', 132, '2026-04-01T01:56:49.127Z', '2026-04-01T01:56:49.127Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('64fa780e-cb2c-495f-8109-e5f16dff8924', '9872b186-472e-4391-a150-7239315fc8b1', 'In the article''s `populate()` example, what is the role of these two lines?
+
+```js
+const response = await fetch(request);
+const superHeroes = await response.json();
+```', 'The first awaited call gets the network `Response`. The second awaited call reads the response body and parses the JSON into a normal JavaScript object that the page can use with dot and bracket access.', 'medium', 'approved', '6e031437-549f-4ef6-a4e8-de2b8503e78d', 133, '2026-04-01T01:56:49.129Z', '2026-04-01T01:56:49.129Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fa0493c3-d32a-4c39-99fc-60f6e51ddae9', '9872b186-472e-4391-a150-7239315fc8b1', 'If you receive raw JSON text instead of calling `response.json()`, which built-in method should convert that text into a JavaScript object?', 'The article''s `heroes-finished-json-parse.html` variation fetches the response as text and then calls `JSON.parse(superHeroesText)` to produce the object.', 'easy', 'approved', '6e031437-549f-4ef6-a4e8-de2b8503e78d', 134, '2026-04-01T01:56:49.132Z', '2026-04-01T01:56:49.132Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a465f787-bbe3-4b10-8d21-b40bcef1a660', '9872b186-472e-4391-a150-7239315fc8b1', 'Which kinds of properties does `JSON.stringify()` skip automatically in the article''s examples?', 'The tutorial notes that JSON is data-only, so JavaScript-specific values are skipped. It explicitly names function properties, symbolic keys and values, and properties storing `undefined`.', 'medium', 'approved', '1efe47cc-fb78-4bf1-9c64-e075ad13446e', 135, '2026-04-01T01:56:56.310Z', '2026-04-01T01:56:56.310Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3c2ce3ba-6b06-4b74-8620-07f009540983', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does `JSON.stringify(meetup)` throw in the `room` and `meetup` example?', 'The example creates a circular reference: `meetup.place` points to `room`, and `room.occupiedBy` points back to `meetup`. Default JSON serialization cannot handle that loop.', 'easy', 'approved', '1efe47cc-fb78-4bf1-9c64-e075ad13446e', 136, '2026-04-01T01:56:56.316Z', '2026-04-01T01:56:56.316Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c912758e-e0d2-4c39-9aaf-aef78a6a6cbf', '9872b186-472e-4391-a150-7239315fc8b1', 'What can a `replacer` function do when passed as the second argument to `JSON.stringify()`?', 'The tutorial shows that `replacer` is called for each key/value pair. It can return a transformed value or `undefined` to omit a property, which is how the example skips `occupiedBy`.', 'medium', 'approved', '1efe47cc-fb78-4bf1-9c64-e075ad13446e', 137, '2026-04-01T01:56:56.319Z', '2026-04-01T01:56:56.319Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('57eec49a-a8ba-459f-b8a6-cbf85b00e9b5', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the purpose of the third `space` argument in `JSON.stringify(value, replacer, space)`?', 'The article is explicit that the `space` parameter is for pretty formatting only. It changes indentation in the output string but does not change the underlying data or parsing rules.', 'easy', 'approved', '1efe47cc-fb78-4bf1-9c64-e075ad13446e', 138, '2026-04-01T01:56:56.325Z', '2026-04-01T01:56:56.325Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8cacf3c4-9c4a-4fc8-be56-bc47b6ab577c', '9872b186-472e-4391-a150-7239315fc8b1', 'How does the article suggest restoring ISO date strings back into `Date` objects during parsing?', 'The `Using reviver` section passes a function as the second argument to `JSON.parse()`. When the key is `date`, it returns `new Date(value)` instead of leaving the parsed value as a plain string.', 'medium', 'approved', '1efe47cc-fb78-4bf1-9c64-e075ad13446e', 139, '2026-04-01T01:56:56.327Z', '2026-04-01T01:56:56.327Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('76ed21fd-87f7-4b78-907a-02731116fb56', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the bug in this function?
+
+```js
+function loadUser(url) {
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      response.json();
+    })
+    .then((data) => data.name);
+}
+```', 'This combines the Fetch two-stage model with MDN''s warning about floating promises. `response.json()` returns a promise, but the handler does not return it, so the next `.then()` receives `undefined` instead of parsed JSON data.', 'hard', 'approved', '63195f6b-8f2f-4087-a59a-6f0587173742', 140, '2026-04-01T01:57:04.195Z', '2026-04-01T01:57:04.195Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9117554a-d805-4899-a7b3-afa6c920f89a', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about consuming a JSON HTTP response body is correct?', 'Both patterns are valid for a JSON response: `await response.json()` and `await response.text()` followed by `JSON.parse(text)`. But the body can only be consumed once, so you cannot use both body-reading paths on the same `Response` object.', 'hard', 'approved', '63195f6b-8f2f-4087-a59a-6f0587173742', 141, '2026-04-01T01:57:04.201Z', '2026-04-01T01:57:04.201Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a262e23d-3627-48bb-a063-645897049c1b', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is this `try...catch` block not enough to treat HTTP 404 as a failed request?
+
+```js
+try {
+  const response = await fetch(''/api/user/123'');
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.error(''Request failed'');
+}
+```', 'Fetch rejects for transport-level failures such as network errors, not for every non-2xx HTTP status. A 404 may still resolve with a `Response`, so you should check `response.ok` and throw your own error when appropriate.', 'medium', 'approved', '63195f6b-8f2f-4087-a59a-6f0587173742', 142, '2026-04-01T01:57:04.205Z', '2026-04-01T01:57:04.205Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('23131a00-0764-4202-aa41-10c928527a3f', '9872b186-472e-4391-a150-7239315fc8b1', 'If an object defines a custom `toJSON()` method and you send it with `fetch()` like this, what gets sent in the request body?
+
+```js
+await fetch(''/api/user'', {
+  method: ''POST'',
+  headers: { ''Content-Type'': ''application/json;charset=utf-8'' },
+  body: JSON.stringify(user)
+});
+```', '`fetch()` sends whatever string `JSON.stringify(user)` returns. If `user` has a custom `toJSON()` method, `JSON.stringify()` calls it and serializes the returned value instead of the raw object shape.', 'hard', 'approved', '63195f6b-8f2f-4087-a59a-6f0587173742', 143, '2026-04-01T01:57:04.207Z', '2026-04-01T01:57:04.207Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c12c554f-7932-40a4-b0c3-67a2ce616c36', '9872b186-472e-4391-a150-7239315fc8b1', 'Why might a developer deliberately choose `response.text()` plus `JSON.parse(text, reviver)` instead of `response.json()` for some API responses?', '`response.json()` is convenient, but it does not let you supply a custom reviver. If you want parsing-time transformations such as turning ISO date strings into `Date` objects, fetching text and then calling `JSON.parse()` with a reviver gives you that control.
+
+Example:
+
+```js
+const text = await response.text();
+const meetup = JSON.parse(text, (key, value) =>
+  key === ''date'' ? new Date(value) : value
+);
+```', 'hard', 'approved', '63195f6b-8f2f-4087-a59a-6f0587173742', 144, '2026-04-01T01:57:04.210Z', '2026-04-01T01:57:04.210Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b1d99263-4793-4ead-b287-a11cac26fb7d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.every()`?', '`every()` checks whether all elements satisfy the predicate. It returns `false` as soon as one element fails, and returns `true` only if no failing element is found.', 'easy', 'approved', 'b36ca9d9-8d51-453d-81c1-3f7df61e2cd8', 145, '2026-04-01T05:23:41.640Z', '2026-04-01T05:23:41.640Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2552bfe8-4c72-4b70-9073-10dc13c5b31e', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `[].every(() => false)` return?', 'MDN notes that `every()` is vacuously true for empty arrays. Because there is no element that fails the condition, the result is `true`.', 'medium', 'approved', 'b36ca9d9-8d51-453d-81c1-3f7df61e2cd8', 146, '2026-04-01T05:23:41.647Z', '2026-04-01T05:23:41.647Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cbe9e1f1-867d-49f4-b5bd-71f6ef213763', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this expression?
+
+```js
+[2, , 2].every((x) => x === 2);
+```', '`every()` skips empty slots in sparse arrays. The callback only sees the two explicit `2` values, so the expression evaluates to `true`.', 'hard', 'approved', 'b36ca9d9-8d51-453d-81c1-3f7df61e2cd8', 147, '2026-04-01T05:23:41.649Z', '2026-04-01T05:23:41.649Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1ff56f25-cae4-40ef-92ec-ab3371b28c3d', '9872b186-472e-4391-a150-7239315fc8b1', 'Given this helper, what is the result?
+
+```js
+const isSubset = (array1, array2) =>
+  array2.every((element) => array1.includes(element));
+
+isSubset([1, 2, 3, 4, 5, 6, 7], [5, 8, 7]);
+```', 'The result is `false` because `8` is not included in the first array. Since `every()` requires all checks to pass, a single missing value makes the whole result `false`.', 'medium', 'approved', 'b36ca9d9-8d51-453d-81c1-3f7df61e2cd8', 148, '2026-04-01T05:23:41.651Z', '2026-04-01T05:23:41.651Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dbd22e24-6968-4c9a-952e-0fc401092e5f', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code return?
+
+```js
+const arrayLike = {
+  length: 3,
+  0: "a",
+  1: "b",
+  2: "c",
+  3: 345
+};
+
+Array.prototype.every.call(arrayLike, (x) => typeof x === "string");
+```', '`every()` is generic. It inspects keys `0` through `2` because `length` is `3`; index `3` is ignored. All visited values are strings, so the result is `true`.', 'hard', 'approved', 'b36ca9d9-8d51-453d-81c1-3f7df61e2cd8', 149, '2026-04-01T05:23:41.663Z', '2026-04-01T05:23:41.663Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2f5b2302-2397-4a83-b84b-2e2ea2e067b1', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.filter()`?', '`filter()` creates a shallow copy containing only the elements for which the callback returns a truthy value. It does not mutate the original array, and if nothing passes, it returns an empty array.', 'easy', 'approved', '89c14c70-3ba9-4b0b-b475-ab54f7532719', 150, '2026-04-01T05:23:46.045Z', '2026-04-01T05:23:46.045Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('574a4021-ce28-40ad-b151-a005cfbf9abc', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this code?
+
+```js
+[0, 1, 2, 3].filter((n) => n % 2);
+```', '`filter()` keeps elements whose callback result is truthy, not necessarily strictly `true`. `n % 2` is truthy for odd numbers and falsy for even numbers and zero, so the result is `[1, 3]`.', 'medium', 'approved', '89c14c70-3ba9-4b0b-b475-ab54f7532719', 151, '2026-04-01T05:23:46.050Z', '2026-04-01T05:23:46.050Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cc871411-5ac4-4abd-937d-44338f7b3b13', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code evaluate to?
+
+```js
+[1, , undefined].filter((x) => x === undefined);
+```', '`filter()` skips empty slots in sparse arrays, so the hole is never tested. The actual `undefined` value at the last position is tested and kept, so the result is `[undefined]`.', 'medium', 'approved', '89c14c70-3ba9-4b0b-b475-ab54f7532719', 152, '2026-04-01T05:23:46.054Z', '2026-04-01T05:23:46.054Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7c8aefed-f24f-4930-805f-a9acd86877c8', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `filter()` return when no elements pass the test?', 'If the callback never returns a truthy value, `filter()` returns an empty array. It still returns a new array rather than `null`, `undefined`, or the original array.', 'easy', 'approved', '89c14c70-3ba9-4b0b-b475-ab54f7532719', 153, '2026-04-01T05:23:46.056Z', '2026-04-01T05:23:46.056Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('06c2c445-59f6-4b15-8bc4-b47672df6433', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this code?
+
+```js
+const arrayLike = {
+  length: 3,
+  0: "a",
+  1: "b",
+  2: "c",
+  3: "a"
+};
+
+Array.prototype.filter.call(arrayLike, (x) => x <= "b");
+```', '`filter()` is generic and works on array-like objects by reading `length` and integer keys. Since `length` is `3`, index `3` is ignored, and only `''a''` and `''b''` satisfy the predicate.', 'hard', 'approved', '89c14c70-3ba9-4b0b-b475-ab54f7532719', 154, '2026-04-01T05:23:46.057Z', '2026-04-01T05:23:46.057Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a4444ef6-bed9-40b1-aa8a-8e80cac90fb8', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.find()`?', '`find()` returns the first element whose callback result is truthy, then stops iterating. If no element matches, it returns `undefined`. This is different from `filter()`, which returns all matches in a new array.', 'easy', 'approved', '8a6a775a-9ae0-444c-8d97-b392aa54529a', 155, '2026-04-01T05:23:50.797Z', '2026-04-01T05:23:50.797Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3826108c-fb05-40c3-878c-f6458db33bf2', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "cherries", quantity: 5 }
+];
+
+inventory.find(({ name }) => name === "cherries");
+```', '`find()` returns the actual element, not its index. Here the first matching object is `{ name: ''cherries'', quantity: 5 }`.', 'easy', 'approved', '8a6a775a-9ae0-444c-8d97-b392aa54529a', 156, '2026-04-01T05:23:50.800Z', '2026-04-01T05:23:50.800Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('81dfdcfb-2761-4a9c-a20c-f48b529f6c45', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this code?
+
+```js
+function isPrime(n) {
+  if (n < 2) return false;
+  if (n % 2 === 0) return n === 2;
+  for (let factor = 3; factor * factor <= n; factor += 2) {
+    if (n % factor === 0) return false;
+  }
+  return true;
+}
+
+[4, 6, 8, 12].find(isPrime);
+```', 'No element in the array satisfies the predicate, so `find()` returns `undefined`.', 'medium', 'approved', '8a6a775a-9ae0-444c-8d97-b392aa54529a', 157, '2026-04-01T05:23:50.802Z', '2026-04-01T05:23:50.802Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('801a259d-ca41-4406-ac1f-f4c88526952d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about sparse arrays and `find()` is correct?', 'Unlike many other iterative methods, `find()` visits every index, including holes. MDN says empty slots in sparse arrays behave the same as `undefined` for `find()`.', 'hard', 'approved', '8a6a775a-9ae0-444c-8d97-b392aa54529a', 158, '2026-04-01T05:23:50.803Z', '2026-04-01T05:23:50.803Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3277f9b9-de3d-4d22-a5b8-73be45a0fb8e', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code return?
+
+```js
+const arrayLike = {
+  length: 3,
+  "-1": 0.1,
+  0: 2,
+  1: 7.3,
+  2: 4
+};
+
+Array.prototype.find.call(arrayLike, (x) => !Number.isInteger(x));
+```', '`find()` is generic and reads `length` plus integer keys from an array-like object. The value at key `1` is `7.3`, which is the first value that makes the predicate truthy, so that value is returned.', 'hard', 'approved', '8a6a775a-9ae0-444c-8d97-b392aa54529a', 159, '2026-04-01T05:23:50.806Z', '2026-04-01T05:23:50.806Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('da70d012-f7f5-4e93-9fc1-10363ea6917d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.findIndex()`?', '`findIndex()` returns the index of the first element whose callback result is truthy, or `-1` if no element matches. It stops as soon as a match is found.', 'easy', 'approved', '4fbd30d5-818b-40d9-8372-c2ad06e4e33c', 160, '2026-04-01T05:23:55.234Z', '2026-04-01T05:23:55.234Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('74c5ed4a-f3bf-4fde-99e3-20619f7fb596', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this expression?
+
+```js
+[5, 12, 8, 130, 44].findIndex((element) => element > 13);
+```', 'The first element greater than `13` is `130`, which is at index `3`, so `findIndex()` returns `3`.', 'easy', 'approved', '4fbd30d5-818b-40d9-8372-c2ad06e4e33c', 161, '2026-04-01T05:23:55.240Z', '2026-04-01T05:23:55.240Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bfd21ec1-9673-4130-a0f6-0bb45b29b4bc', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `findIndex()` return when no element matches the predicate?', 'If the predicate never returns a truthy value, `findIndex()` returns `-1`. That sentinel value signals that no index was found.', 'easy', 'approved', '4fbd30d5-818b-40d9-8372-c2ad06e4e33c', 162, '2026-04-01T05:23:55.243Z', '2026-04-01T05:23:55.243Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b1dbf908-b316-4013-8f6d-b139f5e8c943', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+[1, , 3].findIndex((x) => x === undefined);
+```', '`findIndex()` visits empty slots in sparse arrays and treats them like `undefined`, so the hole at index `1` satisfies the predicate and the returned index is `1`.', 'hard', 'approved', '4fbd30d5-818b-40d9-8372-c2ad06e4e33c', 163, '2026-04-01T05:23:55.245Z', '2026-04-01T05:23:55.245Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3b34be48-1348-498a-8343-1d457f878803', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code return?
+
+```js
+const arrayLike = {
+  length: 3,
+  "-1": 0.1,
+  0: 2,
+  1: 7.3,
+  2: 4
+};
+
+Array.prototype.findIndex.call(arrayLike, (x) => !Number.isInteger(x));
+```', '`findIndex()` is generic and operates on array-like objects. The first non-integer value among indices `0` through `2` is `7.3` at index `1`, so it returns `1`.', 'hard', 'approved', '4fbd30d5-818b-40d9-8372-c2ad06e4e33c', 164, '2026-04-01T05:23:55.248Z', '2026-04-01T05:23:55.248Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6655b345-a704-4c95-9220-c63ed6845575', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.forEach()`?', '`forEach()` executes a callback once for each assigned array element, is primarily used for side effects, and always returns `undefined`. Because of that, it is not chainable in the same way as `map()` or `filter()`.', 'easy', 'approved', 'c648ff5f-781f-4fa0-9e9c-552fc71b0d6f', 165, '2026-04-01T05:23:59.305Z', '2026-04-01T05:23:59.305Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('aa3723a3-c3a1-4f00-ae0d-fc36e521ce7c', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the main reason `forEach()` is the wrong tool when you need to stop iteration early?', 'MDN is explicit that there is no way to stop or break a `forEach()` loop other than throwing an exception. If you need early termination, use a loop or methods like `some()`, `every()`, `find()`, or `findIndex()`.', 'medium', 'approved', 'c648ff5f-781f-4fa0-9e9c-552fc71b0d6f', 166, '2026-04-01T05:23:59.309Z', '2026-04-01T05:23:59.309Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0983d8dc-c683-4a9f-b180-2a8cb6403f5b', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code log?
+
+```js
+const ratings = [5, 4, 5];
+let sum = 0;
+
+const sumFunction = async (a, b) => a + b;
+
+ratings.forEach(async (rating) => {
+  sum = await sumFunction(sum, rating);
+});
+
+console.log(sum);
+```', '`forEach()` expects a synchronous callback and does not await promises returned from an async callback. The `console.log(sum)` runs before those async updates finish, so the logged value is still `0`.', 'hard', 'approved', 'c648ff5f-781f-4fa0-9e9c-552fc71b0d6f', 167, '2026-04-01T05:23:59.311Z', '2026-04-01T05:23:59.311Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('678af69c-9c98-40a8-88d6-6ebd5d6bcac2', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens when `forEach()` is used on a sparse array like `[2, 5, , 9]`?', '`forEach()` only invokes the callback for assigned indexes. In `[2, 5, , 9]`, index `2` is a hole, so it is skipped entirely.', 'medium', 'approved', 'c648ff5f-781f-4fa0-9e9c-552fc71b0d6f', 168, '2026-04-01T05:23:59.314Z', '2026-04-01T05:23:59.314Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('00d0f424-1fa2-456b-b439-0317edd2a5d8', '9872b186-472e-4391-a150-7239315fc8b1', 'In MDN''s `Counter` example, why does passing `this` as the second argument to `forEach()` matter when using a normal function expression?', 'The second argument to `forEach()` is `thisArg`. With a normal function expression, that value becomes `this` inside the callback, allowing the callback to update the `Counter` instance. MDN also notes that an arrow function could rely on lexical `this` instead.', 'hard', 'approved', 'c648ff5f-781f-4fa0-9e9c-552fc71b0d6f', 169, '2026-04-01T05:23:59.318Z', '2026-04-01T05:23:59.318Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('46e91418-92bd-4d24-88e9-b265beace547', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.map()`?', '`map()` calls the callback for each assigned element and builds a new array from the callback return values. The original array is not replaced by the returned array. If you only want side effects, MDN recommends `forEach()` or a loop instead.', 'easy', 'approved', '0eaf9603-e435-44b3-bed8-168646b49b81', 170, '2026-04-01T05:24:03.206Z', '2026-04-01T05:24:03.206Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a239bafe-f85e-4813-80b1-236d83c9fb20', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this code?
+
+```js
+["1", "2", "3"].map(parseInt);
+```', '`map()` passes three arguments to its callback: element, index, and array. `parseInt` treats the second argument as the radix, so the calls become `parseInt(''1'', 0)`, `parseInt(''2'', 1)`, and `parseInt(''3'', 2)`, producing `[1, NaN, NaN]`.', 'medium', 'approved', '0eaf9603-e435-44b3-bed8-168646b49b81', 171, '2026-04-01T05:24:03.208Z', '2026-04-01T05:24:03.208Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('17a9a4b1-67bd-4da8-b71f-ca69489722c5', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code log?
+
+```js
+const result = [1, , 3].map((x, index) => {
+  console.log(index);
+  return x * 2;
+});
+
+console.log(result);
+```', 'For sparse arrays, `map()` skips empty slots entirely. The callback runs for indexes `0` and `2`, and the returned array stays sparse, so the result is `[2, empty, 6]` rather than `[2, undefined, 6]`.', 'medium', 'approved', '0eaf9603-e435-44b3-bed8-168646b49b81', 172, '2026-04-01T05:24:03.210Z', '2026-04-01T05:24:03.210Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3f2d8f41-dc9f-43f2-bf40-0510ff792e01', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the value of `filteredNumbers` after this code runs?
+
+```js
+const numbers = [1, 2, 3, 4];
+const filteredNumbers = numbers.map((num, index) => {
+  if (index < 3) {
+    return num;
+  }
+});
+```', 'If a `map()` callback returns nothing for an element, the corresponding slot in the new array gets `undefined`. `map()` does not remove the element. To remove elements, MDN recommends `filter()` or `flatMap()`.', 'medium', 'approved', '0eaf9603-e435-44b3-bed8-168646b49b81', 173, '2026-04-01T05:24:03.211Z', '2026-04-01T05:24:03.211Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9cb73eaa-bf7c-4af7-912c-8177c73ca1e5', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code return?
+
+```js
+const arrayLike = {
+  length: 3,
+  0: 2,
+  1: 3,
+  2: 4,
+  3: 5
+};
+
+Array.prototype.map.call(arrayLike, (x) => x ** 2);
+```', '`map()` is generic. It only needs a `length` and integer-keyed properties, so it works on array-like objects. Because `length` is `3`, index `3` is ignored and the result is `[4, 9, 16]`.', 'hard', 'approved', '0eaf9603-e435-44b3-bed8-168646b49b81', 174, '2026-04-01T05:24:03.212Z', '2026-04-01T05:24:03.212Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fbd0f4bd-bc41-4ae0-95c3-49a691d1693a', '9872b186-472e-4391-a150-7239315fc8b1', 'What are the values of `a` and `b` after this code runs?
+
+```js
+const a = [].every(() => false);
+const b = [].some(() => true);
+```', 'For empty arrays, `every()` is vacuously true and returns `true`, while `some()` returns `false` because there is no element that satisfies the predicate.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 175, '2026-04-01T05:24:07.111Z', '2026-04-01T05:24:07.111Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('29462821-6111-4efb-b5b7-31b774414907', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about sparse-array holes is correct for `[1, , 3]`?', 'MDN distinguishes two groups here: `map()`, `filter()`, `forEach()`, `every()`, and `some()` skip holes, while `find()` and `findIndex()` visit holes and treat them like `undefined`.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 176, '2026-04-01T05:24:07.113Z', '2026-04-01T05:24:07.113Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('98a1cd45-e767-4009-9f9a-d7d1c1234633', '9872b186-472e-4391-a150-7239315fc8b1', 'Which option correctly matches the results of these two expressions?
+
+```js
+const a = ["1", "2", "3"].map(parseInt);
+const b = ["1", "2", "3"].map(Number);
+```', '`map(parseInt)` is a classic callback-arity trap because `map()` passes the index as the second argument and `parseInt` treats that as radix. `Number` takes a single argument, so `map(Number)` behaves as expected.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 177, '2026-04-01T05:24:07.117Z', '2026-04-01T05:24:07.117Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('23f41870-406f-4b0b-a19d-729b05a4b7b7', '9872b186-472e-4391-a150-7239315fc8b1', 'What are the values of `a` and `b` after this code runs?
+
+```js
+const users = [{ id: 1 }, { id: 2 }];
+const a = users.forEach((user) => user.id);
+const b = users.map((user) => user.id);
+```', '`forEach()` ignores callback return values and itself returns `undefined`. `map()` collects callback return values into a new array, so `b` becomes `[1, 2]`.', 'medium', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 178, '2026-04-01T05:24:07.120Z', '2026-04-01T05:24:07.120Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('621a4e3d-f104-441d-91e4-a1e48a488909', '9872b186-472e-4391-a150-7239315fc8b1', 'What are the values of `a` and `b` after this code runs?
+
+```js
+const arr = [4, 6, 8];
+const a = arr.find((n) => n > 10);
+const b = arr.findIndex((n) => n > 10);
+```', 'When no element matches, `find()` returns `undefined` and `findIndex()` returns `-1`. That difference matters when you need the element versus the position.', 'medium', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 179, '2026-04-01T05:24:07.123Z', '2026-04-01T05:24:07.123Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a9271ee5-a5d2-45b7-92b8-db062bce40cd', '9872b186-472e-4391-a150-7239315fc8b1', 'What are the values of `a` and `b` after this code runs?
+
+```js
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "cherries", quantity: 5 }
+];
+
+const a = inventory.find((item) => item.quantity > 0);
+const b = inventory.filter((item) => item.quantity > 0);
+```', '`find()` returns the first matching element, so `a` is the apples object. `filter()` returns all matching elements in a new array, so `b` contains both apples and cherries.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 180, '2026-04-01T05:24:07.124Z', '2026-04-01T05:24:07.124Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dfc3c131-0ca1-46eb-ad88-e9c4f7f69a9c', '9872b186-472e-4391-a150-7239315fc8b1', 'MDN shows this pattern for testing whether all values are even:
+
+```js
+const allEven = array.reduce((acc, cur) => acc && cur % 2 === 0, true);
+```
+
+Which replacement is the most semantically appropriate and may stop earlier once the answer is known?', 'MDN explicitly calls out that testing whether every element satisfies a condition is a better fit for `every()`. It is clearer and can short-circuit as soon as a failing element is found.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 181, '2026-04-01T05:24:07.127Z', '2026-04-01T05:24:07.127Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b666b38f-aa86-4d9e-b2b2-5db1e1e2c855', '9872b186-472e-4391-a150-7239315fc8b1', 'For `const obj = { 100: "a", 2: "b", 7: "c" };`, which set of outputs is correct?', 'For integer-like property names, enumeration uses numeric order. That means keys are `[''2'', ''7'', ''100'']`, values are `[''b'', ''c'', ''a'']`, and entries are `[[''2'', ''b''], [''7'', ''c''], [''100'', ''a'']]`.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 182, '2026-04-01T05:24:07.129Z', '2026-04-01T05:24:07.129Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5d542f5c-6cdf-41c0-9fa6-829a23441b95', '9872b186-472e-4391-a150-7239315fc8b1', 'Which trio is correct for the string primitive `"foo"`?', 'Strings are coerced to objects with enumerable index-like properties. That is why `Object.keys(''foo'')` yields index strings, `Object.values(''foo'')` yields characters, and `Object.entries(''foo'')` yields index-character pairs.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 183, '2026-04-01T05:24:07.130Z', '2026-04-01T05:24:07.130Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('66d86fd1-02a4-4c20-a520-b0a9759d954b', '9872b186-472e-4391-a150-7239315fc8b1', 'What is true after this code runs?
+
+```js
+const target = { meta: { version: 1 } };
+const source = { meta: { version: 2 }, flag: true };
+const result = Object.assign(target, source);
+result.meta.version = 3;
+```', '`Object.assign()` mutates and returns the target object, so `result === target`. It also performs a shallow copy, which means `target.meta` and `source.meta` point to the same nested object after assignment. Updating `result.meta.version` therefore also changes `source.meta.version` to `3`.', 'hard', 'approved', '624928e4-c92b-4f60-94c8-325f926b7385', 184, '2026-04-01T05:24:07.134Z', '2026-04-01T05:24:07.134Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4023372a-44f8-461d-8dfe-417919c160ce', '9872b186-472e-4391-a150-7239315fc8b1', 'When `reduce()` is called without an `initialValue`, what are the accumulator and current value on the first callback invocation for `[10, 20, 30]`?', 'Without an `initialValue`, `reduce()` uses the element at index `0` as the initial accumulator and begins iteration at index `1`. For `[10, 20, 30]`, the first call receives `accumulator = 10` and `currentValue = 20`.', 'medium', 'approved', '1e7da090-b303-4b5c-a26a-2a2449f99140', 185, '2026-04-01T05:24:11.141Z', '2026-04-01T05:24:11.141Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b9493f77-48f1-46e0-8f65-37dc95544f2b', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens here?
+
+```js
+[].reduce((a, b) => a + b);
+```', 'Calling `reduce()` on an empty array without an `initialValue` throws a `TypeError`, because there is no first element available to seed the accumulator.', 'easy', 'approved', '1e7da090-b303-4b5c-a26a-2a2449f99140', 186, '2026-04-01T05:24:11.145Z', '2026-04-01T05:24:11.145Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c68bb268-6979-4f62-b862-a1d15620446b', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+[50].reduce((a, b) => Math.max(a, b));
+```', 'If the array has only one element and no `initialValue` is provided, `reduce()` returns that element directly and does not invoke the callback at all.', 'medium', 'approved', '1e7da090-b303-4b5c-a26a-2a2449f99140', 187, '2026-04-01T05:24:11.147Z', '2026-04-01T05:24:11.147Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e3c70b99-309d-4789-a1cb-b1b7600a35e1', '9872b186-472e-4391-a150-7239315fc8b1', 'Which option correctly matches the results of these two expressions?
+
+```js
+[1, 2, , 4].reduce((a, b) => a + b)
+[1, 2, undefined, 4].reduce((a, b) => a + b)
+```', '`reduce()` skips holes in sparse arrays, so the first expression becomes `1 + 2 + 4`, which is `7`. But explicit `undefined` is still visited, so `1 + 2 + undefined` becomes `NaN`, and the final result remains `NaN`.', 'hard', 'approved', '1e7da090-b303-4b5c-a26a-2a2449f99140', 188, '2026-04-01T05:24:11.150Z', '2026-04-01T05:24:11.150Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b16aab9f-d77a-46c6-9522-ac2a3d82bd6f', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `reduce()` is correct?', 'Unlike several other iterative array methods, `reduce()` does not accept a `thisArg`. Also, if you mutate an object or array accumulator inside the callback, you still must return it so the next iteration receives the accumulator value.', 'hard', 'approved', '1e7da090-b303-4b5c-a26a-2a2449f99140', 189, '2026-04-01T05:24:11.152Z', '2026-04-01T05:24:11.152Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0f41c95a-0f97-418a-8dba-d84d92692028', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Array.prototype.some()`?', '`some()` checks whether at least one element satisfies the predicate. It returns `true` as soon as one matching element is found, otherwise it returns `false`.', 'easy', 'approved', '205d16f9-8ec6-4094-bc79-55878e07e4da', 190, '2026-04-01T05:24:14.982Z', '2026-04-01T05:24:14.982Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bac69c05-a5b3-4ff0-b8a5-3dfd0c7ba351', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `[].some(() => true)` return?', 'For an empty array, `some()` returns `false`, because there is no element that satisfies the condition.', 'medium', 'approved', '205d16f9-8ec6-4094-bc79-55878e07e4da', 191, '2026-04-01T05:24:14.984Z', '2026-04-01T05:24:14.984Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ee8212a2-0efa-4a5b-9763-71956f391391', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this expression?
+
+```js
+[1, , 3].some((x) => x === undefined);
+```', '`some()` skips empty slots in sparse arrays, so the hole is never tested. Neither `1` nor `3` is `undefined`, so the result is `false`.', 'hard', 'approved', '205d16f9-8ec6-4094-bc79-55878e07e4da', 192, '2026-04-01T05:24:14.986Z', '2026-04-01T05:24:14.986Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5c90a49d-393c-454e-9d2f-4b831d205b19', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code evaluate to?
+
+```js
+const arr = [1, 2, 3];
+const result = arr.some((x) => {
+  arr.push(4);
+  return x === 4;
+});
+
+result;
+```', 'MDN notes that `some()` saves the array length before the first callback invocation. Elements added beyond the original length are not visited, so the pushed `4` is never checked and the result is `false`.', 'hard', 'approved', '205d16f9-8ec6-4094-bc79-55878e07e4da', 193, '2026-04-01T05:24:14.988Z', '2026-04-01T05:24:14.988Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0157386b-7fcf-47d1-bfda-ce5bb87291a7', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code return?
+
+```js
+const arrayLike = {
+  length: 3,
+  0: "a",
+  1: "b",
+  2: "c",
+  3: 3
+};
+
+Array.prototype.some.call(arrayLike, (x) => typeof x === "number");
+```', '`some()` is generic and reads indices `0` through `2` because `length` is `3`. All those visited values are strings, so no element passes the predicate and the result is `false`.', 'hard', 'approved', '205d16f9-8ec6-4094-bc79-55878e07e4da', 194, '2026-04-01T05:24:14.989Z', '2026-04-01T05:24:14.989Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('97ca8e40-288e-42b5-80eb-ea5ed4687d88', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Object.assign()`?', '`Object.assign()` copies enumerable own properties from one or more source objects into a target object, mutates that target, and returns the modified target object.', 'easy', 'approved', '5cd7df9e-b73e-49aa-b030-2be8e6525544', 195, '2026-04-01T05:24:19.482Z', '2026-04-01T05:24:19.482Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d7cb35b4-a999-4557-9e4b-99b2b5942e65', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of this expression?
+
+```js
+Object.assign({}, { a: 1, b: 1, c: 1 }, { b: 2, c: 2 }, { c: 3 });
+```', 'Later source objects overwrite properties from earlier sources. That is why `b` becomes `2` and `c` becomes `3` in the final result.', 'medium', 'approved', '5cd7df9e-b73e-49aa-b030-2be8e6525544', 196, '2026-04-01T05:24:19.484Z', '2026-04-01T05:24:19.484Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('47301cbe-ccec-431a-b137-083c62ff4f5c', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `Object.assign()` and nested objects is correct?', '`Object.assign()` performs a shallow copy. If a property value is a reference to another object, only that reference is copied, so nested objects are still shared.', 'medium', 'approved', '5cd7df9e-b73e-49aa-b030-2be8e6525544', 197, '2026-04-01T05:24:19.487Z', '2026-04-01T05:24:19.487Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2c11129a-ed9a-40fe-ac18-53773d07470f', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `null` and `undefined` in `Object.assign()` is correct?', '`null` or `undefined` as the target throws a `TypeError`, because the target must be converted to an object. However, `null` and `undefined` sources are ignored and do not throw.', 'hard', 'approved', '5cd7df9e-b73e-49aa-b030-2be8e6525544', 198, '2026-04-01T05:24:19.491Z', '2026-04-01T05:24:19.491Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('20c69f64-f4f9-41f1-b85d-34e945c48c3c', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the value of `copy` after this code runs?
+
+```js
+const obj = {
+  foo: 1,
+  get bar() {
+    return 2;
+  }
+};
+
+const copy = Object.assign({}, obj);
+```', '`Object.assign()` uses `[[Get]]` on the source and `[[Set]]` on the target, so getters are invoked and their returned values are assigned. The getter itself is not copied as an accessor descriptor. The result is `{ foo: 1, bar: 2 }`.', 'hard', 'approved', '5cd7df9e-b73e-49aa-b030-2be8e6525544', 199, '2026-04-01T05:24:19.493Z', '2026-04-01T05:24:19.493Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7b552d15-e158-4c06-8beb-380bde0861e6', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Object.entries()`?', '`Object.entries()` returns an array of the object''s own enumerable string-keyed key-value pairs. Each entry is a two-element array where the first value is the key string and the second is the property value.', 'easy', 'approved', 'f663456c-76bd-41c2-98dc-159211c90750', 200, '2026-04-01T05:24:23.356Z', '2026-04-01T05:24:23.356Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('012dc0dd-d6ee-4452-af34-448bbf665570', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+Object.entries({ 100: "a", 2: "b", 7: "c" });
+```', 'The enumeration order follows numeric key ordering for integer-like keys, so the result is `[[''2'', ''b''], [''7'', ''c''], [''100'', ''a'']]`.', 'medium', 'approved', 'f663456c-76bd-41c2-98dc-159211c90750', 201, '2026-04-01T05:24:23.359Z', '2026-04-01T05:24:23.359Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('017cfe67-6189-4404-8587-7013f82384a4', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of `Object.entries("foo")`?', 'Strings are coerced to objects whose index-like properties are enumerable, so the result is `[[''0'', ''f''], [''1'', ''o''], [''2'', ''o'']]`.', 'medium', 'approved', 'f663456c-76bd-41c2-98dc-159211c90750', 202, '2026-04-01T05:24:23.361Z', '2026-04-01T05:24:23.361Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('601b10fb-1685-4e49-8a3c-2582e9248774', '9872b186-472e-4391-a150-7239315fc8b1', 'Which expression converts an object''s own enumerable string-keyed pairs into a `Map`?', 'The `Map` constructor accepts an iterable of entries, so `new Map(Object.entries(obj))` converts the object''s enumerable key-value pairs into a `Map`.', 'medium', 'approved', 'f663456c-76bd-41c2-98dc-159211c90750', 203, '2026-04-01T05:24:23.363Z', '2026-04-01T05:24:23.363Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('16d84b9d-eff2-4e3e-9c49-20b222a9c43d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which key-value pairs are excluded from `Object.entries(obj)`?', '`Object.entries()` includes only own enumerable string-keyed properties, so inherited properties and non-enumerable own properties are excluded.', 'medium', 'approved', 'f663456c-76bd-41c2-98dc-159211c90750', 204, '2026-04-01T05:24:23.367Z', '2026-04-01T05:24:23.367Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('40cff2d8-7995-4e17-ae83-eb76d58137c0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Object.keys()`?', '`Object.keys()` returns an array of the object''s own enumerable string-keyed property names. It does not include inherited properties, non-enumerable properties, or symbol keys.', 'easy', 'approved', 'de0435dc-cda2-4da7-803c-e3d6b6e80414', 205, '2026-04-01T05:24:26.892Z', '2026-04-01T05:24:26.892Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f81263e4-de6b-4a20-90ae-e6b344b831fc', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+Object.keys({ 100: "a", 2: "b", 7: "c" });
+```', 'For integer-like keys, JavaScript enumerates them in ascending numeric order, so the result is `[''2'', ''7'', ''100'']` rather than insertion order.', 'medium', 'approved', 'de0435dc-cda2-4da7-803c-e3d6b6e80414', 206, '2026-04-01T05:24:26.894Z', '2026-04-01T05:24:26.894Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('641b9fdb-9f72-43c3-978a-6e617ed9450b', '9872b186-472e-4391-a150-7239315fc8b1', 'How does `Object.keys(obj)` differ from a `for...in` loop over `obj`?', 'MDN states that `Object.keys()` corresponds to the same order as `for...in`, but unlike `for...in`, it does not enumerate properties from the prototype chain.', 'medium', 'approved', 'de0435dc-cda2-4da7-803c-e3d6b6e80414', 207, '2026-04-01T05:24:26.897Z', '2026-04-01T05:24:26.897Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e2319099-078c-4a79-8ca8-69fd133514bf', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of `Object.keys("foo")`?', 'Non-object arguments are coerced to objects. Strings expose index-like own enumerable properties, so `Object.keys(''foo'')` returns `[''0'', ''1'', ''2'']`.', 'medium', 'approved', 'de0435dc-cda2-4da7-803c-e3d6b6e80414', 208, '2026-04-01T05:24:26.900Z', '2026-04-01T05:24:26.900Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3b5b5224-91bd-4e74-adf9-43ea9a76e366', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about invalid arguments to `Object.keys()` is correct?', '`undefined` and `null` cannot be coerced to objects and therefore throw a `TypeError`. Other primitives are coerced, though most of them have no enumerable own properties.', 'medium', 'approved', 'de0435dc-cda2-4da7-803c-e3d6b6e80414', 209, '2026-04-01T05:24:26.901Z', '2026-04-01T05:24:26.901Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0c601d39-df64-4b16-808a-622a1a19d4a1', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes `Object.values()`?', '`Object.values()` returns an array of an object''s own enumerable string-keyed property values. It excludes inherited properties, non-enumerable properties, and symbol-keyed properties.', 'easy', 'approved', '95e98c8c-2189-4047-ab52-0281587ffd31', 210, '2026-04-01T05:24:30.604Z', '2026-04-01T05:24:30.604Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a2e54f58-6328-48da-8ec9-ef07190684c3', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this expression return?
+
+```js
+Object.values({ 100: "a", 2: "b", 7: "c" });
+```', 'Because numeric-like keys are enumerated in numeric order, the corresponding values come back as `[''b'', ''c'', ''a'']`.', 'medium', 'approved', '95e98c8c-2189-4047-ab52-0281587ffd31', 211, '2026-04-01T05:24:30.606Z', '2026-04-01T05:24:30.606Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5f34deea-5687-4985-a5d5-1a292e403a0d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which property values are excluded from `Object.values(obj)`?', '`Object.values()` only includes own enumerable string-keyed properties. That means prototype properties and non-enumerable properties are excluded.', 'medium', 'approved', '95e98c8c-2189-4047-ab52-0281587ffd31', 212, '2026-04-01T05:24:30.609Z', '2026-04-01T05:24:30.609Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('17b8e1af-82b2-4a0f-8fd9-8e0eb4fd5e2b', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the result of `Object.values("foo")`?', 'Strings are coerced to objects with index-like own enumerable properties, so `Object.values(''foo'')` returns `[''f'', ''o'', ''o'']`.', 'medium', 'approved', '95e98c8c-2189-4047-ab52-0281587ffd31', 213, '2026-04-01T05:24:30.611Z', '2026-04-01T05:24:30.611Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('790b1f54-90f4-4959-92cf-51b2c4f439e0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about invalid arguments to `Object.values()` is correct?', '`undefined` and `null` cannot be coerced to objects and therefore cause a `TypeError`. Other primitives are coerced first.', 'medium', 'approved', '95e98c8c-2189-4047-ab52-0281587ffd31', 214, '2026-04-01T05:24:30.614Z', '2026-04-01T05:24:30.614Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('132381e2-2519-4e7a-bbe1-a29d8c4a765f', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code log?
+
+```js
+let [firstName, , title] = [
+  "Julius",
+  "Caesar",
+  "Consul",
+  "of the Roman Republic",
+];
+console.log(title);
+```', 'Extra commas skip unwanted array items. Here the second value is ignored, so `title` receives the third value, `"Consul"`.
+
+Example:
+
+```js
+const [a, , b] = [10, 20, 30];
+// a is 10, b is 30
+```', 'easy', 'approved', '2478ce6f-1220-4ae3-b6d1-d3c798fa7e9d', 215, '2026-04-01T06:22:26.830Z', '2026-04-01T06:22:26.830Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('49bc4492-1408-4f8f-8658-22cc9ee33454', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is this valid JavaScript?
+
+```js
+let [one, two, three] = new Set([1, 2, 3]);
+```', 'Destructuring on the right-hand side works with any iterable, not only arrays. A `Set` is iterable, so its yielded values can be assigned into variables in order.
+
+Example:
+
+```js
+let [a, b, c] = "abc";
+// a, b, c become ''a'', ''b'', ''c''
+```', 'medium', 'approved', '2478ce6f-1220-4ae3-b6d1-d3c798fa7e9d', 216, '2026-04-01T06:22:26.841Z', '2026-04-01T06:22:26.841Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('90ef9271-d01d-4de7-8d26-5d4abfe2b511', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code log?
+
+```js
+let user = {};
+[user.name, user.surname] = "John Smith".split(" ");
+console.log(user.name, user.surname);
+```', 'Destructuring can assign into any assignable target on the left side, including object properties. The first split value goes to `user.name` and the second goes to `user.surname`.
+
+Example:
+
+```js
+let obj = {};
+[obj.a, obj.b] = [1, 2];
+```', 'medium', 'approved', '2478ce6f-1220-4ae3-b6d1-d3c798fa7e9d', 217, '2026-04-01T06:22:26.844Z', '2026-04-01T06:22:26.844Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5ed7f4d3-35bf-4cc1-be39-5328bdb9843e', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this assignment need parentheses?
+
+```js
+let title, width, height;
+({ title, width, height } = { title: "Menu", width: 200, height: 100 });
+```', 'Without parentheses, JavaScript treats `{ ... }` in the main code flow as a block statement. Wrapping the destructuring assignment in parentheses makes it an expression instead.
+
+Example:
+
+```js
+let x;
+({ x } = { x: 1 });
+```', 'medium', 'approved', '2478ce6f-1220-4ae3-b6d1-d3c798fa7e9d', 218, '2026-04-01T06:22:26.847Z', '2026-04-01T06:22:26.847Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('373dd1da-7adb-460d-8c50-1809d5d6d581', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is `= {}` often added to a destructured function parameter?
+
+```js
+function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+  // ...
+}
+```', 'The whole parameter gets a default empty object so the function can be called with no arguments. Without `= {}`, calling `showMenu()` would try to destructure `undefined` and throw.
+
+Example:
+
+```js
+showMenu(); // works because the entire parameter defaults to {}
+```', 'medium', 'approved', '2478ce6f-1220-4ae3-b6d1-d3c798fa7e9d', 219, '2026-04-01T06:22:26.851Z', '2026-04-01T06:22:26.851Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6195d0b6-1af4-4180-9650-c6f9f211adf4', '9872b186-472e-4391-a150-7239315fc8b1', 'What is required to make this object destructuring assignment valid?
+
+```js
+let a, b;
+({ a, b } = { a: 1, b: 2 });
+```', 'Parentheses are required when object destructuring is used as an assignment expression without a declaration keyword. Otherwise `{ a, b } = ...` is parsed as a block statement instead of an object pattern.
+
+Example:
+
+```js
+let a, b;
+({ a, b } = source);
+```', 'easy', 'approved', 'b955d1f0-cddd-4210-bc39-369f5e6dda64', 220, '2026-04-01T06:22:31.058Z', '2026-04-01T06:22:31.058Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1173db91-508b-46ba-bf95-d9654dd34964', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about default values in destructuring is correct?', 'A destructuring default runs only when the value is missing or `undefined`. It does not replace `null`.
+
+Example:
+
+```js
+const { b = 2 } = { b: undefined }; // b is 2
+const { c = 2 } = { c: null }; // c is null
+```', 'medium', 'approved', 'b955d1f0-cddd-4210-bc39-369f5e6dda64', 221, '2026-04-01T06:22:31.062Z', '2026-04-01T06:22:31.062Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('98fbd85f-0d82-43b5-8f85-6073ff819791', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code log?
+
+```js
+const [first, second] = new Map([
+  [1, 2],
+  [3, 4],
+]);
+console.log(first, second);
+```', 'Array destructuring uses the iterable protocol. A `Map` is iterable over its entry pairs, so the first two yielded values are `[1, 2]` and `[3, 4]`.
+
+Example:
+
+```js
+const [pair] = new Map([[1, 2]]);
+// pair is [1, 2]
+```', 'medium', 'approved', 'b955d1f0-cddd-4210-bc39-369f5e6dda64', 222, '2026-04-01T06:22:31.066Z', '2026-04-01T06:22:31.066Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ea085d40-728d-4d37-be31-707c57c7a896', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about rest in destructuring is correct?', 'In destructuring, the rest part collects the remaining values. For arrays, the rest element must be last and cannot have a trailing comma.
+
+Example:
+
+```js
+const [first, ...others] = [1, 2, 3];
+// others is [2, 3]
+```', 'medium', 'approved', 'b955d1f0-cddd-4210-bc39-369f5e6dda64', 223, '2026-04-01T06:22:31.071Z', '2026-04-01T06:22:31.071Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1cf8346b-c0fb-4b9d-b74e-3ba2b2f6b2c2', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is the first statement valid while the second one is not?
+
+```js
+const numbers = [];
+const obj = { a: 1, b: 2 };
+({ a: numbers[0], b: numbers[1] } = obj);
+
+// const { a: numbers[0], b: numbers[1] } = obj;
+```', 'Assignment patterns can assign into any assignable target, such as array elements or object properties. Binding patterns create new bindings, so targets like `numbers[0]` are invalid there.
+
+Example:
+
+```js
+({ a: result.value } = obj); // valid assignment target
+```', 'hard', 'approved', 'b955d1f0-cddd-4210-bc39-369f5e6dda64', 224, '2026-04-01T06:22:31.076Z', '2026-04-01T06:22:31.076Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('220af1f7-c418-46ab-a85b-bf4f7ce3af55', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this log?
+
+```js
+function collect(label, ...values) {
+  return `${label}:${values.length}`;
+}
+const data = [10, 20, 30];
+console.log(collect(''items'', ...data));
+```', 'Spread expands `data` into three arguments, while the rest parameter gathers those extra arguments into the `values` array. The template literal then formats the result as `items:3`.
+
+Example:
+
+```js
+collect(''x'', ...[1, 2]); // ''x:2''
+```', 'medium', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 225, '2026-04-01T06:22:35.949Z', '2026-04-01T06:22:35.949Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1c964e3e-8ffd-4540-b5b8-0972da92d1bd', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this log?
+
+```js
+const { port = 3000 } = { port: null };
+console.log(`Port=${port}`);
+```', 'Destructuring defaults do not replace `null`; they only apply to `undefined` or missing values. The template literal therefore interpolates the actual value `null`.
+
+Example:
+
+```js
+const { x = 1 } = { x: undefined }; // x is 1
+```', 'medium', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 226, '2026-04-01T06:22:35.953Z', '2026-04-01T06:22:35.953Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3ab528ca-c189-4356-8790-e11eaf53cc62', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about these two operations is correct?
+
+```js
+const obj = { a: 1 };
+const a = { ...obj };
+const b = [...obj];
+```', 'Object spread enumerates own properties, so `{ ...obj }` works. Array spread requires an iterable, and a plain object is not iterable by default, so `[...obj]` throws.
+
+Example:
+
+```js
+const ok = { ...[1, 2] }; // { 0: 1, 1: 2 }
+```', 'hard', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 227, '2026-04-01T06:22:35.955Z', '2026-04-01T06:22:35.955Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a104f175-334f-4772-813f-16861a41746a', '9872b186-472e-4391-a150-7239315fc8b1', 'Assume a module exports this object:
+
+```js
+export const config = {
+  theme: { mode: ''dark'' },
+};
+```
+
+Another module runs:
+
+```js
+import { config } from ''./config.js'';
+const clone = { ...config };
+clone.theme.mode = ''light'';
+```
+
+What is true?', 'Module exports are shared, and object spread is shallow. `clone` is a new top-level object, but `clone.theme` still points to the same nested object as `config.theme`, so changing `mode` affects both.
+
+Example:
+
+```js
+clone === config; // false
+clone.theme === config.theme; // true
+```', 'hard', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 228, '2026-04-01T06:22:35.957Z', '2026-04-01T06:22:35.957Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2434e310-f6df-44cf-829b-1a0c2c1758c8', '9872b186-472e-4391-a150-7239315fc8b1', 'Which line correctly grabs a default export from a dynamic import?
+
+```js
+// assume ./user.js has a default export
+```', 'Dynamic import resolves to a module object. The default export lives on its `default` property, so destructuring it as `{ default: User }` is a clean way to access it.
+
+Example:
+
+```js
+const { default: User } = await import(''./user.js'');
+```', 'medium', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 229, '2026-04-01T06:22:35.962Z', '2026-04-01T06:22:35.962Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('676d9b39-f9c9-408f-80ea-33e2503d3dfe', '9872b186-472e-4391-a150-7239315fc8b1', 'What is true if `index.js` contains only this line?
+
+```js
+export * from ''./user.js'';
+```
+
+Assume `user.js` has a default export.', '`export *` re-exports named exports, but it does not re-export the default export. To re-export a default, a separate statement such as `export { default as User } from ''./user.js'';` is needed.
+
+Example:
+
+```js
+export * from ''./user.js'';
+export { default as User } from ''./user.js'';
+```', 'hard', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 230, '2026-04-01T06:22:35.965Z', '2026-04-01T06:22:35.965Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('86091cc0-0597-492a-a60f-712799f7e926', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about invalid escape sequences is correct?
+
+```js
+function log(str) {
+  return [str[0], str.raw[0]];
+}
+```', 'A tagged template may preserve a malformed escape in the raw literal, but an untagged template literal with the same malformed escape is a syntax error.
+
+Example:
+
+```js
+log`\unicode`; // cooked entry is undefined, raw entry is ''\unicode''
+```', 'hard', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 231, '2026-04-01T06:22:35.987Z', '2026-04-01T06:22:35.987Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fd25a26a-4134-4027-a50a-fc0272a234f8', '9872b186-472e-4391-a150-7239315fc8b1', 'What is still required here, even if this code is inside a JavaScript module?
+
+```js
+let a;
+({ a } = { a: 1 });
+```', 'Modules change scope and strictness rules, but they do not change how the parser reads a bare `{ ... }` at statement position. The assignment still needs parentheses so it is parsed as an expression.
+
+Example:
+
+```js
+let value;
+({ value } = source);
+```', 'medium', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 232, '2026-04-01T06:22:35.989Z', '2026-04-01T06:22:35.989Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1df7f21d-966b-45b2-b2d5-b14ee5e799ef', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this log?
+
+```js
+function skipFirst(...[, second, third]) {
+  return `${second}-${third}`;
+}
+console.log(skipFirst(''a'', ''b'', ''c'', ''d''));
+```', 'The rest parameter gathers all arguments into an array, the destructuring pattern skips the first one, and the template literal formats the next two. So the result is `b-c`.
+
+Example:
+
+```js
+skipFirst(1, 2, 3); // ''2-3''
+```', 'medium', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 233, '2026-04-01T06:22:35.995Z', '2026-04-01T06:22:35.995Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cb1754f6-dabf-4469-8e76-527f00ae9175', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the likely output in a browser for this module script?
+
+```html
+<script type="module">
+  console.log(`Button:${typeof button}`);
+</script>
+<button id="button">Click</button>
+```', 'Module scripts are deferred by default in the browser, so they run after the HTML has been parsed. That means the script can see the button declared later in the document, and the template literal logs `Button:object`.
+
+Example:
+
+```html
+<script type="module">console.log(typeof button);</script>
+<button id="button"></button>
+```', 'hard', 'approved', '655cb3d6-7115-4b0c-af25-ab11d49f72d2', 234, '2026-04-01T06:22:36.000Z', '2026-04-01T06:22:36.000Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('76090157-5b40-4978-921f-29cc227e8fb5', '9872b186-472e-4391-a150-7239315fc8b1', 'Which setup is required to use `import` and `export` directly in the browser?', 'In the browser, modules must be loaded with `<script type="module">`, and they should be served over HTTP(S) rather than opened via `file://`.
+
+Example:
+
+```html
+<script type="module" src="main.js"></script>
+```', 'easy', 'approved', '9bca1bd3-5fba-40a9-8fca-919f0a05272f', 235, '2026-04-01T06:22:40.336Z', '2026-04-01T06:22:40.336Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a15f567e-db6a-4967-8d00-c4079ba1ea40', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about module code is correct?', 'Modules always run in strict mode, and each module has its own top-level scope. Top-level names are not automatically shared across other scripts.
+
+Example:
+
+```js
+// user.js
+export const user = "John";
+
+// hello.js
+import { user } from ''./user.js'';
+```', 'medium', 'approved', '9bca1bd3-5fba-40a9-8fca-919f0a05272f', 236, '2026-04-01T06:22:40.341Z', '2026-04-01T06:22:40.341Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9ccc2407-73ad-42d4-b47b-d6ef1739929b', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the practical effect of a module being evaluated only once?', 'A module''s top-level code runs only on the first import. Its exported objects are then shared across importers, so later imports see mutations made through the same exported object.
+
+Example:
+
+```js
+// admin.js
+export let admin = { name: "John" };
+```', 'medium', 'approved', '9bca1bd3-5fba-40a9-8fca-919f0a05272f', 237, '2026-04-01T06:22:40.342Z', '2026-04-01T06:22:40.342Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('94f9da21-2806-400c-94c5-83736b0f4f9f', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is this browser import invalid?
+
+```js
+import { sayHi } from ''sayHi'';
+```', 'Browsers do not support bare module specifiers by default. The import must use a relative or absolute URL such as `./sayHi.js`.
+
+Example:
+
+```js
+import { sayHi } from ''./sayHi.js'';
+```', 'medium', 'approved', '9bca1bd3-5fba-40a9-8fca-919f0a05272f', 238, '2026-04-01T06:22:40.345Z', '2026-04-01T06:22:40.345Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f130f008-37d9-4db8-96db-6297cfcc4431', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about `import()` is correct?
+
+```js
+const module = await import(''./user.js'');
+```', '`import()` is a special syntax that returns a promise resolving to a module object. If the module has a default export, it is available as `module.default` or via destructuring such as `{ default: User }`.
+
+Example:
+
+```js
+const { default: User } = await import(''./user.js'');
+```', 'hard', 'approved', '9bca1bd3-5fba-40a9-8fca-919f0a05272f', 239, '2026-04-01T06:22:40.351Z', '2026-04-01T06:22:40.351Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('76496959-371a-4382-870a-6f6293ac35ac', '9872b186-472e-4391-a150-7239315fc8b1', 'Which declaration obeys the syntax rules for rest parameters?', 'A function may have only one rest parameter. It must be the last parameter, cannot have a default value, and cannot be followed by a trailing comma.
+
+Example:
+
+```js
+function f(a, b, ...theArgs) {}
+```', 'easy', 'approved', '9ccd43c3-3cb5-4dc9-9121-606f0db1e960', 240, '2026-04-01T06:22:44.802Z', '2026-04-01T06:22:44.802Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1d26f20e-12b0-47b7-98f7-c0c712ea192d', '9872b186-472e-4391-a150-7239315fc8b1', 'Why are rest parameters usually easier to work with than `arguments`?', 'Rest parameters are real arrays, so array methods like `sort()`, `map()`, and `forEach()` work on them directly. The `arguments` object is only array-like.
+
+Example:
+
+```js
+function sortRestArgs(...theArgs) {
+  return theArgs.sort();
+}
+```', 'medium', 'approved', '9ccd43c3-3cb5-4dc9-9121-606f0db1e960', 241, '2026-04-01T06:22:44.807Z', '2026-04-01T06:22:44.807Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b5c6d1de-b84e-4550-925a-ff67b9063b9a', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the value of `f.length` here?
+
+```js
+function f(a, b, ...rest) {}
+console.log(f.length);
+```', 'The `length` of a function counts parameters before the rest parameter. The rest parameter itself is not counted.
+
+Example:
+
+```js
+function g(...rest) {}
+console.log(g.length); // 0
+```', 'medium', 'approved', '9ccd43c3-3cb5-4dc9-9121-606f0db1e960', 242, '2026-04-01T06:22:44.811Z', '2026-04-01T06:22:44.811Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('427d4acd-366c-4688-80a9-3ceed72b3a44', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement correctly compares `...rest` and `arguments` in this function?
+
+```js
+function demo(a, b, ...rest) {
+  // ...
+}
+```', '`rest` contains only the extra arguments after `a` and `b`, bundled into a real array. `arguments` contains all passed arguments, including `a` and `b`.
+
+Example:
+
+```js
+demo(1, 2, 3, 4);
+// rest is [3, 4], arguments contains 1, 2, 3, 4
+```', 'medium', 'approved', '9ccd43c3-3cb5-4dc9-9121-606f0db1e960', 243, '2026-04-01T06:22:44.816Z', '2026-04-01T06:22:44.816Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d0417a1e-5a15-4206-8ce2-ea4a33cc80ae', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this function return?
+
+```js
+function ignoreFirst(...[, b, c]) {
+  return b + c;
+}
+console.log(ignoreFirst(1, 2, 3, 4));
+```', 'The rest parameter collects all arguments into an array, and the destructuring pattern skips the first element. That means `b` becomes `2` and `c` becomes `3`, so the result is `5`.
+
+Example:
+
+```js
+function pick(...[, second]) { return second; }
+```', 'hard', 'approved', '9ccd43c3-3cb5-4dc9-9121-606f0db1e960', 244, '2026-04-01T06:22:44.821Z', '2026-04-01T06:22:44.821Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b6ba8cd3-19a9-4fbe-8262-5d72fd0ade5b', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this log?
+
+```js
+function sum(a, b) {
+  return a + b;
+}
+console.log(sum(1, 2, 3, 4, 5));
+```', 'Without a rest parameter, extra arguments are simply ignored by the function body. Only the first two arguments are used here.
+
+Example:
+
+```js
+function pair(x, y) { return [x, y]; }
+pair(1, 2, 3); // [1, 2]
+```', 'easy', 'approved', '7c4e6fcf-0d8c-46d4-82f0-d188d226e4aa', 245, '2026-04-01T06:22:49.373Z', '2026-04-01T06:22:49.373Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('94fe8c73-866a-46e4-955e-9b6bbf160f66', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code alert?
+
+```js
+function f() {
+  const showArg = () => arguments[0];
+  return showArg();
+}
+console.log(f(1));
+```', 'Arrow functions do not have their own `arguments` object. They close over the `arguments` object of the nearest normal function, so `showArg()` reads `f`''s first argument, which is `1`.
+
+Example:
+
+```js
+function outer() {
+  return (() => arguments[0])();
+}
+```', 'medium', 'approved', '7c4e6fcf-0d8c-46d4-82f0-d188d226e4aa', 246, '2026-04-01T06:22:49.376Z', '2026-04-01T06:22:49.376Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('51b8a452-226b-43ab-8361-2a07395c901c', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does `Math.max(arr)` fail to do what `Math.max(...arr)` does?
+
+```js
+const arr = [3, 5, 1];
+```', '`Math.max` expects a list of numeric arguments, not a single array. Spread turns the iterable into a normal argument list.
+
+Example:
+
+```js
+Math.max(...[3, 5, 1]); // 5
+```', 'medium', 'approved', '7c4e6fcf-0d8c-46d4-82f0-d188d226e4aa', 247, '2026-04-01T06:22:49.380Z', '2026-04-01T06:22:49.380Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a435d4e6-2390-4876-a687-147753ec4d71', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement correctly compares `Array.from(obj)` and `[...obj]`?
+
+Assume `obj` is array-like but not iterable.', '`Array.from` works with both iterables and array-like objects. Spread works only with iterables, so `[...obj]` fails for a merely array-like value.
+
+Example:
+
+```js
+const arrayLike = { 0: ''a'', 1: ''b'', length: 2 };
+Array.from(arrayLike); // [''a'', ''b'']
+```', 'hard', 'approved', '7c4e6fcf-0d8c-46d4-82f0-d188d226e4aa', 248, '2026-04-01T06:22:49.383Z', '2026-04-01T06:22:49.383Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8c51684a-f51e-43cf-9fac-edfb30811635', '9872b186-472e-4391-a150-7239315fc8b1', 'What is true after this copy?
+
+```js
+const arr = [1, 2, 3];
+const arrCopy = [...arr];
+```', 'Spread creates a new array with the same elements, so the contents match but the reference is different.
+
+Example:
+
+```js
+arr === arrCopy; // false
+```', 'easy', 'approved', '7c4e6fcf-0d8c-46d4-82f0-d188d226e4aa', 249, '2026-04-01T06:22:49.385Z', '2026-04-01T06:22:49.385Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1bf5fd9b-889d-4a20-b2f6-ad77e550e5f4', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this throw a TypeError?
+
+```js
+const obj = { key1: "value1" };
+const array = [...obj];
+```', 'Array literal spread requires an iterable value. Plain objects are not iterable by default, so `[...obj]` fails.
+
+Example:
+
+```js
+const chars = [..."abc"]; // works because strings are iterable
+```', 'easy', 'approved', 'e195b52d-3efa-41f5-9851-8d6daeb3eac3', 250, '2026-04-01T06:22:53.933Z', '2026-04-01T06:22:53.933Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c48fa8ec-3550-4f0c-9dae-7a021e498833', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the value of `obj` after this code runs?
+
+```js
+const array = [1, 2, 3];
+const obj = { ...array };
+```', 'Object spread enumerates own properties. For arrays, the indices are enumerable own properties, so the new object gets numeric keys `0`, `1`, and `2`.
+
+Example:
+
+```js
+const obj = { ...[10, 20] };
+// { 0: 10, 1: 20 }
+```', 'easy', 'approved', 'e195b52d-3efa-41f5-9851-8d6daeb3eac3', 251, '2026-04-01T06:22:53.936Z', '2026-04-01T06:22:53.936Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('287d8764-7865-468d-813c-190a96b1f689', '9872b186-472e-4391-a150-7239315fc8b1', 'Why can this kind of copy still affect the original nested data?
+
+```js
+const a = [[1], [2], [3]];
+const b = [...a];
+b.shift().shift();
+```', 'Spread makes a shallow copy. The outer array is new, but its nested arrays still reference the same inner arrays from the original.
+
+Example:
+
+```js
+const source = [{ id: 1 }];
+const copy = [...source];
+copy[0].id = 2; // source[0].id also becomes 2
+```', 'medium', 'approved', 'e195b52d-3efa-41f5-9851-8d6daeb3eac3', 252, '2026-04-01T06:22:53.942Z', '2026-04-01T06:22:53.942Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c803158c-cc75-4270-a8a3-b309bdf34b35', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this pattern avoid adding an `undefined` element when the condition is false?
+
+```js
+const isSummer = false;
+const fruits = ["apple", "banana", ...(isSummer ? ["watermelon"] : [])];
+```', 'When the condition is false, an empty array is spread, so nothing is added. That differs from inserting `isSummer ? "watermelon" : undefined`, which would still create a third element.
+
+Example:
+
+```js
+const list = [1, ...(false ? [2] : [])]; // [1]
+```', 'medium', 'approved', 'e195b52d-3efa-41f5-9851-8d6daeb3eac3', 253, '2026-04-01T06:22:53.947Z', '2026-04-01T06:22:53.947Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a12f360c-3ce6-4777-9b20-9248ec9bd7a6', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens here?
+
+```js
+const obj = { ...true, ..."test", ...10 };
+```', 'Object spread enumerates own properties. Only strings contribute enumerable own properties, so the result contains character indices from `"test"` and nothing useful from `true` or `10`.
+
+Example:
+
+```js
+const result = { ..."hi" }; // { 0: "h", 1: "i" }
+```', 'hard', 'approved', 'e195b52d-3efa-41f5-9851-8d6daeb3eac3', 254, '2026-04-01T06:22:53.948Z', '2026-04-01T06:22:53.948Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d7fae52e-a52a-4ce5-a2fa-9deb2109e8ce', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about these two template literals is correct?
+
+```js
+`line 1
+line 2`
+
+`line 1 \
+line 2`
+```', 'A newline written directly inside a template literal becomes part of the resulting string. Escaping the newline with a backslash keeps the source readable but removes the actual line break from the result.
+
+Example:
+
+```js
+console.log(`a
+b`); // two lines
+console.log(`a \
+b`); // one line
+```', 'medium', 'approved', 'e1d57273-71b9-4b18-8bf8-0611add2c84a', 255, '2026-04-01T06:22:58.470Z', '2026-04-01T06:22:58.470Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('daf9bef2-10e0-422e-9516-42f19a7e84d7', '9872b186-472e-4391-a150-7239315fc8b1', 'How can you include a literal backtick or `${...}` text inside a template literal?', 'Inside a template literal, a backtick can be escaped with `\`` and a dollar sign can be escaped as `\${...}` to prevent interpolation.
+
+Example:
+
+```js
+`\`` === ''`'';
+`${1}` !== `\${1}`;
+```', 'easy', 'approved', 'e1d57273-71b9-4b18-8bf8-0611add2c84a', 256, '2026-04-01T06:22:58.473Z', '2026-04-01T06:22:58.473Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2dbc1929-2bbf-4ba0-9359-e3a9f6b05527', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about tagged templates is correct?', 'A tag function receives an array of string chunks as its first argument and the substitution values as later arguments. It may return any value, not just a string.
+
+Example:
+
+```js
+function tag(strings, ...values) {
+  return { strings, values };
+}
+```', 'medium', 'approved', 'e1d57273-71b9-4b18-8bf8-0611add2c84a', 257, '2026-04-01T06:22:58.475Z', '2026-04-01T06:22:58.475Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a49c8273-7520-4627-a785-0fabf1cbbf95', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the purpose of `strings.raw` or `String.raw` with template literals?
+
+```js
+String.raw`Hi\n${2 + 3}!`;
+```', 'Raw access preserves escape sequences as typed instead of cooking them into actual characters. That is why `String.raw` keeps `\n` as two characters, backslash and `n`.
+
+Example:
+
+```js
+String.raw`Hi\n5!`; // ''Hi\\n5!'' as a JavaScript string value
+```', 'medium', 'approved', 'e1d57273-71b9-4b18-8bf8-0611add2c84a', 258, '2026-04-01T06:22:58.477Z', '2026-04-01T06:22:58.477Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fc2e9e0e-44f1-4d94-a454-1eca3373163e', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about invalid escape sequences is correct?', 'Invalid escape sequences are syntax errors in normal template literals, but tagged templates are allowed to preserve them in the raw strings. In the cooked array entry, the value becomes `undefined`.
+
+Example:
+
+```js
+function log(str) {
+  console.log(str[0], str.raw[0]);
+}
+log`\unicode`;
+```', 'hard', 'approved', 'e1d57273-71b9-4b18-8bf8-0611add2c84a', 259, '2026-04-01T06:22:58.479Z', '2026-04-01T06:22:58.479Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('aa6f5690-9065-46d1-b068-4433a7291e88', '9872b186-472e-4391-a150-7239315fc8b1', 'What happens when a function called from inside a `try` block throws an exception and that exception is not handled inside that called function?', 'MDN states that if any statement in the `try` block, or in a function called from within the `try` block, throws an exception, control immediately shifts to the `catch` block.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 260, '2026-04-01T06:45:54.033Z', '2026-04-01T06:45:54.033Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9138fe44-2dc0-4706-a887-abb2080f78ed', '9872b186-472e-4391-a150-7239315fc8b1', 'According to MDN, which statement about a `finally` block is correct?', 'The `finally` block runs whether or not an exception is thrown, and it runs before execution continues after the `try...catch...finally` statement.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 261, '2026-04-01T06:45:54.037Z', '2026-04-01T06:45:54.037Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e285b25-6126-446d-a86e-aa8d0f612d6e', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this function log?
+
+```js
+function f() {
+  try {
+    throw ''bogus'';
+  } catch (e) {
+    return true;
+  } finally {
+    return false;
+  }
+}
+
+console.log(f());
+```', 'MDN explicitly notes that if `finally` returns a value, that value becomes the return value of the entire construct, overwriting earlier `return` statements and even thrown exceptions.', 'medium', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 262, '2026-04-01T06:45:54.038Z', '2026-04-01T06:45:54.038Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a2efc395-bf19-46f0-ad9d-bb771253d4e5', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does MDN recommend using `new Error(''The message'')` when throwing your own exceptions instead of throwing a raw string such as `''Error2''`?', 'Using `Error` gives the thrown value standard error properties like `name` and `message`, which makes custom exceptions easier to inspect alongside system exceptions.', 'medium', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 263, '2026-04-01T06:45:54.040Z', '2026-04-01T06:45:54.040Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dfa9b564-81a8-40ab-838b-1d3cd7cb9324', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the scope of the identifier declared in `catch (err)`?', 'MDN explains that JavaScript creates the catch identifier when the catch block is entered, and that it lasts only for the duration of that catch block.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 264, '2026-04-01T06:45:54.042Z', '2026-04-01T06:45:54.042Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('85172963-1f9b-48d6-af5d-8bf793a82f76', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about the `throw` keyword matches the MDN guide?', 'MDN explicitly shows that JavaScript can throw strings, numbers, booleans, or objects. It also notes that some thrown objects are more effective than others for error handling.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 265, '2026-04-01T06:45:54.043Z', '2026-04-01T06:45:54.043Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a4005a5a-d1b3-4372-b357-07b95d9d416c', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this code guarantee?
+
+```js
+openMyFile();
+try {
+  writeMyFile(theData);
+} catch (e) {
+  handleError(e);
+} finally {
+  closeMyFile();
+}
+```', 'MDN uses this pattern to show resource cleanup. `closeMyFile()` runs even if `writeMyFile(theData)` throws.', 'medium', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 266, '2026-04-01T06:45:54.044Z', '2026-04-01T06:45:54.044Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6fe8c690-9096-40dc-924c-0212cb4d028b', '9872b186-472e-4391-a150-7239315fc8b1', 'According to MDN, what do the `name` and `message` properties of an error object represent?', '`name` identifies the general class of error, while `message` provides a more specific description.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 267, '2026-04-01T06:45:54.045Z', '2026-04-01T06:45:54.045Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cf595298-4fb6-4c54-a206-291cb29d94a5', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes MDN''s note about nested `try...catch` statements?', 'MDN notes that an inner `try` without its own `catch` must include a `finally` block, and then the enclosing `catch` is checked.', 'hard', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 268, '2026-04-01T06:45:54.046Z', '2026-04-01T06:45:54.046Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fb128979-b630-48f2-b92c-1167b49bd572', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does MDN advise using `console.error()` instead of `console.log()` when logging from a `catch` block?', 'MDN says `console.error()` formats the message as an error and adds it to the list of error messages generated by the page, which makes debugging clearer.', 'easy', 'approved', '018bc29d-35cd-4ce5-9188-1b7786ffe8d2', 269, '2026-04-01T06:45:54.047Z', '2026-04-01T06:45:54.047Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cd8a450b-0bb8-4fda-bff5-096246a40308', '9872b186-472e-4391-a150-7239315fc8b1', 'In SitePoint''s `divide(v1, v2, dp)` examples, what built-in error occurs when `toFixed(dp)` receives `-1`?', 'SitePoint uses `toFixed(-1)` as a concrete example of a `RangeError`, because the decimal-place argument must be in an allowed range.', 'easy', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 270, '2026-04-01T06:45:57.929Z', '2026-04-01T06:45:57.929Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0134c428-ae7b-402c-a160-0d16e2d871d9', '9872b186-472e-4391-a150-7239315fc8b1', 'After JavaScript throws an exception inside a function, what does SitePoint say the interpreter does next?', 'The article explains that the interpreter looks for an exception handler in the current function, then moves up the call stack until it finds one or reaches the top level.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 271, '2026-04-01T06:45:57.933Z', '2026-04-01T06:45:57.933Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('be595ce5-55ca-4541-9e41-90fd2c28429b', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this function always log?
+
+```js
+function divide(v1, v2, dp) {
+  try {
+    return (v1 / v2).toFixed(dp);
+  } catch (e) {
+    return ''ERROR'';
+  } finally {
+    console.log(''done'');
+  }
+}
+```', 'SitePoint uses `finally` to show code that runs after either the `try` or the `catch` path. `console.log(''done'')` runs regardless of success or failure.', 'easy', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 272, '2026-04-01T06:45:57.935Z', '2026-04-01T06:45:57.935Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7b821bbe-e5ed-40be-a97b-9851dc6bb0a5', '9872b186-472e-4391-a150-7239315fc8b1', 'SitePoint makes which warning about `return` inside a `finally` block?', 'The article states that a `return` in `finally` becomes the return value for the whole function, ignoring returns from `try` or `catch`.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 273, '2026-04-01T06:45:57.937Z', '2026-04-01T06:45:57.937Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('909a8099-ae1a-4e86-b419-7a24f88d5f20', '9872b186-472e-4391-a150-7239315fc8b1', 'If an inner handler does `throw new Error(''ERROR'', { cause: e })`, what can the outer `catch` inspect to recover the original error type?', 'SitePoint demonstrates wrapping an error while preserving the original one in `cause`. The outer handler can inspect `e.cause.name` to learn the underlying type.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 274, '2026-04-01T06:45:57.939Z', '2026-04-01T06:45:57.939Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1ab936c5-9c7d-49f0-b5c3-4ec8bf6219bd', '9872b186-472e-4391-a150-7239315fc8b1', 'Why is `throw new RangeError(''Decimal places must be between 0 and 8'')` a better fit than a generic `Error` in SitePoint''s example?', 'The problem is specifically an out-of-range value, so `RangeError` conveys more precise intent and aligns with built-in JavaScript semantics.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 275, '2026-04-01T06:45:57.941Z', '2026-04-01T06:45:57.941Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ede064f6-c55a-4577-9c8a-a9a4b3ff90fc', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the main benefit of SitePoint''s custom `DivByZeroError extends Error` example?', 'A dedicated error type lets the application distinguish divisor problems from other failures while keeping normal error behavior and properties.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 276, '2026-04-01T06:45:57.942Z', '2026-04-01T06:45:57.942Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1c5ad1d1-7394-470a-be42-8d381b1e951b', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this outer `try...catch` fail to catch the error?
+
+```js
+function asyncError(delay = 1000) {
+  setTimeout(() => {
+    throw new Error(''I am never caught!'');
+  }, delay);
+}
+
+try {
+  asyncError();
+} catch (e) {
+  console.error(''This will never run'');
+}
+```', 'The callback throws later, after the surrounding `try...catch` has already finished. SitePoint uses this example to show that callback-based async errors do not behave like synchronous exceptions.', 'hard', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 277, '2026-04-01T06:45:57.945Z', '2026-04-01T06:45:57.945Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('82ddb63b-dd12-4494-aef8-be84ced69ed9', '9872b186-472e-4391-a150-7239315fc8b1', 'Where should SitePoint''s promise-based `wait(delay)` function validate an invalid `delay` so the function stays consistently asynchronous?', 'The article explicitly warns that the validation must happen inside the promise executor. Throwing before returning the promise would make error cases synchronous and success cases asynchronous.', 'hard', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 278, '2026-04-01T06:45:57.946Z', '2026-04-01T06:45:57.946Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7f40d1d6-08e6-4d6c-80cb-a63550a4aa1c', '9872b186-472e-4391-a150-7239315fc8b1', 'According to SitePoint, what is the async/await equivalent of handling a rejected promise with `.catch()` and then running cleanup with `.finally()`?', 'The article shows an immediately invoked `async` function that uses `try`, `catch`, and `finally` around `await wait(''INVALID'')`.', 'medium', 'approved', '6ff7593a-8222-41e2-98ad-f1abdbe19b99', 279, '2026-04-01T06:45:57.947Z', '2026-04-01T06:45:57.947Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d815170d-6b71-4b49-9f92-204d46a8c15d', '9872b186-472e-4391-a150-7239315fc8b1', 'Which kind of errors can `try...catch` handle according to javascript.info?', 'The tutorial explicitly distinguishes runtime errors from parse-time errors. `try...catch` works only when the code is valid enough to run.', 'easy', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 280, '2026-04-01T06:46:01.924Z', '2026-04-01T06:46:01.924Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f6c680ae-a4a3-4f71-8211-54abe3d71ff1', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does this code fail to catch the error?
+
+```js
+try {
+  setTimeout(function () {
+    noSuchVariable;
+  }, 1000);
+} catch (err) {
+  alert(''won''t work'');
+}
+```', 'javascript.info explains that the callback runs later, after the engine has already left the original `try...catch`. The handler must be placed inside the scheduled function.', 'medium', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 281, '2026-04-01T06:46:01.927Z', '2026-04-01T06:46:01.927Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('209c06be-b409-4790-99e9-8654a4e49062', '9872b186-472e-4391-a150-7239315fc8b1', 'Which properties does javascript.info highlight as the main built-in fields on an error object, with `stack` noted as a widely used non-standard addition?', 'The tutorial names `name` and `message` as the primary standard properties and calls out `stack` as a common non-standard debugging property.', 'easy', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 282, '2026-04-01T06:46:01.929Z', '2026-04-01T06:46:01.929Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8f7516e9-8a9b-4f18-a01d-c0462d100574', '9872b186-472e-4391-a150-7239315fc8b1', 'When is `catch { ... }` without an error parameter appropriate?', 'javascript.info calls this optional catch binding. It is appropriate when you do not need to inspect the error object.', 'easy', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 283, '2026-04-01T06:46:01.931Z', '2026-04-01T06:46:01.931Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('757f5ad9-8160-4d0b-a432-6a5f0b61421b', '9872b186-472e-4391-a150-7239315fc8b1', 'After `JSON.parse(json)` succeeds, why does javascript.info deliberately do `throw new SyntaxError(''Incomplete data: no name'')` when `user.name` is missing?', 'The goal is to treat semantically incomplete data as an error in the same error-handling path as malformed JSON, so one `catch` block can handle both cases cleanly.', 'medium', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 284, '2026-04-01T06:46:01.932Z', '2026-04-01T06:46:01.932Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('514eb20c-2ea2-4bcc-b6c3-f24cdc436b97', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the core rethrowing rule described by javascript.info?', 'The tutorial emphasizes that a `catch` block should handle only errors it knows about and rethrow everything else to avoid masking unrelated bugs.', 'medium', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 285, '2026-04-01T06:46:01.933Z', '2026-04-01T06:46:01.933Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('50a015a1-72bd-4c02-bfea-a27de625cbf4', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does javascript.info prefer `err instanceof ValidationError` over checking `err.name === ''ValidationError''` when custom error hierarchies are expected to grow?', '`instanceof` remains correct for subclasses such as `PropertyRequiredError`, so it keeps working as the hierarchy expands.', 'hard', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 286, '2026-04-01T06:46:01.936Z', '2026-04-01T06:46:01.936Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d6512409-a01f-4f9f-abb4-5aca4a7d0d79', '9872b186-472e-4391-a150-7239315fc8b1', 'What must a child constructor do when defining a custom class that extends `Error`?', 'javascript.info says calling `super(message)` is mandatory, because JavaScript requires `super` in a child constructor. The examples also reset `name` unless a shared base class does that automatically.', 'medium', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 287, '2026-04-01T06:46:01.940Z', '2026-04-01T06:46:01.940Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8c585235-8702-4fb1-98da-71c3a2255293', '9872b186-472e-4391-a150-7239315fc8b1', 'What extra information does `PropertyRequiredError` carry beyond the inherited error message?', 'The tutorial adds a `property` field so code can tell exactly which required property was missing.', 'easy', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 288, '2026-04-01T06:46:01.944Z', '2026-04-01T06:46:01.944Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('86bbcc1c-03aa-4285-8942-38b5d92c78d9', '9872b186-472e-4391-a150-7239315fc8b1', 'What problem does `ReadError` solve in javascript.info''s wrapping-exceptions pattern?', '`ReadError` lets outer code care about one higher-level category, while still preserving the original low-level error in `cause` for deeper inspection when necessary.', 'hard', 'approved', 'eb07b310-bf5a-429d-8f02-098df5e2c746', 289, '2026-04-01T06:46:01.945Z', '2026-04-01T06:46:01.945Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2d4215b7-bfea-48b9-b8f4-702d0a11b565', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this function return?
+
+```js
+function f() {
+  try {
+    throw new Error(''boom'');
+  } catch (err) {
+    throw err;
+  } finally {
+    return ''done'';
+  }
+}
+```', 'Both MDN and the other sources emphasize the same subtlety: a `return` from `finally` overwrites an earlier `return` and can also suppress a thrown or rethrown exception. That makes the function return `''done''`.', 'hard', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 290, '2026-04-01T06:46:06.050Z', '2026-04-01T06:46:06.050Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('56837c47-f38c-44d1-9823-2d4e5564b14a', '9872b186-472e-4391-a150-7239315fc8b1', 'Which thrown value is the best fit if you want reliable `err.name`, `err.message`, and `instanceof` checks across a growing custom error hierarchy?', 'MDN and javascript.info both argue for throwing `Error`-based objects rather than arbitrary primitives. Extending `Error` also enables inheritance-aware `instanceof` checks for subclasses.', 'medium', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 291, '2026-04-01T06:46:06.054Z', '2026-04-01T06:46:06.054Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c80a1539-6c8b-48de-82f5-9becaf749375', '9872b186-472e-4391-a150-7239315fc8b1', 'Why won''t a synchronous outer `try...catch` catch an exception thrown later inside a `setTimeout` callback?', 'Both SitePoint and javascript.info make the same point: `try...catch` only wraps the current synchronous execution path. A timer callback runs later, after that scope has already completed.', 'medium', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 292, '2026-04-01T06:46:06.057Z', '2026-04-01T06:46:06.057Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3a4992e4-ab91-41f5-baeb-ea5d0dc0d408', '9872b186-472e-4391-a150-7239315fc8b1', 'Assume `class PropertyRequiredError extends ValidationError {}`. What is the result of `err instanceof ValidationError` when `err` is a `new PropertyRequiredError(''name'')`?', 'javascript.info highlights this as the main advantage of `instanceof` in custom hierarchies: subclass instances still satisfy checks against their parent classes.', 'medium', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 293, '2026-04-01T06:46:06.058Z', '2026-04-01T06:46:06.058Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e7918223-084a-4751-9bb4-581550e4074b', '9872b186-472e-4391-a150-7239315fc8b1', 'What does this log?
+
+```js
+try {
+  try {
+    console.log((1).toFixed(-1));
+  } catch (e) {
+    throw new Error(''Calculation failed'', { cause: e });
+  }
+} catch (e) {
+  console.log(e.message);
+  console.log(e.cause.name);
+}
+```', 'SitePoint''s `toFixed(-1)` example yields a `RangeError`. Wrapping it with `new Error(''Calculation failed'', { cause: e })` preserves the original error in `cause`, so the outer catch logs the wrapper message and the original type.', 'hard', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 294, '2026-04-01T06:46:06.059Z', '2026-04-01T06:46:06.059Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1270b9a0-61d2-499c-a3ef-8f89ccfbe736', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `try { risky(); } finally { cleanup(); }` guarantee if `risky()` throws and there is no `catch` in the same construct?', 'MDN and javascript.info both show that `finally` runs for cleanup even when there is no local handler. Without a `catch`, the exception still continues outward after cleanup.', 'medium', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 295, '2026-04-01T06:46:06.060Z', '2026-04-01T06:46:06.060Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8657812d-d6c9-401b-81e9-56756ad782bf', '9872b186-472e-4391-a150-7239315fc8b1', 'After successful `JSON.parse`, an application throws `new SyntaxError(''Incomplete data: no name'')` because a required property is missing. Which interpretation is correct?', 'This is not a parse-time syntax failure in the source text. It is an intentionally thrown application error chosen so incomplete data can flow through the same `catch` logic as malformed JSON.', 'hard', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 296, '2026-04-01T06:46:06.061Z', '2026-04-01T06:46:06.061Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0f1d480c-cd5b-4a61-8ca0-eedb2bec1724', '9872b186-472e-4391-a150-7239315fc8b1', 'Which `catch` strategy best handles expected validation failures without accidentally swallowing unrelated programming bugs?', 'Rethrowing unknown errors is the safest pattern across the sources. It lets the current layer handle only what it truly understands.', 'hard', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 297, '2026-04-01T06:46:06.062Z', '2026-04-01T06:46:06.062Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f7ee52dd-0453-4522-889e-1f911c70dd8a', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the advantage of a base class like `MyError` that sets `this.name = this.constructor.name`?', 'javascript.info uses `MyError` to remove repetitive manual `name` assignments. Subclasses still inherit from `Error`, and each instance automatically reports its own class name.', 'medium', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 298, '2026-04-01T06:46:06.063Z', '2026-04-01T06:46:06.063Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2771f171-08dd-4ce3-9b69-72423bfa11e0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which design best simplifies high-level caller logic when a `readUser` flow may fail with malformed JSON, missing properties, or more specific validation subclasses?', 'Wrapping exceptions into a higher-level `ReadError` keeps outer callers from repeating low-level type checks everywhere, while still preserving the underlying reason in `cause`.', 'hard', 'approved', '70e298a7-e9fe-4293-8e8b-abb361cb0802', 299, '2026-04-01T06:46:06.064Z', '2026-04-01T06:46:06.064Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('df4d8c84-6460-4f3f-b68e-c1738e3713c0', '9872b186-472e-4391-a150-7239315fc8b1', 'Which description best matches Angular at a high level?', 'Angular is positioned as a full web framework rather than a small helper library. Its overview emphasizes tools, APIs, and libraries that help teams build fast, reliable applications that scale with both the team and the codebase.', 'easy', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 300, '2026-04-01T07:15:45.088Z', '2026-04-01T07:15:45.088Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6875ead0-6a0a-4f6f-9f41-01932a4c9411', '9872b186-472e-4391-a150-7239315fc8b1', 'Why are Angular components valuable in larger applications?', 'Angular components help teams organize user interfaces into well-encapsulated parts. That makes large applications easier to understand, evolve, and maintain than one large, tangled codebase.', 'easy', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 301, '2026-04-01T07:15:45.097Z', '2026-04-01T07:15:45.097Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8e2544ef-f454-423c-9e2f-d61a9355eec6', '9872b186-472e-4391-a150-7239315fc8b1', 'What is one major reason Angular is often attractive to large organizations and long-lived projects?', 'Angular highlights predictable releases, long-term support, backward-compatibility goals, and migration tooling. Those qualities matter when many teams and products depend on the same platform over time.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 302, '2026-04-01T07:15:45.100Z', '2026-04-01T07:15:45.100Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28863d22-4ac8-4091-8439-8954e4dfca3b', '9872b186-472e-4391-a150-7239315fc8b1', 'How does Angular describe UI work at a high level, according to MDN''s framework overview?', 'MDN describes Angular as a component-based framework with declarative HTML templates that are compiled into optimized JavaScript instructions. The point is to let developers describe UI instead of manually performing repetitive DOM updates.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 303, '2026-04-01T07:15:45.103Z', '2026-04-01T07:15:45.103Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ed3a0771-7cfd-4e68-9d34-91ced6484226', '9872b186-472e-4391-a150-7239315fc8b1', 'Which language is most closely associated with Angular in the MDN comparison and Angular''s own documentation?', 'Angular is strongly associated with TypeScript in both MDN''s comparison table and Angular''s documentation. That orientation is part of why teams often choose it for large, structured applications.', 'easy', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 304, '2026-04-01T07:15:45.106Z', '2026-04-01T07:15:45.106Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e73d798b-81b7-4dc3-8c7e-4e4be0447eb7', '9872b186-472e-4391-a150-7239315fc8b1', 'What problem does Angular''s routing toolkit primarily address?', 'Routing is about moving between views in an application while preserving expected navigation behavior. Angular''s toolkit explicitly includes route guards, data resolution, and lazy loading to help applications manage that complexity.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 305, '2026-04-01T07:15:45.108Z', '2026-04-01T07:15:45.108Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c9c67753-b950-45e1-9d93-7dff379c1b37', '9872b186-472e-4391-a150-7239315fc8b1', 'At a high level, what is Angular dependency injection for?', 'Dependency injection helps Angular applications share services and behavior cleanly across components. It reduces tight coupling and makes large codebases easier to organize.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 306, '2026-04-01T07:15:45.109Z', '2026-04-01T07:15:45.109Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0c72a28a-f6f0-4bbe-86e5-1c9f1c436b0c', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about modern Angular rendering strategies is accurate?', 'Modern Angular supports more than one rendering strategy. Its overview explicitly calls out server-side rendering, static site generation, and hydration in addition to client-side application behavior.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 307, '2026-04-01T07:15:45.110Z', '2026-04-01T07:15:45.110Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('82f8af27-7543-4ba0-9847-18b6bf9a3164', '9872b186-472e-4391-a150-7239315fc8b1', 'Which set of tools best reflects Angular''s emphasis on developer experience?', 'Angular invests in setup, debugging, editor support, and upgrade tooling. The CLI, DevTools, language service, and update tooling are all part of that story.', 'easy', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 308, '2026-04-01T07:15:45.112Z', '2026-04-01T07:15:45.112Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9ac951c5-a9e9-46ba-8f22-ce6196506ab5', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement correctly distinguishes Angular from AngularJS?', 'Angular was released as a rewrite from the team behind AngularJS. Treating them as if they are the same thing hides major architectural and ecosystem differences.', 'medium', 'approved', 'd498d7c9-1c3a-4998-b3bd-4cf26ebf6b2d', 309, '2026-04-01T07:15:45.113Z', '2026-04-01T07:15:45.113Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b9787a0c-5f7f-4621-b263-a0f3c5168844', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes React at a high level?', 'MDN notes that React is technically a library for rendering UI components, even though people often use the word framework as shorthand because React is frequently combined with companion libraries such as ReactDOM or React Native.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 310, '2026-04-01T07:15:50.206Z', '2026-04-01T07:15:50.206Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('007955b8-20d2-4b7e-a3f4-5316f49b6ceb', '9872b186-472e-4391-a150-7239315fc8b1', 'What is the core idea behind React components?', 'React apps are made out of components. Each component is a reusable piece of UI with its own logic and appearance, which makes large interfaces easier to assemble and reason about.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 311, '2026-04-01T07:15:50.214Z', '2026-04-01T07:15:50.214Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1052d3a5-4be2-4264-9d77-055bff884bb1', '9872b186-472e-4391-a150-7239315fc8b1', 'What role does JSX usually play in React applications?', 'JSX lets developers describe UI with HTML-like markup inside JavaScript. It is optional, but React documents it as the common and convenient way to author component output.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 312, '2026-04-01T07:15:50.275Z', '2026-04-01T07:15:50.275Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('da9f8cbe-5afa-496d-b15d-18f7e66f04e3', '9872b186-472e-4391-a150-7239315fc8b1', 'What generally happens in React when component state changes?', 'When state changes through a setter like `setCount`, React calls the component function again and updates the rendered output to reflect the new state. That is the basis of state-driven UI in React.', 'medium', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 313, '2026-04-01T07:15:50.283Z', '2026-04-01T07:15:50.283Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0ea24865-646b-4796-84be-6e7de54ac4f1', '9872b186-472e-4391-a150-7239315fc8b1', 'Why does React encourage a `key` when rendering lists?', 'Keys help React track which items were inserted, deleted, or reordered among siblings. Stable identifiers make UI updates more predictable and efficient.', 'medium', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 314, '2026-04-01T07:15:50.286Z', '2026-04-01T07:15:50.286Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ece2122b-ddbb-4769-9f0f-27362e4e9899', '9872b186-472e-4391-a150-7239315fc8b1', 'How should a click handler usually be attached in React JSX?', 'Passing `onClick={handleClick}` gives React a function to call later. Writing `onClick={handleClick()}` would invoke it immediately during rendering, which is usually not what you want.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 315, '2026-04-01T07:15:50.290Z', '2026-04-01T07:15:50.290Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('786292f1-ea6d-4053-8503-1ddabf35ca5c', '9872b186-472e-4391-a150-7239315fc8b1', 'What does `useState` give a React component?', '`useState` returns the current state value and a setter function. Together they let a component remember information between renders and update the screen when that information changes.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 316, '2026-04-01T07:15:50.293Z', '2026-04-01T07:15:50.293Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7f6e75b2-ce63-42d5-8a19-ab62483b15a0', '9872b186-472e-4391-a150-7239315fc8b1', 'What does ''lifting state up'' mean in React?', 'Lifting state up means moving shared state to the nearest common parent so multiple child components stay synchronized from a single source of truth.', 'medium', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 317, '2026-04-01T07:15:50.295Z', '2026-04-01T07:15:50.295Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('eab4eab5-f986-4ca9-aa73-b46e2f086b1a', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement about React and platforms is accurate?', 'React focuses on the component model for UI. ReactDOM adapts it to the web, and React Native applies similar ideas to mobile applications.', 'easy', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 318, '2026-04-01T07:15:50.298Z', '2026-04-01T07:15:50.298Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('65fd8f86-6506-4f4a-9553-843018143a31', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best captures React''s scope in a typical frontend stack?', 'React is intentionally focused on the UI layer. Teams commonly add routing, data fetching, or broader application frameworks around it depending on their needs.', 'medium', 'approved', '7cc2fc1a-9b02-4dcc-9c9f-0a60f23336ce', 319, '2026-04-01T07:15:50.299Z', '2026-04-01T07:15:50.299Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('30e7c19c-ec67-473b-86f5-2f44988573e3', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best describes Vue at a high level?', 'Vue describes itself as a JavaScript framework for building user interfaces on top of standard HTML, CSS, and JavaScript. It is meant to feel approachable while still scaling to more complex applications.', 'easy', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 320, '2026-04-01T07:15:56.746Z', '2026-04-01T07:15:56.746Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ba476423-d9de-4f4d-b379-6ccd645a26e9', '9872b186-472e-4391-a150-7239315fc8b1', 'Which two ideas does the Vue introduction call its core features?', 'The Vue introduction explicitly identifies declarative rendering and reactivity as the two core features demonstrated in its opening example.', 'easy', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 321, '2026-04-01T07:15:56.748Z', '2026-04-01T07:15:56.748Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('374918fe-7302-4aea-b00b-585302f2ba22', '9872b186-472e-4391-a150-7239315fc8b1', 'What does Vue mean by calling itself ''The Progressive Framework''?', 'Progressive means Vue can be adopted incrementally. A team can use it for a small interactive enhancement, a full single-page app, server-side rendering, static site generation, or other larger architectures as needs grow.', 'medium', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 322, '2026-04-01T07:15:56.752Z', '2026-04-01T07:15:56.752Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6d66f771-0b67-49ce-9d72-3ea3f3600089', '9872b186-472e-4391-a150-7239315fc8b1', 'Why are Vue Single-File Components useful in many projects?', 'Single-File Components keep a component''s template, logic, and styles together in one file. That improves cohesion and is the recommended authoring format in build-tool-based Vue applications.', 'medium', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 323, '2026-04-01T07:15:56.755Z', '2026-04-01T07:15:56.755Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cadd6b6e-45f3-466b-8679-aa817b57a104', '9872b186-472e-4391-a150-7239315fc8b1', 'In what kind of scenario is Vue especially easy to adopt without a full build setup?', 'Vue can enhance static HTML without a build step, which makes it useful for progressive enhancement and smaller integrations where a team does not want to commit immediately to a full SPA toolchain.', 'easy', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 324, '2026-04-01T07:15:56.761Z', '2026-04-01T07:15:56.761Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('92c75064-c525-4730-8ced-49a8850fc326', '9872b186-472e-4391-a150-7239315fc8b1', 'Which two major API styles can Vue components be authored with?', 'Vue supports both the Options API and the Composition API. They are different interfaces that sit on top of the same underlying system.', 'easy', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 325, '2026-04-01T07:15:56.766Z', '2026-04-01T07:15:56.766Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9f65f541-a6b1-4342-a9f2-99e7af3964bb', '9872b186-472e-4391-a150-7239315fc8b1', 'What is a common reason beginners may find Vue''s Options API approachable?', 'Vue describes the Options API as more beginner-friendly because it groups logic into familiar sections like `data`, `methods`, and lifecycle hooks, while hiding more of the reactivity details.', 'medium', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 326, '2026-04-01T07:15:56.770Z', '2026-04-01T07:15:56.770Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fdd3a3a1-31e4-4386-9583-d836d544892d', '9872b186-472e-4391-a150-7239315fc8b1', 'Why do experienced teams sometimes prefer Vue''s Composition API for larger features?', 'The Composition API is more flexible for composing and reusing logic across complex features. That flexibility is especially valuable when components become large or behavior needs to be shared in structured ways.', 'medium', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 327, '2026-04-01T07:15:56.773Z', '2026-04-01T07:15:56.773Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a933f7f4-b6ee-43dc-beb5-3776ebab8b00', '9872b186-472e-4391-a150-7239315fc8b1', 'What does Vue''s reactivity system do for a developer at a high level?', 'Vue reactivity tracks changes in JavaScript state and updates the DOM efficiently. Developers describe the desired UI while Vue handles the low-level DOM synchronization.', 'easy', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 328, '2026-04-01T07:15:56.776Z', '2026-04-01T07:15:56.776Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9a8a054b-a845-4abd-b524-e6685e0765e6', '9872b186-472e-4391-a150-7239315fc8b1', 'Which statement best captures how Vue templates help developers express UI?', 'Vue templates extend HTML with directives and interpolation so developers can describe what the UI should look like based on state instead of manually assembling DOM nodes.', 'medium', 'approved', 'db1ef90f-377f-46b0-896c-e021ee94b169', 329, '2026-04-01T07:15:56.781Z', '2026-04-01T07:15:56.781Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('467afe64-077e-42c3-a02c-c6bdc5762b2b', '9872b186-472e-4391-a150-7239315fc8b1', 'A team wants a framework with official routing, dependency injection, strong upgrade tooling, and a TypeScript-oriented story for large codebases. Which choice best fits that goal?', 'Angular is the best fit when a team wants an all-in-one framework orientation: built-in routing, dependency injection, strong tooling, and TypeScript-first positioning. That combination is a major part of Angular''s value proposition for larger organizations.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 330, '2026-04-01T07:16:03.549Z', '2026-04-01T07:16:03.549Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('89c48592-605f-45f5-b4c0-2da4bbd5abd7', '9872b186-472e-4391-a150-7239315fc8b1', 'A mostly server-rendered site needs small pockets of interactivity added gradually without forcing a full SPA architecture on day one. Which framework''s identity best matches that use case?', 'Vue''s progressive design makes it a strong fit when you want to add interactivity gradually to existing pages rather than commit immediately to a full SPA architecture. Its docs explicitly describe enhancement of static HTML without a build step.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 331, '2026-04-01T07:16:03.554Z', '2026-04-01T07:16:03.554Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3013e900-a34b-47bc-a6c3-52365b693397', '9872b186-472e-4391-a150-7239315fc8b1', 'A team wants a flexible UI layer that can pair with different ecosystem libraries and also has a well-known path to both web and native mobile UIs. Which choice best matches that description?', 'React is commonly chosen when teams want a flexible UI layer they can pair with different libraries or use across web and native targets. MDN highlights ReactDOM for web and React Native for mobile.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 332, '2026-04-01T07:16:03.556Z', '2026-04-01T07:16:03.556Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e594c785-e895-4ea2-ab34-f429f1ebcaf5', '9872b186-472e-4391-a150-7239315fc8b1', 'Which mapping is correct?', 'A correct mental map is Angular -> declarative templates compiled at build time, React -> JSX in component functions, and Vue -> HTML-based templates with reactive bindings. Keeping these distinctions clear helps when choosing a framework or reading unfamiliar code.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 333, '2026-04-01T07:16:03.559Z', '2026-04-01T07:16:03.559Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('90687b38-2403-4159-b0ad-349ff9e93998', '9872b186-472e-4391-a150-7239315fc8b1', 'What core problem do Angular, React, and Vue all help reduce compared with manually building and updating DOM nodes in vanilla JavaScript?', 'All three frameworks reduce the manual DOM bookkeeping needed to keep UI aligned with changing state. That is one of the core reasons frameworks became popular in the first place.', 'medium', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 334, '2026-04-01T07:16:03.561Z', '2026-04-01T07:16:03.561Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3b01bce0-8523-49b1-9e5d-800efed439a4', '9872b186-472e-4391-a150-7239315fc8b1', 'Which set of pairings is fully correct?', 'These pairings reflect each framework''s common identity: React and lifting state up, Vue and progressive adoption, Angular and dependency injection. The wrong answers deliberately mix ideas across frameworks.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 335, '2026-04-01T07:16:03.563Z', '2026-04-01T07:16:03.563Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('277f322e-01fc-4e74-a6e4-6981b3e3b304', '9872b186-472e-4391-a150-7239315fc8b1', 'If a single-page app built with any of these frameworks uses client-side routing, which accessibility concern becomes especially important?', 'In client-routed apps, the browser does not automatically announce a new page or reset focus the way it would on a traditional page load. Teams must account for that explicitly for accessibility.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 336, '2026-04-01T07:16:03.565Z', '2026-04-01T07:16:03.565Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ae2c666c-d825-4190-b6e9-1a7f0d64beef', '9872b186-472e-4391-a150-7239315fc8b1', 'Which trade-off is shared by Angular, React, and Vue when they are used carelessly?', 'Frameworks improve developer experience through abstraction, but the trade-off is real: extra code, runtime cost, and the risk of poor semantic HTML or accessibility if a team is careless about priorities.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 337, '2026-04-01T07:16:03.567Z', '2026-04-01T07:16:03.567Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('599de73d-b079-4e18-b858-2da19f557c02', '9872b186-472e-4391-a150-7239315fc8b1', 'Which framework is explicitly described by MDN as technically a library for rendering UI components, even though developers often treat it like a framework in practice?', 'React is the one MDN explicitly describes as a library for rendering UI components, while also acknowledging the common habit of treating it as a framework in everyday discussion.', 'medium', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 338, '2026-04-01T07:16:03.568Z', '2026-04-01T07:16:03.568Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ef1ef3b5-fc6f-459a-bf8c-4ebfe5fa3a7b', '9872b186-472e-4391-a150-7239315fc8b1', 'Which order correctly identifies the technologies behind these high-level cues?
+
+1. `@click` with `{{ count }}` in a template
+2. `<MyButton />` inside component markup
+3. Declarative HTML templates compiled to optimized JavaScript instructions', 'The snippet cues match Vue (`@click` and `{{ count }}`), React (`<MyButton />` JSX component usage), and Angular (declarative templates compiled at build time). Recognizing these signatures helps when switching between codebases.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 339, '2026-04-01T07:16:03.571Z', '2026-04-01T07:16:03.571Z');

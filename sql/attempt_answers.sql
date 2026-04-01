@@ -1,5 +1,5 @@
 -- Table: attempt_answers
--- Generated: 2026-03-31T04:30:16.493Z
+-- Generated: 2026-04-01T07:58:19.337Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "attempt_answers" CASCADE;
@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS "attempt_answers" (
   "selected_option_id" TEXT,
   "is_correct" BOOLEAN,
   "answered_at" TEXT,
-  FOREIGN KEY ("selected_option_id") REFERENCES "question_options" ("id"),
+  FOREIGN KEY ("attempt_id") REFERENCES "attempts" ("id") ON DELETE CASCADE,
   FOREIGN KEY ("question_id") REFERENCES "questions" ("id"),
-  FOREIGN KEY ("attempt_id") REFERENCES "attempts" ("id") ON DELETE CASCADE
+  FOREIGN KEY ("selected_option_id") REFERENCES "question_options" ("id")
 );
 
 

@@ -1,5 +1,5 @@
 -- Table: duplicate_flags
--- Generated: 2026-03-31T04:30:16.495Z
+-- Generated: 2026-04-01T07:58:19.339Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "duplicate_flags" CASCADE;
@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS "duplicate_flags" (
   "resolution" TEXT,
   "created_at" TEXT NOT NULL,
   "resolved_at" TEXT,
-  FOREIGN KEY ("duplicate_of_id") REFERENCES "questions" ("id") ON DELETE CASCADE,
-  FOREIGN KEY ("question_id") REFERENCES "questions" ("id") ON DELETE CASCADE
+  FOREIGN KEY ("question_id") REFERENCES "questions" ("id") ON DELETE CASCADE,
+  FOREIGN KEY ("duplicate_of_id") REFERENCES "questions" ("id") ON DELETE CASCADE
 );
 
 

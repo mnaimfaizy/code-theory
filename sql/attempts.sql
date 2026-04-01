@@ -1,5 +1,5 @@
 -- Table: attempts
--- Generated: 2026-03-31T04:30:16.492Z
+-- Generated: 2026-04-01T07:58:19.334Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "attempts" CASCADE;
@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS "attempts" (
   "passed" BOOLEAN,
   "started_at" TEXT NOT NULL,
   "completed_at" TEXT,
-  FOREIGN KEY ("certification_id") REFERENCES "certifications" ("id"),
-  FOREIGN KEY ("user_id") REFERENCES "users" ("id")
+  FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
+  FOREIGN KEY ("certification_id") REFERENCES "certifications" ("id")
 );
 
 
