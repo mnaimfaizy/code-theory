@@ -4,21 +4,21 @@ Code Theory is a certification quiz platform built with Next.js App Router, Reac
 
 ## Getting Started
 
-First, run the development server:
+This repository uses npm by default. Install the reviewed dependency set from the committed lockfile, then start the app:
 
 ```bash
+npm ci
+cp .env.example .env.local
+npm run db:push
+npm run db:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-For repository-specific setup and conventions, see `docs/DEVELOPMENT.md`, `docs/ARCHITECTURE.md`, and `.github/copilot-instructions.md`.
+`package-lock.json` remains the authoritative lockfile for CI and pull requests. Root `.yarnrc.yml` and `pnpm-workspace.yaml` files are also checked in so developers who intentionally use Yarn 4+ or pnpm 10.26+ locally inherit exact-version defaults and a 14-day package-age gate, but those flows are secondary and must not replace the npm-based install path in automation.
+
+For repository-specific setup, security posture, and conventions, see `docs/DEVELOPMENT.md`, `docs/ARCHITECTURE.md`, `SECURITY.md`, `docs/SECURITY/Dependency-Supply-Chain-Security-Plan.md`, and `.github/copilot-instructions.md`.
 
 ## AI Customizations
 

@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "CODEOWNERS": "ignore"
+  },
+  "[ignore]": {
+    "editor.formatOnSave": false
+  }
+}

@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { questions, duplicateFlags } from "@/db/schema";
-import { eq, and, count } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 
 /**
