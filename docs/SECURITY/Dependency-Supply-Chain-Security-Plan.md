@@ -11,8 +11,9 @@ This document records the current npm and CI supply-chain posture of the Code Th
 ### Confirmed facts from this repository
 
 - The project is an npm-based Next.js application with a committed `package-lock.json`.
-- The repository is now explicitly npm-only via `packageManager: npm@10.9.3`.
+- The repository is now explicitly npm-only via `packageManager: npm@11.12.1`.
 - Direct dependencies are pinned to exact versions, and `.npmrc` is configured with `save-exact=true` so new `^` or `~` ranges are not introduced by default.
+- The repository now configures `min-release-age=14` in `.npmrc` so newly published package versions are delayed during version resolution, and Dependabot mirrors that delay for npm version-update PRs.
 - `package.json` now includes Axios override guardrails so the compromised releases `axios@1.14.1` and `axios@0.30.4` are replaced with safe versions if Axios is ever introduced.
 - The current lockfile does not contain `axios`.
 - The directly vulnerable top-level package `drizzle-orm` has been remediated to `0.45.2`.
@@ -42,8 +43,9 @@ This document records the current npm and CI supply-chain posture of the Code Th
 ### Local tooling observations
 
 - `npm audit signatures` does not currently produce a usable provenance result in this workspace. The current CLI reports: `found no dependencies to audit that were installed from a supported registry`.
-- `npm config get min-release-age` returns `undefined`, so the current npm CLI should not be assumed to support release-cooldown policy yet.
-- Until the repository upgrades to an npm release that supports `min-release-age`, Dependabot's 14-day npm cooldown is the active release-age control for version update PRs.
+- The repository now pins npm 11.12.1 and configures `min-release-age=14` in `.npmrc`.
+- npm 11.12.1 currently has an upstream reporting bug where `npm config ls -l` can still display `min-release-age = null` even when the setting is present and honored during installs. Do not use `config ls` output as the source of truth for this setting.
+- `min-release-age` affects version resolution work such as `npm install`, while CI still uses `npm ci` against the committed lockfile for deterministic installs.
 - Because this repository still relies on install-time script packages, a blanket `ignore-scripts=true` policy for normal local installs would be disruptive unless the toolchain changes first.
 - The practical safe flow for this repo is: review dependencies first with `npm ci --ignore-scripts` in a disposable environment or dedicated CI job, then use normal `npm ci` only when build, lint, runtime, or native module execution is actually required.
 
@@ -52,7 +54,7 @@ This document records the current npm and CI supply-chain posture of the Code Th
 - `npm audit --audit-level=high` passes: 0 high, 0 critical.
 - `npm audit --json` reports 4 remaining moderate advisories, all in the dev-only `drizzle-kit` transitive `esbuild` chain.
 - The current audited dependency footprint is 959 packages: 552 prod, 371 dev, and 164 optional entries in the lockfile metadata.
-- `npm run lint` completes with 0 errors and 3 pre-existing warnings unrelated to this security hardening change.
+- `npm run lint` completes with 0 errors and 0 warnings.
 
 ## Axios 2026 Lessons That Apply Here
 
@@ -92,10 +94,11 @@ Required takeaways:
 3. Completed 2026-04-10: added a pull-request dependency review job so manifest and lockfile changes are surfaced before merge.
 4. Completed 2026-04-10: added Dependabot for both npm dependencies and GitHub Actions updates.
 5. Completed 2026-04-10: configured a 14-day cooldown for npm version-update PRs so newly published package versions are not proposed immediately.
-6. Completed 2026-04-10: protected `.github/workflows/**`, `package.json`, `package-lock.json`, `.npmrc`, and security documentation with `CODEOWNERS` review.
-7. Completed 2026-04-10: enforced frozen lockfile checks after `npm ci` in CI and deployment builds.
-8. Completed 2026-04-10: added a no-scripts dependency review install stage with `npm ci --ignore-scripts`.
-9. Keep preferring OIDC-based authentication over long-lived cloud or registry secrets in workflows if future automation needs cloud or package publishing access.
+6. Completed 2026-04-10: upgraded the repository package-manager pin to `npm@11.12.1` and configured native `min-release-age=14` in `.npmrc`.
+7. Completed 2026-04-10: protected `.github/workflows/**`, `package.json`, `package-lock.json`, `.npmrc`, and security documentation with `CODEOWNERS` review.
+8. Completed 2026-04-10: enforced frozen lockfile checks after `npm ci` in CI and deployment builds.
+9. Completed 2026-04-10: added a no-scripts dependency review install stage with `npm ci --ignore-scripts`.
+10. Keep preferring OIDC-based authentication over long-lived cloud or registry secrets in workflows if future automation needs cloud or package publishing access.
 
 ### 4. Package manager policy
 
@@ -107,7 +110,7 @@ Required takeaways:
 6. For metadata-only dependency review, prefer `npm ci --ignore-scripts` in disposable environments or dedicated security jobs.
 7. Do not enable a blanket `ignore-scripts=true` setting for normal local installs yet. This repository currently depends on toolchain components that use reviewed install-time scripts.
 8. Preserve the Axios override guardrails in `package.json` so the compromised releases `1.14.1` and `0.30.4` cannot be selected.
-9. Keep Dependabot's npm cooldown aligned with the desired package aging policy until npm is upgraded to a version that supports `min-release-age`.
+9. Keep Dependabot's npm cooldown aligned with the desired package aging policy so dependency PR timing matches npm's local `min-release-age` behavior.
 10. If the organization manages multiple apps, consider an internal npm proxy or policy-enforcing registry so newly published public packages can be delayed or blocked centrally.
 
 ### 5. Approval checklist for new dependencies

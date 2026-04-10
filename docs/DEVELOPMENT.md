@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js 20+
-- npm 10+
+- npm 11+
 - (Optional) Ollama or LM Studio for question generation
 
 ## Local Setup
@@ -17,7 +17,7 @@ npm run db:seed               # seed demo data
 npm run dev                   # http://localhost:3000
 ```
 
-This repository is npm-only. Keep `package-lock.json` committed, prefer `npm ci` for clean installs, and avoid Yarn or pnpm unless the repository is formally migrated with equivalent supply-chain controls.
+This repository is npm-only. It is pinned to `npm@11.12.1`, keeps `package-lock.json` committed, prefers `npm ci` for clean installs, and enforces a 14-day `min-release-age` in `.npmrc` for newly published package versions. Avoid Yarn or pnpm unless the repository is formally migrated with equivalent supply-chain controls.
 
 ## Optional Local PostgreSQL Stack
 
