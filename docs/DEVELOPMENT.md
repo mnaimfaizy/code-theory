@@ -10,12 +10,14 @@
 
 ```bash
 git clone <repo-url> && cd code-theory
-npm install
+npm ci
 cp .env.example .env.local   # edit as needed
 npm run db:push               # create local database (SQLite by default)
 npm run db:seed               # seed demo data
 npm run dev                   # http://localhost:3000
 ```
+
+This repository is npm-only. Keep `package-lock.json` committed, prefer `npm ci` for clean installs, and avoid Yarn or pnpm unless the repository is formally migrated with equivalent supply-chain controls.
 
 ## Optional Local PostgreSQL Stack
 
@@ -54,28 +56,28 @@ DATABASE_URL=postgres://code_theory:code_theory@localhost:5432/code_theory npm r
 
 ## Scripts
 
-| Command                              | Description                                                 |
-| ------------------------------------ | ----------------------------------------------------------- |
-| `npm run dev`                        | Start dev server with Turbopack                             |
-| `npm run build`                      | Production build                                            |
-| `npm run build:cpanel`               | Build and prepare the FTP bundle for cPanel                 |
-| `npm run start`                      | Start production server                                     |
-| `npm run lint`                       | Run ESLint                                                  |
-| `npm run db:push`                    | Push schema to database                                     |
-| `npm run db:studio`                  | Open Drizzle Studio                                         |
-| `npm run db:seed`                    | Seed demo data                                              |
-| `npm run db:generate`                | Generate migration files                                    |
-| `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files |
+| Command                              | Description                                                           |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| `npm run dev`                        | Start dev server with Turbopack                                       |
+| `npm run build`                      | Production build                                                      |
+| `npm run build:cpanel`               | Build and prepare the FTP bundle for cPanel                           |
+| `npm run start`                      | Start production server                                               |
+| `npm run lint`                       | Run ESLint                                                            |
+| `npm run db:push`                    | Push schema to database                                               |
+| `npm run db:studio`                  | Open Drizzle Studio                                                   |
+| `npm run db:seed`                    | Seed demo data                                                        |
+| `npm run db:generate`                | Generate migration files                                              |
+| `npm run db:export`                  | Export SQLite tables to root `sql/` as PostgreSQL SQL files           |
 | `npm run db:apply-sql`               | Apply root `sql/` files to PostgreSQL with a runtime-safe Node runner |
-| `npm run db:migrate-sql`             | Alias for `db:apply-sql`; works after `npm install --omit=dev` |
-| `npm run db:apply-sqlite-sql`        | Apply root `sql/` files back into a SQLite database         |
-| `npm run db:migrate-sqlite`          | Alias for `db:apply-sqlite-sql`                             |
-| `npm run deploy:prepare-cpanel`      | Assemble `.deploy/cpanel/` from the standalone build        |
-| `npm run questions:export-review`    | Export an existing certification to a temp review artifact  |
-| `npm run questions:validate-review`  | Validate a review artifact before apply                     |
-| `npm run questions:reconcile-review` | Refresh a stale review artifact onto a fresh export         |
-| `npm run questions:apply-review`     | Apply reviewed question updates from a temp artifact        |
-| `npm run questions:import-approved`  | Import a human-approved generated question artifact         |
+| `npm run db:migrate-sql`             | Alias for `db:apply-sql`; works after `npm install --omit=dev`        |
+| `npm run db:apply-sqlite-sql`        | Apply root `sql/` files back into a SQLite database                   |
+| `npm run db:migrate-sqlite`          | Alias for `db:apply-sqlite-sql`                                       |
+| `npm run deploy:prepare-cpanel`      | Assemble `.deploy/cpanel/` from the standalone build                  |
+| `npm run questions:export-review`    | Export an existing certification to a temp review artifact            |
+| `npm run questions:validate-review`  | Validate a review artifact before apply                               |
+| `npm run questions:reconcile-review` | Refresh a stale review artifact onto a fresh export                   |
+| `npm run questions:apply-review`     | Apply reviewed question updates from a temp artifact                  |
+| `npm run questions:import-approved`  | Import a human-approved generated question artifact                   |
 
 `DATABASE_URL` selects the active database target for the app and Drizzle commands:
 
@@ -155,8 +157,8 @@ If the server still needs schema or data import after upload, run `npm run db:mi
 
 The repository ships two workflows under `.github/workflows/`:
 
-- `ci.yml` prepares dependencies once, saves a cache for `node_modules` and `~/.npm`, restores and saves `.next/cache` for the build job, runs lint and test jobs in parallel, and runs `npm run build` only after `prepare`, `lint`, and `test` finish.
-- `deploy-cpanel.yml` builds the standalone cPanel bundle and deploys it over FTPS.
+- `ci.yml` pins all third-party actions to immutable commit SHAs, runs a pull-request dependency review when GitHub's dependency graph API is available, performs a no-scripts `npm ci --ignore-scripts` security review job, verifies that `package-lock.json` remains unchanged after installs, and then runs lint, test, and build jobs with normal `npm ci`.
+- `deploy-cpanel.yml` pins all third-party actions to immutable commit SHAs, verifies the frozen lockfile after install, builds the standalone cPanel bundle, and deploys it over FTPS.
 
 There is currently no dedicated `test` script in `package.json`, so the CI workflow reports that tests are skipped until one is added.
 

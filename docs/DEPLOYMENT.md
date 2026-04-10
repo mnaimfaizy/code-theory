@@ -152,7 +152,7 @@ This produces `.deploy/cpanel/` with:
 - `tmp/restart.txt` as a restart trigger file
 
 The deploy bundle intentionally excludes the top-level `node_modules/`.
-After upload, install production dependencies on the server in the application root with `npm ci --omit=dev` or `npm install --omit=dev` before restarting the app.
+After upload, install production dependencies on the server in the application root with `npm ci --omit=dev` before restarting the app.
 If PostgreSQL schema or data import is still required at that point, run `npm run db:migrate-sql` from the deployed app root.
 
 This layout is intentionally close to the official Next standalone pattern:
@@ -172,7 +172,7 @@ Use this flow for the first deployment or whenever you want a fully manual relea
 2. Open your FTP client and enable hidden files, because the bundle contains a `.next/` directory.
 3. Upload the contents of `.deploy/cpanel/` into the cPanel application root.
 4. Verify that `app.js`, `server.js`, `.next/`, `public/`, `sql/`, `scripts/apply-pg-sql.mjs`, `package.json`, and `tmp/restart.txt` exist in the application root after upload.
-5. Install runtime dependencies in the application root with `npm ci --omit=dev` or `npm install --omit=dev`.
+5. Install runtime dependencies in the application root with `npm ci --omit=dev`.
 6. If PostgreSQL schema or data import is required from the bundled SQL files, run `npm run db:migrate-sql` in the application root.
 7. Restart the application from cPanel. If the app is already running, uploading a fresh `tmp/restart.txt` usually triggers Passenger to reload it.
 
@@ -186,10 +186,11 @@ What it does:
 
 - runs on pushes to `main`
 - also supports manual `workflow_dispatch`
-- splits the pipeline into dependent `prepare`, `build`, and `deploy` jobs
-- installs dependencies in the `prepare` job and saves them as a cache for the `build` job
+- pins every referenced third-party action to a full commit SHA
+- sets least-privilege workflow permissions with `contents: read`
+- splits the pipeline into dependent `build` and `deploy` jobs
 - restores and saves `.next/cache` in the `build` job so repeated deploy builds can reuse the Next.js build cache
-- runs `npm run lint` and `npm run build:cpanel` in the `build` job
+- installs dependencies with `npm ci`, verifies that `package-lock.json` stays unchanged, and then runs `npm run lint` and `npm run build:cpanel` in the `build` job
 - uploads the generated bundle as a workflow artifact from the `build` job, including hidden files such as `.next/`
 - downloads that artifact and syncs `.deploy/cpanel/` to cPanel over FTPS in the `deploy` job using `SamKirkland/FTP-Deploy-Action`
 - excludes only the top-level `node_modules/` from upload, while keeping `.next/node_modules/` runtime wrappers that the standalone server still needs
@@ -206,8 +207,8 @@ Operational notes:
 - The workflow defaults to `ftps` on port `21`. If your host only provides plain FTP or uses another port, update the workflow to match the host.
 - The deploy bundle excludes the top-level `node_modules`, but it still keeps `.next/node_modules` because Next standalone output may reference hashed external wrapper modules from there at runtime.
 - In this repository, those `.next/node_modules/*` entries are materialized into portable wrapper modules during bundle preparation so they survive ZIP/artifact/FTP transport even when the original standalone output used symlinks.
-- The deploy bundle also includes `sql/` and `scripts/apply-pg-sql.mjs` so the server can run `npm run db:migrate-sql` after `npm install --omit=dev`.
-- After upload, install runtime dependencies on the server with `npm ci --omit=dev` or `npm install --omit=dev`.
+- The deploy bundle also includes `sql/` and `scripts/apply-pg-sql.mjs` so the server can run `npm run db:migrate-sql` after `npm ci --omit=dev`.
+- After upload, install runtime dependencies on the server with `npm ci --omit=dev`.
 - The workflow uses a build-time placeholder SQLite `DATABASE_URL` only so `next build` can complete without access to the live production database. The deployed cPanel application must still use the PostgreSQL `DATABASE_URL` configured in cPanel.
 - If a page must reflect runtime PostgreSQL data but the build runs against a placeholder database, that page must opt into request-time rendering. In Next.js 16, `connection()` is the recommended way to do that when no other Request-time API is involved.
 - Keep the workflow Node.js major version aligned with the version selected in cPanel.

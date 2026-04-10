@@ -9,6 +9,9 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   NEXT_TELEMETRY_DISABLED: "1"
   AUTH_SECRET: ci-build-placeholder-secret
@@ -19,77 +22,111 @@ env:
   LLM_API_KEY: disabled-in-ci
 
 jobs:
-  prepare:
-    name: Prepare Dependencies
+  dependency-review:
+    name: Dependency Review
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+
+    steps:
+      - name: Check dependency review API availability
+        id: dependency-review-availability
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          response_file="$(mktemp)"
+          status_code="$(curl --silent --output "$response_file" --write-out '%{http_code}' \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPOSITORY}/dependency-graph/compare/${BASE_SHA}...${HEAD_SHA}")"
+
+          if [ "$status_code" = "200" ]; then
+            echo "supported=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$status_code" = "403" ] || [ "$status_code" = "404" ]; then
+            echo "supported=false" >> "$GITHUB_OUTPUT"
+            echo "status_code=$status_code" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          cat "$response_file"
+          echo "Unexpected dependency review API response: $status_code" >&2
+          exit 1
+
+      - name: Checkout repository
+        if: steps.dependency-review-availability.outputs.supported == 'true'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Review dependency changes
+        if: steps.dependency-review-availability.outputs.supported == 'true'
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
+        with:
+          fail-on-severity: moderate
+          fail-on-scopes: development, runtime, unknown
+
+      - name: Explain skipped dependency review
+        if: steps.dependency-review-availability.outputs.supported != 'true'
+        shell: bash
+        env:
+          STATUS_CODE: ${{ steps.dependency-review-availability.outputs.status_code }}
+        run: |
+          echo "::warning title=Dependency review skipped::GitHub dependency review is unavailable for this repository. Enable Dependency graph in repository settings to re-enable this check."
+          {
+            echo "## Dependency review skipped"
+            echo
+            echo "GitHub's dependency review API returned HTTP ${STATUS_CODE:-unknown} for this repository."
+            echo
+            echo "Enable Dependency graph in repository settings to re-enable actions/dependency-review-action."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  secure-install-review:
+    name: Secure Install Review
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
+          cache: npm
 
-      - name: Restore dependency cache
-        id: dependency-cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node20-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node20-deps-
+      - name: Install dependency metadata without scripts
+        run: npm ci --ignore-scripts
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify frozen lockfile
+        run: git diff --exit-code -- package-lock.json
 
-      - name: Save dependency cache
-        if: steps.dependency-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node20-deps-${{ hashFiles('package-lock.json') }}
+      - name: Run npm audit
+        run: npm audit --audit-level=high
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    needs: prepare
-    permissions:
-      contents: read
+    needs: secure-install-review
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
+          cache: npm
 
-      - name: Restore dependency cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node20-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node20-deps-
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Verify cached dependencies
-        shell: bash
-        run: |
-          if [ ! -d node_modules ]; then
-            echo "node_modules was not restored from cache." >&2
-            exit 1
-          fi
+      - name: Verify frozen lockfile
+        run: git diff --exit-code -- package-lock.json
 
       - name: Run lint
         run: npm run lint
@@ -97,36 +134,23 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    needs: prepare
-    permissions:
-      contents: read
+    needs: secure-install-review
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
+          cache: npm
 
-      - name: Restore dependency cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node20-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node20-deps-
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Verify cached dependencies
-        shell: bash
-        run: |
-          if [ ! -d node_modules ]; then
-            echo "node_modules was not restored from cache." >&2
-            exit 1
-          fi
+      - name: Verify frozen lockfile
+        run: git diff --exit-code -- package-lock.json
 
       - name: Detect test script
         id: detect-test
@@ -150,42 +174,22 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     needs:
-      - prepare
+      - secure-install-review
       - lint
       - test
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
-
-      - name: Restore dependency cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node20-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node20-deps-
-
-      - name: Verify cached dependencies
-        shell: bash
-        run: |
-          if [ ! -d node_modules ]; then
-            echo "node_modules was not restored from cache." >&2
-            exit 1
-          fi
+          cache: npm
 
       - name: Restore Next.js build cache
-        id: next-cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
         with:
           path: .next/cache
           key: ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
@@ -193,12 +197,11 @@ jobs:
             ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json') }}-
             ${{ runner.os }}-node20-next-cache-
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify frozen lockfile
+        run: git diff --exit-code -- package-lock.json
+
       - name: Run build
         run: npm run build
-
-      - name: Save Next.js build cache
-        if: steps.next-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: .next/cache
-          key: ${{ runner.os }}-node20-next-cache-${{ hashFiles('package-lock.json', 'package.json', 'next.config.ts', 'tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.js', 'src/**/*.jsx') }}
