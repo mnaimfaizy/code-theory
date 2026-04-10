@@ -4,22 +4,25 @@ Last updated: 2026-04-10
 
 ## Purpose
 
-This document records the current npm and CI supply-chain posture of the Code Theory repository and the measures required to reduce dependency compromise risk. It is written for future maintenance, incident response, and dependency review work.
+This document records the current npm, Yarn, pnpm, and CI supply-chain posture of the Code Theory repository and the measures required to reduce dependency compromise risk. It is written for future maintenance, incident response, and dependency review work.
 
 ## Current Repository Assessment
 
 ### Confirmed facts from this repository
 
 - The project is an npm-based Next.js application with a committed `package-lock.json`.
-- The repository is now explicitly npm-only via `packageManager: npm@11.12.1`.
+- The repository remains npm-first via `packageManager: npm@11.12.1`, while checked-in Yarn and pnpm config files provide hardened local-use defaults for developers who intentionally bypass npm.
 - Direct dependencies are pinned to exact versions, and `.npmrc` is configured with `save-exact=true` so new `^` or `~` ranges are not introduced by default.
 - The repository now configures `min-release-age=14` in `.npmrc` so newly published package versions are delayed during version resolution, and Dependabot mirrors that delay for npm version-update PRs.
+- Root `.yarnrc.yml` and `pnpm-workspace.yaml` now mirror that package-aging policy for secondary local package-manager use with `npmMinimalAgeGate: 14d` and `minimumReleaseAge: 20160` respectively.
 - `package.json` now includes Axios override guardrails so the compromised releases `axios@1.14.1` and `axios@0.30.4` are replaced with safe versions if Axios is ever introduced.
 - The current lockfile does not contain `axios`.
 - The directly vulnerable top-level package `drizzle-orm` has been remediated to `0.45.2`.
 - The remaining advisories are currently limited to a dev-only `drizzle-kit -> @esbuild-kit/* -> esbuild <=0.24.2` chain. `drizzle-kit@0.31.10` is still the newest published version at the time of this update.
 - The current lockfile includes install-time script packages. Confirmed examples include `better-sqlite3`, `sharp`, `esbuild`, `fsevents`, `msw`, and `unrs-resolver`, plus nested toolchain copies of `esbuild` used by `drizzle-kit` and `tsx`.
-- The repository now includes a root `SECURITY.md`, a supply-chain policy document under `docs/SECURITY/`, pinned GitHub Actions workflows, Dependabot, CODEOWNERS, and an npm defaults file.
+- pnpm local use is now configured to fail closed on new dependency build scripts unless they are explicitly allowlisted, and to block exotic transitive dependency sources.
+- Yarn local use is now configured with hardened registry validation, the npm registry pinned explicitly, and `node-modules` linking.
+- The repository now includes a root `SECURITY.md`, a supply-chain policy document under `docs/SECURITY/`, pinned GitHub Actions workflows, Dependabot, CODEOWNERS, an npm defaults file, a Yarn rc file, and a pnpm workspace policy file.
 
 ### Vulnerability snapshot from npm audit
 
@@ -34,6 +37,7 @@ This document records the current npm and CI supply-chain posture of the Code Th
 - A pull-request dependency review job has been added and is configured to fail when a PR introduces moderate-or-higher vulnerabilities in `development`, `runtime`, or `unknown` scopes.
 - The CI workflow now includes a `Secure Install Review` job that runs `npm ci --ignore-scripts` for metadata-only dependency review before the regular build jobs.
 - The CI and deploy workflows now verify that `package-lock.json` remains unchanged after every `npm ci` run.
+- The CI workflow now rejects pull requests that introduce or modify `yarn.lock` or `pnpm-lock.yaml`, keeping `package-lock.json` as the only authoritative lockfile.
 - Dependabot is configured for both npm and GitHub Actions updates.
 - npm version updates now use a 14-day Dependabot cooldown window. GitHub Actions updates remain on the normal schedule because Dependabot cooldown does not apply to the `github-actions` ecosystem.
 - `CODEOWNERS` now protects workflows, dependency manifests, lockfiles, and security documentation.
@@ -44,9 +48,12 @@ This document records the current npm and CI supply-chain posture of the Code Th
 
 - `npm audit signatures` does not currently produce a usable provenance result in this workspace. The current CLI reports: `found no dependencies to audit that were installed from a supported registry`.
 - The repository now pins npm 11.12.1 and configures `min-release-age=14` in `.npmrc`.
+- The repository now also ships `.yarnrc.yml` and `pnpm-workspace.yaml` so local Yarn and pnpm use inherits the same 14-day version-aging policy instead of bypassing it.
 - npm 11.12.1 currently has an upstream reporting bug where `npm config ls -l` can still display `min-release-age = null` even when the setting is present and honored during installs. Do not use `config ls` output as the source of truth for this setting.
 - `min-release-age` affects version resolution work such as `npm install`, while CI still uses `npm ci` against the committed lockfile for deterministic installs.
 - Because this repository still relies on install-time script packages, a blanket `ignore-scripts=true` policy for normal local installs would be disruptive unless the toolchain changes first.
+- Yarn keeps install scripts enabled because this repository currently relies on reviewed native/toolchain install-time scripts such as `better-sqlite3`, `sharp`, and `esbuild`; the Yarn hardening here focuses on package aging, registry verification, and exact-version defaults.
+- pnpm is configured more strictly: `strictDepBuilds: true` plus a reviewed `allowBuilds` list means newly introduced dependency build scripts fail until they are deliberately approved.
 - The practical safe flow for this repo is: review dependencies first with `npm ci --ignore-scripts` in a disposable environment or dedicated CI job, then use normal `npm ci` only when build, lint, runtime, or native module execution is actually required.
 
 ### Validation after remediation
@@ -98,20 +105,25 @@ Required takeaways:
 7. Completed 2026-04-10: protected `.github/workflows/**`, `package.json`, `package-lock.json`, `.npmrc`, and security documentation with `CODEOWNERS` review.
 8. Completed 2026-04-10: enforced frozen lockfile checks after `npm ci` in CI and deployment builds.
 9. Completed 2026-04-10: added a no-scripts dependency review install stage with `npm ci --ignore-scripts`.
-10. Keep preferring OIDC-based authentication over long-lived cloud or registry secrets in workflows if future automation needs cloud or package publishing access.
+10. Completed 2026-04-11: added a pull-request lockfile policy check that fails when `yarn.lock` or `pnpm-lock.yaml` is introduced or modified.
+11. Keep preferring OIDC-based authentication over long-lived cloud or registry secrets in workflows if future automation needs cloud or package publishing access.
 
 ### 4. Package manager policy
 
-1. This repository is npm-only. Do not use Yarn or pnpm here unless the repo is formally migrated and equivalent security controls are added.
-2. Keep `package-lock.json` committed at all times.
-3. Use `npm ci` in CI and automation. Avoid `npm install`, `npm update`, and `npm audit fix` inside CI because they can rewrite the lockfile or change resolution behavior.
-4. Verify that `package-lock.json` remains unchanged after every CI install.
-5. Use exact versions for direct dependencies. Avoid `^` and `~`, and keep `.npmrc` configured with `save-exact=true`.
-6. For metadata-only dependency review, prefer `npm ci --ignore-scripts` in disposable environments or dedicated security jobs.
-7. Do not enable a blanket `ignore-scripts=true` setting for normal local installs yet. This repository currently depends on toolchain components that use reviewed install-time scripts.
-8. Preserve the Axios override guardrails in `package.json` so the compromised releases `1.14.1` and `0.30.4` cannot be selected.
-9. Keep Dependabot's npm cooldown aligned with the desired package aging policy so dependency PR timing matches npm's local `min-release-age` behavior.
-10. If the organization manages multiple apps, consider an internal npm proxy or policy-enforcing registry so newly published public packages can be delayed or blocked centrally.
+1. npm remains the authoritative package manager for this repository. Keep `package-lock.json` committed and continue using `npm ci` in CI, automation, and documented setup.
+2. Yarn and pnpm are permitted only as local, secondary workflows. Their checked-in configs are guardrails for developers who intentionally use them, not a signal to replace the npm lockfile or CI install path.
+3. Keep `package-lock.json` committed at all times. Do not add or rely on `yarn.lock` or `pnpm-lock.yaml` in pull requests unless the repository is formally migrated.
+4. Use exact versions for direct dependencies. Avoid `^` and `~`, keep `.npmrc` configured with `save-exact=true`, keep `.yarnrc.yml` configured with `defaultSemverRangePrefix: ""`, and keep `pnpm-workspace.yaml` configured with `savePrefix: ""`.
+5. Keep the 14-day release-age policy aligned across supported managers: npm `min-release-age=14`, Yarn `npmMinimalAgeGate: 14d`, pnpm `minimumReleaseAge: 20160`, and Dependabot npm cooldowns of 14 days.
+6. For Yarn local use, keep `nodeLinker: node-modules`, `enableHardenedMode: true`, and the npm registry pinned explicitly. Keep install scripts enabled there only because this repository currently needs reviewed native/toolchain install-time scripts.
+7. For pnpm local use, keep `packageManagerStrict: false`, `blockExoticSubdeps: true`, `strictDepBuilds: true`, and the reviewed `allowBuilds` list aligned with the current lockfile's install-script packages.
+8. Use `npm ci` in CI and automation. Avoid `npm install`, `npm update`, and `npm audit fix` inside CI because they can rewrite the lockfile or change resolution behavior.
+9. Verify that `package-lock.json` remains unchanged after every CI install.
+10. For metadata-only dependency review, prefer `npm ci --ignore-scripts` in disposable environments or dedicated security jobs.
+11. Do not enable a blanket `ignore-scripts=true` setting for normal npm local installs yet. This repository currently depends on toolchain components that use reviewed install-time scripts.
+12. Preserve the Axios override guardrails in `package.json` so the compromised releases `1.14.1` and `0.30.4` cannot be selected.
+13. Keep Dependabot's npm cooldown aligned with the desired package aging policy so dependency PR timing matches npm's local `min-release-age` behavior.
+14. If the organization manages multiple apps, consider an internal npm proxy or policy-enforcing registry so newly published public packages can be delayed or blocked centrally.
 
 ### 5. Approval checklist for new dependencies
 
@@ -159,7 +171,7 @@ npm sbom --sbom-format cyclonedx
   4.  If advisories remain dev-only and no safer stable release exists, keep the current pin, record the result in this document, and defer until the next upstream release.
 - Review Dependabot PR cadence after a few update cycles and tune grouping or limits if it creates too much churn.
 - Add OIDC-based authentication if future workflows need cloud or package-registry access.
-- If the repo is ever migrated to Yarn or pnpm, mirror the current npm protections with immutable lockfile mode, disabled lifecycle scripts by default, and equivalent Axios version blocking.
+- Keep the secondary Yarn and pnpm configs aligned with the npm policy whenever dependency-management settings change, especially package aging, exact-version defaults, script execution posture, and transitive-source restrictions.
 
 ## References
 

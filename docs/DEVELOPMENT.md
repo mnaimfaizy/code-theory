@@ -17,7 +17,16 @@ npm run db:seed               # seed demo data
 npm run dev                   # http://localhost:3000
 ```
 
-This repository is npm-only. It is pinned to `npm@11.12.1`, keeps `package-lock.json` committed, prefers `npm ci` for clean installs, and enforces a 14-day `min-release-age` in `.npmrc` for newly published package versions. Avoid Yarn or pnpm unless the repository is formally migrated with equivalent supply-chain controls.
+This repository is npm-first. It is pinned to `npm@11.12.1`, keeps `package-lock.json` committed as the authoritative lockfile, prefers `npm ci` for clean installs, and enforces a 14-day `min-release-age` in `.npmrc` for newly published package versions.
+
+Secondary local guardrails are also checked in for developers who intentionally use other package managers:
+
+- Yarn 4+ uses `.yarnrc.yml` with `node-modules`, exact-version adds, a 14-day `npmMinimalAgeGate`, hardened registry validation, and the npm registry pinned explicitly.
+- pnpm 10.26+ uses `pnpm-workspace.yaml` with `savePrefix: ""`, `minimumReleaseAge: 20160`, `blockExoticSubdeps: true`, and `strictDepBuilds: true` plus an explicit allowlist for the currently reviewed build-script packages.
+
+Do not replace `package-lock.json` or the npm-based CI/deployment flow with `yarn.lock` or `pnpm-lock.yaml` in commits or pull requests.
+
+CI now enforces that rule on pull requests by failing if `yarn.lock` or `pnpm-lock.yaml` is introduced or modified.
 
 ## Optional Local PostgreSQL Stack
 
