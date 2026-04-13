@@ -1,5 +1,5 @@
 -- Table: questions
--- Generated: 2026-04-01T07:58:19.276Z
+-- Generated: 2026-04-13T05:48:40.421Z
 -- Source: SQLite → PostgreSQL
 
 DROP TABLE IF EXISTS "questions" CASCADE;
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS "questions" (
 );
 
 
--- Data: 771 row(s)
+-- Data: 1016 row(s)
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('69d1d3bf-5137-4911-a830-ff9723f5caf6', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is JSX in React?', 'JSX is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files. It gets compiled to React.createElement() calls.', 'easy', 'approved', NULL, 0, '2026-03-27T07:37:11.046Z', '2026-03-27T07:37:11.046Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8b730d13-fbba-4558-9a91-d6bd2a38a4cc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What hook would you use to manage local component state?', 'useState is the React hook for adding state variables to functional components. It returns a state value and a setter function.', 'easy', 'approved', NULL, 1, '2026-03-27T07:37:11.048Z', '2026-03-27T07:37:11.048Z');
 INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e8dbbb4-0fce-4f16-b4c5-b9feb3b6ebbc', '3a0be6de-d504-4cda-8a65-da3f2cecb3f9', 'What is the virtual DOM in React?', 'The virtual DOM is a lightweight JavaScript representation of the actual DOM. React uses it to batch and optimise updates, only applying the minimum changes needed to the real DOM.', 'easy', 'approved', NULL, 2, '2026-03-27T07:37:11.049Z', '2026-03-27T07:37:11.049Z');
@@ -4001,3 +4001,1450 @@ INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "diffi
 1. `@click` with `{{ count }}` in a template
 2. `<MyButton />` inside component markup
 3. Declarative HTML templates compiled to optimized JavaScript instructions', 'The snippet cues match Vue (`@click` and `{{ count }}`), React (`<MyButton />` JSX component usage), and Angular (declarative templates compiled at build time). Recognizing these signatures helps when switching between codebases.', 'hard', 'approved', 'dcf50a09-f3eb-4480-b456-aee816275230', 339, '2026-04-01T07:16:03.571Z', '2026-04-01T07:16:03.571Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d853c733-bf6c-4222-8747-597bd8dea922', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why should arrow functions generally not be used as object methods?', 'Arrow functions do not create their own `this` binding. They capture `this` from the surrounding scope, which makes them a poor fit for methods that need the receiver object.', 'easy', 'approved', '46f4d17d-072f-48f7-acd0-a2e8f9749f0b', 0, '2026-04-01T19:55:06.166Z', '2026-04-01T19:55:06.166Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('574df331-4099-4593-bedd-76d25b061621', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens when this code runs?
+
+```js
+const Foo = () => {};
+const foo = new Foo();
+```', 'Arrow functions cannot be used as constructors. Calling them with `new` throws a `TypeError`, and they do not have a `prototype` property.', 'easy', 'approved', '46f4d17d-072f-48f7-acd0-a2e8f9749f0b', 1, '2026-04-01T19:55:06.180Z', '2026-04-01T19:55:06.180Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('67f421d1-b28c-4144-b145-a6c9a3e276d7', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does `func()` return `undefined` here?
+
+```js
+const func = () => { foo: 1 };
+```', 'When braces follow the arrow, JavaScript parses them as a block body unless the object literal is wrapped in parentheses. Here `foo:` is treated as a label, not as an object property.', 'medium', 'approved', '46f4d17d-072f-48f7-acd0-a2e8f9749f0b', 2, '2026-04-01T19:55:06.187Z', '2026-04-01T19:55:06.187Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('df5706a9-ad1f-49f0-a3e5-355520cdddd0', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `foo(3)` return here?
+
+```js
+function foo(n) {
+  const f = () => arguments[0] + n;
+  return f();
+}
+```', 'Arrow functions do not have their own `arguments` object, so `arguments[0]` refers to the enclosing function''s first argument, which is `3`. That makes the result `3 + 3`.', 'hard', 'approved', '46f4d17d-072f-48f7-acd0-a2e8f9749f0b', 3, '2026-04-01T19:55:06.195Z', '2026-04-01T19:55:06.195Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('740881b5-4b5c-4742-a5e9-f18007682d32', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does this assignment need extra parentheses around the arrow function?
+
+```js
+callback = callback || (() => {});
+```', 'Arrow functions interact with precedence differently than many operators. Without parentheses, `callback || ()` would be parsed as the parameter list of an arrow function, which is invalid.', 'hard', 'approved', '46f4d17d-072f-48f7-acd0-a2e8f9749f0b', 4, '2026-04-01T19:55:06.201Z', '2026-04-01T19:55:06.201Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('eaabb6ec-91d1-4b9b-88b0-f7da73a8a998', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is returned here?
+
+```js
+function multiply(a, b = 1) {
+  return a * b;
+}
+
+multiply(5, undefined);
+```', 'Default parameters are used when no value or `undefined` is passed. Because `b` is `undefined`, the default `1` is used.', 'easy', 'approved', '14976a9a-0a7d-4841-b07b-e53b9c5b8858', 5, '2026-04-01T19:55:15.032Z', '2026-04-01T19:55:15.032Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f3ac21e1-474e-4075-9a8f-c4f2a2b721b0', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Given this function, what is logged by `test(null)`?
+
+```js
+function test(num = 1) {
+  console.log(typeof num);
+}
+```', '`null` does not trigger the default. The parameter value is still `null`, and `typeof null` is `"object"`.', 'medium', 'approved', '14976a9a-0a7d-4841-b07b-e53b9c5b8858', 6, '2026-04-01T19:55:15.045Z', '2026-04-01T19:55:15.045Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('00c3789c-48d4-4f06-b3f1-8843b35ee966', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What do these two calls return?
+
+```js
+function append(value, array = []) {
+  array.push(value);
+  return array;
+}
+
+append(1);
+append(2);
+```', 'Default parameter expressions are evaluated at call time. Each call gets a fresh array, so the results are `[1]` and `[2]`.', 'medium', 'approved', '14976a9a-0a7d-4841-b07b-e53b9c5b8858', 7, '2026-04-01T19:55:15.056Z', '2026-04-01T19:55:15.056Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cf274d1f-9462-46fb-8f55-7c26f0ee7a1e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `f()` log here?
+
+```js
+function f(a, b = () => console.log(a)) {
+  var a = 1;
+  b();
+}
+
+f();
+```', 'Default parameter initializers are evaluated in their own scope. The `a` captured by the default arrow refers to the parameter `a`, which is `undefined` in `f()`.', 'hard', 'approved', '14976a9a-0a7d-4841-b07b-e53b9c5b8858', 8, '2026-04-01T19:55:15.065Z', '2026-04-01T19:55:15.065Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('74a7876f-f8d3-4819-93b8-e6677b5211de', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this call return?
+
+```js
+function preFilledObject({ z = 3 } = {}) {
+  return z;
+}
+
+preFilledObject();
+```', 'The parameter defaults to `{}`, and then destructuring applies the property default `z = 3`, so the function can be called with no arguments.', 'medium', 'approved', '14976a9a-0a7d-4841-b07b-e53b9c5b8858', 9, '2026-04-01T19:55:15.073Z', '2026-04-01T19:55:15.073Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('97487e8f-35fe-45a6-afbc-42872f4cc840', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `c` here?
+
+```js
+const { c = 2 } = { c: null };
+```', 'Destructuring defaults are only used when the property is missing or explicitly `undefined`. Because `c` is `null`, the default is ignored.', 'medium', 'approved', '8b8aefd3-c70d-4ab8-8233-655166ffcae5', 10, '2026-04-01T19:55:31.526Z', '2026-04-01T19:55:31.526Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('73c9ee97-f975-431a-ac06-c87416ff2225', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why are parentheses required in this assignment form?
+
+```js
+({ a, b } = obj);
+```', 'Without parentheses, `{ a, b }` at the start of a statement is parsed as a block, not as an object destructuring assignment target.', 'medium', 'approved', '8b8aefd3-c70d-4ab8-8233-655166ffcae5', 11, '2026-04-01T19:55:31.539Z', '2026-04-01T19:55:31.539Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('65d4607e-b06f-4774-9038-992d7c0edf4b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which right-hand side can be used with array destructuring without throwing solely because it is iterable?', 'Array destructuring uses the iterable protocol, so a `Set` can be destructured, while plain objects without `Symbol.iterator` cannot.', 'medium', 'approved', '8b8aefd3-c70d-4ab8-8233-655166ffcae5', 12, '2026-04-01T19:55:31.545Z', '2026-04-01T19:55:31.545Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('edb52f38-d5ac-43ea-97e0-2d00f47992bb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why is this pattern invalid?
+
+```js
+const [head, ...tail,] = [1, 2, 3];
+```', 'The rest element must be the last element in the destructuring pattern and may not have a trailing comma.', 'hard', 'approved', '8b8aefd3-c70d-4ab8-8233-655166ffcae5', 13, '2026-04-01T19:55:31.553Z', '2026-04-01T19:55:31.553Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28139f5f-4ef1-4732-af68-87e17fcc804b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged by this code?
+
+```js
+const obj = {
+  self: "123",
+  __proto__: { prot: "456" },
+};
+const { prot } = obj;
+console.log(prot);
+```', 'Object destructuring follows property access semantics, so if a property is not found directly on the object, JavaScript continues along the prototype chain.', 'hard', 'approved', '8b8aefd3-c70d-4ab8-8233-655166ffcae5', 14, '2026-04-01T19:55:31.558Z', '2026-04-01T19:55:31.558Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('29b283e1-74aa-4e35-81f7-8cdcbfea0a04', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the primary purpose of the JavaScript double-bang operator (`!!`)?', 'The article describes `!!` as shorthand for converting any value into its boolean representation, producing a clear `true` or `false` result.', 'easy', 'approved', '571598dd-2029-4a7e-a653-be75cd8f2e98', 15, '2026-04-01T19:55:51.934Z', '2026-04-01T19:55:51.934Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('912989db-05fe-4ba2-98f3-6a8dfc263cb1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged by this code?
+
+```js
+const stringValue = "Hello";
+const booleanValue = !!stringValue;
+console.log(booleanValue);
+```', 'A non-empty string is truthy, so applying `!!` converts it to the boolean value `true`.', 'easy', 'approved', '571598dd-2029-4a7e-a653-be75cd8f2e98', 16, '2026-04-01T19:55:51.958Z', '2026-04-01T19:55:51.958Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4c350293-b8fc-496e-b70c-2cbf57aa1b4a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged by this code?
+
+```js
+const numberValue = 0;
+const booleanValue = !!numberValue;
+console.log(booleanValue);
+```', '`0` is a falsy value in JavaScript, so `!!0` becomes `false`.', 'easy', 'approved', '571598dd-2029-4a7e-a653-be75cd8f2e98', 17, '2026-04-01T19:55:51.975Z', '2026-04-01T19:55:51.975Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5305c3d2-21ce-4c44-a1e1-c5f451b14dd9', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the result of evaluating `!![]` in JavaScript?', 'An empty array is still a truthy value in JavaScript, so converting it with `!!` produces `true`.', 'medium', 'approved', '571598dd-2029-4a7e-a653-be75cd8f2e98', 18, '2026-04-01T19:55:51.985Z', '2026-04-01T19:55:51.985Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('dad264ee-3bef-4577-bb64-8aac3d1466db', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best describes the tradeoff in rewriting a check like this?
+
+```js
+const isReady = (status) => !!status;
+```', '`!!status` is concise, but it converts every falsy value to `false`, not just a hand-picked subset such as `undefined`, `null`, and `0`.', 'hard', 'approved', '571598dd-2029-4a7e-a653-be75cd8f2e98', 19, '2026-04-01T19:55:51.999Z', '2026-04-01T19:55:51.999Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d9c8aac4-043b-480b-877d-6b58639157e4', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `import(modulePath)` return?', 'The dynamic `import()` expression returns a promise that resolves to the module namespace object.', 'easy', 'approved', '259e512f-9c69-4f60-a5cc-fbaea49ffaf9', 20, '2026-04-01T19:56:12.746Z', '2026-04-01T19:56:12.746Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('efe55b26-50f4-4341-bd69-6cc4c13557bf', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Where can dynamic imports be used according to the page?', 'The article states that `import()` can be called from any place in the code and that dynamic imports work in regular scripts without `script type="module"`.', 'medium', 'approved', '259e512f-9c69-4f60-a5cc-fbaea49ffaf9', 21, '2026-04-01T19:56:12.772Z', '2026-04-01T19:56:12.772Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('58773339-9d9a-461d-a68e-05f8b8cdce48', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'If a dynamically imported module uses a default export, how do you access it?', 'The default export is available on the `default` property of the module object returned by `import()`.', 'medium', 'approved', '259e512f-9c69-4f60-a5cc-fbaea49ffaf9', 22, '2026-04-01T19:56:12.792Z', '2026-04-01T19:56:12.792Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0b296374-dd4c-469c-82ca-b1cb5e341cd2', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can''t static `import` be used conditionally or with a dynamically computed module path?', 'The article explains that static imports are intentionally simple and fixed so tooling can analyze, bundle, and tree-shake modules ahead of time.', 'hard', 'approved', '259e512f-9c69-4f60-a5cc-fbaea49ffaf9', 23, '2026-04-01T19:56:12.805Z', '2026-04-01T19:56:12.805Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0cfbeba6-f389-4ae9-af9c-b4af1e486f7b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can''t you do something like `const loader = import; loader(''./mod.js'')`?', 'Although `import()` looks like a function call, the page emphasizes that it is special syntax, not an ordinary function value that can be reassigned or called via `call` or `apply`.', 'hard', 'approved', '259e512f-9c69-4f60-a5cc-fbaea49ffaf9', 24, '2026-04-01T19:56:12.821Z', '2026-04-01T19:56:12.821Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4cf44ef9-374d-4970-9d9f-81f2778fe89a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is an IIFE in JavaScript?', 'An IIFE is a function expression that runs immediately after it is defined.', 'easy', 'approved', 'f4eace95-2dcf-4702-b735-e532f7a0b283', 25, '2026-04-01T19:56:34.601Z', '2026-04-01T19:56:34.601Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a8d35c16-935e-432b-9bbe-f2f2794c35ad', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which snippet creates a new async context so `await` can be used in otherwise non-async code?', 'MDN lists the async IIFE form explicitly for creating a new async context.', 'medium', 'approved', 'f4eace95-2dcf-4702-b735-e532f7a0b283', 26, '2026-04-01T19:56:34.661Z', '2026-04-01T19:56:34.661Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6790504f-dd9c-4bc7-90d3-84f50fa8fe1a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does an IIFE usually wrap the function in parentheses before calling it?', 'The function must be parsed as an expression, not as a function declaration. Parentheses are the usual way to force that interpretation.', 'medium', 'approved', 'f4eace95-2dcf-4702-b735-e532f7a0b283', 27, '2026-04-01T19:56:34.678Z', '2026-04-01T19:56:34.678Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9bb67055-1c23-4de1-a78e-a743a5ca7b8e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which use case is explicitly mentioned for IIFEs on the MDN page?', 'One of the listed use cases is creating a new scope so names do not leak into the global namespace.', 'easy', 'approved', 'f4eace95-2dcf-4702-b735-e532f7a0b283', 28, '2026-04-01T19:56:34.691Z', '2026-04-01T19:56:34.691Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7110372b-749b-4315-888b-99f2092761af', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does MDN describe an IIFE as more powerful than the comma operator?', 'The comma operator can only sequence expressions. An IIFE can execute many statements, create local variables, use control flow, and optionally return a value.', 'hard', 'approved', 'f4eace95-2dcf-4702-b735-e532f7a0b283', 29, '2026-04-01T19:56:34.704Z', '2026-04-01T19:56:34.704Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f76a86f2-dd26-4474-8bde-cadc45be4daf', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: A dashboard receives `config` from an API. Sometimes `config` is missing, and `config.retries` may legitimately be `0`. Which expression safely reads the value and falls back to `3` only when the value is missing?', '`config?.retries ?? 3` handles both hazards correctly: optional chaining protects the property access, and nullish coalescing preserves `0` while still defaulting on `null` or `undefined`.', 'hard', 'approved', 'bdb62b26-adfb-4602-b9b4-57003562f77a', 30, '2026-04-01T19:56:55.805Z', '2026-04-01T19:56:55.805Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('09d8ec6f-95a0-4261-b896-ee508d461ec1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: You want to lazy-load an admin module only when a button is clicked, and the page is a regular script rather than a module script. Which approach best matches the provided references?', 'Dynamic import works in regular scripts. Using an async arrow function as the click handler gives you an `await` context exactly when the user triggers the load.', 'hard', 'approved', 'bdb62b26-adfb-4602-b9b4-57003562f77a', 31, '2026-04-01T19:56:55.823Z', '2026-04-01T19:56:55.823Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('619de68f-853b-48a0-95a3-1b215ba27e39', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: An object method schedules work with `setTimeout` and must keep access to the instance''s `this`. Which implementation is the best fit?', 'The outer method should remain a normal method so it receives the object as `this`. The inner callback should be an arrow function so it closes over that method''s `this`.', 'hard', 'approved', 'bdb62b26-adfb-4602-b9b4-57003562f77a', 32, '2026-04-01T19:56:55.837Z', '2026-04-01T19:56:55.837Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('03f11b1f-6e8f-4bb5-8bdf-4f1bc389fd77', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: You are designing a chart helper that should be callable with no arguments, while still safely destructuring `size`, `coords`, and `radius`. Which function signature is the best fit?', 'Defaulting the entire parameter to `{}` prevents destructuring errors when nothing is passed, and the property defaults fill in missing values cleanly.', 'medium', 'approved', 'bdb62b26-adfb-4602-b9b4-57003562f77a', 33, '2026-04-01T19:56:55.848Z', '2026-04-01T19:56:55.848Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b29b30a4-6df5-4eb2-aa41-6ace441dea7e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: You need to run several startup statements, use `await` once, and avoid leaking temporary variables into the global scope in a regular script. Which pattern best matches that need?', 'An async IIFE creates a one-off local scope and also provides an async context for `await`, which is exactly the use case highlighted on the IIFE page.', 'hard', 'approved', 'bdb62b26-adfb-4602-b9b4-57003562f77a', 34, '2026-04-01T19:56:55.860Z', '2026-04-01T19:56:55.860Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e94a9d41-4ffe-4c20-b148-eed83e547ced', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `retries` here?
+
+```js
+const settings = { retries: 0 };
+const retries = settings?.retries ?? 3;
+```', 'Optional chaining safely reads the property, and `??` only falls back for `null` or `undefined`. Because `0` is neither, the result stays `0`.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 35, '2026-04-01T19:57:16.812Z', '2026-04-01T19:57:16.812Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('763c9fd6-6b0a-4d12-8753-f179f14ae7b5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `title` here?
+
+```js
+const settings = { title: "" };
+const title = settings?.title || "Untitled";
+```', '`settings?.title` safely reads the empty string, but `||` treats `""` as falsy and replaces it with the fallback. `??` would preserve the empty string instead.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 36, '2026-04-01T19:57:16.828Z', '2026-04-01T19:57:16.828Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('69c61609-8b4f-4b54-870e-8d3906417a35', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `normalizedPort`?
+
+```js
+const config = { port: null };
+const { port = 80 } = config;
+const normalizedPort = port ?? 80;
+```', 'The destructuring default does not apply because the property exists and is `null`, not `undefined`. The later `??` check does apply, so `normalizedPort` becomes `80`.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 37, '2026-04-01T19:57:16.839Z', '2026-04-01T19:57:16.839Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3c61aeff-4953-4978-ac8f-46dd1c19d014', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `result`?
+
+```js
+const merge = (...objects) => ({ ...objects });
+const result = merge({ a: 1 }, { b: 2 });
+```', '`objects` is an array because of the rest parameter. Spreading that array into an object literal creates numeric keys for each array index rather than merging the nested objects.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 38, '2026-04-01T19:57:16.846Z', '2026-04-01T19:57:16.846Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a4fccfa6-4635-41ea-91c2-2d8ffb616b33', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens when this code runs?
+
+```js
+const user = null;
+const name = (user?.profile).name ?? "guest";
+```', 'Parentheses end the continuous optional chain. `user?.profile` becomes `undefined`, then `.name` is attempted on `undefined`, so a `TypeError` is thrown before `??` can apply.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 39, '2026-04-01T19:57:16.859Z', '2026-04-01T19:57:16.859Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1894c14c-6f28-4f8b-897f-4067300d897c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the result of parsing this line?
+
+```js
+console?.log`Ready`;
+```', 'A tagged template cannot use an optional chain as its tag target, so the parser rejects this as invalid syntax.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 40, '2026-04-01T19:57:16.870Z', '2026-04-01T19:57:16.870Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ad2c95ec-3fff-41df-9c67-c0a3df796214', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What are `first` and `rest` here?
+
+```js
+const [first, ...rest] = new Set([1, 2, 3]);
+```', 'Array destructuring works on any iterable. `Set` yields `1`, `2`, and `3`, so `first` gets `1` and `rest` becomes a new array containing `[2, 3]`.', 'medium', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 41, '2026-04-01T19:57:16.884Z', '2026-04-01T19:57:16.884Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('439041a3-ff9d-47ae-80f0-a1c34f8d4270', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens when `load()` is called here?
+
+```js
+function load(mod = buildName()) {
+  function buildName() {
+    return "./tool.js";
+  }
+  return mod;
+}
+
+load();
+```', 'Default parameter initializers run in a scope outside the function body. The `buildName` declared in the body is not visible there, so calling `load()` throws a `ReferenceError`.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 42, '2026-04-01T19:57:16.891Z', '2026-04-01T19:57:16.891Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('eaa75679-b7e2-4323-8a56-3ae760d0b84b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged here?
+
+```js
+const original = { nested: { level: 1 } };
+const clone = { ...original };
+clone.nested.level = 2;
+const { nested: { level } } = original;
+console.log(level);
+```', 'Object spread is shallow, so `clone.nested` and `original.nested` still reference the same object. After the mutation, destructuring `level` from `original` yields `2`.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 43, '2026-04-01T19:57:16.897Z', '2026-04-01T19:57:16.897Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('aefc964c-9b39-4e34-9911-2df5999b2689', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which snippet correctly lazy-loads a module''s default export, waits for it, and immediately calls it from a regular script?', 'The correct approach uses an async IIFE to get an `await` context, then destructures the `default` export from the promise result of `import()`.', 'hard', 'approved', 'e2f141ae-2a6d-4359-9ad5-f500f2b3935f', 44, '2026-04-01T19:57:16.902Z', '2026-04-01T19:57:16.902Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('40c0ea78-bc8f-4c50-8ec4-f5fff0cf85be', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `retries` here?
+
+```js
+const retries = 0 ?? 5;
+```', '`??` only falls back when the left-hand side is `null` or `undefined`. Since `0` is neither, the result remains `0`.', 'easy', 'approved', 'f80d7f61-7d8a-42b5-acce-497525e25c9e', 45, '2026-04-01T19:57:37.510Z', '2026-04-01T19:57:37.510Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2a46b527-913f-461e-b061-ffccc66d7193', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens if JavaScript parses this expression exactly as written?
+
+```js
+null || undefined ?? "foo";
+```', 'MDN states that `??` cannot be combined directly with `||` or `&&` without parentheses. This form throws a syntax error.', 'medium', 'approved', 'f80d7f61-7d8a-42b5-acce-497525e25c9e', 46, '2026-04-01T19:57:37.523Z', '2026-04-01T19:57:37.523Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b61a5a77-a663-42f8-8dab-e700a3c3cf21', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Consider the following code:
+
+```js
+function b() {
+  console.log("b");
+  return false;
+}
+function c() {
+  console.log("c");
+  return "fallback";
+}
+
+console.log(b() ?? c());
+```
+
+Which statement is correct?', 'Because `b()` returns `false` rather than `null` or `undefined`, the right-hand side is not evaluated. The expression logs `false` after logging `b`.', 'hard', 'approved', 'f80d7f61-7d8a-42b5-acce-497525e25c9e', 47, '2026-04-01T19:57:37.532Z', '2026-04-01T19:57:37.532Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('caca148d-d81d-462f-9f16-d2e0a63ce9bc', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this code print when `foo.someBarProp` is missing?
+
+```js
+const foo = { someFooProp: "hi" };
+console.log(foo.someBarProp?.toUpperCase() ?? "not available");
+```', '`foo.someBarProp?.toUpperCase()` evaluates to `undefined`, and `??` replaces that nullish result with the fallback string.', 'easy', 'approved', 'f80d7f61-7d8a-42b5-acce-497525e25c9e', 48, '2026-04-01T19:57:37.543Z', '2026-04-01T19:57:37.543Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8f9cdafb-1f83-4eaf-995c-79b1a01ec9f8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement about operator precedence is correct for `??` according to MDN?', 'MDN states that `??` has lower precedence than `||` and higher precedence than the conditional operator (`?:`).', 'medium', 'approved', 'f80d7f61-7d8a-42b5-acce-497525e25c9e', 49, '2026-04-01T19:57:37.555Z', '2026-04-01T19:57:37.555Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('45253347-fad6-4c69-a24e-72c866c81294', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `city` in the following code?
+
+```js
+const customer = { details: {} };
+const city = customer.details?.address?.city;
+```', 'Optional chaining stops when `address` is `undefined`, so the full expression evaluates to `undefined` instead of throwing.', 'easy', 'approved', '65b86ed4-0423-4a47-8136-2fd6298ffbec', 50, '2026-04-01T19:57:58.006Z', '2026-04-01T19:57:58.006Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('45fd594b-41e5-42e9-b7d5-62b62e13f7b6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged by this code?
+
+```js
+const potentiallyNullObj = null;
+let x = 0;
+const value = potentiallyNullObj?.[x++];
+console.log(x);
+```', 'Because the left side is `null`, optional chaining short-circuits before evaluating the bracket expression, so `x++` never runs.', 'medium', 'approved', '65b86ed4-0423-4a47-8136-2fd6298ffbec', 51, '2026-04-01T19:57:58.024Z', '2026-04-01T19:57:58.024Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1c5a58a8-5bd1-4f14-9f8e-2e8c89c2478c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens when this code runs?
+
+```js
+const api = { maybe: 123 };
+api.maybe?.();
+```', 'Optional chaining on a function call only suppresses the error when the property is `null` or `undefined`. If the property exists but is not callable, JavaScript still throws a `TypeError`.', 'hard', 'approved', '65b86ed4-0423-4a47-8136-2fd6298ffbec', 52, '2026-04-01T19:57:58.065Z', '2026-04-01T19:57:58.065Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('52f7fc01-0356-4d0b-b5f1-62629220158c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does this code throw?
+
+```js
+const potentiallyNullObj = null;
+const prop = (potentiallyNullObj?.a).b;
+```', 'Short-circuiting only applies across one continuous optional chain. Parentheses end that chain, so `.b` is evaluated on `undefined` and throws.', 'hard', 'approved', '65b86ed4-0423-4a47-8136-2fd6298ffbec', 53, '2026-04-01T19:57:58.076Z', '2026-04-01T19:57:58.076Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('822bce26-e02c-4da4-82bf-b5ec00e34a1f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which expression is a `SyntaxError` because the constructor in a `new` expression cannot be an optional chain?', 'MDN explicitly notes that `new` cannot be applied to an optional chain, so `new Intl?.DateTimeFormat()` is invalid syntax.', 'medium', 'approved', '65b86ed4-0423-4a47-8136-2fd6298ffbec', 54, '2026-04-01T19:57:58.087Z', '2026-04-01T19:57:58.087Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fda00a63-0beb-4a5f-a8d1-00ebf0154485', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which function declaration is valid JavaScript syntax?', 'A function can only have one rest parameter, it must be the last parameter, it cannot have a default value, and it cannot have a trailing comma.', 'easy', 'approved', '537b66a4-c572-442f-857a-f7c902866f7e', 55, '2026-04-01T19:58:19.009Z', '2026-04-01T19:58:19.009Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('227891ce-54d3-409f-bbaf-8f468bca2895', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why are rest parameters usually easier to work with than the `arguments` object?', 'Rest parameters are real arrays, so methods like `sort()`, `map()`, and `pop()` can be used directly. `arguments` is only array-like.', 'medium', 'approved', '537b66a4-c572-442f-857a-f7c902866f7e', 56, '2026-04-01T19:58:19.023Z', '2026-04-01T19:58:19.023Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a621028e-77db-49e4-81c2-954c91347038', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `example.length` here?
+
+```js
+function example(a, b, ...rest) {}
+console.log(example.length);
+```', 'The rest parameter does not count toward a function''s `length`, so only the named parameters before it are counted.', 'medium', 'approved', '537b66a4-c572-442f-857a-f7c902866f7e', 57, '2026-04-01T19:58:19.035Z', '2026-04-01T19:58:19.035Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3821b9d7-1144-42c5-8465-d9f61eb90e8a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this function return?
+
+```js
+function ignoreFirst(...[, b, c]) {
+  return b + c;
+}
+
+ignoreFirst(100, 10, 20, 30);
+```', 'The rest parameter collects all arguments into an array, and the destructuring pattern skips the first element. That makes `b = 10` and `c = 20`.', 'hard', 'approved', '537b66a4-c572-442f-857a-f7c902866f7e', 58, '2026-04-01T19:58:19.044Z', '2026-04-01T19:58:19.044Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d996fee4-f55b-4327-80c6-81b9a07a7d13', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Given this function call, what is the value of `manyMoreArgs`?
+
+```js
+function myFun(a, b, ...manyMoreArgs) {}
+myFun("one", "two", "three", "four");
+```', 'Rest parameters collect all arguments after the named parameters into an array. Here that means the third and fourth arguments are gathered.', 'easy', 'approved', '537b66a4-c572-442f-857a-f7c902866f7e', 59, '2026-04-01T19:58:19.051Z', '2026-04-01T19:58:19.051Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('60d113ed-8358-43a0-a9c4-1b3c75783cf7', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens here?
+
+```js
+const obj = { key1: "value1" };
+const arr = [...obj];
+```', 'Array literals and argument lists can only spread iterables. A plain object without `Symbol.iterator` is not iterable, so this throws a `TypeError`.', 'easy', 'approved', '742be74c-862a-492d-b10e-35d3998780aa', 60, '2026-04-01T19:58:41.003Z', '2026-04-01T19:58:41.003Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28f4a2a6-1105-45fd-8f5a-f31d101e960d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `obj` after this code runs?
+
+```js
+const array = [1, 2, 3];
+const obj = { ...array };
+```', 'Object spread enumerates own enumerable properties. For arrays, the enumerable properties are the numeric indices, so the result is an object with keys `0`, `1`, and `2`.', 'medium', 'approved', '742be74c-862a-492d-b10e-35d3998780aa', 61, '2026-04-01T19:58:41.018Z', '2026-04-01T19:58:41.018Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fdbeba12-151e-489e-9c8c-2ae0cf315159', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why is `b` not a deep clone in this example?
+
+```js
+const a = [[1], [2], [3]];
+const b = [...a];
+b.shift().shift();
+```', 'Spread only performs a shallow copy. The inner arrays are still shared references, so mutating a nested array through `b` also affects `a`.', 'hard', 'approved', '742be74c-862a-492d-b10e-35d3998780aa', 62, '2026-04-01T19:58:41.032Z', '2026-04-01T19:58:41.032Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6e2c8742-b211-4db7-b520-8bd7da6f44b9', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the resulting value of `mergedObj`?
+
+```js
+const obj1 = { foo: "bar", x: 42 };
+const obj2 = { foo: "baz", y: 13 };
+const mergedObj = { x: 41, ...obj1, ...obj2, y: 9 };
+```', 'When duplicate property names appear, the last assigned value wins. The final values are `x: 42`, `foo: "baz"`, and `y: 9`.', 'medium', 'approved', '742be74c-862a-492d-b10e-35d3998780aa', 63, '2026-04-01T19:58:41.045Z', '2026-04-01T19:58:41.045Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a476fe9b-12be-4fc7-84e4-8d56047f3846', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement correctly compares object spread with `Object.assign()`?', 'MDN notes that `Object.assign()` mutates the target object and triggers setters on it, while object spread creates a new object and does not trigger setters on the target literal.', 'hard', 'approved', '742be74c-862a-492d-b10e-35d3998780aa', 64, '2026-04-01T19:58:41.054Z', '2026-04-01T19:58:41.054Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('19acfbed-b7ec-4965-bfc5-be1fe671528f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the resulting string here?
+
+```js
+const text = `line 1
+line 2`;
+```', 'Template literals preserve actual newline characters written in the source, so the string contains two lines.', 'easy', 'approved', '267121b2-4921-480c-a23f-a3b9e7666333', 65, '2026-04-01T19:59:01.657Z', '2026-04-01T19:59:01.657Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('262f5e8f-55a9-47b4-ba0a-0101f6c7fee3', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is logged by this code?
+
+```js
+const a = 5;
+const b = 10;
+console.log(`Fifteen is ${a + b} and
+not ${2 * a + b}.`);
+```', 'The expressions inside `${...}` are evaluated and inserted into the string, so the result is the same message shown in the MDN example.', 'easy', 'approved', '267121b2-4921-480c-a23f-a3b9e7666333', 66, '2026-04-01T19:59:01.672Z', '2026-04-01T19:59:01.672Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7b42b101-3b29-48b3-8da7-e30ab2bd87db', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why is this code invalid?
+
+```js
+console.log?.`Hello`;
+```', 'MDN notes that optional chaining cannot be used as the tag of a tagged template. The parser rejects this with a syntax error.', 'hard', 'approved', '267121b2-4921-480c-a23f-a3b9e7666333', 67, '2026-04-01T19:59:01.679Z', '2026-04-01T19:59:01.679Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0514787a-d12c-4f98-b790-6994ae8c6c7e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In a tagged template, what is the first argument passed to the tag function?', 'The first argument is an array of the literal string segments. Its length is always the number of substitutions plus one.', 'medium', 'approved', '267121b2-4921-480c-a23f-a3b9e7666333', 68, '2026-04-01T19:59:01.689Z', '2026-04-01T19:59:01.689Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ad37d946-48b2-4b0a-bddf-4f07c048312b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `str` here?
+
+```js
+const str = String.raw`Hi\n${2 + 3}!`;
+```', '`String.raw` preserves the backslash escape as raw text, so the result contains the two characters `\` and `n` rather than a newline.', 'hard', 'approved', '267121b2-4921-480c-a23f-a3b9e7666333', 69, '2026-04-01T19:59:01.700Z', '2026-04-01T19:59:01.700Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e4c9cf5c-3abb-46e0-b7d0-1bdcb019affc', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A metrics widget starts polling every second and captures an ever-growing `samples` array. When the widget is removed from the page, memory keeps trending upward. Which fix is the best first step?
+
+```js
+function mountWidget() {
+  const samples = [];
+  const id = setInterval(() => {
+    samples.push(readMetric());
+  }, 1000);
+
+  return function unmount() {
+    widget.remove();
+  };
+}
+```', 'The main problem is that the interval remains active, so the callback and `samples` remain reachable. Proper teardown should clear the timer before dropping other references; otherwise the array continues to grow.', 'hard', 'approved', '3debca89-80fd-4a36-a500-0a2140060559', 70, '2026-04-01T21:04:33.052Z', '2026-04-01T21:04:33.052Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f078173d-d3c4-48fc-a42f-64de7a3ff86f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A modal manager caches DOM nodes for fast reuse. After the modal is removed, heap snapshots still show detached nodes. Which remediation is most appropriate?
+
+```js
+const registry = { modal: document.getElementById(''modal'') };
+function closeModal() {
+  registry.modal.remove();
+}
+```', 'Removing the element from the document is not enough if application code still references it. The registry entry and any associated event listeners need to be cleaned up as part of teardown so the detached subtree can become unreachable.', 'hard', 'approved', '3debca89-80fd-4a36-a500-0a2140060559', 71, '2026-04-01T21:04:33.076Z', '2026-04-01T21:04:33.076Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f866f61d-2d49-4623-b0ca-74a9066b1a6c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A request pipeline stores metadata by request object, and once a request completes there is no business need to enumerate or count old entries. Which data structure is the best fit?', 'When keys are objects and you do not need deterministic iteration or size, a `WeakMap` matches the use case well because the metadata should not outlive the request objects unnecessarily.', 'medium', 'approved', '3debca89-80fd-4a36-a500-0a2140060559', 72, '2026-04-01T21:04:33.096Z', '2026-04-01T21:04:33.096Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9d72eb5d-c01d-4114-8d2c-24dd6ac3c518', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'An image service caches large `Blob` objects by URL string. Engineers want cache hits when possible, but they can tolerate recomputing entries and must avoid unbounded growth. Which redesign is best aligned with the sources?', 'String keys rule out `WeakMap`, so the useful pattern is a regular `Map` with `WeakRef` values plus cleanup or an explicit size bound. Otherwise dead entries can still pile up because the `Map` strongly retains the keys and wrapper objects.', 'hard', 'approved', '3debca89-80fd-4a36-a500-0a2140060559', 73, '2026-04-01T21:04:33.112Z', '2026-04-01T21:04:33.112Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e45c624b-4700-4550-8dfb-411edab27222', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A legacy function replaces a large object every second. Memory keeps growing even though old objects should be obsolete. The code structure looks like the classic shared-closure leak. What is the best targeted fix?', 'This is the subtle closure case where an unused sibling closure keeps a previous large object retained through shared lexical scope. The right fix is to remove the unnecessary capture or null out the older reference before publishing the replacement object.', 'hard', 'approved', '3debca89-80fd-4a36-a500-0a2140060559', 74, '2026-04-01T21:04:33.128Z', '2026-04-01T21:04:33.128Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6c5c0dff-527c-44c7-b1fa-e691d9a616be', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which sequence best matches the JavaScript memory life cycle described by MDN?', 'The lifecycle is allocate, use, then release. In JavaScript, allocation and release are usually implicit, but the lifecycle itself is still the same as in other languages.', 'easy', 'approved', '541447ef-152b-4341-b74a-7cfc3b70aa00', 75, '2026-04-01T21:23:39.131Z', '2026-04-01T21:23:39.131Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3391b21d-e05c-4915-9f83-e456f8f444e8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the main reason modern JavaScript engines use mark-and-sweep style garbage collection instead of relying on pure reference counting?', 'Mark-and-sweep starts from roots and collects anything unreachable, so circular structures are fine if no root can reach them. Pure reference counting can fail on cycles because each object still points at the other.', 'medium', 'approved', '541447ef-152b-4341-b74a-7cfc3b70aa00', 76, '2026-04-01T21:23:39.159Z', '2026-04-01T21:23:39.159Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('019faeda-7546-488d-a5ec-3a6485a27fe8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the most accurate explanation of this `WeakMap` example?
+
+```js
+const wm = new WeakMap();
+const key = {};
+wm.set(key, { key });
+```', 'MDN points out that `WeakMap` entries are not just ordinary strong references with a weak key bolted on. Engines use ephemeron-like behavior so the value''s back-reference does not automatically make the key strongly reachable through the map itself.', 'hard', 'approved', '541447ef-152b-4341-b74a-7cfc3b70aa00', 77, '2026-04-01T21:23:39.175Z', '2026-04-01T21:23:39.175Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ba347b20-5e95-4fcc-b6dd-54d5bc9636a6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why are `WeakMap` and `WeakSet` intentionally not iterable?', 'If weak collections were iterable, code could inspect which keys are still alive and indirectly observe garbage collection behavior. Their API is intentionally limited so GC remains mostly invisible.', 'medium', 'approved', '541447ef-152b-4341-b74a-7cfc3b70aa00', 78, '2026-04-01T21:23:39.195Z', '2026-04-01T21:23:39.195Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ea859873-472d-4e8f-a6f5-1ad28d00ed32', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement is the safest guidance when using `WeakRef` and `FinalizationRegistry` in production JavaScript?', 'MDN explicitly warns that these APIs are for optimization, not correctness. Collection timing is nondeterministic and finalizer callbacks may run late or not at all, so they are inappropriate for critical cleanup paths.', 'medium', 'approved', '541447ef-152b-4341-b74a-7cfc3b70aa00', 79, '2026-04-01T21:23:39.215Z', '2026-04-01T21:23:39.215Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d44d0a6a-f67b-48e3-9755-51ca9f66d1c6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which set best matches the values that javascript.info describes as inherently reachable roots?', 'The article defines roots broadly as the currently executing function and its locals, the functions on the current chain of calls and their locals, and global variables. Other values are reachable only if a root can reach them through references.', 'easy', 'approved', '38f47b33-8173-4b3e-bcb3-133783f8a7b5', 80, '2026-04-01T21:23:51.474Z', '2026-04-01T21:23:51.474Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('69a4dd8c-ceac-493f-bd7b-220fa718dccd', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Consider this code:
+
+```js
+let user = { name: "John" };
+let admin = user;
+user = null;
+```
+
+Why is the object still retained?', 'Overwriting `user` removes only one reference. The object is still reachable through `admin`, which is itself reachable from a root, so the object must stay alive.', 'medium', 'approved', '38f47b33-8173-4b3e-bcb3-133783f8a7b5', 81, '2026-04-01T21:23:51.497Z', '2026-04-01T21:23:51.497Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('34fd2b5a-4902-4622-ac85-a1b4652cda5b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can a whole island of interlinked objects still be collected after `family = null` in the article''s example?', 'Mutual references inside the island are not enough. What matters is whether any path from a root reaches that island. Once the root reference is severed, the entire group becomes unreachable and can be reclaimed.', 'hard', 'approved', '38f47b33-8173-4b3e-bcb3-133783f8a7b5', 82, '2026-04-01T21:23:51.513Z', '2026-04-01T21:23:51.513Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9738bfdb-9445-42a8-b7e3-4fced97bce7f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'The article says, "Outgoing references do not matter. Only incoming ones can make an object reachable." What is the best interpretation of that statement?', 'An object''s own pointers to other objects do not keep the object alive. It stays alive only if a reachable root or another reachable object points to it.', 'medium', 'approved', '38f47b33-8173-4b3e-bcb3-133783f8a7b5', 83, '2026-04-01T21:23:51.529Z', '2026-04-01T21:23:51.529Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('858aee8a-44f1-46bf-b6bd-ae9d98dc469f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which garbage-collection optimization mentioned by javascript.info specifically reduces long pauses by splitting the collector''s work into smaller parts?', 'Incremental collection divides the work into multiple smaller collections. Generational collection separates new and old objects, while idle-time collection tries to schedule work when the CPU is idle.', 'medium', 'approved', '38f47b33-8173-4b3e-bcb3-133783f8a7b5', 84, '2026-04-01T21:23:51.542Z', '2026-04-01T21:23:51.542Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f65ecddf-0d0b-47de-bb71-80fe79fa5718', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What leak risk is demonstrated by this code in non-strict browser JavaScript?
+
+```js
+function foo() {
+  bar = "hidden global";
+}
+```', 'An undeclared assignment creates an accidental global in sloppy mode, attaching it to the global object. That turns the value into part of the root set unless it is later cleared or reassigned.', 'medium', 'approved', '54705ef0-8c49-4286-aca9-37913f95e96c', 85, '2026-04-01T21:24:03.396Z', '2026-04-01T21:24:03.396Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('91264262-2824-4904-8b0a-e5915ce35672', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can this pattern leak memory even after the DOM node disappears?
+
+```js
+const someResource = getData();
+setInterval(() => {
+  const node = document.getElementById(''Node'');
+  if (node) {
+    node.innerHTML = JSON.stringify(someResource);
+  }
+}, 1000);
+```', 'The active interval keeps the callback reachable, and the callback closes over `someResource`. Even if the node later disappears, the callback and everything it still references remain alive until the interval is cleared.', 'medium', 'approved', '54705ef0-8c49-4286-aca9-37913f95e96c', 86, '2026-04-01T21:24:03.418Z', '2026-04-01T21:24:03.418Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('31bbe9cc-171e-4b04-8ae8-505cf3e8228e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A script stores a reference to a `<td>` element, then later removes the whole table from the DOM. According to the Auth0 article, what subtle retention risk remains?', 'Keeping a reference to a leaf node can retain much more than the leaf. Because DOM nodes are connected through parent-child relationships, a referenced cell can keep the containing table reachable as well.', 'hard', 'approved', '54705ef0-8c49-4286-aca9-37913f95e96c', 87, '2026-04-01T21:24:03.435Z', '2026-04-01T21:24:03.435Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('89c5cf32-8a3b-4499-b19b-211d69947c9e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the closure leak example, why can `originalThing` remain retained even though the `unused` function is never called?', 'The problem is shared closure scope, not function invocation. `unused` and `someMethod` share a lexical environment, so the reference captured by `unused` can keep `originalThing` alive as long as `someMethod` remains reachable via `theThing`.', 'hard', 'approved', '54705ef0-8c49-4286-aca9-37913f95e96c', 88, '2026-04-01T21:24:03.451Z', '2026-04-01T21:24:03.451Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2597d2ae-5023-4d37-8e52-f51718bdfafb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which observation in Chrome DevTools is the strongest sign of a periodic memory leak, according to the Auth0 article?', 'Normal GC often produces a sawtooth pattern. The red flag is that the low points after collections keep rising over time, often alongside steadily increasing node counts. That means some allocations survive each cycle and accumulate.', 'medium', 'approved', '54705ef0-8c49-4286-aca9-37913f95e96c', 89, '2026-04-01T21:24:03.462Z', '2026-04-01T21:24:03.462Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('94bd134f-68bb-436f-a4c2-adf6b0e42fdf', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'According to the LogRocket article, where are primitive values and reference types typically stored?', 'The article uses the common mental model that primitive values are stored on the stack, while reference types like objects, arrays, and functions live on the heap with references held elsewhere.', 'easy', 'approved', 'f915ad3b-9c89-4b8a-8b2f-c9a3b5372f5f', 90, '2026-04-01T21:24:14.069Z', '2026-04-01T21:24:14.069Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c72927f9-982e-4ccb-a451-9997cc1999ac', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the reference-counting algorithm struggle with code like this?
+
+```js
+let person = { name: ''Joe'' };
+let employee = { id: 123 };
+person.employee = employee;
+employee.person = person;
+person = null;
+employee = null;
+```', 'Reference counting only sees that the objects still reference one another, so it cannot conclude they are free. Mark-and-sweep improves on this by checking whether any root still reaches the cycle.', 'medium', 'approved', 'f915ad3b-9c89-4b8a-8b2f-c9a3b5372f5f', 91, '2026-04-01T21:24:14.089Z', '2026-04-01T21:24:14.089Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9cf8e034-1d9c-4ef0-915f-b08fdf11f680', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What actually leaks in this closure-based example?
+
+```js
+function outer() {
+  const largeArray = [];
+  return function inner(num) {
+    largeArray.push(num);
+  };
+}
+const appendNumbers = outer();
+```', 'The outer function finished, but the returned `inner` function still closes over `largeArray`. Because that closure remains reachable through `appendNumbers`, the array can keep growing and remain live.', 'hard', 'approved', 'f915ad3b-9c89-4b8a-8b2f-c9a3b5372f5f', 92, '2026-04-01T21:24:14.106Z', '2026-04-01T21:24:14.106Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('82578f83-f6a0-4ff5-88e9-5a33f3c9873a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why is explicitly saving and later clearing an interval considered a best practice for leak prevention?', 'A recurring timer keeps its callback alive. If that callback closes over large data structures or DOM references, they also stay reachable until the timer is stopped.', 'medium', 'approved', 'f915ad3b-9c89-4b8a-8b2f-c9a3b5372f5f', 93, '2026-04-01T21:24:14.118Z', '2026-04-01T21:24:14.118Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('25f19d70-fb5b-4823-bab6-c81e353f7fe9', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which DevTools workflow does the LogRocket article recommend for finding detached DOM nodes?', 'The article recommends taking a heap snapshot in Chrome DevTools and filtering for `Detached` nodes in the summary. That helps surface nodes removed from the DOM but still referenced by JavaScript.', 'medium', 'approved', 'f915ad3b-9c89-4b8a-8b2f-c9a3b5372f5f', 94, '2026-04-01T21:24:14.134Z', '2026-04-01T21:24:14.134Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e5845814-8826-4234-b924-36feb900bd41', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'According to the Medium article, which stages of the memory lifecycle are implicit in JavaScript?', 'The article states that the lifecycle still has allocation, use, and release, but JavaScript makes the first and third stages implicit through automatic allocation and garbage collection.', 'easy', 'approved', '4a723294-a1cb-49e3-8d37-926b846c5106', 95, '2026-04-01T21:24:26.839Z', '2026-04-01T21:24:26.839Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('564bbb73-572f-4cc4-ad0f-44ce42935993', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the article present mark-and-sweep as more robust than reference counting for reclaiming circular structures?', 'Reference counting fails when two otherwise unreachable objects keep each other''s counts above zero. Mark-and-sweep instead asks whether a root can still reach the objects, so unreachable cycles can be collected.', 'medium', 'approved', '4a723294-a1cb-49e3-8d37-926b846c5106', 96, '2026-04-01T21:24:26.860Z', '2026-04-01T21:24:26.860Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f5c4a7f4-ec2f-42b6-babd-3942e12e37a9', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which Orinoco collection mode described in the article still pauses the main JavaScript thread, but spreads garbage-collection work across helper threads?', 'Parallel collection is still a stop-the-world approach, but helper threads share the work. Incremental collection uses the main thread in pieces, while concurrent collection aims to let the main thread continue running JavaScript.', 'hard', 'approved', '4a723294-a1cb-49e3-8d37-926b846c5106', 97, '2026-04-01T21:24:26.877Z', '2026-04-01T21:24:26.877Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ff798377-2323-4a46-9dde-b7efff40a826', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which collection mode leaves the main JavaScript thread free to continue running while helper threads perform garbage collection in the background?', 'The article describes concurrent collection as the hardest mode because the main thread keeps executing while helper threads collect in the background, creating synchronization challenges and possible invalidation of prior work.', 'hard', 'approved', '4a723294-a1cb-49e3-8d37-926b846c5106', 98, '2026-04-01T21:24:26.891Z', '2026-04-01T21:24:26.891Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cbcef1a6-2dd9-488e-aed7-d1e816c0a8eb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the closure leak example discussed in the article, what is the effect of setting the previously captured object to `null` before replacing it?', 'The article''s point is not that closures disappear, but that the retained payload can be made much smaller. Nulling the previously captured object breaks the costly retention chain while preserving the general control flow.', 'medium', 'approved', '4a723294-a1cb-49e3-8d37-926b846c5106', 99, '2026-04-01T21:24:26.904Z', '2026-04-01T21:24:26.904Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e6631f0a-eb0f-4568-b13c-b8dcb2b8ecdb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the most accurate explanation of the retention risk in this code?
+
+```js
+function start() {
+  const cache = { huge: new Array(1_000_000).fill(''x'') };
+  setInterval(() => {
+    console.log(cache.huge.length);
+  }, 1000);
+}
+
+start();
+```', 'The interval callback remains reachable from a root while the timer is active. Because the callback closes over `cache`, the large array also stays reachable, even though `start` has already returned. This combines reachability rules with the timer leak pattern described across multiple sources.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 100, '2026-04-01T21:24:38.278Z', '2026-04-01T21:24:38.278Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6bdea6f9-38f9-4028-9e54-849275bc90c0', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'You need a cache keyed by URL strings. Values are large objects that can be recomputed, so it is acceptable if a cached value disappears. Which design best fits the constraints from the sources?', 'A `WeakMap` cannot use string keys, and its values are not weakly held. MDN suggests a `Map` whose values are `WeakRef`s when string keys are required and cached values are optional. In practice, you still need cleanup or bounds because the `Map` and `WeakRef` wrappers themselves remain strongly held.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 101, '2026-04-01T21:24:38.334Z', '2026-04-01T21:24:38.334Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f169c153-f4e4-42a8-9db8-b5ccdb998e62', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can removing a table from the DOM still fail to free most of its memory when code keeps a reference to one child cell?', 'A retained child node can keep its ancestors reachable through the DOM''s bidirectional relationships. Removing a subtree from the live DOM is not enough if JavaScript still holds a reference into that subtree.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 102, '2026-04-01T21:24:38.348Z', '2026-04-01T21:24:38.348Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9a42707d-2aa8-46f1-8f79-a1911cd9d0f8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the classic `replaceThing`-style closure leak, which change most directly reduces retention without changing the fact that a method still closes over local state?', 'The leak is caused by an unnecessary captured reference to the previous large object. Nulling the previously captured object or removing the sibling closure that captures it breaks the expensive retention chain while preserving the overall API shape.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 103, '2026-04-01T21:24:38.367Z', '2026-04-01T21:24:38.367Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e4c13b1f-e215-41e7-96ce-689ee22ed19a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which profiling pattern most strongly indicates a real leak instead of normal garbage-collection churn?', 'A normal allocation-heavy app often shows a sawtooth heap graph. The more suspicious signal is that after each collection, the baseline remains higher than before, often alongside steadily increasing node counts. That suggests some objects are still reachable across collections.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 104, '2026-04-01T21:24:38.382Z', '2026-04-01T21:24:38.382Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('95e2efe5-ac1d-4adc-b789-f3a4b98505db', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A developer runs `node --expose-gc --inspect app.js` and manually triggers garbage collection while debugging. Which statement is most accurate?', 'Debug flags can help you observe memory behavior, but they do not change the fundamental rule: objects are reclaimable only when they become unreachable. Exposing GC is a debugging aid, not a fix for retention bugs.', 'medium', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 105, '2026-04-01T21:24:38.392Z', '2026-04-01T21:24:38.392Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('672bda85-d046-4c5f-bc84-c20168085d42', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Two objects refer only to each other, and no root can reach either one. Which comparison is correct?', 'Under a pure reference-counting mental model, the cycle could stay around because each object still has a reference. Under modern mark-and-sweep-based engines, the lack of any root path makes the entire cycle collectible.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 106, '2026-04-01T21:24:38.406Z', '2026-04-01T21:24:38.406Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c9a4c652-60ac-4b93-8ed1-423716e43c50', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which requirement should push you away from `WeakMap` and toward a regular `Map`?', 'Weak collections are intentionally non-iterable and do not expose stable size semantics, precisely to avoid making GC liveness observable. If your API requires deterministic iteration or a trustworthy count of entries, you need a regular `Map` instead.', 'medium', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 107, '2026-04-01T21:24:38.418Z', '2026-04-01T21:24:38.418Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('037baf86-506f-418a-8fa8-a1ef8c814c7b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which change most reliably prevents this code from turning a temporary buffer into a hidden root?
+
+```js
+function process(data) {
+  buffer = data;
+  // ...
+}
+```', 'The bug is the undeclared assignment. Declaring the variable in the intended scope and running under strict mode or ES modules prevents accidental globals from silently becoming roots on the global object.', 'medium', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 108, '2026-04-01T21:24:38.427Z', '2026-04-01T21:24:38.427Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('96fed79b-331a-4ba8-87b4-3ffd60ff42ad', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can this cache still grow indefinitely even though each stored value is wrapped in a `WeakRef`?
+
+```js
+const cache = new Map();
+async function getBlob(url) {
+  const cached = cache.get(url)?.deref();
+  if (cached) return cached;
+
+  const blob = await fetch(url).then((res) => res.blob());
+  cache.set(url, new WeakRef(blob));
+  return blob;
+}
+```', 'The `Map` still strongly retains its string keys and the `WeakRef` wrapper objects. If dead entries are never removed, the container can grow forever even when the blobs themselves are reclaimed. This is why MDN pairs `WeakRef` cache patterns with optional `FinalizationRegistry` cleanup and why bounded caches remain important.', 'hard', 'approved', 'efb0bdc5-465f-4b7b-896f-b07a672d6dae', 109, '2026-04-01T21:24:38.438Z', '2026-04-01T21:24:38.438Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b1a95578-8910-4b0a-911d-14525aaecdd3', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A developer walks up the prototype chain of a normal `Date` instance with `Object.getPrototypeOf()`. Which chain is correct?', 'A `Date` instance inherits first from `Date.prototype`, then from `Object.prototype`, and then the chain ends at `null`. That is why `Date` instances can use both date-specific methods like `getTime()` and generic object methods like `toString()`.
+
+Example:
+
+```js
+const myDate = new Date();
+Object.getPrototypeOf(myDate) === Date.prototype; // true
+Object.getPrototypeOf(Date.prototype) === Object.prototype; // true
+```', 'medium', 'approved', 'dba26c2a-c401-47dc-ba24-2f5f6f47c893', 110, '2026-04-01T23:14:01.372Z', '2026-04-01T23:14:01.372Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a3c0259e-8196-44e8-a54d-4a6de388c2cc', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens after this change?
+
+```js
+const myDate = new Date(1995, 11, 17);
+
+myDate.getTime = function () {
+  return "shadowed";
+};
+```
+
+What will a later call to `myDate.getTime()` use?', 'The call uses the function stored directly on `myDate`, because own properties are checked before the prototype chain. Defining an own property with the same name as an inherited one is called shadowing.
+
+Example:
+
+```js
+console.log(myDate.getTime()); // "shadowed"
+```', 'medium', 'approved', 'dba26c2a-c401-47dc-ba24-2f5f6f47c893', 111, '2026-04-01T23:14:01.418Z', '2026-04-01T23:14:01.418Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f9cea8d0-7901-40aa-b957-aecd8643d818', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `Object.create(personPrototype)` do in this example?
+
+```js
+const personPrototype = {
+  greet() {
+    console.log("hello!");
+  },
+};
+
+const carl = Object.create(personPrototype);
+```', '`Object.create()` makes a new object whose prototype is the object you pass in. The method is not copied as an own property; it is found later through prototype lookup.
+
+Example:
+
+```js
+Object.getPrototypeOf(carl) === personPrototype; // true
+```', 'easy', 'approved', 'dba26c2a-c401-47dc-ba24-2f5f6f47c893', 112, '2026-04-01T23:14:01.424Z', '2026-04-01T23:14:01.424Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e269f3ef-3dd9-4b42-9a46-229ad8df3875', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why is `Object.hasOwn(irma, "name")` `true` while `Object.hasOwn(irma, "greet")` is `false` in the constructor-based example?', '`name` is assigned in the constructor, so it exists directly on each instance as an own property. `greet` is placed on `Person.prototype`, so instances inherit it instead of owning a separate copy.
+
+Example:
+
+```js
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.greet = function () {};
+```', 'medium', 'approved', 'dba26c2a-c401-47dc-ba24-2f5f6f47c893', 113, '2026-04-01T23:14:01.431Z', '2026-04-01T23:14:01.431Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('601e1466-4f0d-479a-9511-1a2f47215070', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A learner says, "The property that points to an object''s prototype is named `prototype`." Which correction is accurate?', 'For ordinary objects, the actual prototype link is not a standard property named `prototype`. The standard way to inspect it is `Object.getPrototypeOf(obj)`. Constructor functions do have a `.prototype` property, and that object becomes the prototype of instances created with `new`.
+
+Example:
+
+```js
+function Person() {}
+const p = new Person();
+Object.getPrototypeOf(p) === Person.prototype; // true
+```', 'hard', 'approved', 'dba26c2a-c401-47dc-ba24-2f5f6f47c893', 114, '2026-04-01T23:14:01.435Z', '2026-04-01T23:14:01.435Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9b4469f1-0bb3-4c18-b1e4-acd4d39bc8ed', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best distinguishes `[[Prototype]]` from `__proto__`?', '`[[Prototype]]` is the internal prototype link described by the language specification. `__proto__` is a historical getter/setter that exposes that link. They are related, but they are not the same thing.
+
+Example:
+
+```js
+const animal = { eats: true };
+const rabbit = { __proto__: animal };
+```', 'medium', 'approved', '1ec15229-c205-4cd9-85db-8037adfad7c5', 115, '2026-04-01T23:14:06.871Z', '2026-04-01T23:14:06.871Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a7a96b87-df99-4bc3-8092-0530ed127ebe', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What are the three outputs from this code?
+
+```js
+let animal = { jumps: null };
+let rabbit = { __proto__: animal, jumps: true };
+
+console.log(rabbit.jumps);
+delete rabbit.jumps;
+console.log(rabbit.jumps);
+delete animal.jumps;
+console.log(rabbit.jumps);
+```', 'The first read finds the own `rabbit.jumps`, so it prints `true`. After deleting that own property, lookup falls through to `animal.jumps`, which is `null`. After deleting `animal.jumps` too, the property is nowhere in the chain, so the result is `undefined`.
+
+Example:
+
+```js
+// own property first, then prototype, then undefined
+```', 'hard', 'approved', '1ec15229-c205-4cd9-85db-8037adfad7c5', 116, '2026-04-01T23:14:06.874Z', '2026-04-01T23:14:06.874Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('02a3839c-f83b-4d71-bba9-81d9768afdc9', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the setter example below, which object''s state changes after the assignment?
+
+```js
+let user = {
+  name: "John",
+  surname: "Smith",
+  set fullName(value) {
+    [this.name, this.surname] = value.split(" " );
+  },
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
+};
+
+let admin = {
+  __proto__: user,
+  isAdmin: true
+};
+
+admin.fullName = "Alice Cooper";
+```', 'The setter is found on the prototype, but `this` is still the object before the dot at call time, which is `admin`. That means the assignment updates `admin.name` and `admin.surname`, not `user`''s state.
+
+Example:
+
+```js
+console.log(admin.fullName); // Alice Cooper
+console.log(user.fullName);  // John Smith
+```', 'medium', 'approved', '1ec15229-c205-4cd9-85db-8037adfad7c5', 117, '2026-04-01T23:14:06.878Z', '2026-04-01T23:14:06.878Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2fe07e61-c271-4090-b1e1-6afb834df5f6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What becomes `true` after this code runs?
+
+```js
+let animal = {
+  sleep() {
+    this.isSleeping = true;
+  }
+};
+
+let rabbit = {
+  name: "White Rabbit",
+  __proto__: animal
+};
+
+rabbit.sleep();
+```', 'The method is inherited from `animal`, but `this` is still `rabbit` when `rabbit.sleep()` is called. As a result, the write creates `rabbit.isSleeping`, not `animal.isSleeping`.
+
+Example:
+
+```js
+console.log(rabbit.isSleeping); // true
+console.log(animal.isSleeping); // undefined
+```', 'medium', 'approved', '1ec15229-c205-4cd9-85db-8037adfad7c5', 118, '2026-04-01T23:14:06.882Z', '2026-04-01T23:14:06.882Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0a5f781e-88f2-40d4-aa99-7d5464b172df', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can a `for..in` loop list an inherited property like `eats`, but normally not list inherited `hasOwnProperty`?', '`for..in` visits enumerable properties, including inherited ones. A user-defined inherited property like `eats` is typically enumerable, but `hasOwnProperty` comes from `Object.prototype` with `enumerable: false`, so the loop skips it.
+
+Example:
+
+```js
+for (const key in rabbit) {
+  // may see `jumps` and inherited `eats`
+}
+```', 'hard', 'approved', '1ec15229-c205-4cd9-85db-8037adfad7c5', 119, '2026-04-01T23:14:06.887Z', '2026-04-01T23:14:06.887Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f4802cb9-b1c3-49e6-92fe-e88f0ad50b83', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens if code tries to instantiate a class declaration before the declaration line has been evaluated?', 'Class declarations are not usable before initialization the way function declarations are. They follow temporal dead zone rules similar to `let` and `const`, so accessing them too early results in a `ReferenceError`.
+
+Example:
+
+```js
+const box = new Rectangle(); // ReferenceError
+class Rectangle {}
+```', 'medium', 'approved', '24e8bafb-9241-4279-972a-fca3f125226c', 120, '2026-04-01T23:14:11.644Z', '2026-04-01T23:14:11.644Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e856ef86-c395-4857-a7bf-e92cb5f2b56c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the class below, where is `calcArea()` installed?
+
+```js
+class Rectangle {
+  calcArea() {
+    return 1;
+  }
+}
+```', 'Instance methods declared in a class are installed on the class''s prototype, not copied into each instance. This is one reason classes are built on top of JavaScript''s prototype system.
+
+Example:
+
+```js
+Rectangle.prototype.calcArea instanceof Function; // true
+```', 'medium', 'approved', '24e8bafb-9241-4279-972a-fca3f125226c', 121, '2026-04-01T23:14:11.649Z', '2026-04-01T23:14:11.649Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a986e2e7-fa4a-469d-bbab-78fa9939a574', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which access pattern is correct for the static members in this class?
+
+```js
+class Point {
+  static displayName = "Point";
+  static distance(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+}
+```', 'Static fields and methods live on the class itself, not on instances. That means `Point.displayName` and `Point.distance(...)` are valid, while `instance.displayName` and `instance.distance` are not inherited as instance members.
+
+Example:
+
+```js
+console.log(Point.displayName);
+```', 'medium', 'approved', '24e8bafb-9241-4279-972a-fca3f125226c', 122, '2026-04-01T23:14:11.651Z', '2026-04-01T23:14:11.651Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7b08f16d-2623-4b34-b523-225962281b40', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which rule must a subclass constructor follow before it can use `this`?', 'In a derived class, `super()` must run before `this` can be used. That call initializes the base-class portion of the instance. Using `this` too early causes an error.
+
+Example:
+
+```js
+class Dog extends Animal {
+  constructor(name) {
+    super(name);
+    this.kind = "dog";
+  }
+}
+```', 'medium', 'approved', '24e8bafb-9241-4279-972a-fca3f125226c', 123, '2026-04-01T23:14:11.654Z', '2026-04-01T23:14:11.654Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('36cd9afe-935b-4485-a49b-7d66e16fdcdc', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens here when `speak()` is called without an object receiver?
+
+```js
+class Animal {
+  speak() {
+    return this;
+  }
+}
+
+const obj = new Animal();
+const speak = obj.speak;
+speak();
+```', 'Code inside a class body is always strict mode. If a class method is extracted and then called without a receiver, `this` becomes `undefined` instead of being rebound to a global object. If the method tries to access a property on `this`, that usually becomes a `TypeError`.
+
+Example:
+
+```js
+class Box {
+  value = 1;
+  getValue() {
+    return this.value;
+  }
+}
+const fn = new Box().getValue;
+fn(); // TypeError
+```', 'hard', 'approved', '24e8bafb-9241-4279-972a-fca3f125226c', 124, '2026-04-01T23:14:11.656Z', '2026-04-01T23:14:11.656Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9eff92db-106a-47be-a554-11e426b8a4e5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement is correct about this code?
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.describe = function () {
+  return `Person:${this.name}`;
+};
+
+class Admin extends Person {}
+
+const admin = new Admin("Lee");
+```
+
+Assume no other code runs.', 'Classes can extend another constructor, not just another class declaration. `Admin` inherits from `Person`, so `admin.describe()` is found through the prototype chain on `Person.prototype`, and `this.name` resolves to the instance field initialized by `Person`.
+
+Example:
+
+```js
+console.log(admin.describe()); // Person:Lee
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 125, '2026-04-01T23:14:16.800Z', '2026-04-01T23:14:16.800Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('03879b43-8dc3-414f-937e-91cd2236fb98', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is `serviceB.config.retries` after this code runs?
+
+```js
+const base = {
+  config: { retries: 3 }
+};
+
+const serviceA = Object.create(base);
+const serviceB = Object.create(base);
+
+serviceA.config.retries = 1;
+```', 'Both `serviceA` and `serviceB` inherit the same `config` object reference from `base`. The property lookup finds that shared object, and mutating `retries` changes that same object for both children. Prototype lookup does not deep-clone nested objects.
+
+Example:
+
+```js
+console.log(serviceB.config.retries); // 1
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 126, '2026-04-01T23:14:16.813Z', '2026-04-01T23:14:16.813Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('db0718f7-73c6-4aec-b5b8-0292f47cafee', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this expression return?
+
+```js
+class Animal {
+  speak() {
+    return this.sound;
+  }
+}
+
+const rabbit = Object.create(Animal.prototype);
+rabbit.sound = "hop";
+
+rabbit.speak();
+```', 'Class instance methods live on `Animal.prototype`, so an object created directly from that prototype can still call them. During the method call, `this` becomes `rabbit`, so `this.sound` resolves to `rabbit.sound`.
+
+Example:
+
+```js
+console.log(rabbit.speak()); // hop
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 127, '2026-04-01T23:14:16.819Z', '2026-04-01T23:14:16.819Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('15699137-3fee-439c-8a04-ee41a39cf2bf', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens when `fn()` is called here?
+
+```js
+class Box {
+  value = 1;
+
+  getValue() {
+    return this.value;
+  }
+}
+
+const box = new Box();
+const fn = box.getValue;
+
+fn();
+```', 'Class bodies run in strict mode. Once `getValue` is extracted from `box`, it no longer has a receiver object, so `this` becomes `undefined` during `fn()`. Accessing `this.value` then throws a `TypeError`.
+
+Example:
+
+```js
+const bound = box.getValue.bind(box);
+bound(); // 1
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 128, '2026-04-01T23:14:16.824Z', '2026-04-01T23:14:16.824Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('28f71da5-c5ec-4ce5-9aca-c75f6360bc57', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `new Derived().kind`?
+
+```js
+class Base {
+  constructor() {
+    this.kind = "base";
+  }
+}
+
+class Derived extends Base {
+  kind = "derived";
+
+  constructor() {
+    super();
+    this.kind += "!";
+  }
+}
+```', '`Base` sets `this.kind` to `base`, then the derived instance field initializer runs before `super()` returns to the rest of the derived constructor, overwriting it with `derived`. Finally, the derived constructor appends `!`, producing `derived!`.
+
+Example:
+
+```js
+console.log(new Derived().kind); // derived!
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 129, '2026-04-01T23:14:16.832Z', '2026-04-01T23:14:16.832Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0e946eef-4869-45bf-896f-82fe059fcfea', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the value of `child.label` here?
+
+```js
+const parent = {
+  get label() {
+    return this.name.toUpperCase();
+  }
+};
+
+const child = Object.create(parent);
+child.name = "api";
+
+child.label;
+```', 'The getter is found on `parent`, but it is invoked as `child.label`, so `this` is `child`. That means the getter reads `child.name` and returns `API`. This is the same receiver rule that applies to inherited methods in general.
+
+Example:
+
+```js
+console.log(child.label); // API
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 130, '2026-04-01T23:14:16.834Z', '2026-04-01T23:14:16.834Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('42607626-90a7-41d6-9863-35aec3a7b598', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What are `A.version` and `B.version` after this code runs?
+
+```js
+class A {
+  static version = 1;
+}
+
+class B extends A {}
+
+B.version = 2;
+```', '`B` initially inherits access to the static property through the constructor chain. The assignment `B.version = 2` creates or updates an own static property on `B`, shadowing the inherited one rather than mutating `A.version`.
+
+Example:
+
+```js
+console.log(A.version, B.version); // 1 2
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 131, '2026-04-01T23:14:16.840Z', '2026-04-01T23:14:16.840Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5c2b871e-5cb8-4210-83d9-d09ac0d4ce73', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `Cache.store.get("id")` return after this code runs?
+
+```js
+class Cache {
+  static store = new Map();
+}
+
+class UserCache extends Cache {}
+
+UserCache.store.set("id", 1);
+```', 'Until `UserCache` shadows `store` with its own static property, `UserCache.store` resolves to the inherited `Cache.store` value. Because that value is a `Map` object, both names refer to the same mutable object, so reading through `Cache.store` returns `1`.
+
+Example:
+
+```js
+console.log(Cache.store.get("id")); // 1
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 132, '2026-04-01T23:14:16.859Z', '2026-04-01T23:14:16.859Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f63554ad-196b-4740-86d8-2edc3444c9a5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `counter.inc()` return here?
+
+```js
+class Counter {
+  #n = 0;
+
+  inc() {
+    this.#n += 1;
+    return this.#n;
+  }
+}
+
+const counter = new Counter();
+counter["#n"] = 10;
+
+counter.inc();
+```', 'Private fields are separate from ordinary public properties, even if the public property name looks similar. `counter["#n"] = 10` creates a normal property whose key is the string `#n`; it does not touch the private field `#n`, which still increments from `0` to `1`.
+
+Example:
+
+```js
+console.log(counter.inc()); // 1
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 133, '2026-04-01T23:14:16.861Z', '2026-04-01T23:14:16.861Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1e456c31-af77-4f91-a4fe-a6e4f13338c7', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is `admin.level` after this code runs?
+
+```js
+function Person() {}
+Person.prototype.level = 1;
+
+class Admin extends Person {
+  level = 2;
+}
+
+const admin = new Admin();
+delete admin.level;
+
+admin.level;
+```', 'The class field `level = 2` creates an own property on the instance that shadows the inherited `Person.prototype.level`. Deleting the own property removes the shadow, so later lookup falls back to the prototype value `1`.
+
+Example:
+
+```js
+console.log(admin.level); // 1
+```', 'hard', 'approved', '412b2f42-4cfd-433c-9d85-3fb4d786b1d0', 134, '2026-04-01T23:14:16.863Z', '2026-04-01T23:14:16.863Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('97f7a5fa-7ab4-474f-aa98-f36b5a7be660', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: A team wants shared behavior without duplicating methods.
+
+```js
+const sessionPrototype = {
+  tasks: [],
+  add(task) {
+    this.tasks.push(task);
+  }
+};
+
+const a = Object.create(sessionPrototype);
+const b = Object.create(sessionPrototype);
+
+a.add("deploy");
+```
+
+Why does `b.tasks` also contain `"deploy"`, and what is the best fix?', '`tasks` is a mutable array stored on the prototype, so both `a` and `b` reach the same array through prototype lookup. The correct fix is to put mutable state like arrays on each instance instead of on the shared prototype.
+
+Example:
+
+```js
+const a = Object.create(sessionPrototype);
+a.tasks = [];
+```', 'hard', 'approved', 'be4044de-f1b0-408e-b19f-704a6176d19a', 135, '2026-04-01T23:14:21.708Z', '2026-04-01T23:14:21.708Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c1031fd7-b735-4b05-9f90-36f9b6d5661b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: A teammate extracts a class method and calls it later.
+
+```js
+class Reporter {
+  prefix = "[prod]";
+
+  log() {
+    return this.prefix;
+  }
+}
+
+const reporter = new Reporter();
+const run = reporter.log;
+run();
+```
+
+What is the most accurate explanation and fix?', 'The method lost its receiver when it was extracted into `run`. Because class bodies are strict mode, `this` becomes `undefined` in `run()`. The fix is to bind the method or wrap the call so it runs with `reporter` as the receiver.
+
+Example:
+
+```js
+const run = reporter.log.bind(reporter);
+```', 'hard', 'approved', 'be4044de-f1b0-408e-b19f-704a6176d19a', 136, '2026-04-01T23:14:21.712Z', '2026-04-01T23:14:21.712Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('af224f80-4b4c-49b7-86f6-05c47b617faa', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: A config object inherits defaults, but a loop starts seeing extra keys.
+
+```js
+const defaults = { retry: 3 };
+const options = Object.create(defaults);
+options.timeout = 1000;
+
+for (const key in options) {
+  console.log(key);
+}
+```
+
+The team wants to iterate only the object''s own keys. Which change most directly guarantees that?', '`for..in` includes enumerable inherited properties, so `retry` can appear. Switching to `Object.keys(options)` guarantees that the loop sees only own enumerable keys on `options`.
+
+Example:
+
+```js
+for (const key of Object.keys(options)) {
+  console.log(key);
+}
+```', 'medium', 'approved', 'be4044de-f1b0-408e-b19f-704a6176d19a', 137, '2026-04-01T23:14:21.713Z', '2026-04-01T23:14:21.713Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7e64fd3c-ea3f-45fb-8064-cae4a220c5a6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: A derived class constructor crashes at runtime.
+
+```js
+class Service {
+  constructor() {
+    this.ready = false;
+  }
+}
+
+class ApiService extends Service {
+  constructor() {
+    this.ready = true;
+    super();
+  }
+}
+```
+
+Why does it fail?', 'In a derived class, `super()` must run before `this` can be used. Until the parent constructor has initialized the base instance, accessing `this` is illegal.
+
+Example:
+
+```js
+class ApiService extends Service {
+  constructor() {
+    super();
+    this.ready = true;
+  }
+}
+```', 'medium', 'approved', 'be4044de-f1b0-408e-b19f-704a6176d19a', 138, '2026-04-01T23:14:21.715Z', '2026-04-01T23:14:21.715Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ead3cd6c-748a-48ef-a985-43243cea3697', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Scenario: One instance starts behaving differently after a quick hotfix.
+
+```js
+class User {
+  role() {
+    return "member";
+  }
+}
+
+const a = new User();
+const b = new User();
+
+a.role = function () {
+  return "admin";
+};
+```
+
+Why does `a.role()` now return `"admin"` while `b.role()` still returns `"member"`?', 'The assignment creates an own `role` property on `a`, which shadows the shared method on `User.prototype`. `b` still uses the original prototype method because only `a` was patched.
+
+Example:
+
+```js
+console.log(Object.hasOwn(a, "role")); // true
+console.log(Object.hasOwn(b, "role")); // false
+```', 'hard', 'approved', 'be4044de-f1b0-408e-b19f-704a6176d19a', 139, '2026-04-01T23:14:21.716Z', '2026-04-01T23:14:21.716Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('6a376018-08a2-4841-810c-e71fd3325a71', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the output order for this code?
+
+```js
+setTimeout(() => console.log("timeout"), 0);
+Promise.resolve().then(() => console.log("promise"));
+console.log("code");
+```', '`console.log("code")` runs synchronously in the current task. The promise handler is a microtask, so it runs immediately after the current task finishes. The timeout callback is a macrotask, so it runs only after the microtask queue has been drained.', 'easy', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 140, '2026-04-02T05:39:17.710Z', '2026-04-02T05:39:17.710Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d3867f33-54bc-4747-a8d5-0751c589d03c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A loop updates the DOM thousands of times inside one long-running function. Why does the user usually see only the final state after the function returns?', 'The article states that rendering never happens while the engine is executing a task. DOM mutations can accumulate, but painting waits until the current task finishes.', 'easy', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 141, '2026-04-02T05:39:17.766Z', '2026-04-02T05:39:17.766Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2f515df8-d3e6-476a-a4c2-efaecd231157', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'According to the article''s syntax-highlighting example, what is the recommended way to keep the browser responsive during a CPU-heavy job on the main thread?', 'The article recommends splitting large work into smaller chunks and scheduling the next chunk with `setTimeout()`. That yields back to the event loop between chunks so the browser can handle input and painting.', 'medium', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 142, '2026-04-02T05:39:17.780Z', '2026-04-02T05:39:17.780Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9d67d61f-f61f-41b6-9fab-849144123d85', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the article move the next `setTimeout(count)` call to the beginning of `count()` instead of leaving it at the end?', 'Browsers apply a minimum delay to many nested timeouts, commonly around 4 ms. Scheduling the next timeout earlier lets that delay start counting sooner, reducing the total completion time of the chunked algorithm.', 'hard', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 143, '2026-04-02T05:39:17.784Z', '2026-04-02T05:39:17.784Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('47a19268-54ac-416f-b660-9069c4e5317c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A developer wants a visible progress counter while processing a large dataset in the browser. Which design from the article makes the progress indicator visibly advance?', 'The progress indicator becomes visible only when work is split across separate tasks, because the browser can paint between task boundaries. A single synchronous loop prevents intermediate rendering.', 'medium', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 144, '2026-04-02T05:39:17.794Z', '2026-04-02T05:39:17.794Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('75d1975c-cac5-4a09-bd2b-81638a020edf', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Inside a click handler, you want to dispatch a custom event only after the click event has fully bubbled through the DOM. What does the article recommend?', 'Wrapping the custom event dispatch in `setTimeout(..., 0)` postpones it to a later task, so the current click event finishes bubbling and all current handlers complete first.', 'medium', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 145, '2026-04-02T05:39:17.802Z', '2026-04-02T05:39:17.802Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('766d6dd4-3d42-43a6-bdac-8cc2c128f9fd', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best describes `queueMicrotask()` in the article''s event loop model?', 'A microtask scheduled with `queueMicrotask()` runs after the current macrotask finishes but before rendering and before the next macrotask begins. That is why it is useful for asynchronous work that still needs the same environment state.', 'medium', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 146, '2026-04-02T05:39:17.808Z', '2026-04-02T05:39:17.808Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('471bdf1e-1f74-4e7d-92c1-ff929e4c0633', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A developer swaps `setTimeout(count)` for `queueMicrotask(count)` in the progress-bar example and expects smoother rendering. What actually happens?', 'The microtask queue is drained before rendering, so repeatedly enqueueing microtasks keeps execution in the same turn of the event loop. The DOM updates still do not paint progressively, so the interface remains visually blocked.', 'hard', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 147, '2026-04-02T05:39:17.811Z', '2026-04-02T05:39:17.811Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bfbed5f5-9f31-43c5-9f9c-f81eb1ae1cef', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What browser symptom most strongly indicates that one task is monopolizing the event loop for too long?', 'The article explicitly notes that when a task takes too long, the browser may show a warning such as `Page Unresponsive` because it cannot process user events or other work.', 'easy', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 148, '2026-04-02T05:39:17.815Z', '2026-04-02T05:39:17.815Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('13305be7-ed95-4689-b01f-4c82d5985ab7', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'When is a Web Worker the better tool than chunking work with `setTimeout()` on the main thread?', 'The article points to Web Workers for long, heavy calculations that should not block the main event loop. Workers run in another thread, have their own variables and event loop, and cannot access the DOM directly.', 'medium', 'approved', '4cbb3688-abcc-49fd-93ba-13af1350e6a3', 149, '2026-04-02T05:39:17.818Z', '2026-04-02T05:39:17.818Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3164c739-cf82-40e2-9d5c-eebf3a94b4c6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In MDN''s execution model, which part is responsible for providing APIs such as the HTML DOM or Node.js capabilities?', 'MDN distinguishes the JavaScript engine from the host environment. The engine executes ECMAScript itself, while the host supplies environment-specific APIs such as the DOM in browsers or server APIs in Node.js.', 'easy', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 150, '2026-04-02T05:39:22.180Z', '2026-04-02T05:39:22.180Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f23f6e9b-ab5e-4908-ad78-c7dfedd88f6d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which combination correctly describes the three core facilities an agent maintains for JavaScript execution?', 'MDN describes an agent as maintaining a heap of objects, a queue of jobs, and a stack of execution contexts. These structures serve different purposes: memory, scheduling, and active execution.', 'easy', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 151, '2026-04-02T05:39:22.183Z', '2026-04-02T05:39:22.183Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4e4306e4-0c7f-48f1-a908-bd8bbf7f2f48', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does this code reliably log `1` and then `2` instead of exhibiting a race condition?
+
+```js
+const promise = Promise.resolve();
+let i = 0;
+promise.then(() => {
+  i += 1;
+  console.log(i);
+});
+promise.then(() => {
+  i += 1;
+  console.log(i);
+});
+```', 'MDN''s `run-to-completion` rule says each job runs fully before the next job starts. Even though both handlers are scheduled quickly, one callback completes before the other begins, so the updates are deterministic.', 'medium', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 152, '2026-04-02T05:39:22.185Z', '2026-04-02T05:39:22.185Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('745d7b43-ed17-4a8f-8bec-7cfb4a7aba6e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'According to MDN, when is a job considered complete so that the next job can be pulled from the queue?', 'MDN states that a job is considered completed when the stack is empty. Only then can the event loop move on to another queued job.', 'easy', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 153, '2026-04-02T05:39:22.187Z', '2026-04-02T05:39:22.187Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('09cf0cca-139f-4efd-8a18-8fabf0c9af3b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In HTML event loops as summarized by MDN, which queued work has higher priority?', 'MDN notes that HTML event loops divide jobs into tasks and microtasks, and that the microtask queue is drained before the task queue is pulled again.', 'medium', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 154, '2026-04-02T05:39:22.190Z', '2026-04-02T05:39:22.190Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a6a3c75c-97a9-4b44-90fc-83f85d1b3200', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement about agents on the web matches MDN''s execution model?', 'MDN explains that each worker creates its own agent, while one or more windows may belong to the same agent. This is important because not every browsing context gets an entirely separate executor.', 'medium', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 155, '2026-04-02T05:39:22.192Z', '2026-04-02T05:39:22.192Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8e02fdfb-b5e6-4883-916e-158580b51688', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can `instanceof Array` return `false` for an array created in another realm, even though `Array.isArray()` returns `true`?', 'MDN explains that each realm has its own intrinsic objects, including its own `Array.prototype`. An array from another realm does not inherit from the current realm''s `Array.prototype`, so `instanceof Array` can fail.', 'hard', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 156, '2026-04-02T05:39:22.194Z', '2026-04-02T05:39:22.194Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('251b1006-226c-44be-b2f9-80a4ad33a8b2', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'While a same-agent `fetch()` is still waiting on the network, what does MDN say about the JavaScript execution model?', 'The model is designed to be non-blocking for normal asynchronous APIs. While the network request is in flight, the agent can still process other work; the completion logic is added later as a callback job.', 'medium', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 157, '2026-04-02T05:39:22.195Z', '2026-04-02T05:39:22.195Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c2407a01-f00d-47eb-b6ec-65c2d2233bda', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which APIs does MDN call out as notable legacy exceptions to the usual ''never-blocking'' guidance?', 'MDN explicitly calls out `alert()` and synchronous XHR as legacy cases that block and are best avoided.', 'easy', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 158, '2026-04-02T05:39:22.197Z', '2026-04-02T05:39:22.197Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3a51c27a-697c-4b59-b7c4-e200fa861542', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which pair is described by MDN as being able to share memory because they are in the same agent cluster?', 'MDN lists a `Window` object and a dedicated worker that it created as being in the same agent cluster, which means they can share memory via `SharedArrayBuffer` if the platform permits it. A shared worker created by a window is listed separately as not being in the same cluster.', 'hard', 'approved', '24f7131c-002d-4cbb-a3f7-daf2f18c2e67', 159, '2026-04-02T05:39:22.198Z', '2026-04-02T05:39:22.198Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bb10af0f-72d6-421d-9114-2f00fcdcbb68', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'After a task finishes running, what does the microtask guide say happens before the browser moves to the next task?', 'The guide says the event loop executes microtasks until the microtask queue is empty before proceeding to the next task. Rendering may then occur before the next iteration continues.', 'easy', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 160, '2026-04-02T05:39:25.845Z', '2026-04-02T05:39:25.845Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('5325e50e-48ae-495e-84d6-e40a35ee592b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'If a running microtask enqueues another microtask with `queueMicrotask()`, when does the newly added microtask run?', 'The guide emphasizes that the event loop keeps processing microtasks until the queue is empty. New microtasks added during that drain run before the next task starts.', 'medium', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 161, '2026-04-02T05:39:25.850Z', '2026-04-02T05:39:25.850Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a150cc05-2682-4c7c-84a8-539554e39dc4', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the main risk of recursively enqueueing microtasks without a stopping condition?', 'Because the event loop keeps running microtasks until the queue is empty, recursive microtask scheduling can keep the loop busy indefinitely and starve later tasks such as timers, user input, or rendering.', 'medium', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 162, '2026-04-02T05:39:25.852Z', '2026-04-02T05:39:25.852Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('229d412b-c821-44f6-b404-d00fa086a77c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the guide recommend `queueMicrotask()` over using an already-resolved promise as a microtask hack in framework or library code?', '`queueMicrotask()` avoids the quirks of using promises as a scheduling trick. Thrown errors are reported as standard exceptions instead of rejected promises, and it avoids the extra time and memory overhead of creating and destroying promises.', 'hard', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 163, '2026-04-02T05:39:25.853Z', '2026-04-02T05:39:25.853Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8d261aaa-0e11-4659-a6aa-112d3898815a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'On which global execution contexts does the guide say `queueMicrotask()` is exposed?', 'The method is exposed on the global context through `Window` in browser windows and `WorkerGlobalScope` in workers. The guide frames it as available on the current global context for that environment.', 'easy', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 164, '2026-04-02T05:39:25.855Z', '2026-04-02T05:39:25.855Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('46dae36a-3160-4bc3-a1f6-d57ac05927e5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A custom element dispatches `load` synchronously on a cache hit, but asynchronously through promise handlers on a cache miss. What fix does the guide recommend to keep ordering consistent?', 'The guide''s solution is to wrap the cache-hit path in `queueMicrotask()`. That way both branches finish their `load` dispatch work in microtasks, making the timing consistent whether data was cached or fetched.', 'hard', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 165, '2026-04-02T05:39:25.856Z', '2026-04-02T05:39:25.856Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('55d2d7a0-ad61-4fa0-b75b-09d001274304', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the batching example schedule a microtask only when `messageQueue.length === 1`?', 'The first message schedules one microtask that will flush the whole batch at the end of the current turn. Later messages in the same turn only append data; they do not schedule duplicate flush operations.', 'medium', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 166, '2026-04-02T05:39:25.857Z', '2026-04-02T05:39:25.857Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d280501d-6404-45ae-ba4f-a7355bfa8fd8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the output order for this code?
+
+```js
+const callback = () => console.log("timeout");
+const urgentCallback = () => console.log("microtask");
+
+console.log("start");
+setTimeout(callback, 0);
+queueMicrotask(urgentCallback);
+console.log("end");
+```', 'The main script runs first, so `start` and `end` log synchronously. Once that task finishes, the microtask queue is drained, so `microtask` appears next. The timeout callback is a separate task and runs afterward.', 'medium', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 167, '2026-04-02T05:39:25.859Z', '2026-04-02T05:39:25.859Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('648385b3-4281-42c4-a344-442f3dd2ff9d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A function calls `queueMicrotask()` and then returns, but the surrounding top-level script still has more synchronous statements to run. When does the microtask execute?', 'The guide states that the microtask does not run just because the function returned. It runs when the current top-level task exits and the execution stack is empty.', 'hard', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 168, '2026-04-02T05:39:25.860Z', '2026-04-02T05:39:25.860Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('67b6298c-b9f1-4104-9d66-056eb98e6c1b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which two mechanisms does the guide explicitly say use the microtask queue for their callbacks?', 'The guide explicitly names JavaScript promises and the Mutation Observer API as using the microtask queue.', 'easy', 'approved', '38c5a972-7bf2-4124-bc91-5b35d1151d53', 169, '2026-04-02T05:39:25.861Z', '2026-04-02T05:39:25.861Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0e87c4cd-1db8-478f-9823-844369e78b58', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the output order for this code?
+
+```js
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+queueMicrotask(() => {
+  console.log("C");
+  Promise.resolve().then(() => console.log("D"));
+});
+Promise.resolve().then(() => {
+  console.log("E");
+  setTimeout(() => console.log("F"), 0);
+});
+console.log("G");
+```', 'The synchronous part logs `A` then `G`. At the microtask checkpoint, the queued microtasks run FIFO: the explicit `queueMicrotask()` callback logs `C` and enqueues `D`, then the promise handler logs `E` and schedules timeout `F`, then the newly queued promise microtask logs `D`. Only after the microtask queue is empty do tasks run, so `B` precedes `F` because it was scheduled first.
+
+Example:
+
+```text
+A -> G -> C -> E -> D -> B -> F
+```', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 170, '2026-04-02T05:39:29.569Z', '2026-04-02T05:39:29.569Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('29d7bae7-0514-4115-969e-d026d7400c16', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Consider this code:
+
+```js
+setTimeout(() => console.log("timeout"), 0);
+function spin() {
+  queueMicrotask(spin);
+}
+spin();
+console.log("scheduled");
+```
+
+What is the most accurate description of what happens next?', 'The script logs `scheduled` before the microtask checkpoint. Then the first queued microtask runs, schedules another microtask, and the queue never becomes empty. Because the event loop keeps draining microtasks before moving to the next task, the timeout can be starved indefinitely and the page can become unresponsive.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 171, '2026-04-02T05:39:29.571Z', '2026-04-02T05:39:29.571Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4864b33e-93b4-4e77-b190-a608b11677d5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A component dispatches `load` synchronously on a cache hit but uses `fetch(...).then(...).then(...)` on a cache miss. Which change best preserves a consistent observable order for callers?', 'The cache-hit branch should enqueue its state update and `load` dispatch with `queueMicrotask()`. That aligns the synchronous branch with the promise-based branch, which also completes through microtasks, so listeners see consistent order regardless of the data source.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 172, '2026-04-02T05:39:29.575Z', '2026-04-02T05:39:29.575Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1af5370e-b602-4c42-b8b6-d755d5bc368d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A team moves expensive JSON parsing into a dedicated worker and sends the results back to the main thread with `postMessage()`. Which statement is correct?', 'A dedicated worker has its own agent and event loop, so the main thread can remain responsive while the parsing happens in parallel. The worker cannot directly access the DOM, so UI updates still have to happen on the main thread when messages arrive.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 173, '2026-04-02T05:39:29.578Z', '2026-04-02T05:39:29.578Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4c79a373-e600-46a5-80bc-94df6edb5218', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A developer replaces `setTimeout(count, 0)` with `queueMicrotask(count)` in a chunked progress-bar implementation, expecting smoother UI updates. What is the most likely result?', 'The progress bar will still fail to paint incrementally because the browser drains microtasks before rendering. Task chunking creates render opportunities; microtask chunking keeps execution inside the same turn until the microtask queue empties.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 174, '2026-04-02T05:39:29.581Z', '2026-04-02T05:39:29.581Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('20aece8a-54ca-49a6-af66-c6d427a04ca0', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best captures the difference in error behavior between these two scheduling techniques?
+
+```js
+Promise.resolve().then(() => {
+  throw new Error("from promise");
+});
+
+queueMicrotask(() => {
+  throw new Error("from microtask");
+});
+```', 'MDN notes that promise-based microtask hacks report thrown errors as rejected promises, whereas `queueMicrotask()` reports them as standard exceptions. That is one reason `queueMicrotask()` is preferred when the goal is scheduling rather than promise composition.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 175, '2026-04-02T05:39:29.583Z', '2026-04-02T05:39:29.583Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('735b0fb1-f865-491d-8098-18881f4bd375', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the output order for this code?
+
+```js
+function schedule() {
+  queueMicrotask(() => console.log("micro"));
+  console.log("inside");
+}
+
+console.log("before");
+schedule();
+Promise.resolve().then(() => console.log("promise"));
+console.log("after");
+```', 'The synchronous logs happen first: `before`, `inside`, `after`. The microtask scheduled inside `schedule()` does not run when the function returns; it waits until the current task ends. Because it was enqueued before the promise reaction, it runs first at the microtask checkpoint.
+
+Example:
+
+```text
+before -> inside -> after -> micro -> promise
+```', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 176, '2026-04-02T05:39:29.585Z', '2026-04-02T05:39:29.585Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3c6d117c-5d52-4651-9a60-5afb60110f42', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'If a same-origin parent window and its child iframe happen to share the same event loop, what is the safest conclusion for performance debugging?', 'When two browsing contexts share an event loop, their tasks take turns on the same executor. That means a long task in one can delay the other''s event processing and responsiveness, even though they are distinct realms.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 177, '2026-04-02T05:39:29.587Z', '2026-04-02T05:39:29.587Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cc9ec24c-32b4-4891-a7a1-39f5d1fceb53', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why can moving `setTimeout(count, 0)` to the beginning of each chunk reduce total completion time without giving up responsiveness?', 'The browser may apply a minimum delay to nested timeouts. Scheduling the next timeout earlier lets that delay count down while the current chunk does work, so the next task becomes runnable sooner while still yielding between chunks.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 178, '2026-04-02T05:39:29.588Z', '2026-04-02T05:39:29.588Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('35d6f278-0f63-49bf-8d43-ee38907d2986', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A reviewer claims that two `.then()` handlers attached to an already-resolved promise might interleave at statement granularity and both log `2`. Which response is correct in the same agent?', 'That claim is incorrect for same-agent execution. Promise reactions are queued jobs, and each job runs to completion before the next one begins, so one handler will finish all of its statements before the second starts.
+
+Example:
+
+```js
+const p = Promise.resolve();
+let i = 0;
+p.then(() => { i += 1; console.log(i); });
+p.then(() => { i += 1; console.log(i); });
+```
+
+This deterministically logs `1` and then `2`.', 'hard', 'approved', '17f9e935-e139-4bf7-9174-7139b6723c64', 179, '2026-04-02T05:39:29.590Z', '2026-04-02T05:39:29.590Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2c515690-0512-4c07-8380-9fda23f35ae1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A browser-based code editor freezes for seconds while tokenizing a very large file. The tokenization algorithm does not need direct DOM access until the final painted result is ready. Which redesign is the strongest choice?', 'A dedicated worker is the strongest redesign here because the heavy computation does not need direct DOM access. Workers have their own event loop and keep the main thread free for input, layout, and painting; the main thread can apply the final rendered result when the worker posts it back.', 'hard', 'approved', '1e129f0c-0a19-4961-af1f-afa965653a62', 180, '2026-04-02T05:39:34.114Z', '2026-04-02T05:39:34.114Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8113fa86-300e-4c2b-862a-781e2baf12c4', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A custom element fetches remote data on a cache miss but returns cached data immediately on a cache hit. Test failures show that `load` listeners fire in different relative positions depending on whether the data was cached. What is the best fix?', 'The cache-hit path should use `queueMicrotask()` to defer the state update and `load` dispatch into the microtask queue. That balances the synchronous branch with the promise-based branch so listeners observe the same timing model in both cases.', 'hard', 'approved', '1e129f0c-0a19-4961-af1f-afa965653a62', 181, '2026-04-02T05:39:34.117Z', '2026-04-02T05:39:34.117Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e52cf343-330e-4689-957d-e7c9ba703fb4', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'An analytics SDK receives several `track()` calls during one click handler and wants to send one batched network request before later timeout callbacks run. Which implementation best fits the sources?', 'Queue each message into an array and, only when the first message arrives in that turn, schedule a single microtask to flush the batch. That lets all additional `track()` calls in the same turn join the batch before later tasks like timeouts are processed.', 'hard', 'approved', '1e129f0c-0a19-4961-af1f-afa965653a62', 182, '2026-04-02T05:39:34.119Z', '2026-04-02T05:39:34.119Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d28bf1aa-6c17-4ae4-8a88-43b7c25d847c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A team splits a long-running main-thread calculation into recursive `queueMicrotask()` calls and updates a DOM progress bar inside each chunk. Users report that the page still looks frozen until the very end. What is the best explanation and fix?', 'The page still looks frozen because microtasks are drained before rendering, so the browser does not get a paint opportunity between chunks. If the work must remain on the main thread and the UI must visibly progress, the chunks should be scheduled as tasks with `setTimeout()` instead of microtasks.', 'hard', 'approved', '1e129f0c-0a19-4961-af1f-afa965653a62', 183, '2026-04-02T05:39:34.122Z', '2026-04-02T05:39:34.122Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b6f999ea-d7c7-462e-935e-f8f54a3aedd4', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A menu component must emit a custom `menu-open` event only after the current click event has fully bubbled and all current click handlers have finished. Which implementation is most appropriate?', 'Scheduling the custom dispatch with zero-delay `setTimeout()` moves it into a later task. That guarantees the current click event finishes bubbling and all current handlers complete before `menu-open` is dispatched.', 'medium', 'approved', '1e129f0c-0a19-4961-af1f-afa965653a62', 184, '2026-04-02T05:39:34.125Z', '2026-04-02T05:39:34.125Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7a18f20a-4fff-4d8e-b95d-ea405bdaf84d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this code log?
+
+```js
+const ul = document.querySelector(''ul'');
+const fragment = new DocumentFragment();
+fragment.append(document.createElement(''li''));
+fragment.append(document.createElement(''li''));
+ul.append(fragment);
+
+console.log(fragment.childElementCount);
+```', 'Appending the fragment moves its children into the live DOM and leaves the fragment empty, so `childElementCount` becomes `0`.
+
+Example:
+
+```js
+const fragment = new DocumentFragment();
+fragment.append(nodeA, nodeB);
+parent.append(fragment);
+// fragment is now empty
+```', 'hard', 'approved', '366e48c2-7810-4d8e-8669-6354a7bcf60a', 185, '2026-04-02T06:21:57.320Z', '2026-04-02T06:21:57.320Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('26e50187-d1b4-4770-8188-a7e73b147265', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best matches MDN''s description of `DocumentFragment`?', 'MDN describes `DocumentFragment` as a minimal document object with no parent that is not part of the active document tree. That is why you can stage DOM subtrees inside it without directly affecting the live document until insertion.', 'medium', 'approved', '366e48c2-7810-4d8e-8669-6354a7bcf60a', 186, '2026-04-02T06:21:57.324Z', '2026-04-02T06:21:57.324Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b9853b71-981c-4e6a-86dc-d406e56f356f', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which lookup capability is explicitly available on `DocumentFragment` according to MDN?', 'MDN lists `querySelector()`, `querySelectorAll()`, and `getElementById()` on `DocumentFragment`, which means you can inspect the staged subtree before inserting it into the live document.', 'medium', 'approved', '366e48c2-7810-4d8e-8669-6354a7bcf60a', 187, '2026-04-02T06:21:57.326Z', '2026-04-02T06:21:57.326Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0482d1ae-44b9-46c4-ab65-27669dd3f95e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement is most consistent with MDN''s performance guidance for `DocumentFragment`?', 'MDN explicitly says the performance benefit is often overstated and sometimes marginal or even slower in certain engines. The guidance is to optimize for readability rather than assume automatic speedups.
+
+Example:
+
+```js
+const fragment = new DocumentFragment();
+// clear intent: stage a subtree, then append once
+```', 'hard', 'approved', '366e48c2-7810-4d8e-8669-6354a7bcf60a', 188, '2026-04-02T06:21:57.327Z', '2026-04-02T06:21:57.327Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('e98fe5f7-a8f4-4fe7-aa63-117a1d7d9adb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'How does the `<template>` element relate to `DocumentFragment` according to MDN?', 'MDN notes that `<template>` elements contain a `DocumentFragment` in `HTMLTemplateElement.content`, which makes them useful for storing reusable DOM subtrees until they are cloned or inserted.', 'medium', 'approved', '366e48c2-7810-4d8e-8669-6354a7bcf60a', 189, '2026-04-02T06:21:57.330Z', '2026-04-02T06:21:57.330Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4612c814-0941-4536-aae5-f2b0cdb80464', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'You need to add 1,000 new `<li>` elements to an existing `<ul>`. According to the source, which refactor most directly reduces repeated reflows?', 'Using `DocumentFragment` lets you build the subtree off the live DOM and append it once, so the live document is updated once instead of on every iteration.
+
+Example:
+
+```js
+const fragment = document.createDocumentFragment();
+for (let i = 0; i < 1000; i++) {
+  const li = document.createElement(''li'');
+  li.textContent = `Item ${i}`;
+  fragment.appendChild(li);
+}
+container.appendChild(fragment);
+```', 'medium', 'approved', '15798bba-96b1-47d7-801d-e25dfa772522', 190, '2026-04-02T06:22:01.031Z', '2026-04-02T06:22:01.031Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('be98fb44-17c4-47ab-808b-781c0373b9c1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A parent element is already cached in a variable. Which descendant lookup best matches the source''s recommendation?
+
+```js
+const parentElement = document.getElementById(''parent'');
+// choose the preferred lookup for #child
+```', 'Once the parent is already cached, querying within that subtree narrows the search scope and avoids searching the full document unnecessarily. The article also notes that `getElementById` is not the method you use on the parent for this case.
+
+Example:
+
+```js
+const child = parentElement.querySelector(''#child'');
+```', 'medium', 'approved', '15798bba-96b1-47d7-801d-e25dfa772522', 191, '2026-04-02T06:22:01.034Z', '2026-04-02T06:22:01.034Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('92dd6ec9-8c96-4db2-8a16-ec801e89036e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'You receive user-generated text from a form and need to render it into the page. Which approach aligns best with the source''s guidance?', 'The source warns that `innerHTML` parses markup and can execute script content from untrusted input. When you only need plain text, prefer `textContent` or `innerText`. If markup is required, sanitize and validate first.
+
+Example:
+
+```js
+messageElement.textContent = userInput;
+```', 'hard', 'approved', '15798bba-96b1-47d7-801d-e25dfa772522', 192, '2026-04-02T06:22:01.036Z', '2026-04-02T06:22:01.036Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ea1ad680-b89f-4921-911e-ed83b51c63fa', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A dashboard renders many action buttons dynamically inside one container. Which event-handling strategy best fits the source''s recommendation for performance and maintainability?', 'Event delegation attaches a single listener to a parent element and handles descendant interactions through the event object. That reduces the number of listeners and works well when content changes dynamically.
+
+Example:
+
+```js
+parentElement.addEventListener(''click'', handleClick);
+```', 'medium', 'approved', '15798bba-96b1-47d7-801d-e25dfa772522', 193, '2026-04-02T06:22:01.039Z', '2026-04-02T06:22:01.039Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1d675516-f42e-47ba-a9c6-3c797af989f5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Your script tag runs before the DOM nodes it needs to modify have been parsed. What does the source recommend?', 'The source recommends waiting for `DOMContentLoaded` so DOM-manipulation code runs after the HTML document has loaded, preventing failures from selecting elements that do not exist yet.
+
+Example:
+
+```js
+document.addEventListener(''DOMContentLoaded'', () => {
+  // DOM code here
+});
+```', 'easy', 'approved', '15798bba-96b1-47d7-801d-e25dfa772522', 194, '2026-04-02T06:22:01.041Z', '2026-04-02T06:22:01.041Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('b107fcd3-f7cb-48d9-b271-b753283b34db', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A search UI rebuilds 300 suggestion rows on every keystroke. The current code appends each row directly to the live list and attaches an individual click listener to every suggestion after each render. Which refactor is the strongest improvement from the combined source guidance?', 'The strongest root-cause fix is to build the rows in a `DocumentFragment`, append once, and use a single delegated click listener on the list container. That reduces unnecessary live-DOM churn and avoids reattaching many equivalent listeners on every render.', 'hard', 'approved', '325540e0-c771-4d9c-a826-dbe27993c631', 195, '2026-04-02T06:22:41.751Z', '2026-04-02T06:22:41.751Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('a997ab73-774a-4e8f-98c6-f6a2e143c6eb', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A delegated list handler checks `event.target.tagName === ''BUTTON''`. It works until designers wrap button labels in `<span>` icons, after which some clicks stop triggering the action. What is the best fix?', 'Once nested markup exists, the clicked target may be the child `span` rather than the button. The robust fix is to walk up from the real target with `closest(''button'')` and guard for `null`.
+
+Example:
+
+```js
+const button = event.target.closest(''button'');
+if (!button) return;
+```', 'hard', 'approved', '325540e0-c771-4d9c-a826-dbe27993c631', 196, '2026-04-02T06:22:41.753Z', '2026-04-02T06:22:41.753Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('96e11837-9d09-4984-94c4-4644d2090744', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A parent container has an analytics listener, but a child button handler now calls `event.stopPropagation()`. Product requires analytics to observe the click even when the child action blocks bubbling to other ancestors. Which change best satisfies that requirement?', 'If the analytics listener is attached during the capturing phase, it runs before the button''s bubbling-phase handler calls `stopPropagation()`. That preserves the analytics observation without forcing the child handler to stop using propagation control for its own logic.', 'hard', 'approved', '325540e0-c771-4d9c-a826-dbe27993c631', 197, '2026-04-02T06:22:41.758Z', '2026-04-02T06:22:41.758Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('354ef4d4-24ab-4495-8f2b-c1c6487201d3', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A note-taking app saves drafts with `localStorage.setItem(''draft'', value)`. The developer relies on `window.addEventListener(''storage'', ...)` in the same tab to refresh the preview after each save, but the preview does not update. What is the best fix?', 'The same tab does not receive a `storage` event for its own write. The correct design is to update the current tab''s preview immediately after `setItem`, and keep the `storage` listener only for synchronizing other same-origin tabs.
+
+Example:
+
+```js
+localStorage.setItem(''draft'', value);
+renderPreview(value);
+```', 'hard', 'approved', '325540e0-c771-4d9c-a826-dbe27993c631', 198, '2026-04-02T06:22:41.763Z', '2026-04-02T06:22:41.763Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7e602eb5-b66b-4724-8922-a38804406912', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A team prototypes an app by opening `index.html` directly from disk with a `file:` URL. `localStorage` seems to behave differently across browsers, and sometimes separate files do not share the data they expect. Which root-cause fix best matches the sources?', 'MDN says `file:` URL behavior for `localStorage` is undefined and browser-dependent, so the app should not rely on it. The robust fix is to serve the app from a proper local HTTP origin during development, which gives predictable same-origin storage semantics.', 'hard', 'approved', '325540e0-c771-4d9c-a826-dbe27993c631', 199, '2026-04-02T06:22:41.765Z', '2026-04-02T06:22:41.765Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('fba18c3a-ce70-4369-843a-023c65123c81', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does this code log?
+
+```js
+const ul = document.querySelector(''ul'');
+const fragment = new DocumentFragment();
+
+for (const label of [''A'', ''B'']) {
+  const li = document.createElement(''li'');
+  li.textContent = label;
+  fragment.append(li);
+}
+
+ul.append(fragment);
+console.log(fragment.childElementCount, ul.children.length);
+```', '`DocumentFragment` is not part of the active tree, and appending it moves its children into the real DOM. After insertion the fragment is empty, while `ul.children` now contains the inserted elements.
+
+Example:
+
+```js
+parent.append(fragment);
+// fragment is empty now
+```', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 200, '2026-04-02T06:22:45.442Z', '2026-04-02T06:22:45.442Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('66aa9b6d-5e3f-470e-9f46-e28ff1fa3633', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A delegated handler is attached to a parent element: 
+
+```js
+parent.addEventListener(''click'', (event) => {
+  if (event.target.tagName === ''BUTTON'') {
+    console.log(''run'');
+  }
+});
+```
+
+The markup is `<button><span>Save</span></button>`, and the user clicks the `span`. What is the most accurate outcome?', '`event.target` is the actual clicked element. If the user clicks the nested `span`, `tagName` is `SPAN`, so the condition fails. The robust fix is to use traversal from the clicked node, such as `event.target.closest(''button'')`.
+
+Example:
+
+```js
+const button = event.target.closest(''button'');
+if (button) {
+  console.log(''run'');
+}
+```', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 201, '2026-04-02T06:22:45.446Z', '2026-04-02T06:22:45.446Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('12b0f6c9-aa72-4452-a2ce-617b8b176e8c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Consider this listener setup:
+
+```js
+outer.addEventListener(''click'', () => console.log(''outer''), true);
+inner.addEventListener(''click'', () => console.log(''inner''));
+button.addEventListener(''click'', () => console.log(''button''));
+```
+
+When the button is clicked, what order is logged?', 'The outer listener runs in the capturing phase because of the third argument `true`. The button listener then runs at the target, and the inner listener runs later during bubbling. So the order is outer, button, inner.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 202, '2026-04-02T06:22:45.448Z', '2026-04-02T06:22:45.448Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('829c7c2e-b1bc-41da-b7d5-3a7af4acb43b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Now consider this variation:
+
+```js
+outer.addEventListener(''click'', () => console.log(''outer''), true);
+inner.addEventListener(''click'', () => console.log(''inner''));
+button.addEventListener(''click'', (event) => {
+  event.stopPropagation();
+  console.log(''button'');
+});
+```
+
+When the button is clicked, what is logged?', 'The capture listener on `outer` runs before the event reaches the target. Then the button handler runs and stops further propagation. That prevents the bubbling listener on `inner` from running, but it cannot undo the already-executed capture handler on `outer`.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 203, '2026-04-02T06:22:45.451Z', '2026-04-02T06:22:45.451Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8a60fb9f-6042-417d-87ce-97879ae0e338', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Given formatted markup like this:
+
+```html
+<div id="container">
+  <p>One</p>
+  <!-- note -->
+  <span>Two</span>
+</div>
+```
+
+What is the safest expectation for `container.firstChild.nodeName` and `container.firstElementChild.nodeName`?', 'Whitespace created by formatting becomes a text node, so `firstChild` may be `#text`. The element-specific property skips that and returns the first element child, which is the `P` element.
+
+Example:
+
+```js
+console.log(container.firstChild.nodeName);        // #text
+console.log(container.firstElementChild.nodeName); // P
+```', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 204, '2026-04-02T06:22:45.452Z', '2026-04-02T06:22:45.452Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('7a09eb59-b67f-4700-ad4c-61064a1cb7f8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A page in Tab A runs this code and expects its own `storage` listener to fire immediately:
+
+```js
+window.addEventListener(''storage'', () => console.log(''changed''));
+localStorage.setItem(''theme'', ''dark'');
+```
+
+Another same-origin tab is open. Which result is correct?', 'The `storage` event is for cross-document notification. The tab that performs `setItem` does not receive a `storage` event for its own write, but other same-origin tabs do. So Tab A should update its own UI directly after writing, while Tab B can react through the event.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 205, '2026-04-02T06:22:45.456Z', '2026-04-02T06:22:45.456Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f8ee417d-f435-4a48-8486-b9b7af05ef33', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A draft is saved under `http://example.com/app` with `localStorage.setItem(''draft'', ''v1'')`. A user later opens `https://example.com/app` and reads `localStorage.getItem(''draft'')`. What is the best expectation?', 'Protocol is part of the origin, so HTTP and HTTPS do not share the same `localStorage` area. The secure page should not expect to see data stored under the insecure origin.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 206, '2026-04-02T06:22:45.458Z', '2026-04-02T06:22:45.458Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d3a5f1de-cd6e-4a20-94bd-30caa83d18ba', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the strongest reason to avoid this pattern for arbitrary keys?
+
+```js
+const key = ''length'';
+localStorage[key] = 5;
+```', 'Object-like access is fragile because user-generated keys can collide with built-in members such as `length`, and the `storage` event does not fire for object-like access. The safer API is `setItem(key, value)`.
+
+Example:
+
+```js
+localStorage.setItem(key, ''5'');
+```', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 207, '2026-04-02T06:22:45.459Z', '2026-04-02T06:22:45.459Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ac811e1e-07b6-4043-8094-89160656d318', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A team must render 500 rows quickly and keep the code maintainable. Which refactor best fits the combined guidance from the sources?', 'The best synthesis is to construct DOM nodes off the live tree in a `DocumentFragment`, use `textContent` for plain text updates, and rely on CSS classes instead of repeated inline style writes. That minimizes unnecessary direct live-DOM work while keeping the code readable and maintainable.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 208, '2026-04-02T06:22:45.461Z', '2026-04-02T06:22:45.461Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('516f6837-ceb4-4994-a59f-dab753f70ec8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A code review comment says: ''Replace all direct appends with `DocumentFragment`; it is always a major performance win.'' Which response best matches the combined source guidance?', '`DocumentFragment` is useful for batching and for expressing intent clearly, but MDN explicitly warns that the performance benefit is often overstated and can be marginal. The stronger engineering position is to use it when it improves batching or clarity, not to assume universal speedups.', 'hard', 'approved', '40e2e7db-c37d-4cbf-ab4f-18d2e88acadf', 209, '2026-04-02T06:22:45.463Z', '2026-04-02T06:22:45.463Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2c6a04a8-89af-4b92-b3aa-9b79cfecf844', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Consider this simplified markup:
+
+```html
+<body>
+  <h1>Welcome</h1>
+  <p>Read this.</p>
+</body>
+```
+
+Which statement is true?', 'In the DOM tree, `<body>` is the parent node of both `<h1>` and `<p>`. Siblings are nodes that share the same parent, so here `<h1>` and `<p>` are siblings, not parent and child of each other.', 'easy', 'approved', 'ffafca19-a10d-414b-82d6-797d3e641363', 210, '2026-04-02T06:22:49.113Z', '2026-04-02T06:22:49.113Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('de1be6aa-4427-4882-80ff-39cd5b997dac', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'For this element, which statement is correct?
+
+```html
+<title id="demo">DOM Tutorial</title>
+```', 'W3Schools emphasizes that the element node itself does not directly contain the text value. It contains a text node child, which is why `firstChild.nodeValue` and `childNodes[0].nodeValue` reach the text content.', 'medium', 'approved', 'ffafca19-a10d-414b-82d6-797d3e641363', 211, '2026-04-02T06:22:49.116Z', '2026-04-02T06:22:49.116Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0348dfc1-db9b-4e86-a4e3-2ff99466bc01', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which property gives access to the full document root rather than just the document body?', 'W3Schools calls out two special root-access properties: `document.body` for the body element and `document.documentElement` for the full document element, which is the `<html>` root.', 'medium', 'approved', 'ffafca19-a10d-414b-82d6-797d3e641363', 212, '2026-04-02T06:22:49.120Z', '2026-04-02T06:22:49.120Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('c8a8f95e-77d5-4e4b-b762-6c4bfedbaf5b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does `nodeName` contain for an HTML element such as `<h1 id="id01">My First Page</h1>` according to the source?', 'The page states that `nodeName` of an element node is the same as the tag name, and notes that for HTML elements it is uppercase. So an `<h1>` element yields `H1`.', 'medium', 'approved', 'ffafca19-a10d-414b-82d6-797d3e641363', 213, '2026-04-02T06:22:49.133Z', '2026-04-02T06:22:49.133Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('bb8d0ec1-14d3-45f0-b1ff-8b7273cd0419', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'According to the source, which `nodeType` value represents the HTML document itself?', 'The source lists `DOCUMENT_NODE` as type `9`, describing it as the HTML document itself, the parent of `<html>`. This is a useful distinction from `ELEMENT_NODE`, which is type `1`.', 'hard', 'approved', 'ffafca19-a10d-414b-82d6-797d3e641363', 214, '2026-04-02T06:22:49.138Z', '2026-04-02T06:22:49.138Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('055ceab2-dcb5-4591-9837-7049a353e04c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Given a container that includes text nodes, a comment, and two child elements, which property returns only the element children?', 'The handbook explains that `childNodes` includes all child nodes, including text and comment nodes, while `children` returns only element nodes. That makes `children` the safer default when you mean actual HTML elements.', 'medium', 'approved', '6e57695b-e3c0-48d7-a635-8758df22db47', 215, '2026-04-02T06:22:52.583Z', '2026-04-02T06:22:52.583Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('2ba01328-f26e-43fd-8661-abd16f1de893', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A formatted HTML block contains whitespace before its first child element. Which property is safer if you want the first child element specifically?', '`firstChild` may return a text node created by whitespace and formatting. `firstElementChild` skips non-element nodes and returns the first element child directly.', 'medium', 'approved', '6e57695b-e3c0-48d7-a635-8758df22db47', 216, '2026-04-02T06:22:52.589Z', '2026-04-02T06:22:52.589Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3c331fb2-4fe8-4b1a-b38f-0667f652adb8', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'When there are text nodes between sibling elements, what is the practical difference between `nextSibling` and `nextElementSibling`?', '`nextSibling` traverses to the next node, which may be a text node or comment. `nextElementSibling` skips non-element nodes and returns the next element. This distinction matters in formatted markup with whitespace between elements.', 'hard', 'approved', '6e57695b-e3c0-48d7-a635-8758df22db47', 217, '2026-04-02T06:22:52.591Z', '2026-04-02T06:22:52.591Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('be4599aa-82b8-4425-8027-1aa76d8f3324', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement best captures the handbook''s distinction between a node and an element?', 'The handbook defines nodes as the general building blocks of the DOM, which includes text, comments, attributes, and elements. Elements are only one specific kind of node, corresponding to HTML tags such as `<div>` or `<p>`.', 'medium', 'approved', '6e57695b-e3c0-48d7-a635-8758df22db47', 218, '2026-04-02T06:22:52.592Z', '2026-04-02T06:22:52.592Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('1dadda8f-46e5-48b4-9798-c667b2716ed6', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'When starting from a selected DOM element in ordinary HTML traversal, what is the handbook''s practical takeaway about `parentNode` versus `parentElement`?', 'The handbook says that, in practical element traversal, the parent of an element or node will usually be an element, so either property gives you the right parent in common cases. The distinction is still conceptual, but the practical outcome is often the same.', 'hard', 'approved', '6e57695b-e3c0-48d7-a635-8758df22db47', 219, '2026-04-02T06:22:52.594Z', '2026-04-02T06:22:52.594Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('21a754f8-160d-4db7-9fc4-39f0b2ed72ea', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which sequence reflects the full DOM event flow described in the article?', 'The article divides DOM event flow into three phases: capturing, target, and bubbling. That full model is broader than simply saying an event bubbles up.', 'medium', 'approved', 'cad6e676-ee6d-4fd1-b7b1-7796ea6a5720', 220, '2026-04-02T06:22:56.289Z', '2026-04-02T06:22:56.289Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('08c214ae-52c5-41c9-afb8-edd5d5e35491', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the default phase for listeners added with `addEventListener` according to the article?', 'The article states that all listeners added with `addEventListener` are in the bubble phase by default unless you explicitly opt into capture with the third argument set to `true`.', 'easy', 'approved', 'cad6e676-ee6d-4fd1-b7b1-7796ea6a5720', 221, '2026-04-02T06:22:56.293Z', '2026-04-02T06:22:56.293Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('44f296c2-3558-4c9b-b8a5-e7cf12f2b801', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Inside a click handler, which event-object property identifies the actual element that received the click?', 'The article uses `event.target` repeatedly to identify the concrete DOM element that was clicked. That is the property delegation code relies on when a parent listener handles child interactions.', 'easy', 'approved', 'cad6e676-ee6d-4fd1-b7b1-7796ea6a5720', 222, '2026-04-02T06:22:56.295Z', '2026-04-02T06:22:56.295Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cd4a7a3c-0e64-4b9f-babe-ae7ea87c32fc', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does event delegation work according to the article?', 'The article explains that event delegation uses bubbling so a parent element can observe events that originated in its child elements. That lets one ancestor listener handle multiple descendants efficiently.', 'medium', 'approved', 'cad6e676-ee6d-4fd1-b7b1-7796ea6a5720', 223, '2026-04-02T06:22:56.297Z', '2026-04-02T06:22:56.297Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('f594685f-5c1b-4047-a58f-9c593691c56b', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement about `event.stopPropagation()` is supported by the article?', 'The article says `stopPropagation()` prevents ancestor listeners from being triggered for that event. It also explicitly notes that the method can be used during the capturing phase as well, not only during bubbling.', 'hard', 'approved', 'cad6e676-ee6d-4fd1-b7b1-7796ea6a5720', 224, '2026-04-02T06:22:56.302Z', '2026-04-02T06:22:56.302Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('58279704-7ba4-44c6-8e36-647d9e3bae69', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'In the article''s basic delegation example, where is the `click` listener attached?', 'The article shows event delegation by attaching a single `click` listener to the parent `div`, not to the button itself. The button click bubbles up, and the parent handles it.', 'easy', 'approved', '17f96088-bc08-450a-ba62-152ea4d1056c', 225, '2026-04-02T06:22:59.851Z', '2026-04-02T06:22:59.851Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('81a741e8-194e-44a1-a239-28e03e151838', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the delegated example check `if (event.target.tagName === ''BUTTON'')`?', 'The parent `div` can receive bubbled clicks from any descendant. The `tagName` guard ensures the shared handler runs its button logic only when the actual target element is a `BUTTON`.', 'medium', 'approved', '17f96088-bc08-450a-ba62-152ea4d1056c', 226, '2026-04-02T06:22:59.855Z', '2026-04-02T06:22:59.855Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ca37e3c1-0e6e-468f-8f49-0c9d4b2a30b5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the main advantage shown when a new button is added to the delegated parent after the JavaScript has already been written?', 'Because the listener sits on the shared parent, newly added matching children are handled automatically without adding new listeners for each button. That is one of the key maintenance benefits of delegation.', 'medium', 'approved', '17f96088-bc08-450a-ba62-152ea4d1056c', 227, '2026-04-02T06:22:59.858Z', '2026-04-02T06:22:59.858Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('734353a6-9ccc-4454-b1bd-e9d98f474f40', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the article use `querySelectorAll(''button'')` instead of `getElementsByTagName(''button'')` in the non-delegated example?', 'The article says `querySelectorAll` returns a `NodeList`, which supports `forEach`, while `getElementsByTagName` returns an `HTMLCollection`, which does not have `forEach` in that example.', 'medium', 'approved', '17f96088-bc08-450a-ba62-152ea4d1056c', 228, '2026-04-02T06:22:59.861Z', '2026-04-02T06:22:59.861Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('3882d47d-581d-4b86-97b2-b084510fe18a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Given this delegated handler, what happens if the user clicks inside the `div` but not on a button?
+
+```js
+div.addEventListener(''click'', (event) => {
+  if (event.target.tagName === ''BUTTON'') {
+    console.log(''button was clicked'');
+  }
+});
+```', 'The condition filters the delegated logic so it runs only when the actual target element is a button. If the click target is some other descendant or the container itself, the handler runs but the branch does nothing.', 'hard', 'approved', '17f96088-bc08-450a-ba62-152ea4d1056c', 229, '2026-04-02T06:22:59.866Z', '2026-04-02T06:22:59.866Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('811faf65-c637-460c-aa16-6ff91cacf605', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A click happens on a button nested inside `#inner`, which is nested inside `#outer`. All three elements have `click` listeners added with default `addEventListener` usage. In what order do the handlers run according to the source?', 'The handbook says browsers use bubbling by default. That means the event is handled on the target first, then bubbles outward through ancestors. So the default order is button, then inner ancestor, then outer ancestor.', 'medium', 'approved', '139f61eb-7a51-44af-89b9-1b75e632599b', 230, '2026-04-02T06:23:03.459Z', '2026-04-02T06:23:03.459Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ec57c28d-d624-41d6-b3ad-9116293f3cf5', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'How do you switch the same nested click example from bubbling order to capturing order according to the source?', 'The handbook says to pass `true` as the third argument to `addEventListener`. That registers the listeners for the capturing phase, which runs from the outermost ancestor down to the target element.
+
+Example:
+
+```js
+outerDiv.addEventListener(''click'', handler, true);
+```', 'medium', 'approved', '139f61eb-7a51-44af-89b9-1b75e632599b', 231, '2026-04-02T06:23:03.463Z', '2026-04-02T06:23:03.463Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('0899faed-468c-4532-9378-8e64d1498ff7', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A button listener calls `event.stopPropagation()` in the handbook''s nested example. What is the result?', '`stopPropagation()` prevents the event from continuing through the DOM. In the handbook''s example, once the button handler calls it, the ancestor handlers on `#inner` and `#outer` do not run.
+
+Example:
+
+```js
+button.addEventListener(''click'', function (event) {
+  event.stopPropagation();
+  console.log(''Click on button'');
+});
+```', 'hard', 'approved', '139f61eb-7a51-44af-89b9-1b75e632599b', 232, '2026-04-02T06:23:03.466Z', '2026-04-02T06:23:03.466Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('8b24c1fc-b6f8-4dc4-90d0-c10624b0ae7c', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement correctly contrasts event bubbling and event capturing as presented in the source?', 'The source describes bubbling as target-to-outermost propagation, while capturing is the opposite: outermost ancestor down to the target. Understanding that direction is the core event-flow distinction.', 'medium', 'approved', '139f61eb-7a51-44af-89b9-1b75e632599b', 233, '2026-04-02T06:23:03.467Z', '2026-04-02T06:23:03.467Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ac85523d-c46a-4edd-a09f-a70c90fdcb02', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the handbook pass `event` as a parameter to the click handler in the `stopPropagation` example?', 'The event object is how the handler accesses `stopPropagation()`. Without receiving the event object, the handler cannot call that method on the current event. The handbook explicitly points that out after the example.', 'easy', 'approved', '139f61eb-7a51-44af-89b9-1b75e632599b', 234, '2026-04-02T06:23:03.471Z', '2026-04-02T06:23:03.471Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('4318d1e6-03ff-4f4f-bbec-6fec52e21c4e', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement about `localStorage` is correct according to the article?', 'The article says `localStorage` is shared across all tabs and windows of the same origin, and its data remains after browser restart and even OS reboot. That persistence and origin scoping are its defining characteristics.', 'easy', 'approved', 'd4cb9284-758b-410a-ac4e-80fe76c0881a', 235, '2026-04-02T06:23:07.084Z', '2026-04-02T06:23:07.084Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('48d96422-40ca-4d6d-b629-f11a79c0e586', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Why does the article recommend `getItem` and `setItem` over object-like access such as `localStorage.test = 2`?', 'Object-like access is allowed for historical reasons, but the article warns it is not recommended because user-generated keys can clash with built-in names such as `length`, and storage events do not fire for object-like access. Using the official methods avoids those pitfalls.', 'hard', 'approved', 'd4cb9284-758b-410a-ac4e-80fe76c0881a', 236, '2026-04-02T06:23:07.087Z', '2026-04-02T06:23:07.087Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('d79b6e11-d888-42da-bbfc-a531f7b9feee', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What happens if you store an object directly in `localStorage` without converting it first?', 'The article says both keys and values must be strings, so non-string values are converted automatically. A plain object becomes the string `[object Object]`, which is why JSON serialization is the recommended approach for objects.
+
+Example:
+
+```js
+localStorage.user = JSON.stringify({ name: ''John'' });
+const user = JSON.parse(localStorage.user);
+```', 'medium', 'approved', 'd4cb9284-758b-410a-ac4e-80fe76c0881a', 237, '2026-04-02T06:23:07.091Z', '2026-04-02T06:23:07.091Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ca15dc81-fe48-4217-976c-ef00eba508f1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Two same-origin tabs are open. Tab A calls `localStorage.setItem(''now'', Date.now())`. How does the `storage` event behave according to the article?', 'The article says the `storage` event fires on all same-origin windows that can access the storage except the one that caused the change. That means Tab B receives the event, but Tab A does not receive it from its own write.', 'hard', 'approved', 'd4cb9284-758b-410a-ac4e-80fe76c0881a', 238, '2026-04-02T06:23:07.094Z', '2026-04-02T06:23:07.094Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('31189ef2-d777-4b26-9757-ee9fd1a473ef', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is the safest way highlighted in the article to iterate only over stored keys, without pulling in prototype members like `getItem` or `setItem`?', 'The article notes that `for...in` traverses prototype members too, so you either need a `hasOwnProperty` guard or should use `Object.keys(localStorage)`, which returns only the object''s own keys.', 'medium', 'approved', 'd4cb9284-758b-410a-ac4e-80fe76c0881a', 239, '2026-04-02T06:23:07.096Z', '2026-04-02T06:23:07.096Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('ea0a2973-20f1-4516-9353-3f5ab3f304d1', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'A user stores data on `http://example.com` and later visits `https://example.com`. According to MDN, what should a senior engineer expect from `localStorage`?', 'MDN says `localStorage` is specific to the document''s protocol, so HTTP and HTTPS versions of the same host get different storage objects. Data written on HTTP is not automatically visible on HTTPS.', 'hard', 'approved', 'd6cfe8db-9584-4885-9fe3-df6861903e06', 240, '2026-04-02T06:23:10.649Z', '2026-04-02T06:23:10.649Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('99de661a-a57e-4af0-ab5e-8c9348ed2877', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which statement about stored keys and values matches MDN''s description of `localStorage`?', 'MDN says keys and values are stored in UTF-16 string format, and integer keys are converted to strings automatically. That matters when you rely on type-sensitive comparisons or key enumeration behavior.', 'medium', 'approved', 'd6cfe8db-9584-4885-9fe3-df6861903e06', 241, '2026-04-02T06:23:10.653Z', '2026-04-02T06:23:10.653Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('cfd16e2e-38d9-4fcd-9d34-302977d4e336', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'Which situation can cause a `SecurityError` when accessing `window.localStorage` according to MDN?', 'MDN lists two broad causes: invalid origins such as `file:` or `data:`, and policy decisions that block persistence, such as browser settings that prevent saving data. Blocking cookies may also be interpreted this way by browsers.', 'hard', 'approved', 'd6cfe8db-9584-4885-9fe3-df6861903e06', 242, '2026-04-02T06:23:10.655Z', '2026-04-02T06:23:10.655Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('9edcf45a-a4f5-45d8-93b0-b0b85fe63b8d', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What does MDN say about `localStorage` in a private or incognito browsing session?', 'MDN says `localStorage` in private browsing behaves like normal session-persistent storage only within that private context, and it is cleared when the last private tab is closed.', 'medium', 'approved', 'd6cfe8db-9584-4885-9fe3-df6861903e06', 243, '2026-04-02T06:23:10.656Z', '2026-04-02T06:23:10.656Z');
+INSERT INTO "questions" ("id", "certification_id", "text", "explanation", "difficulty", "status", "source_id", "order_index", "created_at", "updated_at") VALUES ('21b6eaf0-3bae-42d3-963d-3d1d9b159c9a', '29925618-9a2e-4885-a234-b44e0cf6eba8', 'What is MDN''s position on relying on `localStorage` behavior for `file:` URLs?', 'MDN says the requirements for `file:` URL behavior are undefined and may vary by browser. Even though current browsers often appear to give each `file:` URL its own storage area, that behavior is not guaranteed and should not be relied on.', 'hard', 'approved', 'd6cfe8db-9584-4885-9fe3-df6861903e06', 244, '2026-04-02T06:23:10.657Z', '2026-04-02T06:23:10.657Z');
