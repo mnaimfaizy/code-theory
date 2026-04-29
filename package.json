@@ -27,10 +27,10 @@
     "questions:apply-review": "npx tsx scripts/apply-question-review.ts"
   },
   "dependencies": {
-    "@base-ui/react": "1.3.0",
+    "@base-ui/react": "1.4.0",
     "@hookform/resolvers": "5.2.2",
     "bcryptjs": "3.0.3",
-    "better-sqlite3": "12.8.0",
+    "better-sqlite3": "12.9.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "drizzle-orm": "0.45.2",
