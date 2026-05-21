@@ -55,7 +55,7 @@
     "zustand": "5.0.12"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.2.2",
+    "@tailwindcss/postcss": "4.2.4",
     "@types/bcryptjs": "3.0.0",
     "@types/better-sqlite3": "7.6.13",
     "@types/node": "25.6.0",
@@ -67,8 +67,8 @@
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
-    "tailwindcss": "4.2.2",
-    "typescript": "6.0.2"
+    "tailwindcss": "4.2.4",
+    "typescript": "6.0.3"
   },
   "overrides": {
     "axios@0.30.4": "0.30.3",
