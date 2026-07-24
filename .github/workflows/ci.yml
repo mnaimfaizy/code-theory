@@ -166,13 +166,15 @@ jobs:
           CURRENT_SHA: ${{ github.sha }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
+          ZERO_SHA="0000000000000000000000000000000000000000"
+
           case "$EVENT_NAME" in
             pull_request)
               diff_base="$BASE_SHA"
               diff_head="$HEAD_SHA"
               ;;
             push)
-              if [ -n "$PUSH_BEFORE_SHA" ] && [ "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+              if [ -n "$PUSH_BEFORE_SHA" ] && [ "$PUSH_BEFORE_SHA" != "$ZERO_SHA" ]; then
                 diff_base="$PUSH_BEFORE_SHA"
                 diff_head="$CURRENT_SHA"
               else
