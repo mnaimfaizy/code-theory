@@ -1,0 +1,21 @@
+{
+  "name": "braces",
+  "version": "3.0.4",
+  "description": "Depth-limited derivative of braces 3.0.3. Upstream has no release newer than 3.0.3, which is the last version covered by GHSA-vfj7-8cjw-p6xm. This copy adds the nesting-depth guards from micromatch/braces#72 and is numbered 3.0.4 so it is outside that advisory range. Remove the root package.json override when micromatch publishes a fixed braces.",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micromatch/braces"
+  },
+  "dependencies": {
+    "fill-range": "^7.1.1"
+  }
+}

@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored braces is upstream CommonJS. It is not application code.
+    "vendor/**",
   ]),
 ]);
 
