@@ -32,6 +32,7 @@ export function QuizClient({ attempt, questions }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [timeLeft, setTimeLeft] = useState(attempt.timeLimitSeconds ?? 0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const submitRef = useRef<() => void>(() => {});
 
   const question = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
@@ -45,7 +46,7 @@ export function QuizClient({ attempt, questions }: Props) {
       setTimeLeft((t) => {
         if (t <= 1) {
           clearInterval(timerRef.current!);
-          handleSubmit();
+          submitRef.current();
           return 0;
         }
         return t - 1;
@@ -133,7 +134,7 @@ export function QuizClient({ attempt, questions }: Props) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToNext, goToPrevious, question.options, selectAnswer]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (submitting) return;
     setSubmitting(true);
     if (timerRef.current) clearInterval(timerRef.current);
@@ -148,7 +149,13 @@ export function QuizClient({ attempt, questions }: Props) {
       router.push(`/results/${attempt.id}`);
     }
     setSubmitting(false);
-  };
+  }, [attempt.id, router, submitting]);
+
+  useEffect(() => {
+    submitRef.current = () => {
+      void handleSubmit();
+    };
+  }, [handleSubmit]);
 
   const isLowTime = attempt.timed && timeLeft < 60;
 
