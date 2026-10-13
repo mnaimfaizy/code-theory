@@ -43,7 +43,7 @@
     "pg": "8.23.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-hook-form": "7.88.0",
+    "react-hook-form": "7.89.0",
     "react-markdown": "10.1.0",
     "react-syntax-highlighter": "16.1.1",
     "remark-gfm": "4.0.1",
@@ -69,7 +69,7 @@
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.6",
     "tailwindcss": "4.3.3",
-    "typescript": "6.0.2"
+    "typescript": "6.0.3"
   },
   "overrides": {
     "axios@0.30.4": "0.30.3",
